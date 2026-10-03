@@ -23,9 +23,9 @@
 
 | | Đồ án LTTTBDD | Đồ án chuyên ngành CNPM |
 |---|---|---|
-| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, camera, chạy model trên máy | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
-| Phạm vi | Module A (+ phần camera/on-device của Module D) | Module A + B + D, tài liệu CNPM đầy đủ |
-| Hạn | [ĐIỀN hạn nộp/bảo vệ LTTTBDD] | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
+| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, điều hướng, offline, giao diện | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
+| Phạm vi | Module A — luyện đề như các app ôn thi trên Google Play, giao diện đẹp hơn; **không có AI** | Module A + B + D, tài liệu CNPM đầy đủ |
+| Hạn | **28/10/2026** (hạn nội bộ tự đặt; trường chưa công bố lịch nộp, buổi học cuối 30/10/2026) | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
 
 ## Các module
 
@@ -89,3 +89,4 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 - 2026-10-03: Cảnh báo AI 3 tầng (hộp thoại lần đầu, dòng cố định + nút Kiểm chứng dưới mỗi câu trả lời, trích dẫn văn bản–điều–khoản) + nút Báo sai.
 - 2026-10-03: Tuyên bố miễn trừ toàn app (sản phẩm độc lập, không đại diện cơ quan nhà nước, dẫn nguồn chính thức).
 - 2026-10-03: Gợi ý ôn tập cá nhân hóa hạ xuống Could.
+- 2026-10-03: Hạn nội bộ đồ án LTTTBDD 28/10/2026 (buổi học cuối 30/10). Phạm vi LTTTBDD = Module A luyện đề như app đối thủ, giao diện đẹp hơn, không AI. Camera/nhận diện, chatbot, tra cứu luật chuyển hết sang đồ án chuyên ngành (Sprint 2–5).

@@ -16,9 +16,9 @@ Cấu trúc lấy cảm hứng từ [Claude Code Game Studios](https://github.co
 
 | | Đồ án LTTTBDD | Đồ án chuyên ngành CNPM |
 |---|---|---|
-| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, camera, chạy model trên máy | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
-| Phạm vi | Module A (+ phần camera/on-device của Module D) | Module A + B + D, tài liệu CNPM đầy đủ |
-| Hạn | [ĐIỀN] | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
+| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, điều hướng, offline, giao diện | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
+| Phạm vi | Module A — luyện đề như các app ôn thi trên Google Play, giao diện đẹp hơn; **không có AI** | Module A + B + D, tài liệu CNPM đầy đủ |
+| Hạn | 28/10/2026 (hạn nội bộ; buổi học cuối 30/10/2026) | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
 
 - Team 2 người. Giảng viên cho phép dùng AI hỗ trợ viết code.
 - Công cụ: Flutter (Dart) + Android Studio; Gemini API gói miễn phí; Python + Google Colab để huấn luyện model.
@@ -83,7 +83,7 @@ Kỹ thuật:
 - Dự phòng / bản web: Gemini vision qua backend, **bắt buộc trả về đúng một mã biển trong danh sách hoặc `UNKNOWN`**.
 - Kết hợp: on-device trước; độ tin cậy thấp → hỏi Gemini hoặc hiện top-3.
 - Đánh giá: top-1, top-3, tỷ lệ từ chối đúng, confusion matrix, thời gian suy luận; so sánh on-device vs Gemini vs kết hợp.
-- Rủi ro lớn nhất là dữ liệu ảnh: nếu giữa Sprint 2 chưa đủ ảnh có nhãn → chuyển Gemini vision làm phương án chính.
+- Rủi ro lớn nhất là dữ liệu ảnh: nếu đến mốc 15/11 (giữa Sprint 3) chưa đủ ảnh có nhãn → chuyển Gemini vision làm phương án chính.
 
 ## 4. Cài đặt
 
@@ -114,16 +114,16 @@ Bất cứ lúc nào: `/status`.
 
 | Thời gian | Sprint | Mục tiêu |
 |---|---|---|
-| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài, SRS bản đầu |
-| 12/10–25/10 | 1 | Thiết kế (UX, kiến trúc, data-plan, rag-design, vision-design), setup Flutter, nhập dữ liệu câu hỏi & danh mục biển; **bắt đầu thu thập ảnh biển báo** |
-| 26/10–08/11 | 2 | Module A: học, thi thử, chấm điểm, điểm liệt · **Huấn luyện model lần 1** · Mốc quyết định dữ liệu ảnh (giữa sprint) |
-| 09/11–22/11 | 3 | Module A hoàn thiện · Backend + RAG prototype · **Tích hợp TFLite + màn hình camera** |
-| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · Luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
+| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài · SRS Module A · UX Module A (Claude Design) · kiến trúc app tối giản (state, local DB) · /setup-flutter · **Kiệt: tìm nguồn chính thức + bắt đầu nhập bộ câu hỏi** |
+| 12/10–28/10 | 1 | **Nộp LTTTBDD 28/10** — Module A: chọn hạng, học theo chủ đề, thi thử + chấm điểm + điểm liệt (12–20/10) · ôn câu sai, câu hay sai, danh mục biển báo, thống kê (21–25/10) · test, build APK, hoàn thiện báo cáo LTTTBDD (26–28/10). Kiệt: nhập liệu xong trước 15/10, viết báo cáo LTTTBDD từ 19/10 |
+| 29/10–08/11 | 2 | Thiết kế phần AI: SRS đủ Module B + D, rag-design, vision-design, dataset-plan, kiến trúc backend · Kiệt: kho văn bản luật, danh mục biển báo · **bắt đầu thu thập ảnh biển báo** |
+| 09/11–22/11 | 3 | Backend + RAG prototype · tra cứu luật · **Huấn luyện model lần 1** · tích hợp TFLite + màn hình camera · **mốc quyết định dữ liệu ảnh 15/11** |
+| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
 | 07/12–20/12 | 5 | Ổn định, test, đánh giá cuối, release, (web nếu dư) — **không thêm tính năng** |
 | 21/12–27/12 | — | Nộp báo cáo chuyên ngành |
 | 28/12–10/01 | — | Bảo vệ |
 
-Viết báo cáo song song từ Sprint 2. Điền hạn LTTTBDD vào `production/roadmap.md`; nếu sớm hơn tháng 12, ưu tiên Module A + camera trước hạn đó.
+Báo cáo LTTTBDD viết trong Sprint 1; báo cáo chuyên ngành viết song song từ Sprint 2.
 
 ## 7. Studio gồm những gì
 

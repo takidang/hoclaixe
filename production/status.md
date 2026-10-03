@@ -14,17 +14,19 @@
 
 ## Việc tiếp theo
 1. `/discovery` → `/gate-check discovery` (chốt đề tài trước 11/10/2026).
-2. `/write-srs` bản đầu, dùng `docs/srs/requirements-draft.md`.
+2. `/write-srs` — ưu tiên Module A (cho LTTTBDD 28/10); Module B, D viết đủ trong Sprint 2.
+3. `/ux-design` Module A, kiến trúc app tối giản, `/setup-flutter` — xong trong Sprint 0.
 
 ## Phân công
 
 | Người | Việc đang giao | Hạn |
 |---|---|---|
-| Tài | `/discovery`, `/write-srs` bản đầu | 11/10/2026 |
+| Tài | `/discovery`, SRS + UX Module A, `/setup-flutter` | 11/10/2026 |
 | Kiệt | Clone repo, đọc `README.md` + `CONTRIBUTING.md` (đã là collaborator `hlo043097-cmd`) | [ĐIỀN] |
-| Kiệt | Tìm nguồn chính thức: bộ câu hỏi sát hạch hiện hành, luật/nghị định giao thông, quy chuẩn biển báo → `docs/data/sources.md` | [ĐIỀN] |
-| Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên → `docs/reports/` | [ĐIỀN] |
+| Kiệt | **Ưu tiên 1**: tìm nguồn chính thức bộ câu hỏi sát hạch hiện hành (+ cấu trúc đề theo hạng, câu điểm liệt) → `docs/data/sources.md`, rồi nhập vào `data/question-bank/` | Nguồn: 08/10 · Nhập xong: 15/10 |
+| Kiệt | Ưu tiên 2: quy chuẩn biển báo, luật/nghị định giao thông (cho đồ án chuyên ngành) | 08/11 |
+| Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 | Mẫu: 11/10 · Báo cáo: 28/10 |
 
 ## Blocker / cần bổ sung
-- Chưa có: hạn nộp/bảo vệ đồ án LTTTBDD, yêu cầu format báo cáo.
+- Chưa có: yêu cầu format báo cáo. Hạn LTTTBDD 28/10 là hạn nội bộ — theo dõi khi trường công bố lịch chính thức.
 - Module D: chưa chốt người huấn luyện model (đề xuất: Tài) và phân công chụp ảnh (đề xuất: cả hai).
