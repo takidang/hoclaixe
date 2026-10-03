@@ -55,7 +55,7 @@ Nguyên tắc: **AI không bao giờ là nguồn sự thật** — cảnh báo A
 |---|---|---|---|
 | Chọn hạng A1, A, B (hạng khác: chỉ thêm dữ liệu cấu hình, làm sau nếu dư thời gian) | A | Must | LT, CN |
 | Cấu trúc đề là dữ liệu cấu hình theo hạng + ngày hiệu lực; đề hiện hành | A | Must | LT, CN |
-| Đề theo cấu trúc từ 01/3/2027 (TT 108/2026) — chỉ khi xác minh được nguyên văn và bộ câu hỏi | A | Should | CN |
+| Đề theo cấu trúc từ 01/3/2027 (TT 108/2026) — TT 108 chỉ quy định tổng số câu/thời gian/điểm đạt, chưa có phân bổ theo chương, điểm liệt, bộ câu hỏi; làm khi Cục CSGT ban hành hướng dẫn | A | Could | CN |
 | Học theo chủ đề/chương, xem đáp án đúng | A | Must | LT, CN |
 | Thi thử: đề ngẫu nhiên đúng cấu trúc, đồng hồ đếm ngược, chấm điểm, **trượt khi sai câu điểm liệt** | A | Must | LT, CN |
 | Lưu đáp án bền vững (chuyển câu, xoay màn hình, app vào nền, tắt app, nộp bài) | A | Must | LT, CN |
@@ -110,9 +110,12 @@ Nguyên tắc: **AI không bao giờ là nguồn sự thật** — cảnh báo A
 - API key chỉ ở backend; ảnh người dùng không lưu trên server.
 - Chỉ dùng dữ liệu từ nguồn chính thức; app là sản phẩm độc lập, không đại diện cơ quan nhà nước.
 
-**Chưa xác minh** (giao data-curator — Kiệt):
-- Nguyên văn TT 108/2026/TT-BCA: điều khoản chuyển tiếp, cấu trúc đề từ 01/3/2027, có bộ câu hỏi mới / dạng câu mới (đúng-sai, video) hay không, việc bỏ sát hạch mô phỏng.
-- Cấu trúc đề hiện hành chi tiết theo chương cho A1, A, B từ văn bản gốc (hiện chỉ có nguồn thứ cấp).
+**Đã xác minh 04/10/2026** (xem `docs/data/sources.md` §3): cấu trúc đề hiện hành A1, A, B theo chương (CV 2262),
+thời gian và điểm đạt (TT 12/2025, còn hiệu lực đến 28/02/2027), điều khoản chuyển tiếp và cấu trúc từ 01/3/2027 (TT 108/2026).
+TT 108 không nhắc tới điểm liệt và không ban hành bộ câu hỏi mới. File bộ 600 câu trên csgt.bocongan.gov.vn là PDF chữ —
+đã trích xuất tự động đủ 600 câu (`tools/extract_questions/`).
+
+**Còn chưa xác minh**: việc TT 108/2026 bỏ sát hạch mô phỏng (chỉ có nguồn thứ cấp).
 
 ## Nguồn tham khảo (truy cập 03/10/2026)
 - Tuổi Trẻ — Bộ 600 câu lý thuyết sát hạch lái xe mới có gì khác với bộ cũ?: https://tuoitre.vn/video/bo-600-cau-ly-thuyet-sat-hach-lai-xe-moi-co-gi-khac-voi-bo-cu-181739.htm

@@ -1,0 +1,52 @@
+# Nguồn dữ liệu
+
+> Quản lý: data-curator (Kiệt). Mọi dữ liệu trong `data/` phải truy được về một dòng ở đây.
+> File gốc lưu ở `data/question-bank/raw/` (không commit) — kiểm tra đúng file bằng SHA-256.
+
+## 1. Văn bản và bộ câu hỏi đang dùng
+
+| Mã tham chiếu | Văn bản | Cơ quan | Ban hành | Hiệu lực | Dùng cho | Bản chính thức? |
+|---|---|---|---|---|---|---|
+| `CSGT-600-2025` | Bộ 600 câu hỏi dùng cho sát hạch lái xe cơ giới đường bộ | Cục CSGT – Bộ Công an | 2025 | 01/6/2025 (bắt buộc toàn quốc 01/9/2025) | Nội dung câu hỏi, đáp án, hình | Có |
+| `CV-2262-2025` | Công văn 2262/CSGT-P5 về việc sử dụng bộ 600 câu hỏi | Cục CSGT | 07/5/2025 | 01/6/2025 | Chương, đáp án = phần gạch chân, pool A1/A (PL1), B1 (PL2), 60 câu điểm liệt (PL3), cấu trúc đề theo chương (mục II) | Có |
+| `TT-12-2025` | Thông tư 12/2025/TT-BCA về sát hạch, cấp GPLX; cấp, sử dụng GPLX quốc tế | Bộ Công an | 28/02/2025 | Các phần dùng ở đây còn hiệu lực **đến hết 28/02/2027** (TT 108/2026, Điều 41 khoản 6) | Thời gian làm bài, điểm đạt, quy tắc điểm liệt (đề hiện hành) | Có — PDF có chữ ký số Cổng TTĐT Chính phủ (06/3/2025) |
+| `TT-108-2026` | Thông tư 108/2026/TT-BCA về sát hạch, cấp GPLX; cấp, sử dụng GPLX quốc tế (thay TT 12/2025) | Bộ Công an | 29/6/2026 | 01/7/2026; **nội dung sát hạch lý thuyết mới từ 01/3/2027** (Điều 41 khoản 2) | Cấu trúc đề từ 01/3/2027 (chưa đủ để tạo đề) | Có (bản scan) |
+| `TT-108-2026-docx` | Bản .docx của TT 108/2026 | thuvienphapluat.vn (metadata: tác giả "User", 25/8/2026) | — | — | Chỉ để tìm kiếm toàn văn; đã đối chiếu khớp bản scan ở Điều 41, PL I, PL III | **Không** — không trích dẫn từ bản này |
+
+## 2. File gốc
+
+| Mã | Tên file | Nguồn tải | Ngày tải | SHA-256 |
+|---|---|---|---|---|
+| `CSGT-600-2025` | `725823572_600 câu hỏi dùng cho sát hạch GPLX cơ giới đường bộ.pdf` (188 trang, PDF chữ) | https://csgt.bocongan.gov.vn/van-ban | 04/10/2026 | `6a6dab8543eb334b36ac9de6abcd938e864f2e0e915be27c3a2157ee6e518575` |
+| `CV-2262-2025` | `2071319603_Hướng dẫn sử dụng bộ câu hỏi sát hạch GPLX (CV 2262.07.5.2025).pdf` (6 trang, PDF chữ) | https://csgt.bocongan.gov.vn/van-ban | 04/10/2026 | `dcb0b42473a23af3b006ed07cfd3a728254eb3d5263f6a26d0536c576d69e634` |
+| `TT-12-2025` | `15-bca.signed.pdf` (122 trang, scan) | https://chinhphu.vn/?pageid=27160&docid=213022 | 04/10/2026 | `307f993f81e3949da59812a0cbabef58f6d1c4b62caecf8362b84c65ae949ed3` |
+| `TT-108-2026` | `thong-tu-so-108.2026.tt-bca-ngay-29.6.2026-ban-day-du-v03.pdf` (134 trang, scan) | https://csgt.bocongan.gov.vn/van-ban/thong-tu-108-2026 | 04/10/2026 | `7f879c2404948203d693a0109b1f584a5484c1514b5c5ea6c6d4d7c956983c71` |
+| `TT-108-2026-docx` | `108_2026_TT-BCA_704772.docx` | https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Thong-tu-108-2026-TT-BCA-sat-hach-cap-giay-phep-lai-xe-704772.aspx (trang thứ cấp) | 04/10/2026 | `0f14ead202f492ac64a3cdd1d249acb166f164e58ea6e6a1629a161f8f8464e8` |
+
+Ghi chú bản quyền: văn bản quy phạm pháp luật và văn bản hành chính nhà nước không thuộc đối tượng bảo hộ quyền tác giả
+(Luật Sở hữu trí tuệ, Điều 15). Bộ câu hỏi do Cục CSGT ban hành để sử dụng công khai; app ghi rõ nguồn và tuyên bố miễn trừ.
+[CHƯA XÁC MINH: việc bộ câu hỏi thuộc phạm vi Điều 15 — cần data-curator/giảng viên xác nhận.]
+
+## 3. Trích dẫn cụ thể (đã đối chiếu bản chính thức, 04/10/2026)
+
+| Nội dung | Giá trị | Nguồn (trang trong file PDF) |
+|---|---|---|
+| Đáp án đúng | Phần gạch chân dưới câu hỏi | CV-2262-2025, mục I.1, ghi chú |
+| Số câu mỗi chương | I: 1–180 · II: 181–205 · III: 206–263 · IV: 264–300 · V: 301–485 · VI: 486–600 | CV-2262-2025, mục I.1 |
+| Pool A1, A | 250 câu, 20 câu điểm liệt | CV-2262-2025, mục I.2.3 + Phụ lục 1 |
+| Pool B1 | 300 câu, 30 câu điểm liệt | CV-2262-2025, mục I.2.2 + Phụ lục 2 |
+| Hạng B trở lên | 600 câu, 60 câu điểm liệt | CV-2262-2025, mục I.2.1 + Phụ lục 3 |
+| Đề A1, A (hiện hành) | 25 câu: 8 ch.I · 1 điểm liệt · 1 ch.II · 1 ch.III hoặc IV · 8 ch.V · 6 ch.VI | CV-2262-2025, mục II.5 |
+| Đề B (hiện hành) | 30 câu: 8 ch.I · 1 điểm liệt · 1 ch.II · 1 ch.III · 1 ch.IV · 9 ch.V · 9 ch.VI | CV-2262-2025, mục II.1 |
+| A1, A: thời gian, điểm đạt | 19 phút; 24 câu 1 điểm + 1 câu điểm liệt; mỗi câu 2–4 ý; **A1 đạt từ 21/25, A đạt từ 23/25**; sai câu điểm liệt → không đạt | TT-12-2025, Phụ lục II, mục A.I (tr. 35–36) |
+| B: thời gian, điểm đạt | 30 câu, 20 phút, **đạt tối thiểu 27**; mỗi đề 1 câu điểm liệt; sai → không đạt | TT-12-2025, Phụ lục IV, mục A (tr. 47–48) |
+| Hiệu lực chuyển tiếp | Lý thuyết theo TT 108 từ 01/3/2027; Phụ lục II, IV mục A… của TT 12/2025 hiệu lực đến hết 28/02/2027 | TT-108-2026, Điều 41 khoản 2, 6 (tr. 36–37) |
+| A1, A từ 01/3/2027 | 40 câu, 27 phút, đạt từ 36/40 | TT-108-2026, Phụ lục I, mục A.I (tr. 39) |
+| B từ 01/3/2027 | 50 câu, 33 phút, đạt tối thiểu 45 | TT-108-2026, Phụ lục III, mục A (tr. 55–56) |
+| Điểm liệt từ 01/3/2027 | **Không được nhắc tới** trong TT 108 (đã tìm toàn văn bản .docx) | TT-108-2026 |
+| Bộ câu hỏi từ 01/3/2027 | TT 108 không ban hành bộ câu hỏi; giao Cục CSGT xây dựng | TT-108-2026 (toàn văn) |
+
+## 4. Chưa có / cần bổ sung
+- Danh mục biển báo: QCVN 41:2024/BGTVT (hiệu lực 01/01/2025) — cần bản chính thức (đồ án chuyên ngành).
+- Luật Trật tự, an toàn giao thông đường bộ 2024 (số 36/2024/QH15, sửa đổi bởi Luật 118/2025/QH15), Nghị định 168/2024/NĐ-CP — cho tra cứu luật và RAG.
+- Hướng dẫn của Cục CSGT về bộ câu hỏi/cấu trúc đề áp dụng từ 01/3/2027 (khi có).

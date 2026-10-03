@@ -91,6 +91,8 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 - 2026-10-03: Gợi ý ôn tập cá nhân hóa hạ xuống Could.
 - 2026-10-03: Hạn nội bộ đồ án LTTTBDD 28/10/2026 (buổi học cuối 30/10). Phạm vi LTTTBDD = Module A luyện đề như app đối thủ, giao diện đẹp hơn, không AI. Camera/nhận diện, chatbot, tra cứu luật chuyển hết sang đồ án chuyên ngành (Sprint 2–5).
 - 2026-10-03: Discovery (xem `docs/srs/vision.md`): MVP hỗ trợ hạng A1, A, B; hạng khác thêm sau bằng dữ liệu cấu hình.
-- 2026-10-03: Cấu trúc đề thi là dữ liệu cấu hình theo hạng + ngày hiệu lực (đề hiện hành + đề từ 01/3/2027 theo TT 108/2026/TT-BCA, khi xác minh được nguyên văn).
+- 2026-10-03: Cấu trúc đề thi là dữ liệu cấu hình theo hạng + ngày hiệu lực (`data/question-bank/exam-structures.json`).
+- 2026-10-04: Đề hiện hành theo CV 2262/CSGT-P5 + TT 12/2025 (hiệu lực đến 28/02/2027). Đề từ 01/3/2027 (TT 108/2026) hạ xuống Could: chưa có phân bổ chương, điểm liệt, bộ câu hỏi.
+- 2026-10-04: Bộ 600 câu trích xuất tự động từ PDF chính thức (`tools/extract_questions/`); điểm liệt tính theo hạng (`criticalFor`: B+ 60 câu, A1/A 20, B1 30). Nguồn: `docs/data/sources.md`.
 - 2026-10-03: Won't: mẹo ghi nhớ (trái mục tiêu chống học mẹo, không có nguồn), thi mô phỏng/video. Tra cứu luật chỉ cho đồ án chuyên ngành.
 - 2026-10-03: Có khảo sát người dùng (Google Form, ≥ 30 phản hồi, Kiệt phụ trách) — `docs/srs/survey.md`.
