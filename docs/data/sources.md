@@ -23,9 +23,10 @@
 | `TT-108-2026` | `thong-tu-so-108.2026.tt-bca-ngay-29.6.2026-ban-day-du-v03.pdf` (134 trang, scan) | https://csgt.bocongan.gov.vn/van-ban/thong-tu-108-2026 | 04/10/2026 | `7f879c2404948203d693a0109b1f584a5484c1514b5c5ea6c6d4d7c956983c71` |
 | `TT-108-2026-docx` | `108_2026_TT-BCA_704772.docx` | https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Thong-tu-108-2026-TT-BCA-sat-hach-cap-giay-phep-lai-xe-704772.aspx (trang thứ cấp) | 04/10/2026 | `0f14ead202f492ac64a3cdd1d249acb166f164e58ea6e6a1629a161f8f8464e8` |
 
-Ghi chú bản quyền: văn bản quy phạm pháp luật và văn bản hành chính nhà nước không thuộc đối tượng bảo hộ quyền tác giả
-(Luật Sở hữu trí tuệ, Điều 15). Bộ câu hỏi do Cục CSGT ban hành để sử dụng công khai; app ghi rõ nguồn và tuyên bố miễn trừ.
-[CHƯA XÁC MINH: việc bộ câu hỏi thuộc phạm vi Điều 15 — cần data-curator/giảng viên xác nhận.]
+Ghi chú sử dụng: bộ câu hỏi và văn bản là tài liệu công khai do Bộ Công an / Cục CSGT ban hành để người học sử dụng;
+nhiều app ôn thi trên Google Play đang dùng lại bộ 600 câu. hoclaixe là đồ án sinh viên, chỉ dùng để học tập và demo
+khi chấm điểm, không phát hành thương mại; app ghi rõ nguồn và tuyên bố miễn trừ. Nếu sau này phát hành công khai
+→ xem lại điều kiện sử dụng (hỏi giảng viên / nguồn ban hành).
 
 ## 3. Trích dẫn cụ thể (đã đối chiếu bản chính thức, 04/10/2026)
 

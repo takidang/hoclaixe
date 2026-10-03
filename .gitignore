@@ -31,3 +31,4 @@ ml/**/saved_model/
 
 # Raw official source files (large; record link + SHA-256 in docs/data/sources.md)
 data/question-bank/raw/
+data/law-corpus/raw/
