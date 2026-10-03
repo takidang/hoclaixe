@@ -54,14 +54,15 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 |---|---|---|
 | Họ tên | Đặng Lê Tấn Tài | Nguyễn Đỗ Tuấn Kiệt |
 | MSSV | 2380601937 | 2380601147 |
-| GitHub | `takidang` (chủ repo) | [ĐIỀN username] — email hlo043097@gmail.com |
+| GitHub | `takidang` (chủ repo) | `hlo043097-cmd` (collaborator) |
 | Vai trò chính | Backend (proxy Gemini, RAG, Firebase/Supabase) với Claude Code; Frontend Flutter, UI thiết kế bằng Claude Design | Tìm tài liệu/dữ liệu chính thức (bộ câu hỏi, luật, quy chuẩn biển báo); viết 2 báo cáo |
 | Vai trò phụ | Huấn luyện model Module D (đề xuất, chưa chốt) | Khi có Claude Pro: phụ một phần design và backend, làm các chức năng phụ được giao |
 | Agent hay dùng | technical-director, backend-developer, flutter-developer, ux-designer, ml-engineer | data-curator, report-writer; sau này thêm ux-designer, backend-developer |
 | Công cụ AI | Claude Code, Claude Design | Chưa có Claude Pro (sẽ đăng ký sau) |
 
 - Chụp ảnh biển báo cho Module D: cả hai cùng làm (đề xuất, chốt trong `/dataset-plan`).
-- Năng lực: khoảng [ĐIỀN] giờ/tuần/người.
+- Năng lực: không cố định (ngày rảnh, ngày bận), tối thiểu **1 giờ/ngày/người** → lập kế hoạch sprint theo mức sàn
+  ~7 giờ/tuần/người (~14 giờ/sprint/người); giờ làm thêm ngày rảnh coi là dư địa, không tính trước.
 - Hướng dẫn cho thành viên mới clone repo: `CONTRIBUTING.md`.
 
 ## Mốc thời gian (đồ án chuyên ngành)

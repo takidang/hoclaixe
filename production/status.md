@@ -21,11 +21,10 @@
 | Người | Việc đang giao | Hạn |
 |---|---|---|
 | Tài | `/discovery`, `/write-srs` bản đầu | 11/10/2026 |
-| Kiệt | Chấp nhận lời mời GitHub, clone repo, đọc `README.md` + `CONTRIBUTING.md` | [ĐIỀN] |
+| Kiệt | Clone repo, đọc `README.md` + `CONTRIBUTING.md` (đã là collaborator `hlo043097-cmd`) | [ĐIỀN] |
 | Kiệt | Tìm nguồn chính thức: bộ câu hỏi sát hạch hiện hành, luật/nghị định giao thông, quy chuẩn biển báo → `docs/data/sources.md` | [ĐIỀN] |
 | Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên → `docs/reports/` | [ĐIỀN] |
 
 ## Blocker / cần bổ sung
-- Chưa mời được Kiệt làm collaborator: cần **GitHub username** của Kiệt.
-- Chưa có: hạn nộp/bảo vệ đồ án LTTTBDD, số giờ/tuần mỗi người, yêu cầu format báo cáo.
+- Chưa có: hạn nộp/bảo vệ đồ án LTTTBDD, yêu cầu format báo cáo.
 - Module D: chưa chốt người huấn luyện model (đề xuất: Tài) và phân công chụp ảnh (đề xuất: cả hai).
