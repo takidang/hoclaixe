@@ -115,6 +115,8 @@ Nguyên tắc: **AI không bao giờ là nguồn sự thật** — cảnh báo A
 - Cấu trúc đề hiện hành chi tiết theo chương cho A1, A, B từ văn bản gốc (hiện chỉ có nguồn thứ cấp).
 
 ## Nguồn tham khảo (truy cập 03/10/2026)
+- Tuổi Trẻ — Bộ 600 câu lý thuyết sát hạch lái xe mới có gì khác với bộ cũ?: https://tuoitre.vn/video/bo-600-cau-ly-thuyet-sat-hach-lai-xe-moi-co-gi-khac-voi-bo-cu-181739.htm
+- Thanh Niên — Từ 1.9, tất cả kỳ thi sát hạch lái xe dùng bộ đề 600 câu của CSGT: https://thanhnien.vn/tu-19-tat-ca-ky-thi-sat-hach-lai-xe-dung-bo-de-600-cau-cua-csgt-185250903093312504.htm
 - Cục CSGT — Bộ 600 câu hỏi dùng cho sát hạch lái xe cơ giới đường bộ: https://www.csgt.vn/m/vanbanphapluat/319/Bo-600-cau-hoi-danh-cho-sat-hach-lai-xe-co-gioi-duong-bo.html
 - Cấu trúc đề từ 01/6/2025 (thứ cấp): https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/chinh-sach-moi/84650/chi-tiet-cau-truc-de-thi-ly-thuyet-lai-xe-o-to-cac-hang-tu-ngay-01-6-2025
 - Thông tư 108/2026/TT-BCA (thứ cấp): https://luatvietnam.vn/linh-vuc-khac/diem-moi-thong-tu-108-2026-tt-bca-ve-sat-hach-cap-giay-phep-lai-xe-va-quoc-te-883-110169-article.html

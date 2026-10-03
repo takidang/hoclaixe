@@ -31,7 +31,7 @@
 
 | Module | Nội dung | Ưu tiên |
 |---|---|---|
-| **A — Lõi** | Chọn hạng bằng, học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, câu hay sai, danh mục biển báo, tra cứu luật, thống kê tiến độ | Must |
+| **A — Lõi** | Must: chọn hạng (A1, A, B), học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, danh mục biển báo, tuyên bố miễn trừ · Should: thống kê tiến độ, câu hay sai của người dùng · Should (chỉ chuyên ngành): tra cứu luật. Chi tiết: `docs/srs/vision.md` §5 | Must |
 | **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Must |
 | **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (phương án dự phòng: Gemini vision) |
 | B2 — Gợi ý ôn tập cá nhân hóa | Phân tích lịch sử làm bài → chủ đề yếu → bộ câu ôn | Could (hạ từ Should khi thêm Module D) |
