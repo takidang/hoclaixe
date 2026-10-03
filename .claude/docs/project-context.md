@@ -53,7 +53,7 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 | | Thành viên 1 (trưởng nhóm) | Thành viên 2 |
 |---|---|---|
 | Họ tên | Đặng Lê Tấn Tài | Nguyễn Đỗ Tuấn Kiệt |
-| MSSV | 23806012937 [KIỂM TRA: 11 chữ số] | 2380601147 |
+| MSSV | 2380601937 | 2380601147 |
 | GitHub | `takidang` (chủ repo) | [ĐIỀN username] — email hlo043097@gmail.com |
 | Vai trò chính | Backend (proxy Gemini, RAG, Firebase/Supabase) với Claude Code; Frontend Flutter, UI thiết kế bằng Claude Design | Tìm tài liệu/dữ liệu chính thức (bộ câu hỏi, luật, quy chuẩn biển báo); viết 2 báo cáo |
 | Vai trò phụ | Huấn luyện model Module D (đề xuất, chưa chốt) | Khi có Claude Pro: phụ một phần design và backend, làm các chức năng phụ được giao |

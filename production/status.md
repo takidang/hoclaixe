@@ -27,6 +27,5 @@
 
 ## Blocker / cần bổ sung
 - Chưa mời được Kiệt làm collaborator: cần **GitHub username** của Kiệt.
-- Kiểm tra lại MSSV của Tài (11 chữ số, MSSV Kiệt 10 chữ số).
 - Chưa có: hạn nộp/bảo vệ đồ án LTTTBDD, số giờ/tuần mỗi người, yêu cầu format báo cáo.
 - Module D: chưa chốt người huấn luyện model (đề xuất: Tài) và phân công chụp ảnh (đề xuất: cả hai).
