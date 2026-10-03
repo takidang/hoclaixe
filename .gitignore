@@ -1,0 +1,30 @@
+# Secrets
+.env
+.env.*
+*.jks
+*.keystore
+key.properties
+**/service-account*.json
+
+# Flutter / Dart
+**/.dart_tool/
+**/build/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/coverage/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Claude Code local
+.claude/settings.local.json
+
+# ML
+ml/dataset/
+ml/**/checkpoints/
+ml/**/*.h5
+ml/**/*.keras
+ml/**/saved_model/
+.ipynb_checkpoints/
