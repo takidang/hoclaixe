@@ -19,7 +19,8 @@
   validator PASS (`tools/validate_data/validate_questions.py`); điểm liệt theo hạng (`criticalFor`); cấu hình đề
   `data/question-bank/exam-structures.json` (A1, A, B hiện hành; 2027 để `incomplete`).
 - **Nguồn đã xác minh** (`docs/data/sources.md`): CV 2262/CSGT-P5, bộ 600 câu, TT 12/2025 (đến 28/02/2027), TT 108/2026 (lý thuyết mới từ 01/3/2027, chưa đủ để tạo đề → Could).
-- Thư mục ảnh tham khảo đối thủ `design/reference/competitors/` (chưa có ảnh).
+- Ảnh tham khảo đối thủ: 21 ảnh / 2 app trong `design/reference/competitors/`; SRS v0.3 đã đối chiếu.
+- **Danh mục biển báo (04/10)**: 294 mã + hình trích tự động từ QCVN 41:2024 Phụ lục B–F (`tools/extract_signs/`), validator PASS; danh sách soát `data/sign-catalog/review.md` (129 mục).
 - `/write-srs`: `docs/srs/SRS.md` v0.2 (Module A chi tiết, B/D khung), đã qua review agent qa-engineer. Chốt: khóa dọc; danh mục biển báo trích từ QCVN 41:2024 trước 12/10.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
@@ -41,6 +42,7 @@
 | Tài | Nộp đề tài; chụp ảnh màn hình app đối thủ vào `design/reference/competitors/` (đặt tên theo README trong thư mục) | 06/10 |
 | Tài | SRS + UX Module A, kiến trúc tối giản, `/setup-flutter` | 11/10 |
 | Kiệt | Clone repo, đọc `README.md` + `CONTRIBUTING.md` | 06/10 |
+| Kiệt | Soát `data/sign-catalog/review.md` (129 biển: hình cắt/gộp, thiếu hình/tên, mẫu ngẫu nhiên) với file QCVN 41 | 12/10 |
 | Kiệt | **Ưu tiên 1**: soát `data/question-bank/review.md` (142 câu: câu điểm liệt, câu đáp án 2 cột, mẫu ngẫu nhiên) với PDF gốc, đánh dấu khớp/sai | 10/10 |
 | Kiệt | Khảo sát Google Form theo `docs/srs/survey.md`, ≥ 30 phản hồi, tổng hợp số liệu vào vision.md | 10/10 |
 | Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 | Mẫu: 11/10 · Báo cáo: 28/10 |

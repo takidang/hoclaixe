@@ -12,6 +12,7 @@
 | `TT-12-2025` | Thông tư 12/2025/TT-BCA về sát hạch, cấp GPLX; cấp, sử dụng GPLX quốc tế | Bộ Công an | 28/02/2025 | Các phần dùng ở đây còn hiệu lực **đến hết 28/02/2027** (TT 108/2026, Điều 41 khoản 6) | Thời gian làm bài, điểm đạt, quy tắc điểm liệt (đề hiện hành) | Có — PDF có chữ ký số Cổng TTĐT Chính phủ (06/3/2025) |
 | `TT-108-2026` | Thông tư 108/2026/TT-BCA về sát hạch, cấp GPLX; cấp, sử dụng GPLX quốc tế (thay TT 12/2025) | Bộ Công an | 29/6/2026 | 01/7/2026; **nội dung sát hạch lý thuyết mới từ 01/3/2027** (Điều 41 khoản 2) | Cấu trúc đề từ 01/3/2027 (chưa đủ để tạo đề) | Có (bản scan) |
 | `TT-108-2026-docx` | Bản .docx của TT 108/2026 | thuvienphapluat.vn (metadata: tác giả "User", 25/8/2026) | — | — | Chỉ để tìm kiếm toàn văn; đã đối chiếu khớp bản scan ở Điều 41, PL I, PL III | **Không** — không trích dẫn từ bản này |
+| `QCVN-41-2024` | QCVN 41:2024/BGTVT — Quy chuẩn kỹ thuật quốc gia về báo hiệu đường bộ (ban hành kèm Thông tư 51/2024/TT-BGTVT) | Bộ GTVT | 2024 | 01/01/2025 | Danh mục biển báo (`data/sign-catalog/`): mã, tên, ý nghĩa, hình — Phụ lục B–F | Có (file đính kèm trên datafiles.chinhphu.vn) |
 
 ## 2. File gốc
 
@@ -22,6 +23,7 @@
 | `TT-12-2025` | `15-bca.signed.pdf` (122 trang, scan) | https://chinhphu.vn/?pageid=27160&docid=213022 | 04/10/2026 | `307f993f81e3949da59812a0cbabef58f6d1c4b62caecf8362b84c65ae949ed3` |
 | `TT-108-2026` | `thong-tu-so-108.2026.tt-bca-ngay-29.6.2026-ban-day-du-v03.pdf` (134 trang, scan) | https://csgt.bocongan.gov.vn/van-ban/thong-tu-108-2026 | 04/10/2026 | `7f879c2404948203d693a0109b1f584a5484c1514b5c5ea6c6d4d7c956983c71` |
 | `TT-108-2026-docx` | `108_2026_TT-BCA_704772.docx` | https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Thong-tu-108-2026-TT-BCA-sat-hach-cap-giay-phep-lai-xe-704772.aspx (trang thứ cấp) | 04/10/2026 | `0f14ead202f492ac64a3cdd1d249acb166f164e58ea6e6a1629a161f8f8464e8` |
+| `QCVN-41-2024` | `51-bgtvt-kem.pdf` (403 trang, PDF chữ; phụ lục dùng được, phần thân mất khoảng trắng) | https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/11/51-bgtvt-kem.pdf | 04/10/2026 | `b6b99d0a0aeb13fe79072831857ece15bb254d8fb7817e80e4a2739a0d2145ce` |
 
 Ghi chú sử dụng: bộ câu hỏi và văn bản là tài liệu công khai do Bộ Công an / Cục CSGT ban hành để người học sử dụng;
 nhiều app ôn thi trên Google Play đang dùng lại bộ 600 câu. hoclaixe là đồ án sinh viên, chỉ dùng để học tập và demo
@@ -48,6 +50,7 @@ khi chấm điểm, không phát hành thương mại; app ghi rõ nguồn và t
 | Bộ câu hỏi từ 01/3/2027 | TT 108 không ban hành bộ câu hỏi; giao Cục CSGT xây dựng | TT-108-2026 (toàn văn) |
 
 ## 4. Chưa có / cần bổ sung
-- Danh mục biển báo: QCVN 41:2024/BGTVT (hiệu lực 01/01/2025) — cần bản chính thức (đồ án chuyên ngành).
+- Danh mục biển báo: đã trích 294 mã từ QCVN 41:2024 (Phụ lục B–F). Còn thiếu biển cao tốc IE.4xx, một số biến thể, Phụ lục G vạch kẻ đường — xem `tools/extract_signs/README.md`.
+- Văn bản gốc Thông tư 51/2024/TT-BGTVT (để trích số hiệu, ngày ký) — hiện chỉ có file quy chuẩn đính kèm.
 - Luật Trật tự, an toàn giao thông đường bộ 2024 (số 36/2024/QH15, sửa đổi bởi Luật 118/2025/QH15), Nghị định 168/2024/NĐ-CP — cho tra cứu luật và RAG.
 - Hướng dẫn của Cục CSGT về bộ câu hỏi/cấu trúc đề áp dụng từ 01/3/2027 (khi có).

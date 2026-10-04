@@ -1,0 +1,66 @@
+{
+ "sections": 182,
+ "issues": {
+  "composite_image_not_split": [
+   "B.24",
+   "C.28",
+   "C.7",
+   "D.10",
+   "D.11",
+   "D.12",
+   "D.14",
+   "D.15",
+   "E.14"
+  ],
+  "composite_image_split": [
+   "D.10",
+   "D.1a",
+   "E.7"
+  ],
+  "code_without_image": [
+   "I.419",
+   "I.422",
+   "I.428c",
+   "I.444",
+   "I.445",
+   "I.447",
+   "R.412p",
+   "S.508",
+   "S.509",
+   "W.205a",
+   "W.205b",
+   "W.205c",
+   "W.205d",
+   "W.205e"
+  ],
+  "section_without_codes": [
+   "D.19",
+   "D.20",
+   "D.21",
+   "F.13",
+   "F.14",
+   "F.15",
+   "F.16",
+   "F.17"
+  ],
+  "heading_name_mapping_guessed": [
+   "E.35b",
+   "E.35c"
+  ],
+  "code_without_name": [
+   "I.433b",
+   "I.433c",
+   "I.433d",
+   "I.433e"
+  ]
+ },
+ "wordFixes": [
+  "B.3: tr ừ -> trừ",
+  "B.17: tr ên -> trên",
+  "C.15: tr ước\" -> trước\"",
+  "C.28: t iết -> tiết",
+  "D.17: l ên, -> lên,",
+  "E.14: t ùy -> tùy",
+  "F.6: m ở -> mở"
+ ]
+}
