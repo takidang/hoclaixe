@@ -20,7 +20,7 @@
   `data/question-bank/exam-structures.json` (A1, A, B hiện hành; 2027 để `incomplete`).
 - **Nguồn đã xác minh** (`docs/data/sources.md`): CV 2262/CSGT-P5, bộ 600 câu, TT 12/2025 (đến 28/02/2027), TT 108/2026 (lý thuyết mới từ 01/3/2027, chưa đủ để tạo đề → Could).
 - Thư mục ảnh tham khảo đối thủ `design/reference/competitors/` (chưa có ảnh).
-- `/write-srs` đã bắt đầu: đã đề xuất actor + 13 UC Module A + 6 UC khung B/D (chưa ghi file).
+- `/write-srs`: `docs/srs/SRS.md` v0.2 (Module A chi tiết, B/D khung), đã qua review agent qa-engineer. Chốt: khóa dọc; danh mục biển báo trích từ QCVN 41:2024 trước 12/10.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
 1. **Nộp đề tài chuyên ngành** (05–11/10). Tên gợi ý: "Xây dựng ứng dụng di động hỗ trợ ôn thi lý thuyết sát hạch lái xe
