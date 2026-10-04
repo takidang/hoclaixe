@@ -1,6 +1,6 @@
 # Đặc tả yêu cầu phần mềm (SRS) — hoclaixe
 
-Phiên bản: 0.2 (nháp, đã qua review qa-engineer) — Ngày: 04/10/2026 — Người viết: business-analyst (Claude) · Duyệt: Đặng Lê Tấn Tài
+Phiên bản: 0.3 — đã đối chiếu ảnh 2 app đối thủ (04/10/2026) — Ngày: 04/10/2026 — Người viết: business-analyst (Claude) · Duyệt: Đặng Lê Tấn Tài
 Phạm vi bản này: **Module A chi tiết đầy đủ** (đồ án LTTTBDD, hạn 28/10/2026). Module B, D ở mức khung — viết đủ trong Sprint 2.
 
 ## 1. Giới thiệu
@@ -14,7 +14,7 @@ backlog, test case và báo cáo của cả hai đồ án.
   ôn câu sai, danh mục biển báo, thống kê. Chạy hoàn toàn offline, không đăng nhập, không AI.
   Hành vi bám theo các app ôn thi phổ biến trên Google Play (vision §3), giao diện gọn hơn, không quảng cáo.
 - **Module B — Chatbot AI**, **Module D — Nhận diện biển báo**: chỉ đồ án chuyên ngành; khung ở §7.3.
-- Ngoài phạm vi: thi mô phỏng/video, mẹo ghi nhớ, hạng ngoài A1/A/B, đăng nhập/đồng bộ (Could, chuyên ngành).
+- Ngoài phạm vi: thi mô phỏng/video, mẹo ghi nhớ, "Top 50 câu cần chú ý" do app tự chọn (không có nguồn chính thức), hướng dẫn thi thực hành sa hình, quảng cáo, hạng ngoài A1/A/B, đăng nhập/đồng bộ (Could, chuyên ngành).
 
 ### 1.3 Thuật ngữ
 | Thuật ngữ | Nghĩa |
@@ -56,7 +56,7 @@ Module B/D (chuyên ngành) bổ sung backend proxy gọi Gemini và model TFLit
 - C4. Không thu thập dữ liệu cá nhân; không quảng cáo.
 
 ### 2.5 Giả định
-- GA1. Hành vi các màn thi thử, ôn câu sai lấy theo app đối thủ phổ biến **[chưa đối chiếu ảnh chụp — kiểm lại khi có ảnh trong `design/reference/competitors/`]**.
+- GA1. Hành vi các màn lấy theo 2 app ôn thi phổ biến — **đã đối chiếu 21 ảnh chụp** trong `design/reference/competitors/` (04/10/2026). Chỉ tham khảo hành vi và bố cục, không sao chép nội dung/hình ảnh.
 - GA2. Câu điểm liệt **chưa trả lời** khi nộp/hết giờ được tính là trả lời sai → trượt (TT 12/2025 chấm "kể cả các câu chưa trả lời"; văn bản không nói riêng về câu điểm liệt).
 - GA3. Câu điểm liệt cũng được tính 1 điểm trong tổng điểm — suy ra từ thang điểm TT 12/2025 (A1 đạt 21/25, A 23/25, B 27/30 với đề 25/30 câu).
 - GA4. Một câu bị bỏ khỏi "câu sai" khi người học trả lời đúng câu đó trong chế độ Ôn câu sai.
@@ -108,16 +108,18 @@ UC-11 (Chọn cấu trúc đề 2027) gộp vào UC-13 và tạm Won't cho tới
 |---|---|---|---|---|
 | FR-A01 | Lần mở app đầu tiên hiển thị tuyên bố miễn trừ (sản phẩm độc lập, không đại diện cơ quan nhà nước; nguồn dữ liệu: tên văn bản, số hiệu, ngày hiệu lực; link nguồn chính thức). Người học bấm "Đồng ý" mới vào app; lựa chọn được lưu, không hỏi lại | Must | LT, CN | UC-01 |
 | FR-A02 | Màn Giới thiệu (từ menu) hiển thị lại tuyên bố miễn trừ, danh sách nguồn, phiên bản dữ liệu (`sourceVersion`), phiên bản app | Must | LT, CN | UC-01 |
-| FR-A03 | Sau miễn trừ lần đầu, người học chọn hạng A1, A hoặc B; mỗi hạng hiện số câu, thời gian, điểm đạt của đề hiện hành | Must | LT, CN | UC-02 |
+| FR-A03 | Sau miễn trừ lần đầu, người học chọn hạng A1, A hoặc B (nhóm Xe máy: A1, A; nhóm Ô tô: B); mỗi hạng hiện mô tả loại xe được lái (trích Luật TTATGTĐB 2024 `[CẦN NGUỒN: điều, khoản — data-curator]`), số câu, thời gian, điểm đạt của đề hiện hành | Must | LT, CN | UC-02 |
 | FR-A04 | Người học đổi hạng bất kỳ lúc nào từ màn chính; hạng đang chọn được lưu và hiển thị ở màn chính | Must | LT, CN | UC-02 |
-| FR-A10 | Danh sách chủ đề = các chương có câu trong pool của hạng đang chọn + nhóm "Câu điểm liệt"; mỗi chủ đề hiện số câu và số câu "đã làm đúng" (= câu có kết quả **mới nhất** là đúng, gộp từ học, ôn và thi thử) | Must | LT, CN | UC-03 |
+| FR-A10 | Danh sách chủ đề = "Tất cả câu hỏi" (cả pool) + nhóm "Câu điểm liệt" + các chương có câu trong pool của hạng đang chọn; mỗi chủ đề hiện thanh tiến độ và **Đúng / Sai / Chưa làm / Tổng** (Đúng/Sai theo kết quả **mới nhất** của từng câu, gộp từ học, ôn và thi thử) | Must | LT, CN | UC-03 |
 | FR-A11 | Trong chế độ học, chọn một đáp án → hiển thị ngay đúng/sai, tô đáp án đúng, khóa câu (không đổi được); chỉ lần chọn này được ghi nhận và **lưu ngay** như FR-A24. Câu điểm liệt có nhãn "Điểm liệt". Bấm "Làm lại" để tạo lượt mới | Must | LT, CN | UC-03 |
 | FR-A12 | Câu có hình hiển thị hình; chạm hình mở chế độ xem lớn: chụm 2 ngón phóng to tới ≥ 3 lần, kéo được, chạm đúp trở về | Must | LT, CN | UC-03, UC-04 |
 | FR-A13 | Chuyển câu trước/sau và nhảy tới câu bất kỳ trong chủ đề; app nhớ vị trí câu cuối cùng của từng chủ đề | Must | LT, CN | UC-03 |
 | FR-A20 | Bắt đầu thi thử → tạo đề ngẫu nhiên theo cấu trúc đề hiện hành của hạng (BR-02, BR-03), không trùng câu | Must | LT, CN | UC-04 |
+| FR-A20b | Bộ đề cố định: mỗi hạng có **20 đề** (số đề là cấu hình) sinh sẵn theo BR-02, BR-03 với hạt giống ngẫu nhiên (seed) cố định — mở lại app vẫn đúng các đề đó. Danh sách đề hiện trạng thái Đạt / Chưa đạt / Chưa làm và điểm lần làm gần nhất; tổng "x / 20 đề đã hoàn thành". Đề ngẫu nhiên (FR-A20) vẫn có ở cùng màn | Should | LT, CN | UC-04 |
 | FR-A21 | Màn thi hiển thị đồng hồ đếm ngược dạng mm:ss theo thời gian của cấu trúc đề (sai số ≤ 1 giây so với giờ thực, kể cả khi app ở nền), số thứ tự câu, tổng số câu; khi còn 60 giây đồng hồ đổi màu cảnh báo | Must | LT, CN | UC-04 |
-| FR-A22 | Người học chuyển tới/lui, nhảy câu qua lưới số câu; lưới phân biệt câu đã trả lời / chưa trả lời / đang xem | Must | LT, CN | UC-04 |
-| FR-A23 | Người học chọn và đổi đáp án tự do trước khi nộp; **không hiển thị đúng/sai trong lúc thi** | Must | LT, CN | UC-04 |
+| FR-A22 | Người học chuyển tới/lui, nhảy câu qua lưới số câu; lưới phân biệt câu đã trả lời / chưa trả lời / đang xem. *(Could)* Đánh dấu câu phân vân — dấu hiện trên lưới | Must | LT, CN | UC-04 |
+| FR-A23 | Người học chọn và đổi đáp án tự do trước khi nộp; **không hiển thị đúng/sai trong lúc thi** (chế độ mặc định "Chấm sau khi nộp — giống thi sát hạch") | Must | LT, CN | UC-04 |
+| FR-A23b | Màn thông tin đề cho chọn chế độ chấm: "Chấm sau khi nộp" (mặc định) hoặc "Chấm ngay khi chọn đáp án" (hiện đúng/sai và khóa câu như FR-A11; đồng hồ, nộp bài, chấm điểm không đổi) | Could | LT, CN | UC-04 |
 | FR-A24 | **Mỗi lần chọn đáp án được lưu ngay vào bộ nhớ máy**; đáp án được giữ nguyên khi chuyển câu, quay lại câu cũ, xoay màn hình, app vào nền, app bị tắt, và khi nộp bài. Đáp án trong màn kết quả, xem lại bài và lịch sử **khớp 100%** với đáp án lúc nộp | Must | LT, CN | UC-04, UC-05 |
 | FR-A25 | Mở lại app khi còn phiên thi dở → hỏi "Tiếp tục bài thi?"; tiếp tục với thời gian còn lại tính theo giờ thực (BR-06); nếu đã hết giờ → tự nộp và hiện kết quả | Must | LT, CN | UC-04 |
 | FR-A26 | Nộp bài: hộp thoại xác nhận nêu số câu chưa trả lời; hết giờ → tự nộp không cần xác nhận (kể cả khi hộp thoại xác nhận đang mở). Mỗi phiên chỉ nộp một lần (bấm lặp không tạo thêm kết quả) | Must | LT, CN | UC-04 |
@@ -222,10 +224,10 @@ UC-11 (Chọn cấu trúc đề 2027) gộp vào UC-13 và tạm Won't cho tới
 | Mô tả | Làm một đề ngẫu nhiên đúng cấu trúc và thời gian như thi thật |
 | Tiền điều kiện | Đã chọn hạng; có cấu trúc đề hợp lệ (BR-08) |
 | Hậu điều kiện | Kết quả phiên vừa nộp được lưu (Must, phục vụ FR-A28); câu sai và câu bỏ trống vào danh sách Câu sai; lịch sử nhiều lần thi là Should (FR-A29) |
-| Luồng chính | 1. Người học bấm "Thi thử". 2. App hiện thông tin đề (số câu, thời gian, điểm đạt, quy tắc điểm liệt) và nút Bắt đầu. 3. App tạo đề (FR-A20), bắt đầu đếm giờ. 4. Người học chọn đáp án; app lưu ngay (FR-A24). 5. Người học chuyển câu / dùng lưới (FR-A22), đổi đáp án nếu muốn. 6. Người học bấm Nộp bài, xác nhận (FR-A26). 7. App chấm (BR-04, BR-05) → UC-05 |
-| Luồng thay thế | 1a. Đang có phiên dở → hỏi "Tiếp tục bài đang làm" hay "Bỏ và làm đề mới" (BR-09). 6a. Hết giờ → tự nộp (BR-06) → UC-05, kể cả khi hộp thoại nộp đang mở. 6b. Bấm Nộp nhiều lần → chỉ một lần nộp có hiệu lực (FR-A26). 4a. App vào nền / bị tắt → mở lại → hỏi Tiếp tục (FR-A25). 4b. Người học thoát màn thi → hỏi "Thoát? Bài làm được giữ để tiếp tục sau" |
+| Luồng chính | 1. Người học bấm "Thi thử" → chọn "Đề ngẫu nhiên" hoặc một đề trong bộ đề cố định (FR-A20b). 2. App hiện thông tin đề (số câu, thời gian, điểm đạt, số câu điểm liệt — sai là trượt), chế độ chấm (FR-A23b) và nút Bắt đầu. 3. App tạo đề (FR-A20), bắt đầu đếm giờ. 4. Người học chọn đáp án; app lưu ngay (FR-A24). 5. Người học chuyển câu / dùng lưới (FR-A22), đổi đáp án nếu muốn. 6. Người học bấm Nộp bài, xác nhận (FR-A26). 7. App chấm (BR-04, BR-05) → UC-05 |
+| Luồng thay thế | 1a. Đang có phiên dở → hỏi "Tiếp tục bài đang làm" hay "Bỏ và làm đề mới" (BR-09). 6a. Hết giờ → tự nộp (BR-06) → UC-05, kể cả khi hộp thoại nộp đang mở. 6b. Bấm Nộp nhiều lần → chỉ một lần nộp có hiệu lực (FR-A26). 4a. App vào nền / bị tắt → mở lại → hỏi Tiếp tục (FR-A25). 4b. Người học bấm Nộp bài hoặc nút quay lại → bảng chọn: **Nộp bài và chấm điểm** · **Lưu tạm và thoát** (giữ bài làm, đồng hồ vẫn chạy theo BR-06) · **Không lưu và thoát** (xác nhận, xóa phiên) · **Tiếp tục làm bài** |
 | Ngoại lệ | E1. Lỗi ghi bộ nhớ khi lưu đáp án → báo lỗi, giữ đáp án trên màn hình, thử lưu lại; **nộp tay** bị chặn tới khi lưu được; **hết giờ** vẫn chấm theo đáp án đang hiển thị kèm cảnh báo "Một số đáp án chưa được lưu". E2. Mở lại sau khi thời gian đã hết (kể cả nhiều ngày sau) → tự nộp với các đáp án đã lưu, câu chưa làm tính là chưa trả lời. E3. App bị tắt trong lúc chấm/lưu kết quả → lần mở sau hoàn tất việc chấm đúng một lần (không mất, không nhân đôi kết quả) |
-| Yêu cầu liên quan | FR-A20–A27, FR-A40, BR-01–BR-09, NFR-02, NFR-05, NFR-05b |
+| Yêu cầu liên quan | FR-A20–A27 (gồm A20b, A23b), FR-A40, BR-01–BR-09, NFR-02, NFR-05, NFR-05b |
 
 ### UC-05: Xem kết quả và xem lại bài
 | Mục | Nội dung |
@@ -296,6 +298,7 @@ UC-30 Nhận diện biển báo bằng ảnh · UC-31 Sửa kết quả nhận d
 | Q4 | Android tối thiểu, máy test hiệu năng (NFR-03, NFR-08) | Chốt trong `/create-architecture`, trước khi viết test hiệu năng |
 | Q5 | Khóa màn hình dọc hay cho xoay | **Đã chốt: khóa dọc**; test FR-A24 vẫn gồm đổi cấu hình |
 | Q6 | Dữ liệu biển báo cho FR-A30 (Must, hạn 28/10) | **Đã chốt**: trích xuất từ QCVN 41:2024 trước 12/10; dự phòng: chỉ biển trong chương V |
+| Q8 | Đánh số câu: đối thủ đánh lại 1…250 trong pool A1/A; bộ chính thức đánh 1…600 | Chốt trong `/ux-design` — đề xuất hiện thứ tự trong danh sách kèm số gốc để tra PDF |
 | Q7 | Tải Must: ~27 FR Must cho ~50 giờ | Gom thành 9 nhóm Must khi `/create-stories`; PM xác nhận trong `/sprint-plan`. Cắt trước: FR-A29, A50, A51 (Should) |
 
 ## 9. Lịch sử thay đổi
@@ -303,3 +306,4 @@ UC-30 Nhận diện biển báo bằng ảnh · UC-31 Sửa kết quả nhận d
 |---|---|---|---|
 | 0.1 | 04/10/2026 | Bản đầu: Module A chi tiết, Module B/D khung | business-analyst (Claude) |
 | 0.2 | 04/10/2026 | Sửa theo review qa-engineer: 2 mâu thuẫn (UC-04 E1/BR-06, hướng màn hình), NFR-02 đo được, thêm NFR-05b, BR-09, FR-A70, GA6–GA7, làm rõ FR-A10/A11/A12/A21/A40/A51/A60, luồng phiên dở/nộp lặp | business-analyst (Claude) |
+| 0.3 | 04/10/2026 | Đối chiếu ảnh 2 app đối thủ: thêm FR-A20b bộ đề cố định 20 đề (Should), FR-A23b chế độ chấm ngay (Could), đánh dấu câu (Could), bảng chọn khi thoát bài thi, FR-A10 Đúng/Sai/Chưa làm/Tổng + chủ đề "Tất cả câu hỏi", mô tả hạng; thêm Won't; Q8 | business-analyst (Claude) |
