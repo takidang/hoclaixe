@@ -2,7 +2,7 @@
 
 > Cập nhật cuối mỗi phiên làm việc.
 
-**Cập nhật**: 2026-10-04 (cuối phiên)
+**Cập nhật**: 2026-10-04 (cuối phiên 2)
 **Phase hiện tại**: 2 — Yêu cầu (gate discovery PASS có điều kiện 04/10: còn số liệu khảo sát)
 **Sprint**: Sprint 0 (03/10–11/10/2026) — còn 7 ngày
 **Mốc gần nhất**: nộp đề tài chuyên ngành 05–11/10 · hạn LTTTBDD 28/10
@@ -20,10 +20,12 @@
   `data/question-bank/exam-structures.json` (A1, A, B hiện hành; 2027 để `incomplete`).
 - **Nguồn đã xác minh** (`docs/data/sources.md`): CV 2262/CSGT-P5, bộ 600 câu, TT 12/2025 (đến 28/02/2027), TT 108/2026 (lý thuyết mới từ 01/3/2027, chưa đủ để tạo đề → Could).
 - Ảnh tham khảo đối thủ: 21 ảnh / 2 app trong `design/reference/competitors/`; SRS v0.3 đã đối chiếu.
+- **Công cụ soát không dùng AI (04/10)**: `tools/review_ui/make_question_review.py` → trang HTML so PDF gốc với dữ liệu app; dò lại gạch chân bằng xử lý ảnh, khớp 600/600 đáp án. (Thử soát bằng 2 agent data-curator bị dừng do hết giới hạn phiên — quá tốn token khi xem hàng trăm trang.)
 - **Danh mục biển báo (04/10)**: 294 mã + hình trích tự động từ QCVN 41:2024 Phụ lục B–F (`tools/extract_signs/`), validator PASS; danh sách soát `data/sign-catalog/review.md` (129 mục).
 - `/write-srs`: `docs/srs/SRS.md` v0.2 (Module A chi tiết, B/D khung), đã qua review agent qa-engineer. Chốt: khóa dọc; danh mục biển báo trích từ QCVN 41:2024 trước 12/10.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
+0. (Tùy chọn, ~nhanh) Trang soát biển báo tương tự `tools/review_ui/` cho `data/sign-catalog/` — hình PDF cạnh hình/tên/mã trong app.
 1. **Nộp đề tài chuyên ngành** (05–11/10). Tên gợi ý: "Xây dựng ứng dụng di động hỗ trợ ôn thi lý thuyết sát hạch lái xe
    tích hợp trợ lý AI giải thích luật (RAG) và nhận diện biển báo giao thông".
 2. **Tiếp tục `/write-srs`** — nguyên tắc người dùng đã chốt: *hành vi giống app đối thủ*.
@@ -43,7 +45,7 @@
 | Tài | SRS + UX Module A, kiến trúc tối giản, `/setup-flutter` | 11/10 |
 | Kiệt | Clone repo, đọc `README.md` + `CONTRIBUTING.md` | 06/10 |
 | Kiệt | Soát `data/sign-catalog/review.md` (129 biển: hình cắt/gộp, thiếu hình/tên, mẫu ngẫu nhiên) với file QCVN 41 | 12/10 |
-| Kiệt | **Ưu tiên 1**: soát `data/question-bank/review.md` (142 câu: câu điểm liệt, câu đáp án 2 cột, mẫu ngẫu nhiên) với PDF gốc, đánh dấu khớp/sai | 10/10 |
+| Kiệt | **Ưu tiên 1**: soát bộ câu hỏi bằng trang `data/question-bank/review.html` (tạo bằng `python tools/review_ui/make_question_review.py`): mỗi câu có ảnh PDF gốc cạnh dữ liệu app — chỉ so **nội dung, đáp án, hình**, bấm "Sai" nếu lệch, rồi "Xuất kết quả" gửi file JSON. Đáp án đúng đã được máy dò lại bằng cách thứ hai, khớp 600/600. Ưu tiên lọc "Trong review.md" (142 câu, ~10 phút); dư thời gian soát hết 600 câu (~45 phút) | 10/10 |
 | Kiệt | Khảo sát Google Form theo `docs/srs/survey.md`, ≥ 30 phản hồi, tổng hợp số liệu vào vision.md | 10/10 |
 | Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 | Mẫu: 11/10 · Báo cáo: 28/10 |
 | Kiệt | Ưu tiên 2 (không gấp, cho RAG — đồ án chuyên ngành): tải bản **có chữ** (.doc/.docx/PDF chữ, ưu tiên vbpl.vn, chinhphu.vn) vào `data/law-corpus/raw/` và ghi `docs/data/sources.md`: Luật TTATGTĐB 36/2024/QH15; Luật 118/2025/QH15 (sửa đổi); QCVN 41:2024/BGTVT; NĐ 168/2024/NĐ-CP; **NĐ 238/2026/NĐ-CP** (sửa NĐ 168, hiệu lực 15/8/2026); NĐ 151/2024/NĐ-CP; Luật Đường bộ 35/2024/QH15 | 08/11 |
