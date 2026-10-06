@@ -26,7 +26,6 @@
 - `/write-srs`: `docs/srs/SRS.md` v0.2 (Module A chi tiết, B/D khung), đã qua review agent qa-engineer. Chốt: khóa dọc; danh mục biển báo trích từ QCVN 41:2024 trước 12/10.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
-0. (Tùy chọn, ~nhanh) Trang soát biển báo tương tự `tools/review_ui/` cho `data/sign-catalog/` — hình PDF cạnh hình/tên/mã trong app.
 1. **Nộp đề tài chuyên ngành** (05–11/10). Tên gợi ý: "Xây dựng ứng dụng di động hỗ trợ ôn thi lý thuyết sát hạch lái xe
    tích hợp trợ lý AI giải thích luật (RAG) và nhận diện biển báo giao thông".
 2. **Tiếp tục `/write-srs`** — nguyên tắc người dùng đã chốt: *hành vi giống app đối thủ*.
@@ -45,7 +44,7 @@
 | Tài | Nộp đề tài; chụp ảnh màn hình app đối thủ vào `design/reference/competitors/` (đặt tên theo README trong thư mục) | 06/10 |
 | Tài | SRS + UX Module A, kiến trúc tối giản, `/setup-flutter` | 11/10 |
 | Kiệt | Clone repo, đọc `README.md` + `CONTRIBUTING.md` | 06/10 |
-| Kiệt | Soát `data/sign-catalog/review.md` (129 biển: hình cắt/gộp, thiếu hình/tên, mẫu ngẫu nhiên) với file QCVN 41 | 12/10 |
+| Kiệt | Soát danh mục biển báo bằng trang `data/sign-catalog/review.html` (tạo bằng `python tools/review_ui/make_sign_review.py`, 1 file gửi riêng được): 5 tab theo nhóm biển, mỗi biển có đề mục + hình trong PDF cạnh hình/tên/ý nghĩa trong app. Bấm **Khớp** hoặc **Sai** + ghi chú cho từng biển (bộ đếm "đã xem" theo nhóm), xong bấm "Xuất kết quả". Tối thiểu: lọc "Trong review.md" (129 biển) | 12/10 |
 | Kiệt | **Ưu tiên 1**: soát bộ câu hỏi bằng trang `data/question-bank/review.html` (tạo bằng `python tools/review_ui/make_question_review.py`): mỗi câu có ảnh PDF gốc cạnh dữ liệu app — chỉ so **nội dung, đáp án, hình**, bấm "Sai" nếu lệch, rồi "Xuất kết quả" gửi file JSON. Đáp án đúng đã được máy dò lại bằng cách thứ hai, khớp 600/600. Ưu tiên lọc "Trong review.md" (142 câu, ~10 phút); dư thời gian soát hết 600 câu (~45 phút) | 10/10 |
 | Kiệt | Khảo sát Google Form theo `docs/srs/survey.md`, ≥ 30 phản hồi, tổng hợp số liệu vào vision.md | 10/10 |
 | Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 | Mẫu: 11/10 · Báo cáo: 28/10 |
