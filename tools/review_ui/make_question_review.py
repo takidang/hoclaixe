@@ -8,7 +8,7 @@ looking for a solid dark line under each option — and puts every disagreement 
 
 Usage:
   python tools/review_ui/make_question_review.py [--only-review] [--zoom 1.4]
-Output: data/question-bank/review.html (not committed; open in a browser).
+Output: data/question-bank/review.html — one self-contained file (all images embedded), can be sent as is.
 """
 import argparse
 import base64
@@ -94,6 +94,14 @@ def raster_underlined(doc, regions):
     return found
 
 
+def embed_image(rel_path):
+    """App image as a data URI, so review.html is one self-contained file that can be sent on its own."""
+    path = os.path.join(BANK, rel_path)
+    ext = os.path.splitext(path)[1].lstrip('.').lower().replace('jpg', 'jpeg')
+    with open(path, 'rb') as fh:
+        return f'data:image/{ext};base64,' + base64.b64encode(fh.read()).decode()
+
+
 def crop_b64(doc, regions, zoom):
     out = []
     for pno, rect in regions:
@@ -177,7 +185,7 @@ def main():
         crops = ''.join(f'<img class="pdf" src="{src}" alt="PDF câu {n}">' for src in crop_b64(doc, regions, args.zoom))
         opts = ''.join(f'<li class="{"ok" if i == q["correctIndex"] else ""}">{html.escape(o)}</li>'
                        for i, o in enumerate(q['options']))
-        imgs = ''.join(f'<img src="{html.escape(p)}" alt="hình câu {n}">' for p in q['images'])
+        imgs = ''.join(f'<img src="{embed_image(p)}" alt="hình câu {n}">' for p in q['images'])
         crit = ', '.join(c for c in ('A1', 'B1', 'B') if c in q['criticalFor'])
         alert = (f'<div class="alert">⚠ Máy dò lại gạch chân: {sorted(raster) or "không thấy"} — app ghi {app_ans}</div>'
                  if mismatch else '')
