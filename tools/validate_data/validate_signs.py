@@ -12,7 +12,7 @@ import random
 import re
 import sys
 
-GROUP_KEYS = {'cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu'}
+GROUP_KEYS = {'cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', 'cao_toc'}
 CODE = re.compile(r'(?:DP|IE|[PWRIS])\.\d{3}[a-z]?')
 REVIEW_SAMPLE_SIZE = 30
 REVIEW_SEED = 2026

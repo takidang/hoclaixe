@@ -68,6 +68,16 @@
   ],
   "code_without_image": [
    "I.428c",
+   "IE.453",
+   "IE.456",
+   "IE.459",
+   "IE.461",
+   "IE.463",
+   "IE.464",
+   "IE.467",
+   "IE.468",
+   "IE.470",
+   "IE.472",
    "R.412p"
   ],
   "code_without_name": [
@@ -75,6 +85,7 @@
    "I.433c",
    "I.433d",
    "I.433e",
+   "IE.453",
    "R.413p"
   ],
   "section_without_codes": [
@@ -90,6 +101,23 @@
   "heading_name_mapping_guessed": [
    "E.35b",
    "E.35c"
+  ],
+  "highway_figure_unmatched": [
+   "Biển chỉ dẫn bắt đầu đường cao tốc phân làn đường có tốc độ ",
+   "Biển chỉ dẫn dịch vụ công cộng và giải trí",
+   "Biển số IE.455 chỉ dẫn khoảng cách đến các lối ra tiếp theo",
+   "Biển số IE.460 chỉ dẫn cột lý trình kilômét",
+   "Biển số IE.464 chỉ dẫn địa điểm và phương hướng",
+   "Biển số IE.472 chỉ dẫn khoảng cách đến trạm thu phí",
+   "Giá kiểu khung lắp đặt biển chỉ dẫn cho đường cao tốc"
+  ],
+  "highway_figure_too_small": [
+   "IE.460a",
+   "IE.460b",
+   "IE.460c",
+   "IE.461c",
+   "IE.464b",
+   "IE.469"
   ]
  },
  "wordFixes": [

@@ -187,6 +187,139 @@ def split_composite(page, bbox, n, zoom=3):
     return boxes if len(boxes) == n else None
 
 
+HIGHWAY_GROUP = ('cao_toc', 'Biển chỉ dẫn trên đường cao tốc')
+HW_HEAD = re.compile(r'^(47\.\d+(?:\.\d+)?)\.\s*(.*)$')
+HW_CAPTION = re.compile(r'^Hình\s+\d+[a-z’\']*\s*[-–]\s*(.*)$')
+
+
+def highway_signs(doc, img_dir, issues):
+    """Highway guide signs (IE.4xx) from Điều 47 of the main text (not in the appendices).
+
+    Each '47.x.y. Biển số IE.… <name>' block gives code, name and text; figures (raster or vector) are cropped from
+    the page region above their caption 'Hình N - Biển số …', split by sub-labels 'a) Biển số IE.…' when present.
+    """
+    start = next(i for i in range(30, 80) if re.search(r'(?m)^\s*47\.1\.', clean(doc[i].get_text())))
+    blocks, cur = [], None          # text blocks per subsection
+    figures = []                    # (page, rect, codes, caption, subsection id)
+    pending_top = None
+    sub_labels = []
+    for pno in range(start, start + 25):
+        page = doc[pno]
+        lines = []
+        for b in page.get_text('dict')['blocks']:
+            for ln in b.get('lines', []):
+                t = norm(clean(''.join(s['text'] for s in ln['spans'])))
+                if t:
+                    lines.append((ln['bbox'], t, any(s['flags'] & 16 for s in ln['spans'])))
+        lines.sort(key=lambda x: (round(x[0][1]), x[0][0]))
+        last_text_bottom = 50
+        stop = False
+        for bbox, t, bold in lines:
+            if re.match(r'^Điều\s*48\b|^48\.\d', t):
+                stop = True
+                break
+            if re.fullmatch(r'\d{1,3}', t) and (bbox[1] > 770 or bbox[1] < 50):
+                continue
+            m_cap = HW_CAPTION.match(t)
+            if bold and m_cap:
+                top = pending_top if pending_top is not None else last_text_bottom
+                rect = pymupdf.Rect(40, top + 2, page.rect.width - 40, bbox[1] - 2)
+                codes = expand_codes(m_cap.group(1))
+                figures.append({'page': pno, 'rect': rect, 'codes': codes, 'caption': m_cap.group(1),
+                                'labels': sub_labels, 'section': cur['id'] if cur else None})
+                sub_labels, pending_top = [], None
+                last_text_bottom = bbox[3]
+                continue
+            if bold and LABEL.search(t) and not QUOTE.search(t) and not HW_HEAD.match(t):
+                if pending_top is None:
+                    pending_top = last_text_bottom
+                sub_labels.append((expand_codes(t), bbox))
+                continue
+            m_head = HW_HEAD.match(t)
+            if bold and m_head:
+                cur = {'id': m_head.group(1), 'title': m_head.group(2), 'text': [m_head.group(2)], 'page': pno + 1}
+                blocks.append(cur)
+                pending_top = None
+                last_text_bottom = bbox[3]
+                continue
+            if cur is not None:
+                if bold and len(cur['text']) == 1 and not cur['title'].endswith(('.', ')')):
+                    cur['title'] += ' ' + t
+                cur['text'].append(t)
+            # only paragraph lines / table titles mark where a figure can start; short bold lines such as
+            # "Biển có ba dịch vụ" or numbers are drawn inside the figure itself
+            is_paragraph = (not bold and bbox[2] - bbox[0] > 250) or t.startswith('Bảng')
+            if pending_top is None and is_paragraph:
+                last_text_bottom = bbox[3]
+        if stop:
+            break
+
+    # ---- build entries
+    entries = {}
+    for blk in blocks:
+        text = norm(' '.join(blk['text']))
+        sentences = re.split(r'(?<=[.;])\s+(?=[A-ZĐÂĂÊÔƠƯ])', text)
+        for code in [c for c in expand_codes(text) if c.startswith(('IE.', 'I.4'))]:
+            if code in entries:
+                continue
+            own = [s for s in sentences if code in expand_codes(s)]
+            first = own[0] if own else text
+            m = re.search(re.escape(code) + r'\s*(?:\([a-z,]+\))?\s*["“]([^"”]+)["”]', first) or \
+                re.search(re.escape(code) + r'\s+([^,;(]+?)(?:\s*\(Hình|\s*,|\s*;|\.$|$)', first)
+            name = norm(m.group(1)) if m else ''
+            if name.startswith(('Biển', 'biển')) or not name:
+                name = blk['title'] if not blk['title'].startswith('Biển') else name
+            name = (name[:1].upper() + name[1:]).rstrip(' .') if name else ''
+            entries[code] = {'code': code, 'name': name, 'group': HIGHWAY_GROUP[0], 'groupName': HIGHWAY_GROUP[1],
+                             'section': f'Điều {blk["id"]}', 'heading': blk['title'],
+                             'summary': ' '.join(own) if own else text, 'meaning': text, 'images': [],
+                             'source': dict(SOURCE, appendix=None, section=f'Điều {blk["id"]}', page=blk['page'])}
+    # ---- figures
+    for k, fig in enumerate(figures):
+        page = doc[fig['page']]
+        parts = []
+        rows = []   # labels on the same line -> pictures side by side
+        for codes, lb in fig['labels']:
+            if rows and abs(rows[-1][0][1][1] - lb[1]) < 6:
+                rows[-1].append((codes, lb))
+            else:
+                rows.append([(codes, lb)])
+        top = fig['rect'].y0
+        for row in rows:
+            bottom = max(lb[3] for _, lb in row) + 2
+            row.sort(key=lambda r: r[1][0])
+            centers = [(lb[0] + lb[2]) / 2 for _, lb in row]
+            cuts = [fig['rect'].x0] + [(a + b) / 2 for a, b in zip(centers, centers[1:])] + [fig['rect'].x1]
+            for (codes, _), left, right in zip(row, cuts, cuts[1:]):
+                parts.append((codes, pymupdf.Rect(left, top, right, bottom)))
+            top = bottom
+        if not parts:
+            parts.append((fig['codes'], fig['rect']))
+        for codes, rect in parts:
+            if rect.height < 15:
+                issues['highway_figure_too_small'].append(','.join(codes))
+                continue
+            targets = [c for c in codes if c in entries]
+            # caption with a base code ("IE.450") covers its variants mentioned in the text
+            for c in codes:
+                targets += [e for e in entries if e != c and e[:-1] == c and not entries[e]['images']]
+            if not targets and len(parts) == 1:
+                targets = [c for c in fig['codes'] if c in entries]
+            if not targets:
+                issues['highway_figure_unmatched'].append(fig['caption'][:60])
+                continue
+            name = f"{'_'.join(sorted(set(targets))).replace('.', '')}_{k}.png"
+            page.get_pixmap(matrix=pymupdf.Matrix(2, 2), clip=rect).save(os.path.join(img_dir, name))
+            for c in set(targets):
+                entries[c]['images'].append(f'images/{name}')
+    for c, e in entries.items():
+        if not e['images']:
+            issues['code_without_image'].append(c)
+        if not e['name']:
+            issues['code_without_name'].append(c)
+    return entries
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=None)
@@ -396,14 +529,22 @@ def main():
             if not signs[code]['name']:
                 issues['code_without_name'].append(code)
 
+    # highway guide signs (Điều 47) — only codes not already described in the appendices
+    for code, entry in highway_signs(doc, img_dir, issues).items():
+        if code not in signs:
+            signs[code] = entry
+
+    order = ['cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', HIGHWAY_GROUP[0]]
+
     def sort_key(c):
         m = re.match(r'([A-Z]+)\.(\d+)([a-z]?)', c)
-        return (list(GROUPS).index({'P': 'B', 'DP': 'B', 'W': 'C', 'R': 'D', 'I': 'E', 'IE': 'E', 'S': 'F'}
-                                   .get(m.group(1), 'F')), m.group(1), int(m.group(2)), m.group(3))
+        return (order.index(signs[c]['group']), m.group(1), int(m.group(2)), m.group(3))
 
     result = [signs[c] for c in sorted(signs, key=sort_key)]
+    group_names = {key: name for key, name in GROUPS.values()}
+    group_names[HIGHWAY_GROUP[0]] = HIGHWAY_GROUP[1]
     with open(os.path.join(args.out, 'signs.json'), 'w', encoding='utf-8') as fh:
-        json.dump({'source': SOURCE, 'groups': {key: name for key, name in GROUPS.values()},
+        json.dump({'source': SOURCE, 'groups': group_names,
                    'signs': result}, fh, ensure_ascii=False, indent=1)
     with open(os.path.join(args.out, 'extract-report.json'), 'w', encoding='utf-8') as fh:
         json.dump({'sections': len(sections), 'issues': {k: sorted(set(v)) for k, v in issues.items()},

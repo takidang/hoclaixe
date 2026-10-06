@@ -11,7 +11,7 @@ python tools/validate_data/validate_signs.py   # kiểm tra + sinh data/sign-cat
 ```
 
 ## Cách hoạt động
-- Chỉ đọc **Phụ lục B–F** của QCVN (ý nghĩa – sử dụng biển cấm, nguy hiểm và cảnh báo, hiệu lệnh, chỉ dẫn, biển phụ).
+- Đọc **Phụ lục B–F** và **Điều 47** (biển chỉ dẫn trên đường cao tốc IE.4xx — nhóm `cao_toc`; hình cắt từ vùng trang phía trên chú thích "Hình N", kể cả hình vẽ vector) của QCVN (ý nghĩa – sử dụng biển cấm, nguy hiểm và cảnh báo, hiệu lệnh, chỉ dẫn, biển phụ).
   Phần thân văn bản bị mất khoảng trắng khi trích chữ nên không dùng làm nội dung, chỉ dùng để đối chiếu mã.
 - Mỗi mục "B.4  Biển số P.104 "Cấm xe máy"" → mã, tên (trong ngoặc kép), ý nghĩa (đoạn văn của mục), hình.
 - **Gắn hình với mã**: theo nhãn in đậm dưới hình ("a) Biển số P.103a"); một hình duy nhất → theo chú thích
@@ -29,7 +29,7 @@ python tools/validate_data/validate_signs.py   # kiểm tra + sinh data/sign-cat
 | `review.md` | Danh sách cần soát với PDF + các mã có trong phần thân QCVN nhưng chưa có trong danh mục |
 
 ## Giới hạn đã biết (bản 06/10/2026)
-- 324 mã (gồm biến thể chỉ có ở nhãn dưới hình, ví dụ DP.127a/b/c, I.444a…m). Còn 81 mã được nêu trong phần thân QCVN nhưng chưa có, chủ yếu **biển đường cao tốc (IE.4xx)** (mô tả ở chương/phụ lục khác). Xem cuối `review.md`.
+- 367 mã: 324 từ Phụ lục B–F + 43 biển cao tốc từ Điều 47. Còn 47 mã nêu trong phần thân QCVN chưa có (xem cuối `review.md`).
 - 8 mục là biển theo Hiệp định GMS (mã kiểu "G,7", "H,6") — không có mã QCVN, bỏ qua.
-- 2 mã chưa có hình, 5 mã chưa có tên, 12 mục hình gộp chưa tách được — xem `review.md`.
+- 12 mã chưa có hình (chủ yếu biển cao tốc có hình gộp/khung), 6 mã chưa có tên — xem `review.md`.
 - Phụ lục G (vạch kẻ đường) chưa trích xuất.
