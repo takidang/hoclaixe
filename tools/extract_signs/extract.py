@@ -214,7 +214,15 @@ def main():
         if labels:
             for img in pending_imgs:
                 x0, y0, x1, y1 = img['bbox']
-                inside = [lc for lc in labels if x0 - 5 <= lc[1] <= x1 + 5]
+                # a label belongs to a picture when it sits right under it (pictures can be stacked vertically)
+                inside = [lc for lc in labels if x0 - 5 <= lc[1] <= x1 + 5 and -3 <= lc[2] - y1 <= 30]
+                if not inside:
+                    below = [lc for lc in labels if lc[2] >= y1 - 3]
+                    if below:
+                        cx = (x0 + x1) / 2
+                        best = min(below, key=lambda lc: abs(lc[1] - cx) + abs(lc[2] - y1))
+                        cur['images'].append({'codes': [best[0]], 'xref': img['xref'], 'page': img['page']})
+                        continue
                 if len(inside) >= 2:
                     # one picture holding several signs: split along blank space, match labels in reading order
                     inside.sort(key=lambda lc: (round(lc[2]), lc[1]))
@@ -229,9 +237,7 @@ def main():
                                               'crop': tuple(box)})
                     issues['composite_image_split'].append(cur['section'])
                     continue
-                cx = (x0 + x1) / 2
-                code = min(labels, key=lambda lc: abs(lc[1] - cx))[0]
-                cur['images'].append({'codes': [code], 'xref': img['xref'], 'page': img['page']})
+                cur['images'].append({'codes': [inside[0][0]], 'xref': img['xref'], 'page': img['page']})
         else:
             codes = caption_codes or cur['codes']
             for img in pending_imgs:

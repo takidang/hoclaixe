@@ -1,24 +1,12 @@
 {
  "sections": 182,
  "issues": {
-  "composite_image_not_split": [
-   "B.24",
-   "B.27d",
-   "C.28",
-   "C.7",
-   "D.10",
-   "D.11",
-   "D.12",
-   "D.14",
-   "D.15",
-   "D.16",
-   "E.14",
-   "F.12"
-  ],
   "composite_image_split": [
-   "D.10",
    "D.1a",
    "E.7"
+  ],
+  "composite_image_not_split": [
+   "D.10"
   ],
   "code_from_label_only": [
    "DP.127a",
