@@ -2,9 +2,9 @@
 
 > Cập nhật cuối mỗi phiên làm việc.
 
-**Cập nhật**: 2026-10-04 (cuối phiên 2)
+**Cập nhật**: 2026-10-06 (cuối phiên)
 **Phase hiện tại**: 2 — Yêu cầu (gate discovery PASS có điều kiện 04/10: còn số liệu khảo sát)
-**Sprint**: Sprint 0 (03/10–11/10/2026) — còn 7 ngày
+**Sprint**: Sprint 0 (03/10–11/10/2026) — còn 5 ngày
 **Mốc gần nhất**: nộp đề tài chuyên ngành 05–11/10 · hạn LTTTBDD 28/10
 
 ## Đã xong
@@ -24,6 +24,9 @@
 - **Soát bộ câu hỏi (06/10, Kiệt)**: phát hiện 2 lỗi — câu 180, 485 bị dính dòng 2 của tiêu đề chương; đã sửa script + thêm kiểm tra tự động (cụm chữ IN HOA). Máy dò lại đáp án khớp 600/600.
 - **Danh mục biển báo (cập nhật 06/10)**: 397 mục = 324 biển (Phụ lục B–F) + 43 biển cao tốc IE (Điều 47) + 30 vạch kẻ đường (Phụ lục G); 7 nhóm. Trước đó 324 mã, thêm `summary` = mô tả ngắn nguyên văn QCVN cho từng mã (học cách trình bày của đối thủ). Ban đầu 294 mã + hình trích tự động từ QCVN 41:2024 Phụ lục B–F (`tools/extract_signs/`), validator PASS; danh sách soát `data/sign-catalog/review.md` (129 mục).
 - `/write-srs`: `docs/srs/SRS.md` v0.2 (Module A chi tiết, B/D khung), đã qua review agent qa-engineer. Chốt: khóa dọc; danh mục biển báo trích từ QCVN 41:2024 trước 12/10.
+
+- Skill `/tam-nghi` (06/10): nói "tạm nghỉ" → cập nhật status + commit + push.
+- Module D chốt (06/10): Gemini vision là phương án chính, TFLite trên máy hạ xuống Could.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
 1. **Nộp đề tài chuyên ngành** (05–11/10). Tên gợi ý: "Xây dựng ứng dụng di động hỗ trợ ôn thi lý thuyết sát hạch lái xe

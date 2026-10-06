@@ -130,7 +130,7 @@ Báo cáo LTTTBDD viết trong Sprint 1; báo cáo chuyên ngành viết song so
 - **14 agent**: product-director, technical-director, project-manager, business-analyst, ux-designer,
   flutter-developer, backend-developer, ai-engineer, **ml-engineer**, data-curator, qa-engineer,
   security-reviewer, release-engineer, report-writer.
-- **28 skill**: start, status, discovery, write-srs, ux-design, create-architecture, adr, data-plan, rag-design,
+- **29 skill**: start, status, tam-nghi (kết thúc phiên: cập nhật status + commit + push), discovery, write-srs, ux-design, create-architecture, adr, data-plan, rag-design,
   **vision-design, dataset-plan, ml-train, ml-eval**, setup-flutter, create-stories, sprint-plan, dev-story,
   code-review, story-done, retro, test-plan, ai-eval, bug-report, gate-check, release-checklist, web-port,
   write-report, defense-prep.
