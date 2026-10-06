@@ -23,14 +23,14 @@ python tools/validate_data/validate_signs.py   # kiểm tra + sinh data/sign-cat
 ## Đầu ra (`data/sign-catalog/`)
 | File | Nội dung |
 |---|---|
-| `signs.json` | `code`, `name`, `group` (cam / nguy_hiem / hieu_lenh / chi_dan / phu), `groupName`, `section`, `heading`, `meaning`, `images`, `source` (văn bản, phụ lục, mục, trang) |
+| `signs.json` | `code`, `name`, `summary` (mô tả ngắn = nguyên văn các câu QCVN nhắc tới đúng mã đó — app hiển thị mặc định), `meaning` (cả đoạn của mục, cho "Xem đầy đủ"), `group` (cam / nguy_hiem / hieu_lenh / chi_dan / phu), `groupName`, `section`, `heading`, `meaning`, `images`, `source` (văn bản, phụ lục, mục, trang) |
 | `images/` | Hình biển (độ phân giải gốc trong PDF ~85 px; hình cắt từ hình gộp là PNG) |
 | `extract-report.json` | Trường hợp đặc biệt + các chỗ đã nối chữ |
 | `review.md` | Danh sách cần soát với PDF + các mã có trong phần thân QCVN nhưng chưa có trong danh mục |
 
 ## Giới hạn đã biết (bản 04/10/2026)
-- 294 mã. Chưa có 112 mã được nêu trong phần thân QCVN: **74 biển đường cao tốc (IE.4xx)** (mô tả ở chương/phụ lục
+- 324 mã (gồm biến thể chỉ có ở nhãn dưới hình, ví dụ DP.127a/b/c, I.444a…m). Còn 81 mã được nêu trong phần thân QCVN: **74 biển đường cao tốc (IE.4xx)** (mô tả ở chương/phụ lục
   khác), 32 biến thể biển chỉ dẫn (ví dụ I.444a…m — danh mục có mã gốc), 5 biển phụ, 1 biển cấm. Xem cuối `review.md`.
 - 8 mục là biển theo Hiệp định GMS (mã kiểu "G,7", "H,6") — không có mã QCVN, bỏ qua.
-- 14 mã chưa có hình, 4 mã (I.433b–e) chưa có tên — cần soát.
+- 2 mã chưa có hình, 5 mã chưa có tên, 12 mục hình gộp chưa tách được — xem `review.md`.
 - Phụ lục G (vạch kẻ đường) chưa trích xuất.

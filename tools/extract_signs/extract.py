@@ -26,7 +26,9 @@ GROUPS = {  # appendix letter -> (group key, display name)
 }
 CODE = r'(?:DP|IE|[PWRIS])\.\d{3}'
 SECTION_START = re.compile(r'^([B-F])\.(\d+[a-z]?)\b\s*(.*)$')
-LABEL = re.compile(r'([a-zđ])\)\s*Biển\s*số\s*(' + CODE + r'[a-z]?)')
+# label under a picture: "a) Biển số P.103a" — the "a)" prefix is missing in some sections (e.g. DP.127a)
+LABEL = re.compile(r'(?:([a-zđ])\)\s*)?Biển\s*số\s*(' + CODE + r'[a-z]?)')
+QUOTE = re.compile(r'["“”]')
 CAPTION = re.compile(r'^Hình\s+([B-F])\.(\d+[a-z]?)\s*[-–]\s*(.*)$')
 APPENDIX_HEAD = re.compile(r'^Phụ\s*lục\s+([A-ZĐ])$')
 
@@ -274,7 +276,12 @@ def main():
                     continue
                 if cur is None:
                     continue
-                if it['bold'] and LABEL.search(t):
+                is_label = (it['bold'] and LABEL.search(t) and not QUOTE.search(t)
+                            and not CAPTION.match(t))   # "Hình B.10 - Biển số P.110" is a caption, not a label
+                if it['bold'] and cur['heading_open'] and not cur['body'] and not is_label:
+                    cur['heading'] += ' ' + t   # heading wrapped onto the next bold line
+                    continue
+                if is_label:
                     labels_buf += label_positions(it)
                     continue
                 m_cap = CAPTION.match(t)
@@ -308,7 +315,14 @@ def main():
         names, ok = name_pairs(heading)
         if not ok:
             issues['heading_name_mapping_guessed'].append(sec['section'])
-        codes = sec['codes'] or expand_codes(heading)
+        codes = list(sec['codes'] or expand_codes(heading))
+        # variants that only appear in picture labels (heading "DP.127", labels "DP.127a/b/c")
+        for img in sec['images']:
+            for c in img['codes']:
+                if c not in codes:
+                    codes.append(c)
+                    issues['code_from_label_only'].append(c)
+        codes = [c for c in codes if not any(o != c and o[:-1] == c for o in codes)]  # drop base if variants
         if not codes:
             issues['section_without_codes'].append(sec['section'])
             continue
@@ -318,7 +332,8 @@ def main():
                 body[-1] += ' ' + line
             else:
                 body.append(line)
-        meaning = '\n'.join(fix_broken_words(norm(b), word_fixes, sec['section']) for b in body)
+        paragraphs = [fix_broken_words(norm(b), word_fixes, sec['section']) for b in body]
+        meaning = '\n'.join(paragraphs)
         group, group_name = GROUPS[sec['appendix']]
         if not sec['images']:
             issues['section_without_images'].append(sec['section'])
@@ -354,9 +369,16 @@ def main():
                 issues['code_in_several_sections'].append(code)
                 signs[code]['images'] += [i for i in imgs if i not in signs[code]['images']]
                 continue
+            # short description = the official paragraphs that name this exact code (verbatim, no rewriting)
+            own = [p for p in paragraphs if code in expand_codes(p)]
+            if not own:
+                own = paragraphs if len(codes) == 1 else paragraphs[:1]
+                issues['summary_fallback'].append(code)
+            summary = '\n'.join(re.sub(r'^([a-zđ]\)|-)\s*', '', p) for p in own)
             signs[code] = {
                 'code': code,
-                'name': names.get(code, ''),
+                'name': names.get(code) or names.get(code[:-1], '') if code[-1].islower() else names.get(code, ''),
+                'summary': summary,
                 'group': group,
                 'groupName': group_name,
                 'section': sec['section'],

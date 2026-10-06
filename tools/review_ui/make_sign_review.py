@@ -173,7 +173,8 @@ def main():
  <div class="pdf">{left}<div class="meta">PDF trang {s['source']['page']} · mục {s['section']}</div></div>
  <div class="app"><div class="imgs">{imgs}</div>
   <h3><span class="code">{s['code']}</span> · {html.escape(s['name'] or '(chưa có tên)')}</h3>{why}
-  <div class="meaning">{html.escape(s['meaning'])}</div>
+  <div class="meta">Mô tả ngắn (app hiển thị):</div><div class="meaning"><b>{html.escape(s.get('summary', ''))}</b></div>
+  <details><summary class="meta">Ý nghĩa đầy đủ của mục {s['section']}</summary><div class="meaning">{html.escape(s['meaning'])}</div></details>
   <div class="actions"><button class="okb">Khớp</button><button class="badb">Sai</button><textarea placeholder="Ghi chú nếu sai…"></textarea></div></div>
 </section>''')
     tabs = ''.join(f'<button data-group="{k}" data-name="{html.escape(v)}">{html.escape(v)}</button>' for k, v in groups)
