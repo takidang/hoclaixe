@@ -155,6 +155,7 @@ def parse_questions(path, images_dir, rel_images):
     chapter = None
     cur = None
     last_opt = None  # option number that continuation lines attach to
+    in_chapter_title = False
     issues = defaultdict(list)
     os.makedirs(images_dir, exist_ok=True)
 
@@ -175,7 +176,11 @@ def parse_questions(path, images_dir, rel_images):
             if texts[0] == 'CHƯƠNG' and len(texts) > 1:
                 chapter = ROMAN[texts[1].rstrip('.')]
                 last_opt = None
+                in_chapter_title = True
                 continue
+            if in_chapter_title and not QUESTION_START.match(' '.join(texts)):
+                continue  # 2nd line of a chapter title, e.g. "NĂNG PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU HỘ, CỨU NẠN"
+            in_chapter_title = False
             if chapter is None:
                 continue
             m_q = QUESTION_START.match(' '.join(texts))

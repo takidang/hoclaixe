@@ -24,6 +24,16 @@ REVIEW_SEED = 2026
 FIGURE_HINT = re.compile(r'hình|biển|sa hình|dưới đây|mũi tên|xe nào|hướng nào', re.I)
 
 
+def has_caps_run(text, length=3):
+    """True when `length` consecutive words are ALL CAPS (2+ letters) — e.g. a chapter title glued to a question."""
+    run = 0
+    for word in re.findall(r'\w+', text):
+        run = run + 1 if len(word) >= 2 and word.isalpha() and word.isupper() else 0
+        if run >= length:
+            return True
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--dir', default='data/question-bank')
@@ -51,6 +61,10 @@ def main():
         n = q['number']
         if q['id'] != f'Q{n:04d}':
             errors.append(f'{n}: id {q["id"]}')
+        # chapter titles are all caps; 3+ consecutive all-caps words inside a question means a title leaked in
+        for text in [q['content']] + q['options']:
+            if has_caps_run(text):
+                errors.append(f'{n}: all-caps run (chapter title leaked?): {text[-60:]}')
         if not q['content'].strip():
             errors.append(f'{n}: empty content')
         if not 2 <= len(q['options']) <= 4:
