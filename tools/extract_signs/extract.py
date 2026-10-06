@@ -320,6 +320,112 @@ def highway_signs(doc, img_dir, issues):
     return entries
 
 
+MARKING_GROUP = ('vach_ke', 'Vạch kẻ đường')
+MK_HEAD = re.compile(r'^(?:[a-zđ]\.\s*)?Vạch\s+(\d+\.\d+[a-z]?)\s*:\s*(.*)$')
+MK_CAPTION = re.compile(r'^Hình\s+G\.\d+[a-z]?\s*[-–]\s*(.*)$')
+MK_SUBGROUP = re.compile(r'^(G\.?\d+(?:\.\d+)?)\.\s*(.*)$')
+
+
+def road_markings(doc, img_dir, issues):
+    """Road markings from Phụ lục G: 'a. Vạch 1.1: <tên>', 'Ý nghĩa sử dụng: …', 'Minh họa:' + figure, 'Quy cách: …'."""
+    starts = [i for i in range(150, doc.page_count)
+              if re.search(r'Phụ\s*lục\s+G\s*\n', clean(doc[i].get_text()))]
+    end = next(i for i in range(starts[0] + 1, doc.page_count)
+               if re.search(r'Phụ\s*lục\s+[H-Z]\s*\n', clean(doc[i].get_text())))
+    entries, cur, subgroup = {}, None, ''
+    fig_top = None
+    for pno in range(starts[0], end):
+        page = doc[pno]
+        lines = []
+        for b in page.get_text('dict')['blocks']:
+            for ln in b.get('lines', []):
+                t = norm(clean(''.join(s['text'] for s in ln['spans'])))
+                if t:
+                    lines.append((ln['bbox'], t, any(s['flags'] & 16 for s in ln['spans'])))
+        lines.sort(key=lambda x: (round(x[0][1]), x[0][0]))
+        carry = None
+        last_para_bottom = 50
+        if fig_top is not None:
+            carry = (pno - 1, fig_top)   # figure drawn at the bottom of the previous page
+            fig_top = 50
+        for bbox, t, bold in lines:
+            if re.fullmatch(r'\d{1,3}', t) and bbox[1] > 770:
+                continue
+            m_head = MK_HEAD.match(t) if bold else None
+            if m_head:
+                code = f'Vạch {m_head.group(1)}'
+                cur = {'code': code, 'name': m_head.group(2), 'open': True, 'text': [], 'page': pno + 1,
+                       'images': [], 'subgroup': subgroup}
+                entries.setdefault(code, cur)
+                cur = entries[code]
+                fig_top = None
+                continue
+            m_sub = MK_SUBGROUP.match(t) if bold else None
+            if m_sub and not MK_CAPTION.match(t):
+                subgroup = m_sub.group(2) or subgroup
+                continue
+            m_cap = MK_CAPTION.match(t) if bold else None
+            if m_cap:
+                explicit = fig_top is not None   # figure announced by "Minh họa:" for the current marking
+                if fig_top is None:
+                    fig_top = last_para_bottom   # no "Minh họa:" line: figure starts after the last paragraph
+                # the caption names the marking ("Hình G.2 - Vạch 1.2", "… sử dụng vạch 3.1 …") -> attach there
+                named = [f'Vạch {c}' for c in re.findall(r'[Vv]ạch\s+(\d+\.\d+[a-z]?)', m_cap.group(1))]
+                named = [c for c in named if c in entries]
+                target = entries[named[0]] if named else (cur if explicit else None)
+                if not named:
+                    issues['marking_figure_caption_without_code'].append(m_cap.group(1)[:60])
+                if target is not None:
+                    cur_fig = target
+                    src, rect = page, pymupdf.Rect(40, fig_top + 2, page.rect.width - 40, bbox[1] - 2)
+                    if rect.height < 15 and carry:
+                        src = doc[carry[0]]
+                        rect = pymupdf.Rect(40, carry[1] + 2, src.rect.width - 40, src.rect.height - 40)
+                    if rect.height >= 15:
+                        name = f"{cur_fig['code'].replace('Vạch ', 'V').replace('.', '_')}_{pno}_{int(bbox[1])}.png"
+                        src.get_pixmap(matrix=pymupdf.Matrix(2, 2), clip=rect).save(os.path.join(img_dir, name))
+                        cur_fig['images'].append(f'images/{name}')
+                    carry = None
+                fig_top = None
+                last_para_bottom = bbox[3]
+                continue
+            if not bold and bbox[2] - bbox[0] > 250 or m_head or (bold and MK_SUBGROUP.match(t)):
+                last_para_bottom = bbox[3]
+            if cur is None:
+                continue
+            if bold and cur['open'] and not cur['text']:
+                cur['name'] += ' ' + t      # heading wrapped
+                continue
+            cur['open'] = False
+            if t.startswith('Minh họa'):
+                fig_top = bbox[3]
+                continue
+            if fig_top is None:
+                cur['text'].append(t)
+    result = {}
+    for code, e in entries.items():
+        body = []
+        for line in e['text']:
+            if body and not re.match(r'^(Ý\s*nghĩa|Quy\s*cách|-\s|\*|[a-zđ]\)|\d+\))', line):
+                body[-1] += ' ' + line
+            else:
+                body.append(line)
+        body = [fix_broken_words(norm(b), [], code) for b in body]
+        meaning = '\n'.join(body)
+        own = [b for b in body if re.match(r'^Ý\s*nghĩa', b)]
+        summary = norm(re.sub(r'^Ý\s*nghĩa\s*sử\s*dụng\s*:\s*', '', own[0])) if own else (body[0] if body else '')
+        summary = summary[:1].upper() + summary[1:]
+        if not own:
+            issues['marking_summary_fallback'].append(code)
+        if not e['images']:
+            issues['code_without_image'].append(code)
+        result[code] = {'code': code, 'name': fix_broken_words(norm(e['name']), [], code).rstrip(' .'), 'group': MARKING_GROUP[0],
+                        'groupName': MARKING_GROUP[1], 'section': e['subgroup'], 'heading': norm(e['name']),
+                        'summary': summary, 'meaning': meaning, 'images': e['images'],
+                        'source': dict(SOURCE, appendix='G', section=e['subgroup'], page=e['page'])}
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=None)
@@ -533,16 +639,21 @@ def main():
     for code, entry in highway_signs(doc, img_dir, issues).items():
         if code not in signs:
             signs[code] = entry
+    signs.update(road_markings(doc, img_dir, issues))
 
-    order = ['cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', HIGHWAY_GROUP[0]]
+    order = ['cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', HIGHWAY_GROUP[0], MARKING_GROUP[0]]
 
     def sort_key(c):
         m = re.match(r'([A-Z]+)\.(\d+)([a-z]?)', c)
+        if not m:   # 'Vạch 1.10a'
+            n = re.match(r'Vạch (\d+)\.(\d+)([a-z]?)', c)
+            return (order.index(signs[c]['group']), 'V', int(n.group(1)) * 1000 + int(n.group(2)), n.group(3))
         return (order.index(signs[c]['group']), m.group(1), int(m.group(2)), m.group(3))
 
     result = [signs[c] for c in sorted(signs, key=sort_key)]
     group_names = {key: name for key, name in GROUPS.values()}
     group_names[HIGHWAY_GROUP[0]] = HIGHWAY_GROUP[1]
+    group_names[MARKING_GROUP[0]] = MARKING_GROUP[1]
     with open(os.path.join(args.out, 'signs.json'), 'w', encoding='utf-8') as fh:
         json.dump({'source': SOURCE, 'groups': group_names,
                    'signs': result}, fh, ensure_ascii=False, indent=1)

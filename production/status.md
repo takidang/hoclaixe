@@ -22,7 +22,7 @@
 - Ảnh tham khảo đối thủ: 21 ảnh / 2 app trong `design/reference/competitors/`; SRS v0.3 đã đối chiếu.
 - **Công cụ soát không dùng AI (04/10)**: `tools/review_ui/make_question_review.py` → trang HTML so PDF gốc với dữ liệu app; dò lại gạch chân bằng xử lý ảnh, khớp 600/600 đáp án. (Thử soát bằng 2 agent data-curator bị dừng do hết giới hạn phiên — quá tốn token khi xem hàng trăm trang.)
 - **Soát bộ câu hỏi (06/10, Kiệt)**: phát hiện 2 lỗi — câu 180, 485 bị dính dòng 2 của tiêu đề chương; đã sửa script + thêm kiểm tra tự động (cụm chữ IN HOA). Máy dò lại đáp án khớp 600/600.
-- **Danh mục biển báo (cập nhật 06/10)**: 324 mã, thêm `summary` = mô tả ngắn nguyên văn QCVN cho từng mã (học cách trình bày của đối thủ). Ban đầu 294 mã + hình trích tự động từ QCVN 41:2024 Phụ lục B–F (`tools/extract_signs/`), validator PASS; danh sách soát `data/sign-catalog/review.md` (129 mục).
+- **Danh mục biển báo (cập nhật 06/10)**: 397 mục = 324 biển (Phụ lục B–F) + 43 biển cao tốc IE (Điều 47) + 30 vạch kẻ đường (Phụ lục G); 7 nhóm. Trước đó 324 mã, thêm `summary` = mô tả ngắn nguyên văn QCVN cho từng mã (học cách trình bày của đối thủ). Ban đầu 294 mã + hình trích tự động từ QCVN 41:2024 Phụ lục B–F (`tools/extract_signs/`), validator PASS; danh sách soát `data/sign-catalog/review.md` (129 mục).
 - `/write-srs`: `docs/srs/SRS.md` v0.2 (Module A chi tiết, B/D khung), đã qua review agent qa-engineer. Chốt: khóa dọc; danh mục biển báo trích từ QCVN 41:2024 trước 12/10.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)

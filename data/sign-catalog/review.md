@@ -2,7 +2,7 @@
 
 So với QCVN 41:2024 (file `51-bgtvt-kem.pdf`, trang ghi bên dưới): **mã, tên, hình, ý nghĩa**. Khớp → [x].
 
-Tổng: 78 biển. Lỗi: 0. Cảnh báo: 65.
+Tổng: 85 biển. Lỗi: 0. Cảnh báo: 72.
 
 | Khớp | Mã | Tên (app) | Mục | Trang | Lý do soát | Ghi chú |
 |---|---|---|---|---|---|---|
@@ -45,7 +45,6 @@ Tổng: 78 biển. Lỗi: 0. Cảnh báo: 65.
 | [ ] | R.412l | Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe | D.15 | 125 | mẫu ngẫu nhiên (seed 2026) | |
 | [ ] | R.412p | Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe | D.15 | 125 | không có hình | |
 | [ ] | R.413p | — | D.15 | 125 | không có tên | |
-| [ ] | R.415a | Biển gộp làn đường theo phương tiện | D.16 | 126 | mẫu ngẫu nhiên (seed 2026) | |
 | [ ] | R.420 | Bắt đầu khu đông dân cư | D.17 | 127 | đã nối chữ: l ên, -> lên, | |
 | [ ] | I.407a | Đường một chiều | E.7 | 131 | hình đã cắt từ hình gộp — kiểm tra đúng biển | |
 | [ ] | I.407b | Đường một chiều | E.7 | 131 | hình đã cắt từ hình gộp — kiểm tra đúng biển | |
@@ -84,6 +83,14 @@ Tổng: 78 biển. Lỗi: 0. Cảnh báo: 65.
 | [ ] | IE.470 | Sử dụng chữ màu trắng trên nền màu xanh lá cây | Điều 47.21 | 58 | không có hình | |
 | [ ] | IE.472 | Sử dụng chữ màu trắng trên nền màu xanh lá cây | Điều 47.23 | 59 | không có hình | |
 | [ ] | IE.474 | Sử dụng chữ màu trắng trên nền màu xanh lá cây | Điều 47.25 | 60 | mẫu ngẫu nhiên (seed 2026) | |
+| [ ] | Vạch 3.2 | Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc | Nhóm vạch giới hạn mép phần đường xe chạy | 168 | không có hình | |
+| [ ] | Vạch 3.3 | Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc | Nhóm vạch giới hạn mép phần đường xe chạy | 168 | không có hình | |
+| [ ] | Vạch 3.4 | Vạch đứt nét, màu trắng, khoảng cách nét liền L1 = (3 m – 6 m), khoảng | Nhóm vạch giới hạn mép phần đường xe chạy | 168 | không có hình | |
+| [ ] | Vạch 4.2 | vạch kênh hóa dòng xe dạng chữ V | Nhóm vạch kênh hóa dòng xe | 173 | không có hình | |
+| [ ] | Vạch 4.4 | Vạch kẻ kiểu mắt võng | Nhóm vạch kênh hóa dòng xe | 177 | mẫu ngẫu nhiên (seed 2026) | |
+| [ ] | Vạch 6.1 | Vạch cấm đỗ xe trên đường | Nhóm vạch cấm dừng xe trên đường | 181 | không có hình | |
+| [ ] | Vạch 9.3 | Vạch mũi tên chỉ hướng trên mặt đường | Các loại vạch kẻ đường khác | 195 | không có hình | |
+| [ ] | Vạch 9.5 | Vạch dạng chữ viết, chữ số, hoặc màu sắc trên mặt đường | Các loại vạch kẻ đường khác | 198 | không có hình | |
 
 ## Mã có trong phần thân QCVN nhưng chưa có trong danh mục
 

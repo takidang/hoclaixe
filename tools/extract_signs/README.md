@@ -11,7 +11,7 @@ python tools/validate_data/validate_signs.py   # kiểm tra + sinh data/sign-cat
 ```
 
 ## Cách hoạt động
-- Đọc **Phụ lục B–F** và **Điều 47** (biển chỉ dẫn trên đường cao tốc IE.4xx — nhóm `cao_toc`; hình cắt từ vùng trang phía trên chú thích "Hình N", kể cả hình vẽ vector) của QCVN (ý nghĩa – sử dụng biển cấm, nguy hiểm và cảnh báo, hiệu lệnh, chỉ dẫn, biển phụ).
+- Đọc **Phụ lục B–F**, **Phụ lục G** (vạch kẻ đường — nhóm `vach_ke`, mã dạng "Vạch 1.1", mô tả ngắn = đoạn "Ý nghĩa sử dụng"; chỉ gắn hình có chú thích nêu đúng vạch hoặc nằm sau dòng "Minh họa:", bỏ các sơ đồ bố trí chung) và **Điều 47** (biển chỉ dẫn trên đường cao tốc IE.4xx — nhóm `cao_toc`; hình cắt từ vùng trang phía trên chú thích "Hình N", kể cả hình vẽ vector) của QCVN (ý nghĩa – sử dụng biển cấm, nguy hiểm và cảnh báo, hiệu lệnh, chỉ dẫn, biển phụ).
   Phần thân văn bản bị mất khoảng trắng khi trích chữ nên không dùng làm nội dung, chỉ dùng để đối chiếu mã.
 - Mỗi mục "B.4  Biển số P.104 "Cấm xe máy"" → mã, tên (trong ngoặc kép), ý nghĩa (đoạn văn của mục), hình.
 - **Gắn hình với mã**: theo nhãn in đậm dưới hình ("a) Biển số P.103a"); một hình duy nhất → theo chú thích
@@ -29,7 +29,8 @@ python tools/validate_data/validate_signs.py   # kiểm tra + sinh data/sign-cat
 | `review.md` | Danh sách cần soát với PDF + các mã có trong phần thân QCVN nhưng chưa có trong danh mục |
 
 ## Giới hạn đã biết (bản 06/10/2026)
-- 367 mã: 324 từ Phụ lục B–F + 43 biển cao tốc từ Điều 47. Còn 47 mã nêu trong phần thân QCVN chưa có (xem cuối `review.md`).
+- 397 mục: 324 biển từ Phụ lục B–F, 43 biển cao tốc (Điều 47), 30 vạch kẻ đường (Phụ lục G).
+  Còn 47 mã biển nêu trong phần thân QCVN chưa có (xem cuối `review.md`).
 - 8 mục là biển theo Hiệp định GMS (mã kiểu "G,7", "H,6") — không có mã QCVN, bỏ qua.
-- 12 mã chưa có hình (chủ yếu biển cao tốc có hình gộp/khung), 6 mã chưa có tên — xem `review.md`.
-- Phụ lục G (vạch kẻ đường) chưa trích xuất.
+- Chưa có hình: một số biển cao tốc có hình gộp/khung và 7 vạch kẻ đường (3.2, 3.3, 3.4, 4.2, 6.1, 9.3, 9.5) — xem `review.md`.
+- Sơ đồ "Bố trí vạch…" (minh họa cách kẻ ở nút giao) không đưa vào danh mục.

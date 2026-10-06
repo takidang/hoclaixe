@@ -10,7 +10,8 @@
   "hieu_lenh": "Biển hiệu lệnh",
   "chi_dan": "Biển chỉ dẫn",
   "phu": "Biển phụ",
-  "cao_toc": "Biển chỉ dẫn trên đường cao tốc"
+  "cao_toc": "Biển chỉ dẫn trên đường cao tốc",
+  "vach_ke": "Vạch kẻ đường"
  },
  "signs": [
   {
@@ -7730,6 +7731,633 @@
     "appendix": null,
     "section": "Điều 47.25",
     "page": 60
+   }
+  },
+  {
+   "code": "Vạch 1.1",
+   "name": "Vạch phân chia hai chiều xe chạy (vạch tim đường), dạng vạch đơn, đứt nét",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "",
+   "heading": "Vạch phân chia hai chiều xe chạy (vạch tim đường), d ạng vạch đơn, đứt nét",
+   "summary": "Dùng để phân chia hai chiều xe chạy ngược chiều nhau. Xe được phép cắt qua để sử dụng làn ngược chiều từ cả hai phía.",
+   "meaning": "Ý nghĩa sử dụng: dùng để phân chia hai chiều xe chạy ngược chiều nhau. Xe được phép cắt qua để sử dụng làn ngược chiều từ cả hai phía.\nQuy cách: Vạch 1.1 là vạch đơn, đứt nét, màu vàng. Bề rộng nét vẽ b = 15 cm, chiều dài đoạn nét liền L1 = 1 m - 3 m; chiều dài đoạn nét đứt (2 m - 6 m); tỷ lệ L1/L2=1:2. Trong trường hợp đường hẹp, không đủ 2 làn cơ giới, nhưng có nhiều xe máy lưu thông, có thể sử dụng vạch dạng này để phân chia, khi đó bề rộng vạch rộng 10cm, tỷ lệ L1/L2=1:3 hoặc 1:2. Tốc độ vận hành càng cao, chọn chiều dài đoạn nét liền L1 và chiều dài đoạn nét đứt L2 càng lớn. Chọn giá trị chiều dài đoạn nét liền L1 và đoạn nét đứt L2 nhỏ trong các trường hợp cần tăng tính dẫn hướng xe chạy (ví dụ trong phạm vi đường cong nằm bán kính nhỏ).",
+   "images": [
+    "images/V1_1_157_405.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "",
+    "page": 158
+   }
+  },
+  {
+   "code": "Vạch 1.2",
+   "name": "Vạch phân chia hai chiều xe chạy (vạch tim đường), dạng vạch đơn, nét liền",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "",
+   "heading": "Vạch phân chia hai chiều xe chạy (vạch tim đường), dạng vạch đơn, nét liền",
+   "summary": "Dùng để phân chia hai chiều xe chạy ngược chiều; xe không được lấn làn, không được đè lên vạch.",
+   "meaning": "Ý nghĩa sử dụng: dùng để phân chia hai chiều xe chạy ngược chiều; xe không được lấn làn, không được đè lên vạch.\nQuy cách:\n- Vạch 1.2 là vạch đơn, liền nét, màu vàng, bề rộng vạch 15 cm. Vạch này thường sử dụng ở đoạn đường không đảm bảo tầm nhìn vượt xe, nguy cơ tai nạn giao thông đối đầu lớn trên các đường có 2 hoặc 3 làn xe cơ giới và không có dải phân cách giữa.\n- Chỉ được sử dụng vạch 1.2 để phân chia hai chiều xe chạy khi bề rộng làn đường đáp ứng được điều kiện chuyển động của các loại xe có kích thước lớn được phép tham gia giao thông trên tuyến đường đang xét.",
+   "images": [
+    "images/V1_2_158_55.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "",
+    "page": 158
+   }
+  },
+  {
+   "code": "Vạch 1.3",
+   "name": "Vạch phân chia hai chiều xe chạy (vạch tim đường), dạng vạch đôi, nét liền",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "",
+   "heading": "Vạch phân chia hai chiều xe chạy (vạch tim đường), dạng vạch đôi, nét liền",
+   "summary": "Dùng để phân chia hai chiều xe chạy ngược chiều, xe không được lấn làn, không được đè lên vạch.",
+   "meaning": "Ý nghĩa sử dụng: Dùng để phân chia hai chiều xe chạy ngược chiều, xe không được lấn làn, không được đè lên vạch.\nQuy cách:\n- Vạch 1.3 là vạch đôi song song, liền nét, màu vàng, bề rộng nét vẽ b = 15 cm, khoảng cách phía trong hai mép vạch đơn nhỏ nhất là 15 cm; lớn nhất là 50 cm. Nếu khoảng cách hai mép phía trong của các vạch đơn lớn hơn 50 cm thì sử dụng vạch kênh hóa dòng xe dạng gạch chéo, màu vàng (vạch 4.1).\n- Vạch này thường dùng để phân chia hai chiều xe chạy ngược chiều cho đường có từ 4 làn xe cơ giới trở lên, không có dải phân cách giữa trên đoạn đường không đảm bảo tầm nhìn vượt xe, nguy cơ tai nạn giao thông đối đầu lớn hoặc ở các vị trí cần thiết khác.\n- Trường hợp các đường có 2 hoặc 3 làn xe cơ giới, không có dải phân cách giữa có thể sử dụng vạch 1.3 ở các vị trí cần thiết để nhấn mạnh mức độ nguy hiểm, không được lấn làn, không được đè lên vạch. Tác dụng của vạch 1.3 trong trường hợp này tương tự vạch 1.2.\n* Trong trường hợp tại các vị trí cần thiết để cho xe cắt ngang qua thì sử dụng vạch đứt nét màu vàng có qui cách như sau: 100 200 15 15 15-20 §¬n vÞ: cm",
+   "images": [
+    "images/V1_3_158_410.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "",
+    "page": 159
+   }
+  },
+  {
+   "code": "Vạch 1.4",
+   "name": "Vạch phân chia hai chiều xe chạy, dạng vạch đôi gồm một vạch nét liền, một vạch nét đứt",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "",
+   "heading": "Vạch phân chia hai chiều xe chạy, dạng vạch đôi gồm một vạch nét liền, một vạch nét đứt",
+   "summary": "Dùng để phân chia hai chiều xe chạy ngược chiều. Xe trên làn đường tiếp giáp với vạch đứt nét được phép cắt qua và sử dụng làn ngược chiều khi cần thiết; xe trên làn đường tiếp giáp với vạch liền nét không được lấn làn hoặc đè lên vạch.",
+   "meaning": "Ý nghĩa sử dụng: dùng để phân chia hai chiều xe chạy ngược chiều. Xe trên làn đường tiếp giáp với vạch đứt nét được phép cắt qua và sử dụng làn ngược chiều khi cần thiết; xe trên làn đường tiếp giáp với vạch liền nét không được lấn làn hoặc đè lên vạch.\nQuy cách:\n- Vạch 1.4 là vạch đôi song song, một vạch liền nét, một vạch đứt nét. Bề rộng nét vẽ của các vạch b = 15 cm; khoảng cách phía trong hai mép vạch đơn là 15 cm - 20 cm. Đối với vạch đứt nét, chiều dài đoạn nét liền L1 = (1 m - 3 m); chiều dài đoạn nét đứt L2 = (2 m - 6 m); tỷ lệ L1/L2 = 1:2. Tốc độ vận hành càng cao, chọn chiều dài đoạn nét liền L1 và chiều dài đoạn nét đứt L2 càng lớn. Chọn giá trị chiều dài đoạn nét liền L1 và đoạn nét đứt L2 nhỏ trong các trường hợp cần tăng tính dẫn hướng xe chạy (ví dụ trong phạm vi đường cong nằm bán kính nhỏ).\n- Vạch này được sử dụng trên đường có từ 2 làn xe trở lên, không có dải phân giữa, ở các đoạn cần thiết phải cấm xe sử dụng làn ngược chiều theo một hướng xe chạy nhất định để đảm bảo an toàn. Trường hợp chỉ có một làn xe bên phía tiếp giáp với vạch liền nét, bề rộng của làn đường này phải đáp ứng được điều kiện chuyển động của các loại xe có kích thước lớn được phép tham gia giao thông trên tuyến đường đang xét.",
+   "images": [
+    "images/V1_4_159_494.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "",
+    "page": 160
+   }
+  },
+  {
+   "code": "Vạch 1.5",
+   "name": "Vạch xác định ranh giới làn đường có thể thay đổi hướng xe chạy",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "",
+   "heading": "Vạch xác định ranh giới làn đường có thể thay đổi hướng xe chạy",
+   "summary": "Dùng để xác định ranh giới làn đường có thể thay đổi hướng xe chạy trên đó theo thời gian. Hướng xe chạy ở một thời điểm trên làn đường có thể đổi chiều được quy định bởi người điều khiển giao thông, tín hiệu đèn, biển báo hoặc các báo hiệu khác phù hợp.",
+   "meaning": "Ý nghĩa sử dụng: dùng để xác định ranh giới làn đường có thể thay đổi hướng xe chạy trên đó theo thời gian. Hướng xe chạy ở một thời điểm trên làn đường có thể đổi chiều được quy định bởi người điều khiển giao thông, tín hiệu đèn, biển báo hoặc các báo hiệu khác phù hợp.\nQuy cách: Vạch 1.5 là vạch đôi, đứt nét, màu vàng, bề rộng nét vẽ b = 15 cm; khoảng cách phía trong hai mép vạch đơn là 15 cm - 20 cm; khoảng cách nét liền L1 = (1 m – 2 m), khoảng cách nét đứt L2 = ( 3m – 6m), tỷ lệ L1:L2 = 1:3. Tốc độ vận hành càng cao, chọn chiều dài đoạn nét liền L1 và chiều dài đoạn nét đứt L2 càng lớn. Chọn giá trị chiều dài đoạn nét liền L1 và đoạn nét đứt L2 nhỏ trong các trường hợp cần tăng tính dẫn hướng xe chạy (ví dụ trong phạm vi đường cong nằm bán kính nhỏ). f. Sử dụng vạch phân chia hai chiều xe chạy trong đường cong nằm hoặc đường cong đứng không đảm bảo tầm nhìn vượt xe an toàn Để kẻ vạch tim đường cho các đoạn đường trong phạm vi đường cong nằm hoặc đường cong đứng có yêu cầu cấm vượt xe cần phải xác định được các vùng cấm vượt theo từng hướng xe chạy. Vùng cấm vượt theo một hướng xe chạy là vùng có chiều dài tầm nhìn thực tế nhỏ hơn chiều dài tầm nhìn vượt xe an toàn tối thiểu. Tùy theo yêu cầu cấm vượt mà bố trí loại vạch sơn dùng để phân cách hai chiều xe chạy cho phù hợp. Sử dụng vạch 1.3 cho vùng cấm vượt ở cả hai phía; sử dụng vạch 1.4 cho vùng cấm vượt ở một phía (lưu ý nét sơn liền trong vạch 1.4 được vẽ về phía có yêu cầu cấm vượt) và sử dụng vạch 1.1 cho vùng không có yêu cầu cấm vượt ở cả hai phía (xem minh họa về các loại vạch trên Hình G.6 và Hình G.7). Ghi chú: Các vùng cấm vượt ở hai phía có thể trùm lên nhau hoặc không trùm lên nhau. trong phạm vi đường cong đứng Ghi chú: Các vùng cấm vượt ở hai phía có thể trùm lên nhau hoặc không trùm lên nhau. trong phạm vi đường cong nằm Chỉ dẫn xác định vùng cấm vượt: + Điểm bắt đầu vùng cấm vượt (điểm a và a’ trên Hình G.6 và Hình G.7) là điểm mà tầm nhìn thực tế đối với xe đi vào đường cong bắt đầu nhỏ hơn chiều dài tầm nhìn vượt xe tối thiểu tương ứng với tốc độ xe chạy tốc độ hạn chế lớn nhất hoặc tốc độ V85. Tốc độ V85 là giá trị tốc độ mà 85% số xe trong dòng xe có tốc độ nhỏ hơn hoặc bằng giá trị này. Chiều dài tầm nhìn vượt xe tối thiểu được lấy theo Bảng G.1 dưới đây. Bảng G.1 - Chiều dài tầm nhìn vượt xe tối thiểu dùng để xác định vùng cấm vượt Tốc độ hạn Tầm nhìn vượt xe tối thiểu Tốc độ hạn chế Tầm nhìn vượt xe tối chế lớn nhất (m) lớn nhất hoặc thiểu (m) hoặc tốc độ (chỉ dùng để xác định tốc độ V85 (chỉ dùng để xác định V85 (km/h) vùng cấm vượt) (km/h) vùng cấm vượt) 30 120 80 245 40 140 90 280 50 160 100 320 60 180 110 355 70 210 120 395 + Điểm kết thúc vùng cấm vượt (điểm b và b’ trên Hình G.6 và Hình G.7) là điểm mà tầm nhìn thực tế bắt đầu lớn hơn chiều dài tầm nhìn vượt xe tối thiểu tương ứng tốc độ xe chạy V85 hoặc tốc độ thiết kế (sau khi xe đã đi qua đoạn không đảm bảo tầm nhìn vượt xe). Quy định về chiều dài các đoạn kẻ vạch: + Khi chiều dài vùng cấm vượt (chiều dài đoạn vạch liền nét xen kẽ các đoạn vạch đứt nét) theo một chiều xe chạy nhỏ hơn 30 m, cần mở rộng vùng cấm vượt đảm bảo chiều dài nhỏ nhất 30 m. + Chiều dài vùng cho phép vượt nằm xen kẽ các vùng cấm vượt trên một hướng xe chạy không được nhỏ hơn 100 m. Chỉ sử dụng vạch có chức năng cấm vượt xe khi bề rộng làn xe trên hướng cấm vượt xe trong phạm vi đường cong đủ để đảm bảo điều kiện chuyển động của các loại xe có kích thước lớn được phép tham gia giao thông trên tuyến đường đang xét. g. Sử dụng vạch phân chia hai chiều xe chạy cho đường có 3 làn xe trong khu vực số làn đường trên một hướng thay đổi từ một làn sang hai làn và ngược lại Hình G.8 và Hình G.9 minh họa việc sử dụng vạch sơn phân chia hai chiều xe chạy cho đường có 3 làn xe trong khu vực số làn đường trên một hướng thay đổi từ một làn sang hai làn và ngược lại: Ghi chú: Khoảng cách d = 75 m, khoảng cách L ≥ 25 m. khu vực số làn trên một hướng thay đổi từ một làn sang hai làn Ghi chú: Khoảng cách d = 75 m, L1 ≥ 100 m, khoảng cách L2 ≥ 100 m. khu vực số làn trên một hướng thay đổi từ hai làn sang một làn Lưu ý: + Các vạch gạch chéo được vẽ song song mỗi vạch rộng 45 cm, khoảng cách hai mép vạch 100 cm, vạch nghiêng một góc 135o theo chiều ngược chiều kim đồng hồ so với hướng chuyển động của xe (vạch 4.1). + Vạch xác định phạm vi kẻ vạch gạch chéo song song là vạch đơn liền nét (xem trên Hình G.8 và Hình G.9). Vạch này có bề rộng bằng bề rộng nét vẽ của các vạch đơn cấu tạo nên vạch 1.3 được sử dụng tương ứng trong Hình G.8 và Hình G.9.",
+   "images": [
+    "images/V1_5_160_276.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "",
+    "page": 160
+   }
+  },
+  {
+   "code": "Vạch 2.1",
+   "name": "Vạch phân chia các làn xe cùng chiều, dạng vạch đơn, đứt nét",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+   "heading": "Vạch phân chia các làn xe cùng chiều, dạng vạch đơn, đứt nét",
+   "summary": "Dùng để phân chia các làn xe cùng chiều. Trong trường hợp này, xe được phép thực hiện việc chuyển làn đường qua vạch 2.1.",
+   "meaning": "Ý nghĩa sử dụng: dùng để phân chia các làn xe cùng chiều. Trong trường hợp này, xe được phép thực hiện việc chuyển làn đường qua vạch 2.1.\nQuy cách: Vạch 2.1 là vạch đơn, đứt nét, màu trắng. Bề rộng nét vẽ b = 15cm, chiều dài đoạn nét liền L1 = (1 m - 3 m); chiều dài đoạn nét đứt (3 m - 9 m); tỷ lệ L1/L2 = 1:3. Tốc độ vận hành càng cao, chọn chiều dài đoạn nét liền L1 và chiều dài đoạn nét đứt L2 càng lớn. Chọn giá trị chiều dài đoạn nét liền L1 và đoạn nét đứt L2 nhỏ trong các trường hợp cần tăng tính dẫn hướng xe chạy (ví dụ trong phạm vi đường cong nằm bán kính nhỏ).",
+   "images": [
+    "images/V2_1_163_628.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+    "page": 164
+   }
+  },
+  {
+   "code": "Vạch 2.2",
+   "name": "Vạch phân chia các làn xe cùng chiều, dạng vạch đơn, liền nét",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+   "heading": "Vạch phân chia các làn xe cùng chiều, dạng vạch đơn, liền nét.",
+   "summary": "Dùng để phân chia các làn xe cùng chiều trong trường hợp không cho phép xe chuyển làn hoặc sử dụng làn khác; xe không được lấn làn, không được đè lên vạch.",
+   "meaning": "Ý nghĩa sử dụng: dùng để phân chia các làn xe cùng chiều trong trường hợp không cho phép xe chuyển làn hoặc sử dụng làn khác; xe không được lấn làn, không được đè lên vạch.\nQuy cách: Vạch 2.2 là vạch đơn, liền nét, màu trắng, bề rộng vạch 15 cm.",
+   "images": [
+    "images/V2_2_164_274.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+    "page": 164
+   }
+  },
+  {
+   "code": "Vạch 2.3",
+   "name": "Vạch giới hạn làn đường dành riêng hoặc làn đường ưu tiên",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+   "heading": "Vạch giới hạn làn đường dành riêng hoặc làn đường ưu tiên",
+   "summary": "Vạch giới hạn làn đường dành riêng cho một loại xe cơ giới nhất định (vạch liền nét), các loại xe khác không được đi vào làn xe này trừ những trường hợp khẩn cấp . Vạch giới hạn làn đường ưu tiên cho một loại xe cơ giới nhất định (vạch đứt nét), các xe khác có thể sử dụng làn đường này nhưng phải nhường đường cho xe được ưu tiên sử dụng làn khi xuất hiện loại xe này trên làn xe. Xe trên làn đường dành riêng hoặc làn đường ưu tiên có thể cắt qua các vạch này khi làn đường hoặc phần đường xe chạy liền kề không cấm sử dụng loại xe này. hoặc ưu tiên cho xe buýt",
+   "meaning": "Ý nghĩa sử dụng: Vạch giới hạn làn đường dành riêng cho một loại xe cơ giới nhất định (vạch liền nét), các loại xe khác không được đi vào làn xe này trừ những trường hợp khẩn cấp . Vạch giới hạn làn đường ưu tiên cho một loại xe cơ giới nhất định (vạch đứt nét), các xe khác có thể sử dụng làn đường này nhưng phải nhường đường cho xe được ưu tiên sử dụng làn khi xuất hiện loại xe này trên làn xe. Xe trên làn đường dành riêng hoặc làn đường ưu tiên có thể cắt qua các vạch này khi làn đường hoặc phần đường xe chạy liền kề không cấm sử dụng loại xe này. hoặc ưu tiên cho xe buýt\nQuy cách:\n- Vạch giới hạn đường dành riêng hoặc ưu tiên được cấu tạo bằng vạch đơn, màu trắng, bề rộng vạch 30 cm. Vạch 2.3 có thể là vạch đứt nét hoặc vạch liền nét. Đối với vạch nét đứt, bề rộng nét liền L1 = (1 m - 2m), bề rộng nét đứt L2 = (1 m – 2 m), tỷ lệ L1/L2 = 1:1.\n- Vạch 2.3 dạng nét đứt cũng được dùng để xác định phạm vi làn đường dành riêng hoặc ưu tiên ở vị trí đầu hoặc cuối làn đường như minh họa trên Hình G.12.\n- Vạch giới hạn làn đường dành riêng hoặc ưu tiên được sử dụng đi kèm với chữ viết biểu thị loại xe được dành riêng hoặc ưu tiên hoặc có thể đi kèm với ký hiệu chỉ loại xe được phép sử dụng làn đường.\n- Vạch giới hạn làn đường dành riêng hoặc ưu tiên được kẻ từ chỗ bắt đầu bố trí làn đường dành riêng hoặc ưu tiên, cứ qua một nút giao phải viết lại chữ một lần. Nếu khoảng cách giữa các ngã tư dài hơn 500 m thì có thể viết chữ nhắc lại ở quãng giữa đoạn đường.",
+   "images": [
+    "images/V2_3_164_739.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+    "page": 165
+   }
+  },
+  {
+   "code": "Vạch 2.4",
+   "name": "Vạch phân chia các làn xe cùng chiều, dạng vạch kép (một vạch liền, một vạch đứt nét)",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+   "heading": "Vạch phân chia các làn xe cùng chiều, dạng vạch kép (một vạch liền, một vạch đứt nét).",
+   "summary": "Dùng để phân chia các làn xe cùng chiều, xe trên làn đường tiếp giáp với vạch đứt nét được phép cắt qua khi cần thiết; xe trên làn đường tiếp giáp với vạch liền nét không được lấn làn hoặc đè lên vạch.",
+   "meaning": "Ý nghĩa sử dụng: dùng để phân chia các làn xe cùng chiều, xe trên làn đường tiếp giáp với vạch đứt nét được phép cắt qua khi cần thiết; xe trên làn đường tiếp giáp với vạch liền nét không được lấn làn hoặc đè lên vạch.\nQuy cách: Gồm Vạch 2.1 kết hợp với Vạch 2.2.",
+   "images": [
+    "images/V2_4_165_551.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch phân chia các làn xe chạy cùng chiều",
+    "page": 166
+   }
+  },
+  {
+   "code": "Vạch 3.1",
+   "name": "Vạch giới hạn mép ngoài phần đường xe chạy hoặc vạch phân cách làn xe cơ giới và làn xe thô sơ",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+   "heading": "Vạch giới hạn mép ngoài phần đường xe chạy hoặc vạch phân cách làn xe cơ giới và làn xe thô sơ",
+   "summary": "Để xác định mép ngoài phần đường xe chạy; hoặc phân cách làn xe cơ giới và xe thô sơ, xe chạy được phép đè lên vạch khi cần thiết và phải nhường đường cho xe thô sơ. Qui cách :",
+   "meaning": "Ý nghĩa sử dụng: để xác định mép ngoài phần đường xe chạy; hoặc phân cách làn xe cơ giới và xe thô sơ, xe chạy được phép đè lên vạch khi cần thiết và phải nhường đường cho xe thô sơ. Qui cách :\n- Khi sử dụng vạch 3.1 (a, b) để xác định mép ngoài phần xe chạy (phần lề gia cố có kết cấu tương đương với kết cấu mặt đường được coi là phần xe chạy) thì mép ngoài cùng của vạch cách mép ngoài cùng phần xe chạy từ 15 đến 30 cm đối với đường thông thường và phân chia làn dừng khẩn cấp với phần đường xe chạy đối với đường ô tô cao tốc. Chỉ kẻ vạch giới hạn mép phần đường xe chạy trên đường cao tốc, đường có bề rộng phần đường xe chạy từ 7,0 m trở lên và các trường hợp cần thiết khác.\n- Khi sử dụng vạch 3.1 (a, b) để phân chia giữa làn đường xe cơ giới và làn đường xe thô sơ, phải sử dụng biển báo hoặc sơn chữ “XE ĐẠP”, hoặc biểu tượng xe đạp trên làn xe thô sơ.\n- Chỉ bố trí làn đường dành riêng cho xe thô sơ khi mật độ xe thô sơ lớn trên đường có mỗi chiều xe chạy từ 2 làn xe cơ giới trở lên hoặc trong trường hợp cần thiết khác và bề rộng phần đường dành cho xe thô sơ phải đảm bảo tối thiểu 1,5 m. Khi không bố trí làn xe thô sơ riêng thì có thể bố trí vạch phân chia các làn xe cùng chiều 2.1 hoặc 2.1 kết hợp 2.2. làn đường xe thô sơ\nQuy cách vạch như sau: Vạch 3.1a là vạch đơn, liền nét, bề rộng vạch b = 15 cm - 20 cm. Vạch 3.1b là vạch đơn, nét đứt, bề rộng vạch b = (15 cm - 20 cm); khoảng cách nét liền L1 = 0,6 m; khoảng cách nét đứt L2 = 0,6 m. Tỷ lệ L1/L2 = 1:1. b. Một số loại vạch khác có thể sử dụng để xác định mép phần xe chạy\n- Vạch 3.2, vạch 3.3: sử dụng để phân cách giữa làn xe cơ bản và làn xe chuyển tốc, giữa làn xe cơ bản và làn xe phụ thêm hoặc vạch phân cách, kênh hóa các làn xe trong khu vực tách và nhập làn.",
+   "images": [
+    "images/V3_1_166_407.png",
+    "images/V3_1_166_647.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+    "page": 166
+   }
+  },
+  {
+   "code": "Vạch 3.2",
+   "name": "Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+   "heading": "Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
+   "summary": "Và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
+   "meaning": "và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+    "page": 168
+   }
+  },
+  {
+   "code": "Vạch 3.3",
+   "name": "Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+   "heading": "Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
+   "summary": "Và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.",
+   "meaning": "và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.\n- Vạch 3.4: sử dụng để báo hiệu sắp đến đến vạch 1.2 hoặc vạch 2.2; hoặc sử dụng để kẻ vạch chuyển tiếp từ vạch 1.1 đến vạch 1.2; hoặc từ vạch 2.1 đến vạch 2.2. Bề rộng vạch 3.4 được lấy tương ứng theo bề rộng của vạch 1.2 hoặc vạch 2.2.",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+    "page": 168
+   }
+  },
+  {
+   "code": "Vạch 3.4",
+   "name": "Vạch đứt nét, màu trắng, khoảng cách nét liền L1 = (3 m – 6 m), khoảng",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+   "heading": "Vạch đứt nét, màu trắng, khoảng cách nét liền L1 = (3 m – 6 m), khoảng",
+   "summary": "Cách nét đứt L2 = 1 m – 2 m, tỷ lệ L1:L2 = 3:1. Chiều dài vạch 3.4 lấy trong khoảng từ 50 m đến 100 m. c. Bố trí vạch phân làn đường trong khu vực tách và nhập làn Nguyên tắc chung sử dụng các loại vạch như sau:",
+   "meaning": "cách nét đứt L2 = 1 m – 2 m, tỷ lệ L1:L2 = 3:1. Chiều dài vạch 3.4 lấy trong khoảng từ 50 m đến 100 m. c. Bố trí vạch phân làn đường trong khu vực tách và nhập làn Nguyên tắc chung sử dụng các loại vạch như sau:\n- Tại các mũi đảo tách làn hoặc nhập làn có thể bố trí vạch sơn chữ V trên phần diện tích mặt đường giới hạn bởi các đường mép kéo dài từ các cạnh của đảo.\n- Các vạch chữ V (vạch 4.2) được vẽ song song mỗi vạch rộng 45 cm, khoảng cách hai mép vạch rộng 100 cm, vạch chữ V được đặt sao cho cạnh chữ V xuôi chiều với hướng chuyển động của xe và hợp với hướng xe chạy một góc 45 o.\n- Vạch xác định phạm vi kẻ vạch chữ V là vạch liền nét, màu trắng, bề rộng vạch 20 cm (vạch 3.1).\n- Vạch phân cách giữa làn xe cơ bản và làn xe chuyển tốc; hoặc vạch phân cách, kênh hóa các làn xe trong khu vực tách và nhập làn tùy từng trường hợp mà có thể sử dụng vạch liền nét, màu trắng, bề rộng vạch 45 cm (vạch 3.2); hoặc sử dụng vạch đứt nét, màu trắng, bề rộng vạch 45 cm, khoảng cách nét đứt L1 = 300 cm; khoảng cách nét đứt L2 = 300 cm (vạch 3.3).\n- Xe không được phép cắt qua vạch chữ V trừ các trường hợp khẩn cấp . Dưới đây là một số trường hợp điển hình bố trí vạch phân làn đường trong khu vực tách và nhập làn:\n- Bố trí vạch sơn khu vực tách làn kiểu trực tiếp:\n- Bố trí vạch sơn khu vực tách làn kiểu có làn chuyển tiếp song song:\n- Bố trí vạch sơn khu vực nhập làn kiểu trực tiếp:\n- Bố trí vạch sơn khu vực nhập làn kiểu có làn chuyển tiếp song song: Đơn vị: cm song d. Bố trí vạch phân làn đường ở điểm dừng xe trên tuyến kiểu bến cảng (có vịnh dừng đỗ) Sử dụng vạch 3.2 hoặc vạch 3.3 để phân cách giữa làn xe chạy chính và làn dừng xe. Tùy theo bề rộng mặt đường mà có thể sử dụng vạch 5.1 để tạo đảo phân làn đường. Chi tiết xem trên Hình G.18 và Hình G.19. e. Bố trí vạch sơn trong khu vực bề rộng phần xe chạy bị thay đổi Trong khu vực bề rộng phần xe chạy bị thay đổi hoặc số làn xe chạy tăng lên hoặc ít đi, cần thiết phải bố trí các vạch sơn trên mặt đường (có thể kết hợp với biển báo) để cảnh báo người tham gia giao thông điều khiển xe thận trọng hơn. Dưới đây là các hình vẽ thể hiện quy định về bố trí vạch sơn trong khu vực phần xe chạy bị thay đổi. làn xe làn xe làn xe làn xe Lưu ý:\n- Các quy định về bố trí vạch sơn đề cập ở mục này chỉ áp dụng cho khu vực phần xe chạy bị thay đổi. Khu vực bề rộng phần xe chạy bị thay đổi được xác định là phạm vi chiều dài tổng cộng các đoạn D, L, và d tương ứng trên các Hình G.20, G.21, G.22, và G.23.\n- Trong khu vực bề rộng phần xe chạy bị thay đổi, vạch 1.3 được sử dụng để phân chia hai chiều xe chạy. Đối với hướng xe chạy có bề rộng mặt đường bị thu hẹp trong khu vực phần xe chạy bị thay đổi phải bố trí vạch giới hạn mép phần xe chạy (vạch 3.1) kết hợp với đặt biển số W.203 (b,c) “Đường bị thu hẹp”.\n- Chiều dài đoạn biến đổi bề rộng mặt đường L(m) được xác định như sau: V2W L= (khi V £ 60 km/h) (1) 155 hoặc L = 0.625V.W (khi V > 60 km/h) (2) Trong đó; V: Tốc độ hạn chế lớn nhất hoặc tốc độ V85, km/h; W: Chiều rộng giảm đi, m; D: chiều dài tầm nhìn dừng xe an toàn, m.\n- Đoạn kéo dài của vạch ở điểm cuối cùng giảm chiều rộng (d) được lựa chọn như sau: Đường có tốc độ hạn chế lớn nhất hoặc tốc độ V85 > 60 km/h là 40 m, các loại đường khác là 20 m. f. Bố trí vạch báo gần đến chướng ngại vật Khi có chướng ngại vật trên đường, cần thiết phải bố trí các vạch sơn trên mặt đường (có thể kết hợp với biển báo) để cảnh báo người tham gia giao thông điều khiển xe thận trọng hơn, vòng tránh chướng ngại vật trên mặt đường.\n- Trường hợp đường có hai làn xe, hai chiều xe chạy, khi chướng ngại vật nằm ở giữa đường thì có thể kẻ vạch theo Hình G.24. ngại vật nằm ở giữa đường Lưu ý: trị số d và L xác định tương tự như ở G1.3e: bố trí vạch sơn trong khu vực phần xe chạy bị thay đổi. Vạch tim đường (vạch phân cách hai chiều xe chạy) có thể là vạch 1.1 hoặc vạch 1.2. Bề rộng và màu sắc vạch liền nét trên Hình G.20 lấy giống với bề rộng vạch tim đường (vạch phân cách hai chiều xe chạy).\n- Trường hợp đường có từ 4 làn xe chạy trở lên, khi chướng ngại vật nằm ở giữa đường thì có thể kẻ vạch theo Hình G.25. nằm ở giữa đường Lưu ý: Trị số d và L xác định tương tự như quy định tại điểm e, mục G.1.3: bố trí vạch sơn trong khu vực phần xe chạy bị thay đổi. Trong phạm vi chiều dài đoạn d và L, sử dụng vạch đôi, liền nét có quy cách, màu sắc giống với vạch 1.3. Ngoài phạm vi này, sử dụng vạch tim đường (vạch phân cách hai chiều xe chạy) áp dụng thích hợp cho đường có từ 4 làn xe trở lên.\n- Trường hợp chướng ngại vật trên đường nằm ở giữa hai làn đường cùng chiều thì có thể kẻ vạch theo Hình G.26. cùng chiều Lưu ý: trị số d và L xác định tương tự như mục: Bố trí vạch sơn trong khu vực bề rộng phần xe chạy bị thay đổi. Trong phạm vi chiều dài đoạn d, sử dụng vạch đơn, liền nét , màu trắng có bề rộng bằng vạch phân cách hai chiều xe chạy (vạch 2.1) tương ứng. Trong phạm vi chiều dài đoạn L, sử dụng vạch chữ V (vạch 4.2). Vạch xác định phạm vi vạch chữ V là vạch đơn, liền nét, màu trắng có bề rộng bằng vạch phân các hai chiều xe chạy (vạch 2.1) được sử dụng.",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
+    "page": 168
+   }
+  },
+  {
+   "code": "Vạch 4.1",
+   "name": "Vạch kênh hóa dòng xe dạng gạch chéo",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch kênh hóa dòng xe",
+   "heading": "Vạch kênh hóa dòng xe dạng gạch chéo",
+   "summary": "Vạch kênh hóa dòng xe dạng gạch chéo được sử dụng để giới hạn các phần mặt đường không sử dụng cho xe chạy mà sử dụng để kênh hóa các dòng giao thông giao thông trên đường. Khi vạch 4.1 được sử dụng, các phương tiện giao thông phải đi theo tuyến đường quy định, không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp.",
+   "meaning": "Ý nghĩa sử dụng: Vạch kênh hóa dòng xe dạng gạch chéo được sử dụng để giới hạn các phần mặt đường không sử dụng cho xe chạy mà sử dụng để kênh hóa các dòng giao thông giao thông trên đường. Khi vạch 4.1 được sử dụng, các phương tiện giao thông phải đi theo tuyến đường quy định, không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp.\nQuy cách vạch như sau: Vạch 4.1 bao gồm các vạch liền nét, màu trắng được vẽ song song, mỗi vạch rộng 45 cm, khoảng cách hai mép vạch 100 cm, vạch nghiêng một góc 135o theo chiều ngược chiều kim đồng hồ so với hướng chuyển động của xe. Vạch xác định phạm vi kẻ vạch kênh hóa dòng xe dạng gạch chéo là vạch đơn liền nét, màu trắng. Vạch này có bề rộng nét vẽ b = 20 cm. Hình G.27 minh họa cách vẽ vạch kênh hóa dòng xe dạng gạch chéo. Đơn vị: cm",
+   "images": [
+    "images/V4_1_172_700.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch kênh hóa dòng xe",
+    "page": 173
+   }
+  },
+  {
+   "code": "Vạch 4.2",
+   "name": "vạch kênh hóa dòng xe dạng chữ V",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch kênh hóa dòng xe",
+   "heading": "vạch kênh hóa dòng xe dạng chữ V",
+   "summary": "Vạch kênh hóa dòng xe dạng chữ V được sử dụng để giới hạn các phần mặt đường không sử dụng cho xe chạy mà sử dụng để kênh hóa các dòng giao thông giao thông trên đường. Khi vạch 4.2 được sử dụng, các phương tiện giao thông phải đi theo tuyến đường quy định, không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp.",
+   "meaning": "Ý nghĩa sử dụng: Vạch kênh hóa dòng xe dạng chữ V được sử dụng để giới hạn các phần mặt đường không sử dụng cho xe chạy mà sử dụng để kênh hóa các dòng giao thông giao thông trên đường. Khi vạch 4.2 được sử dụng, các phương tiện giao thông phải đi theo tuyến đường quy định, không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp.\nQuy cách vạch như sau: Vạch 4.2 bao gồm các vạch liền nét, màu trắng được vẽ song song, mỗi vạch rộng 45 cm, khoảng cách hai mép vạch 100 cm, vạch nghiêng một góc 135o theo chiều ngược chiều kim đồng hồ so với hướng chuyển động của xe. Vạch xác định phạm vi kẻ vạch kênh hóa dòng xe dạng chữ V là vạch đơn liền nét, màu trắng. Vạch này có bề rộng nét vẽ b = 20 cm. Hình G.28 minh họa cách vẽ vạch kênh hóa dòng xe dạng chữ V. Đơn vị: cm c. Sử dụng vạch 4.1 và 4.2 để kênh hóa các dòng xe\n- Sử dụng vạch 4.1 và 4.2 để dẫn hướng xe ở trạm thu phí: Tùy theo trường hợp mà có thể sử dụng vạch 4.1 hoặc 4.2 kết hợp với vạch đơn, liền nét màu trắng, bề rộng vạch 20 cm để dẫn hướng xe đến cửa thu phí của cổng trạm thu phí. Chi tiết bố trí xem trên Hình G.29. Đơn vị: cm\n- Sử dụng vạch 4.1 và 4.2 để kênh hóa các dòng xe ở nút giao cùng mức: Dưới đây là một số trường hợp sử dụng vạch 4.1 và 4.2 để kênh hóa các dòng xe các dòng xe trong phạm vi các nút giao cùng mức.",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch kênh hóa dòng xe",
+    "page": 173
+   }
+  },
+  {
+   "code": "Vạch 4.3",
+   "name": "Vạch kênh hóa dòng xe dạng vành khuyên",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch kênh hóa dòng xe",
+   "heading": "Vạch kênh hóa dòng xe dạng vành khuyên",
+   "summary": "Vạch kênh hóa dòng xe dạng vàch khuyên được kẻ ở trung tâm ngã tư giao nhau cùng mức để chỉ thị cho các phương tiện phải đi vòng qua phạm vi kẻ vạch theo chiều ngược chiều kim đồng hồ. Khi vạch 4.3 được sử dụng, các phương tiện giao thông không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
+   "meaning": "Ý nghĩa sử dụng: Vạch kênh hóa dòng xe dạng vàch khuyên được kẻ ở trung tâm ngã tư giao nhau cùng mức để chỉ thị cho các phương tiện phải đi vòng qua phạm vi kẻ vạch theo chiều ngược chiều kim đồng hồ. Khi vạch 4.3 được sử dụng, các phương tiện giao thông không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.\nQuy cách vạch như sau: Đường kính và hình dạng của vành khuyên được xác định bởi kích thước của nút giao ngã tư. Vành khuyên kẻ bằng màu trắng, hình dáng và kích thước được thể hiện chi tiết trên Hình G.36 và Hình G.37.",
+   "images": [
+    "images/V4_3_176_296.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch kênh hóa dòng xe",
+    "page": 176
+   }
+  },
+  {
+   "code": "Vạch 4.4",
+   "name": "Vạch kẻ kiểu mắt võng",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch kênh hóa dòng xe",
+   "heading": "Vạch kẻ kiểu mắt võng",
+   "summary": "Vạch kẻ kiểu mắt võng được sử dụng để báo cho người điều khiển không được dừng phương tiện trong phạm vi phần mặt đường có bố trí vạch để tránh ùn tắc giao thông.",
+   "meaning": "Ý nghĩa sử dụng: Vạch kẻ kiểu mắt võng được sử dụng để báo cho người điều khiển không được dừng phương tiện trong phạm vi phần mặt đường có bố trí vạch để tránh ùn tắc giao thông.\n- Sử dụng vạch kẻ kiểu mắt võng ở các vị trí thích hợp (nút giao xử lý điểm đen tai nạn giao thông, điểm tiềm ẩn tai nạn giao thông, nút giao với Đường sắt, cổng trường học, bệnh viện, trung tâm y tế, trung tâm hành chính). Vạch kẻ kiểu mắt võng có thể sử dụng để xác định phạm vi cấm dừng trong phạm vi nút giao giao cùng mức, trên nhánh dẫn cửa vào hoặc cửa ra của nút giao hoặc những vị trí mặt đường không cho phép dừng xe. Tùy theo mặt bằng nút giao rộng, hẹp để bố trí vạch 4.4 như dưới đây để đảm bảo cân đối, mỹ quan.\nQuy cách vạch như sau:\n- Vạch mắt võng kiểu đơn giản: gồm vạch chéo trong lòng hình chữ nhật, màu vàng, bề rộng nét vẽ 20 cm - 40 cm (xem minh họa trên Hình G.38 và G.39.\n- Vạch mắt võng kiểu thông thường: vạch có nét vẽ màu vàng, vạch vành ngoài giới hạn phạm vi kẻ vạch mắt võng có bề rộng vạch 20 cm. Vạch mắt võng bên trong nghiêng 45° so với vành ngoài, vạch rộng 10 cm khoảng cách đường chéo 1 m - 5 m.",
+   "images": [
+    "images/V4_4_177_265.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch kênh hóa dòng xe",
+    "page": 177
+   }
+  },
+  {
+   "code": "Vạch 5.1",
+   "name": "Vạch dẫn hướng rẽ trái qua phạm vi nút giao",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch dọc đường kéo dài qua phạm vi nút giao",
+   "heading": "Vạch dẫn hướng rẽ trái qua phạm vi nút giao",
+   "summary": "Dùng để định hướng quỹ đạo cho dòng xe rẽ trái theo giải pháp tổ chức giao thông làn đường được sử dụng trong nút. Mục đích sử dụng vạch là tăng tính dẫn hướng cho xe chạy; xe có thể cắt qua vạch khi cần thiết. Vạch dẫn hướng rẽ trái qua phạm vi nút giao là đoạn kéo dài của vạch phân cách hai chiều xe chạy (vạch tim đường) hoặc vạch phân chia các làn đường cùng chiều. Không nhất thiết phải sử dụng cả hai loại vạch kéo dài nói trên để định hướng quỹ đạo dòng xe rẽ trái. Chỉ sử dụng vạch khi quỹ đạo xe chạy được định hướng bởi vạch 5.1 phù hợp với ý đồ tổ chức giao thông và không gây khó hiểu cho các phương tiện qua nút.",
+   "meaning": "Ý nghĩa sử dụng: dùng để định hướng quỹ đạo cho dòng xe rẽ trái theo giải pháp tổ chức giao thông làn đường được sử dụng trong nút. Mục đích sử dụng vạch là tăng tính dẫn hướng cho xe chạy; xe có thể cắt qua vạch khi cần thiết. Vạch dẫn hướng rẽ trái qua phạm vi nút giao là đoạn kéo dài của vạch phân cách hai chiều xe chạy (vạch tim đường) hoặc vạch phân chia các làn đường cùng chiều. Không nhất thiết phải sử dụng cả hai loại vạch kéo dài nói trên để định hướng quỹ đạo dòng xe rẽ trái. Chỉ sử dụng vạch khi quỹ đạo xe chạy được định hướng bởi vạch 5.1 phù hợp với ý đồ tổ chức giao thông và không gây khó hiểu cho các phương tiện qua nút.\nQuy cách vạch như sau: Vạch 5.1 là vạch đơn, màu vạch lấy theo loại vạch (vạch phân cách hai chiều xe chạy hoặc vạch phân chia làn đường cùng chiều) được kéo dài. Vạch có bề rộng nét vẽ b = 15 cm; chiều dài đoạn nét liền L1 = (0,5 m - 2,0m); chiều dài đoạn nét đứt L2 = (0,5 m - 2,0 m). Tỷ lệ L1/L2 = 1:1.",
+   "images": [
+    "images/V5_1_178_275.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch dọc đường kéo dài qua phạm vi nút giao",
+    "page": 178
+   }
+  },
+  {
+   "code": "Vạch 5.2",
+   "name": "vạch phân làn đường kéo dài qua phạm vi nút giao",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch dọc đường kéo dài qua phạm vi nút giao",
+   "heading": "vạch phân làn đường kéo dài qua phạm vi nút giao",
+   "summary": "Sử dụng ở các nút giao lệch để định hướng quỹ đạo cho dòng xe đi thẳng. Mục đích sử dụng vạch là tăng tính dẫn hướng cho xe chạy; xe có thể cắt qua vạch khi cần thiết.",
+   "meaning": "Ý nghĩa sử dụng: sử dụng ở các nút giao lệch để định hướng quỹ đạo cho dòng xe đi thẳng. Mục đích sử dụng vạch là tăng tính dẫn hướng cho xe chạy; xe có thể cắt qua vạch khi cần thiết.\nQuy cách vạch như sau: vạch 5.2 là vạch đơn màu trắng, bề rộng nét vẽ b = 15 cm, chiều dài đoạn nét liền L1 = ( 0,5 m - 2,0 m); chiều dài đoạn nét đứt L2 = (0,5 m - 2,0 m); tỷ lệ L1/L2 = 1:1.",
+   "images": [
+    "images/V5_2_178_700.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch dọc đường kéo dài qua phạm vi nút giao",
+    "page": 179
+   }
+  },
+  {
+   "code": "Vạch 5.3",
+   "name": "vạch làn chờ rẽ trái trong nút giao",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch dọc đường kéo dài qua phạm vi nút giao",
+   "heading": "vạch làn chờ rẽ trái trong nút giao",
+   "summary": "Vạch được sử dụng để tạo không gian dừng chờ cho các xe rẽ trái sau khi xe đã vượt qua vạch dừng xe trên nhánh dẫn của nút giao có sử dụng đèn tín hiệu điều khiển, nhưng không thể vượt qua nút trong thời gian tín hiệu đèn cho phép rẽ trái. Khi hết thời gian cho phép rẽ trái mà xe đã vượt qua vạch dừng xe trên nhánh dẫn nhưng chưa vượt quá khu vực giới hạn bởi làn xe chờ rẽ trái trong nút giao thì phải dừng lại trong khu vực làn chờ.",
+   "meaning": "Ý nghĩa sử dụng: vạch được sử dụng để tạo không gian dừng chờ cho các xe rẽ trái sau khi xe đã vượt qua vạch dừng xe trên nhánh dẫn của nút giao có sử dụng đèn tín hiệu điều khiển, nhưng không thể vượt qua nút trong thời gian tín hiệu đèn cho phép rẽ trái. Khi hết thời gian cho phép rẽ trái mà xe đã vượt qua vạch dừng xe trên nhánh dẫn nhưng chưa vượt quá khu vực giới hạn bởi làn xe chờ rẽ trái trong nút giao thì phải dừng lại trong khu vực làn chờ.\nQuy cách vạch như sau: Vạch 5.3 gồm hai vạch đơn, đứt nét, màu trắng chạy song song hơi cong về bên trái và một vạch dừng xe (vạch 7.1) ở đầu các vạch đơn đứt nét. Vạch đơn đứt nét có bề rộng nét vẽ b = 15 cm, chiều dài đoạn nét liền L1 = (0,5 m - 1,0 m); chiều dài nét đứt L2 = (0,5 m - 1,0 m). Tỷ lệ L1/L2 = 1:1. d. Minh họa bố trí vạch phân làn đường trong khu vực nút giao cùng mức Hình G.43 minh họa một trường hợp điển hình bố trí vạch phân làn đường trong khu vực nút giao cùng mức.",
+   "images": [
+    "images/V5_3_179_420.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch dọc đường kéo dài qua phạm vi nút giao",
+    "page": 179
+   }
+  },
+  {
+   "code": "Vạch 6.1",
+   "name": "Vạch cấm đỗ xe trên đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch cấm dừng xe trên đường",
+   "heading": "Vạch cấm đỗ xe trên đường",
+   "summary": "Được sử dụng để báo hiệu không được phép đỗ xe bên đường. Vạch 6.1 được sử dụng độc lập hoặc phối hợp với ký hiệu chữ “Cấm đỗ xe” trên mặt đường và biển báo “Cấm đỗ xe”; ngoài ra, căn cứ theo nhu cầu có thể đặt thêm biển báo phụ ghi rõ thời gian cấm đỗ xe và phạm vi, đối tượng cấm đỗ xe.",
+   "meaning": "Ý nghĩa sử dụng: được sử dụng để báo hiệu không được phép đỗ xe bên đường. Vạch 6.1 được sử dụng độc lập hoặc phối hợp với ký hiệu chữ “Cấm đỗ xe” trên mặt đường và biển báo “Cấm đỗ xe”; ngoài ra, căn cứ theo nhu cầu có thể đặt thêm biển báo phụ ghi rõ thời gian cấm đỗ xe và phạm vi, đối tượng cấm đỗ xe.",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch cấm dừng xe trên đường",
+    "page": 181
+   }
+  },
+  {
+   "code": "Vạch 6.2",
+   "name": "Vạch cấm dừng xe, cấm đỗ xe trên đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Nhóm vạch cấm dừng xe trên đường",
+   "heading": "Vạch cấm dừng xe, cấm đỗ xe trên đường",
+   "summary": "Được sử dụng để báo hiệu không được phép dừng xe, đỗ xe bên đường. Vạch 6.2 có thể sử dụng phối hợp với ký hiệu chữ “cấm dừng, đỗ xe” trên mặt đường và biển báo “Cấm dừng, đỗ xe”; ngoài ra căn cứ theo nhu cầu đặt thêm biển báo phụ ghi rõ thời gian cấm dừng đỗ xe và phạm vi, đối tượng cấm dừng đỗ xe.",
+   "meaning": "Ý nghĩa sử dụng: được sử dụng để báo hiệu không được phép dừng xe, đỗ xe bên đường. Vạch 6.2 có thể sử dụng phối hợp với ký hiệu chữ “cấm dừng, đỗ xe” trên mặt đường và biển báo “Cấm dừng, đỗ xe”; ngoài ra căn cứ theo nhu cầu đặt thêm biển báo phụ ghi rõ thời gian cấm dừng đỗ xe và phạm vi, đối tượng cấm dừng đỗ xe.\nQuy cách vạch như sau: Vạch 6.2 là vạch liền nét màu vàng được sơn trên bó vỉa sát mép mặt đường phía cấm dừng xe hoặc đỗ xe hoặc sơn trên mặt đường phía cấm dừng xe hoặc đỗ xe, cách mép mặt đường 30 cm khi không có bó vỉa sát mép mặt đường. Khi vạch 6.2 được bố trí trên bó vỉa, bề rộng phần sơn vàng được lấy bằng bề rộng viên đá vỉa hoặc tối thiểu 15 cm; ngoài ra bề rộng phần sơn vàng được kéo dài trên toàn bộ mặt vát hoặc mặt đứng của viên đá vỉa phía tiếp giáp với mặt đường. Trường hợp bố trí trên mặt đường, bề rộng vạch là 15 cm. Vạch 7.1: Vạch dừng xe\nÝ nghĩa sử dụng: dùng để xác định vị trí dừng xe để chờ tín hiệu cho phép đi tiếp. Vạch dùng để xác định vị trí người điều khiển phương tiện phải dừng lại khi có tín hiệu đèn đỏ hoặc khi có biển số R.122. Vạch cũng dùng để xác định vị trí người điều khiển phải dừng lại trong các điều kiện nhất định ở một số vị trí như: trên nhánh dẫn tới nút giao cùng mức với đường sắt, trên làn chờ rẽ trái trong phạm vi nút giao, trước vị trí vạch người đi bộ qua đường. Đơn vị: cm\nQuy cách vạch như sau: Vạch 7.1 là vạch liền nét màu trắng. Bề rộng vạch, căn cứ vào cấp đường, lưu lượng xe, tốc độ xe chạy mà chọn dùng một trong các giá trị 20 cm, 30 cm hoặc 40 cm (bề rộng nét vẽ lớn hơn áp dụng cho đường có lưu lượng, tốc độ xe chạy lớn hơn). Vạch này kẻ ngang toàn bộ bề rộng đường của hướng xe chạy. Vạch dừng xe cần đặt ở vị trí mà lái xe có thể dễ dàng quan sát. Tại các nút giao cùng mức, vạch dừng xe nên đặt trùng với đường kéo dài của bó vỉa trục đường giao khi trên nhánh dẫn không bố trí vạch đi bộ cắt qua đường; trường hợp trên nhánh dẫn có bố trí vạch đi bộ cắt qua đường thì vạch dừng xe nên đặt cách mép vạch người đi bộ qua đường (1,5 m - 3,0 m) (xem Hình G.47). Vạch dừng xe có thể sử dụng kết hợp với vạch chữ “STOP”. Đỉnh chữ “STOP” cách mép vạch dừng xe trong khoảng từ (2,0 m – 3,0 m); và có thể vẽ thêm chữ “STOP” để báo hiệu trước trong phạm vi 25 m trước vị trí vạch dừng xe. Chi tiết thể hiện trên Hình 48. Vạch 7.2: Vạch nhường đường\nÝ nghĩa sử dụng: để báo hiệu cho xe phải đi chậm hoặc dừng lại khi cần thiết để nhường đường cho các phương tiện hoặc người trên các hướng giao thông khác được di chuyển trước. Vạch 7.2 được sử dụng kết hợp với biển số W.208 – “Giao với đường ưu tiên”.\nQuy cách vạch như sau: Có thể sử dụng một trong hai mẫu vạch nhường đường như sau:\n- Mẫu 1: Vạch nhường đường là vạch đôi, nét đứt, đi kèm với một hình tam giác ngược, tất cả đều màu trắng. Vạch được kẻ ngang trên toàn bộ bề rộng đường của hướng xe chạy. Chi tiết kích thước vạch xem Hình G.49.\n- Mẫu 2: Vạch nhường đường có hình tam giác cân màu trắng, đáy của tam giác hướng về đường ưu tiên rộng 50 cm chiều cao của tam giác là 70 cm. Hai mép kề nhau của 2 tam giác cách nhau 30 cm. Chi tiết xem trên Hình G.50. Vạch nhường đường cần đặt ở vị trí mà lái xe có thể dễ dàng quan sát. Tại các nút giao cùng mức, vạch nhường đường nên đặt trùng với đường kéo dài của bó vỉa trục đường giao khi trên nhánh dẫn không bố trí vạch đi bộ cắt qua đường. Nếu trên nhánh dẫn có bố trí vạch đi bộ cắt qua đường thì vạch giảm tốc độ nhường đường nên đặt cách mép vạch người đi bộ qua đường (1,5 m - 3,0 m). Vạch 7.3: Vạch đi bộ qua đường\nÝ nghĩa sử dụng: Vạch đi bộ qua đường xác định phạm vi phần đường dành cho người đi bộ cắt qua đường. Bố trí vạch đi bộ qua đường ở những nơi có người đi bộ qua đường, khoảng cách bố trí hai vạch đi bộ qua đường trên cùng một đoạn đường nên cách nhau lớn hơn 150 m. Chiều rộng nhỏ nhất dành cho bố trí vạch đi bộ qua đường không được nhỏ hơn 3 m, tuỳ theo lượng người đi qua để nâng thêm chiều rộng, mỗi cấp nâng lên là 1 m. Trên những đoạn đường không bình thường (tầm nhìn bị hạn chế, dốc dọc lớn, góc ngoặt lớn hoặc đường cong nằm bán kính nhỏ hoặc có các nguy hiểm khó lường hoặc ở những đoạn đường có bề rộng làn xe bị thu hẹp dần) thì không bố trí vạch đi bộ qua đường.\nQuy cách vạch như sau:\n- Mẫu 1: Vạch đi bộ qua đường là các đường vạch đậm liền song song màu trắng (còn gọi là vạch ngựa vằn). Kích thước vạch xem trên Hình G.51.\n- Mẫu 2: Sử dụng hai vạch liền, màu trắng, bề rộng nét vẽ b = 40 cm kẻ song song theo phương ngang đường để xác định phần đường dành cho người đi bộ (xem Hình 52). Mẫu 2 chỉ áp dụng để xác định phần đường cho người đi bộ qua đường ở những nơi có đèn tín hiệu phân định thời gian người đi bộ được phép qua đường. Trước vạch đi bộ qua đường cần sử dụng vạch dừng xe. Các phương tiện phải dừng lại trước vạch dừng xe nói trên trong thời gian tín hiệu đèn đỏ hoặc phải dừng lại quan sát trước khi cắt qua vạch dừng xe nếu biển số R.122 – “Dừng xe” được sử dụng kèm theo. Trường hợp không có đèn tín hiệu điều khiển và không sử dụng biển số R.122 – “Dừng xe”, các phương tiện phải dừng lại nhường đường cho người đi bộ qua đường khi có dấu hiệu người đi bộ qua đường trong khu vực kẻ vạch dừng xe. Vạch 7.4: Vạch xe đạp qua đường\nÝ nghĩa sử dụng: Vạch đi bộ qua đường xác định phạm vi phần đường dành cho xe đạp cắt qua đường. Ở nơi đường giao nhau không có người, tín hiệu điều khiển giao thông thì xe đạp phải nhường đường cho phương tiện cơ giới chạy trên đường cắt ngang đường xe đạp.\nQuy cách vạch như sau: Hai vạch đứt quãng chạy song song rộng bằng nhau bằng 40 cm, chiều dài vạch đứt quãng là 40 cm và cách nhau 40 cm. Hai mép ngoài của 2 vạch cách nhau 1,8 m. Vạch xác định vị trí chỗ xe đạp đi ngang qua đường trên những chỗ giao nhau. Nơi không có điều khiển bằng đèn tín hiệu thì xe đạp phải nhường cho xe cơ giới khác chạy trên đường. Vạch 7.5: Vạch xác định khu vực cấm xe thô sơ trong nút giao\nÝ nghĩa sử dụng: Vạch 7.5 sử dụng để báo cho người điều khiển xe thô sơ biết phạm vi cấm khi đi vào nút giao ngã tư có sử dụng đèn tín hiệu điều khiển.\nQuy cách vạch như sau: Vạch 7.5 gồm các vạch đơn, đứt khúc màu vàng, bề rộng vạch 20 cm. Phạm vi làn cấm xe thô sơ lấy ranh giới là vạch giới hạn làn xe cơ giới. Phần kéo dài của vạch qua phạm vi làn xe thô sơ được vẽ bằng nét liền màu vàng có cùng bề rộng với phần nét đứt là 20 cm. Vạch 7.6: Vạch chỉ dẫn sắp đến chỗ có bố trí vạch đi bộ qua đường\nÝ nghĩa sử dụng: Vạch 7.6 sử dụng để báo hiệu sắp đến chỗ có bố trí vạch đi bộ qua đường; đặc biệt đối với các chỗ bố trí vạch đi bộ qua đường ở giữa đoạn đường nối hai nút để cảnh báo người lái xe phải nhường đường cho người đi bộ qua đường.\nQuy cách vạch như sau: Vạch có dạng hình thoi, màu trắng. Kích thước vạch xem trên Hình G.56. Vạch 7.7: Vạch báo gần chỗ giao nhau với đường sắt\nÝ nghĩa sử dụng: Vạch 7.7 sử dụng để báo cho người tham gia giao thông biết phía trước có chỗ giao nhau với đường sắt, nhắc người điều khiển phương tiện thận trọng. Cụm vạch này chỉ dùng ở chỗ không có người gác chắn đường sắt.\nQuy cách vạch như sau:\n- Chữ \"R\" dùng sơn phản quang màu trắng ở bên phải và bên trái vạch chéo \"X\".\n- Vạch chéo \"X\" cách vạch nét đứt nằm ngang trước và sau là 450 cm, vạch rộng 40 cm, vạch chéo theo phương ngang hết bề rộng chiều xe chạy và dài 600 cm theo chiều dọc.\n- Vạch nét đứt nằm ngang dùng sơn phản quang trắng, nét rộng 40 cm, mỗi nét dài 60 cm, cách nhau 60 cm trước và sau vạch chéo \"X\".\n- Bố trí kết hợp với vạch cấm vượt xe và vạch dừng xe. Khoảng cách từ điểm gần nhất của ray theo chiều dọc đến vạch dừng xe là 300 cm. Chi tiết xem trên Hình G.56. Vạch 7.8: Vạch xác định khoảng cách xe trên đường.\nÝ nghĩa sử dụng: Vạch 7.8 là vạch dùng để xác định khoảng cách trên đường, giúp cho lái xe biết cần phải giãn cách cự ly để đảm bảo an toàn với xe chạy phía trước. Vạch thường được sử dụng trên đường ô tô cao tốc ở những nơi hay xảy ra tai nạn do vượt xe hoặc đâm va từ phía sau hoặc ở những vị trí có yêu cầu đặc biệt. Đơn vị: cm\nQuy cách vạch như sau: Vạch có dạng các đường liền hình mũi nhọn, màu trắng chạy song song với tim đường. Kích thước vạch xem trên Hình G.58. Vạch xác định khoảng cách xe trên đường nên phối hợp sử dụng với biển báo, cách 50 m thì bố trí một nhóm vạch (2 vạch/ làn, vạch cách nhau 5 m theo chiều dọc) và bố trí trên chiều dài 200 m dọc theo đường (5 cụm vạch/làn đường) Quy định chung về vạch giảm tốc độ Vạch giảm tốc độ dùng để báo cho người điều khiển phương tiện biết đoạn đường cần phái giảm tốc độ đồng thời bản thân vạch cũng được cấu tạo để góp phần làm giảm tốc độ xe chạy. Vạch giảm tốc độ được bố trí ở trước và trong các đoạn đường xe cần phải giảm tốc độ để đảm bảo an toàn, như lối vào trạm thu phí; trên nhánh dẫn tới các nút giao cùng mức, trước các đoạn đường cong nằm bán kính nhỏ cần giới hạn tốc độ xe chạy và ở những nơi cần phải giảm tốc độ. Vạch giảm tốc độ có màu vàng, có thể bố trí dạng cụm (nhiều vạch đơn) ở phía trước và trong đoạn đường cần giảm tốc độ hoặc là dạng vạch đơn bố trí trên toàn bộ chiều dài đoạn đường cần giảm tốc độ.",
+   "images": [
+    "images/V6_2_181_665.png",
+    "images/V6_2_182_505.png",
+    "images/V6_2_183_680.png",
+    "images/V6_2_185_195.png",
+    "images/V6_2_186_202.png",
+    "images/V6_2_186_699.png",
+    "images/V6_2_187_382.png",
+    "images/V6_2_188_351.png",
+    "images/V6_2_189_255.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Nhóm vạch cấm dừng xe trên đường",
+    "page": 182
+   }
+  },
+  {
+   "code": "Vạch 8.1",
+   "name": "Vạch đứng trên mốc cố định",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Vạch đứng",
+   "heading": "Vạch đứng trên mốc cố định",
+   "summary": "Sử dụng vạch 8.1 để cảnh báo người điều khiển phương tiện chú ý, trên đường đi phía trước có chướng ngại vật cao hơn mặt đường để đề phòng va quệt phải. Vạch này kẻ trên bề mặt phần đứng của chướng ngại vật có khả năng gây nguy hiểm đối với phương tiện giao thông như: trụ cầu vượt qua đường hoặc mặt trước của hai bên tường ở chỗ cầu vượt hay đường chui qua đường hoặc ở cửa đường hầm, trên kết cấu dải phân cách, trên đảo an toàn của đường ngang dành cho người đi bộ v.v....",
+   "meaning": "Ý nghĩa sử dụng: sử dụng vạch 8.1 để cảnh báo người điều khiển phương tiện chú ý, trên đường đi phía trước có chướng ngại vật cao hơn mặt đường để đề phòng va quệt phải. Vạch này kẻ trên bề mặt phần đứng của chướng ngại vật có khả năng gây nguy hiểm đối với phương tiện giao thông như: trụ cầu vượt qua đường hoặc mặt trước của hai bên tường ở chỗ cầu vượt hay đường chui qua đường hoặc ở cửa đường hầm, trên kết cấu dải phân cách, trên đảo an toàn của đường ngang dành cho người đi bộ v.v....\nQuy cách vạch như sau: Vạch 8.1 cấu tạo gồm những nét chéo vàng, đen hoặc đỏ, trắng xen kẽ nhau, nghiêng góc 45°, bề rộng và khoảng cách nét là 15 cm khi kẻ nên cho nét chéo xuống chéo về phía đường xe chạy. Thông thường màu vàng, đen được sử dụng cho các đường ngoài khu vực đô thị; màu đỏ, trắng được sử dụng cho các đường trong khu vực đô thị. Khi cần thiết, các vạch cũng có thể được bẻ gập dạng chữ V (xem ví dụ trên Hình G.63). Chi tiết cấu tạo vạch 8.1 thể hiện trên Hình 62. b H a a 45° Chú dẫn:\n- H < 2m; b ≤ 30cm thì a = 10cm\n- H < 2m; b > 30cm thì a = 15cm\n- H ≥ 2m; b > 30cm thì a = 20cm Sử dụng vạch 8.1 cho đảo phân làn tại trạm thu phí:\n- Trên bề mặt kết cấu đảo phân làn tại cổng trạm thu phí sử dụng vạch 8.1 để biểu thị vị trí dải phân cách làn xe nhằm tăng tính dẫn hướng cho xe đi đúng làn đường.\n- Vạch có màu vàng và màu đen đan xen nhau, chiều rộng của mỗi vạch là 15 cm bắt đầu vẽ từ đầu dải phân cách tạo thành một góc là 45° so mặt phẳng ngang và nghiêng đều về hai phía. Cách vẽ như ở thể hiện trên Hình G.63 và Hình G.64.",
+   "images": [
+    "images/V8_1_190_317.png",
+    "images/V8_1_191_347.png",
+    "images/V8_1_191_573.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Vạch đứng",
+    "page": 190
+   }
+  },
+  {
+   "code": "Vạch 8.2",
+   "name": "vạch xác định mép dưới thấp nhất của kết cấu cầu vượt qua đường hoặc công trình khác đi phía trên đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Vạch đứng",
+   "heading": "vạch xác định mép dưới thấp nhất của kết cấu cầu vượt qua đường hoặc công trình khác đi phía trên đường",
+   "summary": "Sử dụng vạch 8.2 để xác định mép dưới cùng của cầu vượt đường hoặc công trình tương tự nhằm cảnh báo cho người tham gia giao thông về các công trình này.",
+   "meaning": "Ý nghĩa sử dụng: Sử dụng vạch 8.2 để xác định mép dưới cùng của cầu vượt đường hoặc công trình tương tự nhằm cảnh báo cho người tham gia giao thông về các công trình này.\nQuy cách vạch như sau: Vạch 8.2 cấu tạo gồm những nét vạch đỏ – trắng xen kẽ thẳng đứng có chiều rộng là 20 cm, cao 50 cm, bề rộng của phần vạch toàn bộ là 1 m. c. Vạch số 8.3: vạch kẻ xung quanh các cột tròn đặt trên các đảo an toàn, trên dải phân cách và các vị trí tương tự Vạch trắng – đỏ song song với mặt phẳng nằm ngang có chiều rộng của phần màu trắng và phần màu đỏ bằng nhau và bằng chiều rộng B của công trình, vạch kẻ ở các cột tròn đặt trên đảo an toàn, trên dải phân cách hoặc các vị trí tương tự:\n- Nếu B £ 30cm thì a = 10cm.\n- Nếu B > 30cm thì a = 15cm. d. Vạch số 8.4: vạch kẻ trên cột tín hiệu, cột rào chắn, cột tiêu Vạch xiên góc màu đỏ tạo với mặt phẳng ngang góc 30° rộng 15 cm, điểm giữa mép trên của vạch cách mặt phẳng đỉnh cột là 15 cm. Độ xiên của vạch hướng về phía mặt đường, vạch kẻ trên cột tín hiệu, cột rào chắn, cột tiêu. Đơn vị: me. Vạch số 8.5: vạch kẻ ở thanh ngang trên cùng của hàng rào chắn chỗ đường cong có bán kính nhỏ, đường cao hơn so với khu vực xung quanh, đường dốc xuống và những nơi nguy hiểm khác Vạch đỏ - trắng xen kẽ có kích thước hết bề rộng công trình, vạch đỏ dài 1 m và vạch trắng dài 2 m. Đơn vị: m f. Vạch số 8.6: Vạch kẻ ở thanh trên cùng của rào chắn ở những nơi đặc biệt nguy hiểm Vạch đỏ liên tục chạy giữa bề mặt rào chắn rộng 10 cm. Đơn vị: m g. Vạch số 8.7: Vạch kẻ ở hàng vỉa các vỉa hè nơi nguy hiểm hoặc hàng vỉa của đảo an toàn Vạch đỏ - trắng xen kẽ kẻ trên bề mặt đứng và ngang, chiều dài vạch đỏ là L1, vạch trắng là L2. Trong trường hợp thông thường: L1 = 1 m - 2 m; L2 = 2 m - 4 m, tỷ lệ L1:L2 = 1:2 (xem Hình G.70). Đối với các vị trí hàng vỉa uốn cong với bán kính nhỏ, L1 = 0,5 m - 2,0 m; L2 = 0,5 m - 2,0 m, tỷ lệ L1:L2 = 1:1.",
+   "images": [
+    "images/V8_2_192_236.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Vạch đứng",
+    "page": 192
+   }
+  },
+  {
+   "code": "Vạch 9.1",
+   "name": "vạch cấm xe quay đầu",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Các loại vạch kẻ đường khác",
+   "heading": "vạch cấm xe quay đầu",
+   "summary": "Sử dụng vạch 9.1 ở những vị trí cấm quay đầu xe tại nút giao hoặc chỗ mở dải phân cách hai chiều xe chạy.",
+   "meaning": "Ý nghĩa sử dụng: sử dụng vạch 9.1 ở những vị trí cấm quay đầu xe tại nút giao hoặc chỗ mở dải phân cách hai chiều xe chạy.\nQuy cách vạch như sau: Sử dụng vạch màu vàng, hình dáng và kích thước xem trên Hình G.71.",
+   "images": [
+    "images/V9_1_194_349.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Các loại vạch kẻ đường khác",
+    "page": 195
+   }
+  },
+  {
+   "code": "Vạch 9.2",
+   "name": "Vạch quy định vị trí dừng đỗ của phương tiện giao thông công cộng trên đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Các loại vạch kẻ đường khác",
+   "heading": "Vạch quy định vị trí dừng đỗ của phương tiện giao thông công cộng trên đường",
+   "summary": "Sử dụng vạch 9.2 quy định vị trí dừng xe của các phương tiện vận tải hành khách công cộng trên đường như xe buýt, xe tắc xi ... Các loại phương tiện khác và người đi bộ không được dừng, đỗ trong phạm vi kẻ vạch và trong khoảng cách 15 m từ vị trí vạch về hai phía theo phương dọc đường.",
+   "meaning": "Ý nghĩa sử dụng: Sử dụng vạch 9.2 quy định vị trí dừng xe của các phương tiện vận tải hành khách công cộng trên đường như xe buýt, xe tắc xi ... Các loại phương tiện khác và người đi bộ không được dừng, đỗ trong phạm vi kẻ vạch và trong khoảng cách 15 m từ vị trí vạch về hai phía theo phương dọc đường.\nQuy cách vạch như sau: Vạch 9.2 là vạch đơn liền, màu vàng, bề rộng nét vẽ b = 10 cm. Vạch được vẽ dạng gãy khúc (có dạng hình chữ M, nhiều đỉnh). Chiều cao chữ M bằng 2.0 m, đường xiên của chữ M bằng nhau và bằng 2.0 m.",
+   "images": [
+    "images/V9_2_194_641.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Các loại vạch kẻ đường khác",
+    "page": 195
+   }
+  },
+  {
+   "code": "Vạch 9.3",
+   "name": "Vạch mũi tên chỉ hướng trên mặt đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Các loại vạch kẻ đường khác",
+   "heading": "Vạch mũi tên chỉ hướng trên mặt đường",
+   "summary": "Vạch mũi tên chỉ hướng trên mặt đường được sử dụng để chỉ hướng xe phải đi. Mũi tên chỉ hướng chủ yếu sử dụng ở các nút giao có tách nhập làn và trên đường có nhiều làn xe. Mũi tên cũng có thể được sử dụng cho các phần đường xe chạy một chiều để xác nhận hướng giao thông.",
+   "meaning": "Ý nghĩa sử dụng: Vạch mũi tên chỉ hướng trên mặt đường được sử dụng để chỉ hướng xe phải đi. Mũi tên chỉ hướng chủ yếu sử dụng ở các nút giao có tách nhập làn và trên đường có nhiều làn xe. Mũi tên cũng có thể được sử dụng cho các phần đường xe chạy một chiều để xác nhận hướng giao thông.\nQuy cách vạch như sau:\n- Màu sắc của mũi tên chỉ đường là màu trắng.\n- Tùy theo tốc độ xe chạy mà chọn kích thước các mũi tên phù hợp theo nguyên tắc tốc độ xe chạy càng lớn thì kích thước mũi tên càng lớn. Kích thước mũi tên thể hiện trên Hình G.73 áp dụng cho các đường có tốc độ xe chạy thấp. Kích thước mũi tên ghi ngoài ngoặc đơn thể hiện trên Hình G.74 áp dụng cho các đường có tốc độ xe chạy cao. Kích thước mũi trên ghi trong ngoặc đơn thể hiện trên Hình G.74 áp dụng cho đường ô tô cao tốc và các đường có tốc độ thiết kế ≥ 100 km/h. 90 45 50 50 100 30 30 202020 30 30 40 40 60 60 15 15 300 300 300 300 120 20 40 40 20 180 135 135 15 15 15 20 50 50 30 30 30 30 40 40 50 50 320 320 320 45° 45° 20 40 40 20 30 30 200 200 30 30 170 60 60 40 40 40 40 15 15 15 §¬n vÞ: cm chạy thấp 180(270) (150) (150) (135) 60 100 60 100 90 200(300) 404040 (90) (90) (60) (60) (60) (90) (90) 60 60 120(180) 120(180) 600(900) 600(900) 600(900) 600(900) (135) (135) 90 90 30 30 240(360) (45) (45) 40 80 80 40 360(540) 270(405) 270(405) (60) (120) (120)(60) 30 30 30 40 (45) (45) (45) (60) (150) (150) 60 100 60 100 (90) (90) (90) (90) 60 60 600(900) 600(900) 600(900) (135) (135) 80 90 (150) (150) 60 100 60 100 45° 45° 40 80 80 40 360(540) 360(540) (90) (90) (60) (120) (120) (60) (450) 300 (90) (90) 60 60 (180) (180) 120 120 (135) (135) 80 90 30 30 30 (60) (60) 40 40 (45) (45) (45) §¬n vÞ: cm xe chạy cao",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Các loại vạch kẻ đường khác",
+    "page": 195
+   }
+  },
+  {
+   "code": "Vạch 9.4",
+   "name": "Vạch mũi tên báo số làn xe phía trước bị giảm",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Các loại vạch kẻ đường khác",
+   "heading": "Vạch mũi tên báo số làn xe phía trước bị giảm",
+   "summary": "Sử dụng vạch mũi tên báo số làn xe phía trước bị giảm để báo cho người điều khiển phương tiện biết số làn xe theo hướng mũi tên bị giảm và phải chuyển làn đi theo hướng mũi tên.",
+   "meaning": "Ý nghĩa sử dụng: sử dụng vạch mũi tên báo số làn xe phía trước bị giảm để báo cho người điều khiển phương tiện biết số làn xe theo hướng mũi tên bị giảm và phải chuyển làn đi theo hướng mũi tên.\nQuy cách vạch như sau: Vạch mũi tên báo số làn xe phía trước bị giảm có màu trắng. Kích thước vạch trong trường hợp thông thường như thể hiện trên Hình G.75. Trường hợp đường có tốc độ xe chạy thấp kích thước vạch có thể giảm xuống 0,5 lần so với kích thước ghi trên Hình G.76. Trường hợp đường có tốc độ cao có thể tăng kích thước lên 1,5 lần so với kích thước ghi trên Hình G.76. Đơn vị: cm",
+   "images": [
+    "images/V9_4_196_644.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Các loại vạch kẻ đường khác",
+    "page": 197
+   }
+  },
+  {
+   "code": "Vạch 9.5",
+   "name": "Vạch dạng chữ viết, chữ số, hoặc màu sắc trên mặt đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Các loại vạch kẻ đường khác",
+   "heading": "Vạch dạng chữ viết, chữ số, hoặc màu sắc trên mặt đường",
+   "summary": "Sử dụng đi kèm với các loại báo hiệu khác nhằm tăng tính rõ ràng về ý nghĩa của các báo hiệu. Quy định chung: Vạch dạng chữ viết hoặc số có màu trắng; chiều cao chữ viết 3,0 máp dụng cho đường cao tốc; 2,5 máp dụng cho các loại đường khác; trong đô thị với các đường có tốc độ xe chạy thấp có thể sử dụng chiều cao chữ là 1,6 m; khoảng cách các hàng chữ hoặc số theo phương dọc đường 1,0 m – 1,5 m; bề rộng nét vẽ 12 cm -18 cm. Một số vạch chữ và số:",
+   "meaning": "Ý nghĩa sử dụng: sử dụng đi kèm với các loại báo hiệu khác nhằm tăng tính rõ ràng về ý nghĩa của các báo hiệu. Quy định chung: Vạch dạng chữ viết hoặc số có màu trắng; chiều cao chữ viết 3,0 máp dụng cho đường cao tốc; 2,5 máp dụng cho các loại đường khác; trong đô thị với các đường có tốc độ xe chạy thấp có thể sử dụng chiều cao chữ là 1,6 m; khoảng cách các hàng chữ hoặc số theo phương dọc đường 1,0 m – 1,5 m; bề rộng nét vẽ 12 cm -18 cm. Một số vạch chữ và số:\n- Vạch 9.5a: Vạch chữ “STOP”\n- Vạch 9.5b: vạch chữ làn đường dành riêng cho ô tô “Ô TÔ”\n- Vạch 9.5c: vạch chữ làn đường dành riêng cho xe máy “XE MÁY”\n- Vạch 9.5d: vạch chữ làn đường dành riêng cho xe buýt “XE BUÝT”\n- Vạch 9.5.e: vạch chữ làn đường dành riêng cho xe đạp “XE ĐẠP”",
+   "images": [],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Các loại vạch kẻ đường khác",
+    "page": 198
+   }
+  },
+  {
+   "code": "Vạch 9.6",
+   "name": "Vạch ký hiệu xe đạp trên mặt đường",
+   "group": "vach_ke",
+   "groupName": "Vạch kẻ đường",
+   "section": "Các loại vạch kẻ đường khác",
+   "heading": "Vạch ký hiệu xe đạp trên mặt đường",
+   "summary": "Sử dụng trên các làn đường dành riêng cho xe đạp.",
+   "meaning": "Ý nghĩa sử dụng: sử dụng trên các làn đường dành riêng cho xe đạp.\nQuy cách vạch như sau: Vạch có màu trắng minh họa hình vẽ xe đạp như thể hiện trên Hình G.82. Kích thước hình vẽ được chọn tùy theo bề rộng của làn xe đạp. Các giá trị chiều rộng và chiều cao hình vẽ có thể sử dụng gồm: 75 cm x 120 cm; 110 cm x 170 cm, và 170 cm x 275 cm. g. Màu sắc mặt đường: Trong một số trường hợp, có thể sử dụng màu sắc mặt đường để cảnh báo giao thông.",
+   "images": [
+    "images/V9_6_198_389.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": "G",
+    "section": "Các loại vạch kẻ đường khác",
+    "page": 199
    }
   }
  ]

@@ -12,7 +12,7 @@ import random
 import re
 import sys
 
-GROUP_KEYS = {'cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', 'cao_toc'}
+GROUP_KEYS = {'cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', 'cao_toc', 'vach_ke'}
 CODE = re.compile(r'(?:DP|IE|[PWRIS])\.\d{3}[a-z]?')
 REVIEW_SAMPLE_SIZE = 30
 REVIEW_SEED = 2026
@@ -33,7 +33,7 @@ def main():
     if len(codes) != len(set(codes)):
         errors.append('duplicate codes')
     for s in signs:
-        if not CODE.fullmatch(s['code']):
+        if not (CODE.fullmatch(s['code']) or re.fullmatch(r'Vạch \d+\.\d+[a-z]?', s['code'])):
             errors.append(f'{s["code"]}: invalid code')
         if s['group'] not in GROUP_KEYS:
             errors.append(f'{s["code"]}: group {s["group"]}')
