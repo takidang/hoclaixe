@@ -35,7 +35,7 @@ backlog, test case và báo cáo của cả hai đồ án.
 
 ### 2.1 Bối cảnh sản phẩm
 App Android độc lập. Bộ 600 câu + hình + cấu trúc đề được đóng gói trong app; tiến độ người học lưu trên máy.
-Module B/D (chuyên ngành) bổ sung backend proxy gọi Gemini và model TFLite trên máy.
+Module B/D (chuyên ngành) bổ sung backend proxy gọi Gemini (chatbot RAG và nhận diện biển báo bằng Gemini vision).
 
 ### 2.2 Actor
 | Actor | Mô tả |

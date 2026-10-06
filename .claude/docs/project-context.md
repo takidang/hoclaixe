@@ -17,7 +17,7 @@
 - Backend: [CHỌN: Firebase (Auth, Firestore, Cloud Functions) / Supabase / server riêng]
 - AI: Gemini API (gói miễn phí) + RAG trên kho văn bản luật & bộ câu hỏi.
   Gọi qua backend, không gọi thẳng từ app.
-- Nhận diện biển báo: model phân loại TFLite chạy trên máy (huấn luyện bằng Python/Colab, transfer learning) + Gemini vision qua backend làm dự phòng và cho bản web.
+- Nhận diện biển báo: **Gemini vision qua backend** (chọn đúng một mã trong danh mục hoặc `UNKNOWN`); model TFLite chạy trên máy là hướng mở rộng (Could, quyết lại 15/11).
 
 ## Hai đồ án dùng chung một sản phẩm
 
@@ -33,7 +33,7 @@
 |---|---|---|
 | **A — Lõi** | Must: chọn hạng (A1, A, B), học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, danh mục biển báo, tuyên bố miễn trừ · Should: thống kê tiến độ, câu hay sai của người dùng · Should (chỉ chuyên ngành): tra cứu luật. Chi tiết: `docs/srs/vision.md` §5 | Must |
 | **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Must |
-| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (phương án dự phòng: Gemini vision) |
+| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (Gemini vision là phương án chính; TFLite trên máy: Could) |
 | B2 — Gợi ý ôn tập cá nhân hóa | Phân tích lịch sử làm bài → chủ đề yếu → bộ câu ôn | Could (hạ từ Should khi thêm Module D) |
 | **C — Web** | Flutter Web từ cùng codebase; nhận diện biển báo trên web dùng đường Gemini | Could |
 
@@ -60,7 +60,7 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 | Agent hay dùng | technical-director, backend-developer, flutter-developer, ux-designer, ml-engineer | data-curator, report-writer; sau này thêm ux-designer, backend-developer |
 | Công cụ AI | Claude Code, Claude Design | Chưa có Claude Pro (sẽ đăng ký sau) |
 
-- Chụp ảnh biển báo cho Module D: cả hai cùng làm (đề xuất, chốt trong `/dataset-plan`).
+- Ảnh biển báo cho Module D: chỉ cần **bộ ảnh kiểm tra** (~100–200 ảnh, ưu tiên bộ dữ liệu công khai có giấy phép + vài chục ảnh tự chụp đối chứng) — không thu thập dữ liệu huấn luyện.
 - Năng lực: không cố định (ngày rảnh, ngày bận), tối thiểu **1 giờ/ngày/người** → lập kế hoạch sprint theo mức sàn
   ~7 giờ/tuần/người (~14 giờ/sprint/người); giờ làm thêm ngày rảnh coi là dư địa, không tính trước.
 - Hướng dẫn cho thành viên mới clone repo: `CONTRIBUTING.md`.
@@ -84,7 +84,8 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 
 - Dùng Gemini API miễn phí + RAG cho chatbot để hạn chế trả lời sai.
 - 2026-10-03: Thêm Module D — chụp ảnh nhận diện biển báo; AI chỉ chọn mã biển, nội dung lấy từ danh mục chuẩn.
-- 2026-10-03: Nhận diện = phân loại trên ảnh đã căn/cắt; có lớp "không phải biển báo"; on-device TFLite + Gemini vision dự phòng.
+- 2026-10-03: Nhận diện = phân loại trên ảnh đã căn/cắt; có kết quả "không phải biển báo / không nhận diện được".
+- 2026-10-06: **Module D dùng Gemini vision làm phương án chính** (không phải dự phòng); model TFLite trên máy hạ xuống Could (quyết lại 15/11 nếu dư thời gian), nêu là hướng phát triển trong báo cáo. Lý do: không đủ thời gian thu thập/gán nhãn hàng nghìn ảnh và huấn luyện ~300 lớp. Mua Google AI Pro không tăng hạn mức Gemini API — dùng gói miễn phí, chỉ bật Tier 1 (trả theo dùng) khi chạm giới hạn.
 - 2026-10-03: Luồng nhận diện: được → so sánh cạnh hình chuẩn; "Nhận diện sai" → top 3–5 rồi tra danh mục; dưới ngưỡng → báo không nhận diện được + hướng dẫn chụp lại.
 - 2026-10-03: Cảnh báo AI 3 tầng (hộp thoại lần đầu, dòng cố định + nút Kiểm chứng dưới mỗi câu trả lời, trích dẫn văn bản–điều–khoản) + nút Báo sai.
 - 2026-10-03: Tuyên bố miễn trừ toàn app (sản phẩm độc lập, không đại diện cơ quan nhà nước, dẫn nguồn chính thức).

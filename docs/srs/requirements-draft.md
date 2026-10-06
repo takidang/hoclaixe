@@ -17,9 +17,9 @@
 - FR-SIGN-03: Nút "Nhận diện sai" → hiển thị 3–5 ứng viên tiếp theo; vẫn sai → tra danh mục theo nhóm và tự chọn.
 - FR-SIGN-04: Với sự đồng ý của người dùng, ghi lại lựa chọn đúng sau khi bấm "Nhận diện sai" (phục vụ đánh giá và huấn luyện lại).
 - FR-SIGN-05: Dưới ngưỡng hoặc lớp "không phải biển báo" → thông báo "Không nhận diện được biển báo", gợi ý cách chụp, nút Chụp lại và Tra danh mục.
-- FR-SIGN-06: Nhận diện chạy được khi không có mạng (on-device); có mạng và độ tin cậy thấp → có thể dùng Gemini vision (thông báo cho người dùng ảnh sẽ được gửi đi).
+- FR-SIGN-06: Nhận diện qua Gemini vision cần mạng; trước khi gửi ảnh lần đầu, thông báo cho người dùng ảnh sẽ được gửi lên máy chủ để nhận diện (không lưu ảnh). Không có mạng → báo "Cần kết nối mạng để nhận diện" + nút Tra danh mục. *(Bản cũ: on-device offline — hạ xuống Could ngày 06/10/2026.)*
 - BR-SIGN-01: Nội dung hiển thị về biển báo chỉ lấy từ danh mục chuẩn, không lấy từ đầu ra của model AI.
-- NFR-SIGN-01: Thời gian suy luận on-device ≤ [ĐIỀN, ví dụ 500 ms] trên máy tầm trung.
+- NFR-SIGN-01: Thời gian từ lúc gửi ảnh tới khi có kết quả ≤ [ĐIỀN, ví dụ 5 giây] với mạng 4G ổn định (chốt trong vision-design).
 - NFR-SIGN-02: Độ chính xác top-1 ≥ [ĐIỀN] và top-3 ≥ [ĐIỀN] trên tập test ảnh thật (chốt trong vision-design).
 
 ## Test bắt buộc (cho qa-engineer)

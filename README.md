@@ -29,7 +29,7 @@ Cấu trúc lấy cảm hứng từ [Claude Code Game Studios](https://github.co
 |---|---|---|
 | **A — Lõi** | Must: chọn hạng (A1, A, B), học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, danh mục biển báo, tuyên bố miễn trừ · Should: thống kê tiến độ, câu hay sai của người dùng · Should (chỉ chuyên ngành): tra cứu luật. Chi tiết: `docs/srs/vision.md` §5 | Must |
 | **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Must |
-| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (phương án dự phòng: Gemini vision) |
+| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (Gemini vision là phương án chính; TFLite trên máy: Could) |
 | B2 — Gợi ý ôn tập cá nhân hóa | Phân tích lịch sử làm bài → chủ đề yếu → bộ câu ôn | Could (hạ từ Should khi thêm Module D) |
 | **C — Web** | Flutter Web từ cùng codebase; nhận diện biển báo trên web dùng đường Gemini | Could |
 
@@ -79,11 +79,11 @@ Nguyên tắc cốt lõi: **AI chỉ chọn biển, nội dung lấy từ danh m
 Kỹ thuật:
 - Bài toán **phân loại** trên ảnh đã căn/cắt (không làm phát hiện thời gian thực — để "hướng phát triển").
 - Phạm vi lớp: các biển xuất hiện trong bộ câu hỏi thi + lớp **"không phải biển báo"**.
-- Model chính: transfer learning (MobileNet/EfficientNet-Lite…) → TFLite, chạy **trên máy, offline**.
-- Dự phòng / bản web: Gemini vision qua backend, **bắt buộc trả về đúng một mã biển trong danh sách hoặc `UNKNOWN`**.
-- Kết hợp: on-device trước; độ tin cậy thấp → hỏi Gemini hoặc hiện top-3.
-- Đánh giá: top-1, top-3, tỷ lệ từ chối đúng, confusion matrix, thời gian suy luận; so sánh on-device vs Gemini vs kết hợp.
-- Rủi ro lớn nhất là dữ liệu ảnh: nếu đến mốc 15/11 (giữa Sprint 3) chưa đủ ảnh có nhãn → chuyển Gemini vision làm phương án chính.
+- **Phương án chính (chốt 06/10/2026): Gemini vision qua backend**, bắt buộc trả về đúng một mã biển trong danh sách hoặc `UNKNOWN`; backend kiểm tra mã hợp lệ.
+- Model TFLite chạy trên máy (transfer learning) là **Could** — chỉ làm nếu dư thời gian (quyết 15/11), nếu không thì nêu là hướng phát triển.
+- Độ tin cậy thấp / `UNKNOWN` → hiện top-3 hoặc "Không nhận diện được" + tra danh mục.
+- Đánh giá: top-1, top-3, tỷ lệ từ chối đúng, thời gian phản hồi trên bộ ảnh kiểm tra (~100–200 ảnh, nguồn có giấy phép + ảnh tự chụp đối chứng).
+- Rủi ro: hạn mức Gemini miễn phí (dùng gói miễn phí; mua Google AI Pro **không** tăng hạn mức API) và độ chính xác trên ảnh chụp thật.
 
 ## 4. Cài đặt
 
@@ -116,8 +116,8 @@ Bất cứ lúc nào: `/status`.
 |---|---|---|
 | 03/10–11/10 | 0 | /start, /discovery, chốt đề tài · SRS Module A · UX Module A (Claude Design) · kiến trúc app tối giản (state, local DB) · /setup-flutter · **Kiệt: tìm nguồn chính thức + bắt đầu nhập bộ câu hỏi** |
 | 12/10–28/10 | 1 | **Nộp LTTTBDD 28/10** — Module A: chọn hạng, học theo chủ đề, thi thử + chấm điểm + điểm liệt (12–20/10) · ôn câu sai, câu hay sai, danh mục biển báo, thống kê (21–25/10) · test, build APK, hoàn thiện báo cáo LTTTBDD (26–28/10). Kiệt: nhập liệu xong trước 15/10, viết báo cáo LTTTBDD từ 19/10 |
-| 29/10–08/11 | 2 | Thiết kế phần AI: SRS đủ Module B + D, rag-design, vision-design, dataset-plan, kiến trúc backend · Kiệt: kho văn bản luật, danh mục biển báo · **bắt đầu thu thập ảnh biển báo** |
-| 09/11–22/11 | 3 | Backend + RAG prototype · tra cứu luật · **Huấn luyện model lần 1** · tích hợp TFLite + màn hình camera · **mốc quyết định dữ liệu ảnh 15/11** |
+| 29/10–08/11 | 2 | Thiết kế phần AI: SRS đủ Module B + D, rag-design, vision-design (Gemini vision), kiến trúc backend · Kiệt: kho văn bản luật, bộ ảnh kiểm tra biển báo |
+| 09/11–22/11 | 3 | Backend + RAG prototype · tra cứu luật · endpoint Gemini vision + màn hình camera · 15/11: quyết có làm model TFLite (Could) không |
 | 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
 | 07/12–20/12 | 5 | Ổn định, test, đánh giá cuối, release, (web nếu dư) — **không thêm tính năng** |
 | 21/12–27/12 | — | Nộp báo cáo chuyên ngành |

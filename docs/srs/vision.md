@@ -42,7 +42,7 @@ Các con số về đối thủ lấy từ mô tả trên store, chưa kiểm ch
 |---|---|---|
 | P1 | **Chatbot RAG** (Retrieval-Augmented Generation — truy xuất văn bản luật rồi mới cho Gemini trả lời) + nút "Hỏi AI về câu này" ngay trong màn hình câu hỏi | Giải thích theo ngữ cảnh câu hỏi, **bắt buộc trích dẫn văn bản–điều–khoản** lấy từ dữ liệu truy xuất; không đủ căn cứ → từ chối thay vì bịa |
 | P2 | Dữ liệu có **nguồn + ngày hiệu lực**; **cấu trúc đề là dữ liệu cấu hình** theo hạng và ngày hiệu lực (đề hiện hành + đề từ 01/3/2027) | Cập nhật khi luật đổi mà không sửa code; người học thấy rõ đang ôn theo quy định nào |
-| P3 | **Chụp ảnh nhận diện biển báo** (model TFLite trên máy, Gemini vision dự phòng) | AI chỉ chọn mã biển, ý nghĩa lấy từ danh mục QCVN 41:2024 → không bao giờ bịa ý nghĩa |
+| P3 | **Chụp ảnh nhận diện biển báo** (Gemini vision qua backend; model TFLite trên máy là hướng phát triển) | AI chỉ chọn mã biển, ý nghĩa lấy từ danh mục QCVN 41:2024 → không bao giờ bịa ý nghĩa |
 | P4 | Giao diện Material 3 gọn, không quảng cáo, offline; lưu đáp án bền vững | Có bộ test bắt buộc cho việc giữ đáp án |
 
 Nguyên tắc: **AI không bao giờ là nguồn sự thật** — cảnh báo AI 3 tầng, nút Báo sai, tuyên bố miễn trừ toàn app.
@@ -70,8 +70,8 @@ Nguyên tắc: **AI không bao giờ là nguồn sự thật** — cảnh báo A
 | Chatbot RAG giải thích luật/đáp án, trích dẫn bắt buộc | B | Must | CN |
 | Nút "Hỏi AI về câu này" từ màn hình câu hỏi | B | Must | CN |
 | Cảnh báo AI 3 tầng + nút Báo sai | B | Must | CN |
-| Chụp/chọn ảnh → nhận diện biển (TFLite on-device) + 3 trạng thái kết quả | D | Must | CN |
-| Gemini vision dự phòng / cho bản web | D | Should | CN |
+| Chụp/chọn ảnh → nhận diện biển bằng Gemini vision qua backend + 3 trạng thái kết quả | D | Must | CN |
+| Model TFLite chạy trên máy (offline) cho nhóm biển phổ biến | D | Could (quyết lại 15/11) | CN |
 | Gợi ý ôn tập cá nhân hóa theo chủ đề yếu (B2) | B | Could | CN |
 | Đăng nhập + đồng bộ tiến độ lên cloud | — | Could | CN |
 | Flutter Web | C | Could | CN |
@@ -81,7 +81,7 @@ Nguyên tắc: **AI không bao giờ là nguồn sự thật** — cảnh báo A
 
 **Kiểm tra năng lực** (sàn 1 giờ/ngày/người):
 - LT (04/10–28/10, ~25 ngày ≈ 50 giờ cho 2 người): 9 mục Must của Module A. Khả thi khi dùng Claude Code, **với điều kiện bộ câu hỏi nhập xong trước 15/10**. Should (thống kê, câu hay sai) là phần cắt đầu tiên nếu trễ. Đóng băng tính năng 25/10.
-- CN (29/10–20/12, ~7,5 tuần ≈ 105 giờ): Module B + D Must + tra cứu luật. Rủi ro lớn nhất: dữ liệu ảnh biển báo (mốc 15/11) — dự phòng Gemini vision.
+- CN (29/10–20/12, ~7,5 tuần ≈ 105 giờ): Module B + D Must + tra cứu luật. Module D dùng Gemini vision (~25 giờ) thay vì tự huấn luyện model (~40–60 giờ + thu thập ảnh). Rủi ro: hạn mức Gemini miễn phí, độ chính xác trên ảnh thật.
 
 ## 6. Tiêu chí thành công (đo được)
 
