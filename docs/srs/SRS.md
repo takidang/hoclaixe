@@ -1,6 +1,6 @@
 # Đặc tả yêu cầu phần mềm (SRS) — hoclaixe
 
-Phiên bản: 0.3 — đã đối chiếu ảnh 2 app đối thủ (04/10/2026) — Ngày: 04/10/2026 — Người viết: business-analyst (Claude) · Duyệt: Đặng Lê Tấn Tài
+Phiên bản: 0.4 — cập nhật theo kiến trúc (13/10/2026); phạm vi chỉ còn đồ án LTTTBDD (Module A)
 Phạm vi bản này: **Module A chi tiết đầy đủ** (đồ án LTTTBDD, hạn 28/10/2026). Module B, D ở mức khung — viết đủ trong Sprint 2.
 
 ## 1. Giới thiệu
@@ -59,7 +59,7 @@ Module B/D (chuyên ngành) bổ sung backend proxy gọi Gemini (chatbot RAG v�
 - GA1. Hành vi các màn lấy theo 2 app ôn thi phổ biến — **đã đối chiếu 21 ảnh chụp** trong `design/reference/competitors/` (04/10/2026). Chỉ tham khảo hành vi và bố cục, không sao chép nội dung/hình ảnh.
 - GA2. Câu điểm liệt **chưa trả lời** khi nộp/hết giờ được tính là trả lời sai → trượt (TT 12/2025 chấm "kể cả các câu chưa trả lời"; văn bản không nói riêng về câu điểm liệt).
 - GA3. Câu điểm liệt cũng được tính 1 điểm trong tổng điểm — suy ra từ thang điểm TT 12/2025 (A1 đạt 21/25, A 23/25, B 27/30 với đề 25/30 câu).
-- GA4. Một câu bị bỏ khỏi "câu sai" khi người học trả lời đúng câu đó trong chế độ Ôn câu sai.
+- GA4. Một câu bị bỏ khỏi "Câu sai" khi người học trả lời đúng câu đó **2 lần liên tiếp** (ở bất kỳ chế độ nào); trả lời sai thì đếm lại từ đầu (chốt 13/10/2026).
 - GA5. Lịch sử trả lời gắn với câu hỏi (không theo hạng); các màn lọc theo pool của hạng đang chọn.
 - GA6. Trong đề thi, câu được sắp theo thứ tự nhóm của BR-02 (ch.I → điểm liệt → … → ch.VI), trong mỗi nhóm thứ tự ngẫu nhiên. **Không xáo thứ tự đáp án** (nhiều câu có đáp án dạng "Cả ba ý trên", "Biển 1 và biển 3" phụ thuộc thứ tự).
 - GA7. App là công cụ luyện tập offline: chỉnh đồng hồ máy có thể làm sai thời gian còn lại khi mở lại phiên dở — chấp nhận, không chặn. Khi app đang chạy, đồng hồ đếm theo bộ đếm đơn điệu của hệ thống.
@@ -117,7 +117,7 @@ UC-11 (Chọn cấu trúc đề 2027) gộp vào UC-13 và tạm Won't cho tới
 | FR-A20 | Bắt đầu thi thử → tạo đề ngẫu nhiên theo cấu trúc đề hiện hành của hạng (BR-02, BR-03), không trùng câu | Must | LT, CN | UC-04 |
 | FR-A20b | Bộ đề cố định: mỗi hạng có **20 đề** (số đề là cấu hình) sinh sẵn theo BR-02, BR-03 với hạt giống ngẫu nhiên (seed) cố định — mở lại app vẫn đúng các đề đó. Danh sách đề hiện trạng thái Đạt / Chưa đạt / Chưa làm và điểm lần làm gần nhất; tổng "x / 20 đề đã hoàn thành". Đề ngẫu nhiên (FR-A20) vẫn có ở cùng màn | Should | LT, CN | UC-04 |
 | FR-A21 | Màn thi hiển thị đồng hồ đếm ngược dạng mm:ss theo thời gian của cấu trúc đề (sai số ≤ 1 giây so với giờ thực, kể cả khi app ở nền), số thứ tự câu, tổng số câu; khi còn 60 giây đồng hồ đổi màu cảnh báo | Must | LT, CN | UC-04 |
-| FR-A22 | Người học chuyển tới/lui, nhảy câu qua lưới số câu; lưới phân biệt câu đã trả lời / chưa trả lời / đang xem. *(Could)* Đánh dấu câu phân vân — dấu hiện trên lưới | Must | LT, CN | UC-04 |
+| FR-A22 | Người học chuyển tới/lui, nhảy câu qua lưới số câu; lưới phân biệt câu đã trả lời / chưa trả lời / đang xem. **Không hiện nhãn "Điểm liệt" trên câu nào trong lúc thi** (giống phần mềm sát hạch); nhãn chỉ hiện ở Kết quả / Xem lại bài. *(Could)* Đánh dấu câu phân vân — dấu hiện trên lưới | Must | LT, CN | UC-04 |
 | FR-A23 | Người học chọn và đổi đáp án tự do trước khi nộp; **không hiển thị đúng/sai trong lúc thi** (chế độ mặc định "Chấm sau khi nộp — giống thi sát hạch") | Must | LT, CN | UC-04 |
 | FR-A23b | Màn thông tin đề cho chọn chế độ chấm: "Chấm sau khi nộp" (mặc định) hoặc "Chấm ngay khi chọn đáp án" (hiện đúng/sai và khóa câu như FR-A11; đồng hồ, nộp bài, chấm điểm không đổi) | Could | LT, CN | UC-04 |
 | FR-A24 | **Mỗi lần chọn đáp án được lưu ngay vào bộ nhớ máy**; đáp án được giữ nguyên khi chuyển câu, quay lại câu cũ, xoay màn hình, app vào nền, app bị tắt, và khi nộp bài. Đáp án trong màn kết quả, xem lại bài và lịch sử **khớp 100%** với đáp án lúc nộp | Must | LT, CN | UC-04, UC-05 |
@@ -129,7 +129,7 @@ UC-11 (Chọn cấu trúc đề 2027) gộp vào UC-13 và tạm Won't cho tới
 | FR-A30 | Danh mục biển báo theo nhóm QCVN 41:2024 (cấm, nguy hiểm và cảnh báo, hiệu lệnh, chỉ dẫn, phụ, vạch kẻ đường `[CHỐT trong /data-plan]`): danh sách hình + mã + tên; chạm để xem chi tiết (hình lớn, mã, tên, ý nghĩa) | Must | LT, CN | UC-08 |
 | FR-A31 | Tìm biển báo theo mã hoặc tên (mở rộng nhỏ so với vision) | Should | LT, CN | UC-08 |
 | FR-A40 | Mọi câu trả lời sai (học, ôn, thi thử) và câu **bỏ trống khi nộp bài thi** được thêm vào danh sách "Câu sai" | Must | LT, CN | UC-06 |
-| FR-A41 | Ôn câu sai: làm lại các câu sai thuộc pool của hạng đang chọn theo cách của chế độ học (FR-A11); trả lời đúng → bỏ khỏi danh sách (GA4) | Must | LT, CN | UC-06 |
+| FR-A41 | Ôn câu sai: làm lại các câu sai thuộc pool của hạng đang chọn theo cách của chế độ học (FR-A11); trả lời đúng 2 lần liên tiếp → bỏ khỏi danh sách (GA4) | Must | LT, CN | UC-06 |
 | FR-A42 | Ôn câu điểm liệt: làm các câu điểm liệt **của hạng đang chọn** (A1/A 20 câu, B 60 câu) theo cách của chế độ học | Must | LT, CN | UC-07 |
 | FR-A50 | Thống kê: tiến độ từng chủ đề (% câu đã làm đúng), số lần thi thử, tỉ lệ đạt, điểm gần nhất | Should | LT, CN | UC-09 |
 | FR-A51 | Câu hay sai của bản thân: tối đa 50 câu có **tổng số lần sai** (mọi chế độ, không reset khi trả lời đúng) nhiều nhất trong pool của hạng, sắp giảm dần; chỉ hiện câu sai ≥ 1 lần; làm lại theo chế độ học | Should | LT, CN | UC-10 |
@@ -306,4 +306,5 @@ UC-30 Nhận diện biển báo bằng ảnh · UC-31 Sửa kết quả nhận d
 |---|---|---|---|
 | 0.1 | 04/10/2026 | Bản đầu: Module A chi tiết, Module B/D khung | business-analyst (Claude) |
 | 0.2 | 04/10/2026 | Sửa theo review qa-engineer: 2 mâu thuẫn (UC-04 E1/BR-06, hướng màn hình), NFR-02 đo được, thêm NFR-05b, BR-09, FR-A70, GA6–GA7, làm rõ FR-A10/A11/A12/A21/A40/A51/A60, luồng phiên dở/nộp lặp | business-analyst (Claude) |
+| 0.4 | 13/10/2026 | Theo `/create-architecture` + repo tham khảo: GA4 đổi thành đúng 2 lần liên tiếp; FR-A22 không hiện nhãn điểm liệt khi đang thi. Phạm vi chỉ còn LTTTBDD (Module A) | business-analyst (Claude) |
 | 0.3 | 04/10/2026 | Đối chiếu ảnh 2 app đối thủ: thêm FR-A20b bộ đề cố định 20 đề (Should), FR-A23b chế độ chấm ngay (Could), đánh dấu câu (Could), bảng chọn khi thoát bài thi, FR-A10 Đúng/Sai/Chưa làm/Tổng + chủ đề "Tất cả câu hỏi", mô tả hạng; thêm Won't; Q8 | business-analyst (Claude) |

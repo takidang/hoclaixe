@@ -12,9 +12,9 @@
 ## Tech stack
 
 - Flutter (Dart) + Android Studio
-- State management: [CHỌN trong /create-architecture: Riverpod / Bloc / Provider]
-- Lưu trữ local: [CHỌN: sqflite / drift / Hive / Isar]
-- Backend: [CHỌN: Firebase (Auth, Firestore, Cloud Functions) / Supabase / server riêng]
+- State management: **Riverpod** (ADR-001)
+- Lưu trữ local: **sqflite** cho dữ liệu người học (ADR-002); nội dung câu hỏi/đề/biển là JSON đóng gói chỉ đọc (ADR-003)
+- Backend: **không có** cho Module A (ADR-004); điều hướng go_router (ADR-005); tắt sao lưu Android (ADR-006). Kiến trúc: `docs/architecture/architecture.md`
 - AI: Gemini API (gói miễn phí) + RAG trên kho văn bản luật & bộ câu hỏi.
   Gọi qua backend, không gọi thẳng từ app.
 - Nhận diện biển báo: **Gemini vision qua backend** (chọn đúng một mã trong danh mục hoặc `UNKNOWN`); model TFLite chạy trên máy là hướng mở rộng (Could, quyết lại 15/11).
@@ -105,5 +105,6 @@ Mốc cũ của đồ án chuyên ngành (không còn áp dụng cho repo này t
 - 2026-10-04: Bộ 600 câu trích xuất tự động từ PDF chính thức (`tools/extract_questions/`); điểm liệt tính theo hạng (`criticalFor`: B+ 60 câu, A1/A 20, B1 30). Nguồn: `docs/data/sources.md`.
 - 2026-10-03: Won't: mẹo ghi nhớ (trái mục tiêu chống học mẹo, không có nguồn), thi mô phỏng/video. Tra cứu luật chỉ cho đồ án chuyên ngành.
 - 2026-10-13: **Đổi phạm vi** — đồ án chuyên ngành đổi đề tài khác; hoclaixe chỉ còn là đồ án LTTTBDD. Làm Module A giống đối thủ trước 28/10; B, C, D làm sau nếu còn thời gian.
+- 2026-10-13: `/create-architecture` — Riverpod, sqflite, nội dung JSON đóng gói, không backend, go_router, tắt backup Android (ADR-001…006). Không hiện nhãn điểm liệt khi đang thi; "Câu sai" bỏ ra khi đúng 2 lần liên tiếp. Tham khảo `tdytools-gplx` (React/PWA, không giấy phép) chỉ lấy ý tưởng.
 - 2026-10-13: Sửa lỗi 26 câu thiếu hình (PDF dùng chung một hình cho nhiều câu) — phát hiện nhờ đối chiếu chéo ngày 08/10.
 - 2026-10-03: Có khảo sát người dùng (Google Form, ≥ 30 phản hồi, Kiệt phụ trách) — `docs/srs/survey.md`.

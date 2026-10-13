@@ -27,18 +27,18 @@
 
 - Skill `/tam-nghi` (06/10): nói "tạm nghỉ" → cập nhật status + commit + push.
 - Module D chốt (06/10): Gemini vision là phương án chính, TFLite trên máy hạ xuống Could.
+- **13/10**: `/create-architecture` — `docs/architecture/architecture.md` + ADR-001…006 (Riverpod, sqflite, JSON đóng gói, không backend, go_router, tắt backup), đã review bảo mật; SRS v0.4.
 - **13/10**: đổi phạm vi (chỉ LTTTBDD); sửa lỗi 26 câu thiếu hình (PDF dùng chung hình cho nhiều câu — phát hiện nhờ đối chiếu chéo 08/10, `docs/data/crosscheck-tasks.md`); validator thêm lỗi "câu nói tới hình mà không có hình"; roadmap Sprint 1 theo ngày.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
-1. **`/create-architecture` gọn**: Flutter + Riverpod; câu hỏi/biển báo đọc từ JSON đóng gói (chỉ đọc); tiến độ + phiên thi lưu SQLite; cấu trúc thư mục feature-first; ADR cho các lựa chọn.
-2. **`/setup-flutter`**: project chạy được trên Android, nạp `questions.json`, `exam-structures.json`, `signs.json` + hình làm assets, test mẫu.
-3. Bắt đầu code theo `production/roadmap.md` (15–18/10: chọn hạng, màn chính, học theo chủ đề).
+1. **`/setup-flutter`**: project chạy được trên Android, nạp `questions.json`, `exam-structures.json`, `signs.json` + hình làm assets, test mẫu.
+2. Bắt đầu code theo `production/roadmap.md` (15–18/10: chọn hạng, màn chính, học theo chủ đề).
 
 ## Phân công
 
 | Người | Việc đang giao | Hạn |
 |---|---|---|
-| Tài | `/create-architecture` gọn + `/setup-flutter` | 14/10 |
+| Tài | `/setup-flutter` | 14/10 |
 | Tài | Code Module A theo roadmap; giao diện bằng Claude Design song song | 25/10 (đóng băng) |
 | Kiệt | Soát danh mục biển báo bằng `data/sign-catalog/review.html` (7 tab; bấm Khớp/Sai + ghi chú, rồi "Xuất kết quả") — ưu tiên biển cấm, nguy hiểm, hiệu lệnh, vạch kẻ đường (có trong đề thi) | 18/10 |
 | Kiệt | Lấy yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 (theo `docs/templates/report-ltttbdd.md`) | Mẫu: 16/10 · Báo cáo: 28/10 |
