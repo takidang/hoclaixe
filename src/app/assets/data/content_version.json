@@ -1,0 +1,10 @@
+{
+ "contentVersion": "2026-10-13-176406f49cde",
+ "questionSource": "CSGT-600-2025 (CV 2262/CSGT-P5 ngày 07/05/2025)",
+ "signSource": "QCVN 41:2024/BGTVT",
+ "sha256": {
+  "questions.json": "5c807966e6e4037208fe0f978f4f115603b7ed8a9c5fcd77372e5f1c56647345",
+  "exam-structures.json": "5db34db098bdec882b03393d0fdd478a7fa167dce6bc35776b83456463acf829",
+  "signs.json": "73239bd3725a302a785bde8247ca410dde64ebd71c00a554ce13bd3aa4320505"
+ }
+}
