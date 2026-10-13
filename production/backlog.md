@@ -5,7 +5,7 @@
 
 | Story | Epic | Tên | Yêu cầu | Point | Ưu tiên | Ngày | Người | Trạng thái |
 |---|---|---|---|---|---|---|---|---|
-| [ST-01](stories/ST-01.md) | E1 Nền tảng | Domain thi: sinh đề, chấm điểm, chọn cấu trúc đề | FR-A20, FR-A20b, FR-A27, BR-01–BR-05, BR-08, NFR-05, NFR-05b | 5 | Must | 14/10 | Tài | Todo |
+| [ST-01](stories/ST-01.md) | E1 Nền tảng | Domain thi: sinh đề, chấm điểm, chọn cấu trúc đề | FR-A20, FR-A20b, FR-A27, BR-01–BR-05, BR-08, NFR-05, NFR-05b | 5 | Must | 14/10 | Tài | Done 13/10 |
 | [ST-02](stories/ST-02.md) | E1 Nền tảng | Lớp lưu trữ SQLite: tiến độ học và phiên thi | FR-A24, FR-A25, FR-A26, FR-A40, FR-A41, BR-09, NFR-02 | 5 | Must | 15/10 | Tài | Todo |
 | [ST-03](stories/ST-03.md) | E2 Khởi đầu | Miễn trừ lần đầu, Giới thiệu, chọn hạng | FR-A01, FR-A02, FR-A03, FR-A04 | 3 | Must | 15/10 | Tài | Todo |
 | [ST-04](stories/ST-04.md) | E2 Khởi đầu | Màn chính | FR-A04 | 3 | Must | 16/10 | Tài | Todo |
