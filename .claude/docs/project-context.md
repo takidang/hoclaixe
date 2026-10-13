@@ -19,21 +19,25 @@
   Gọi qua backend, không gọi thẳng từ app.
 - Nhận diện biển báo: **Gemini vision qua backend** (chọn đúng một mã trong danh mục hoặc `UNKNOWN`); model TFLite chạy trên máy là hướng mở rộng (Could, quyết lại 15/11).
 
-## Hai đồ án dùng chung một sản phẩm
+## Phạm vi đồ án
 
-| | Đồ án LTTTBDD | Đồ án chuyên ngành CNPM |
-|---|---|---|
-| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, điều hướng, offline, giao diện | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
-| Phạm vi | Module A — luyện đề như các app ôn thi trên Google Play, giao diện đẹp hơn; **không có AI** | Module A + B + D, tài liệu CNPM đầy đủ |
-| Hạn | **28/10/2026** (hạn nội bộ tự đặt; trường chưa công bố lịch nộp, buổi học cuối 30/10/2026) | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
+> **Đổi phạm vi 13/10/2026**: đồ án chuyên ngành đã đổi sang đề tài khác — hoclaixe **chỉ còn là đồ án LTTTBDD**.
+> Ưu tiên duy nhất: **Module A làm giống app đối thủ, xong trước 28/10/2026**. Module B (chatbot), D (nhận diện biển),
+> C (web) chuyển thành "làm sau nếu còn thời gian" — tài liệu, agent, skill phần AI giữ lại, không xóa.
+
+| | Đồ án LTTTBDD |
+|---|---|
+| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, điều hướng, offline, giao diện |
+| Phạm vi | Module A — luyện đề như các app ôn thi trên Google Play, giao diện đẹp hơn; **không có AI** |
+| Hạn | **28/10/2026** (hạn nội bộ tự đặt; trường chưa công bố lịch nộp, buổi học cuối 30/10/2026) |
 
 ## Các module
 
 | Module | Nội dung | Ưu tiên |
 |---|---|---|
 | **A — Lõi** | Must: chọn hạng (A1, A, B), học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, danh mục biển báo, tuyên bố miễn trừ · Should: thống kê tiến độ, câu hay sai của người dùng · Should (chỉ chuyên ngành): tra cứu luật. Chi tiết: `docs/srs/vision.md` §5 | Must |
-| **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Must |
-| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (Gemini vision là phương án chính; TFLite trên máy: Could) |
+| **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Làm sau (từ 13/10) |
+| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Làm sau (từ 13/10) — nếu làm: Gemini vision là phương án chính |
 | B2 — Gợi ý ôn tập cá nhân hóa | Phân tích lịch sử làm bài → chủ đề yếu → bộ câu ôn | Could (hạ từ Should khi thêm Module D) |
 | **C — Web** | Flutter Web từ cùng codebase; nhận diện biển báo trên web dùng đường Gemini | Could |
 
@@ -65,7 +69,11 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
   ~7 giờ/tuần/người (~14 giờ/sprint/người); giờ làm thêm ngày rảnh coi là dư địa, không tính trước.
 - Hướng dẫn cho thành viên mới clone repo: `CONTRIBUTING.md`.
 
-## Mốc thời gian (đồ án chuyên ngành)
+## Mốc thời gian
+
+- **LTTTBDD: hạn nội bộ 28/10/2026** (xem `production/roadmap.md`).
+
+Mốc cũ của đồ án chuyên ngành (không còn áp dụng cho repo này từ 13/10/2026):
 
 - Chọn đề tài: 05/10–11/10/2026
 - Thực hiện: 12/10–20/12/2026 (10 tuần = 5 sprint × 2 tuần)
@@ -96,4 +104,6 @@ App "Ôn thi GPLX 600 Câu" (Google Play):
 - 2026-10-04: Đề hiện hành theo CV 2262/CSGT-P5 + TT 12/2025 (hiệu lực đến 28/02/2027). Đề từ 01/3/2027 (TT 108/2026) hạ xuống Could: chưa có phân bổ chương, điểm liệt, bộ câu hỏi.
 - 2026-10-04: Bộ 600 câu trích xuất tự động từ PDF chính thức (`tools/extract_questions/`); điểm liệt tính theo hạng (`criticalFor`: B+ 60 câu, A1/A 20, B1 30). Nguồn: `docs/data/sources.md`.
 - 2026-10-03: Won't: mẹo ghi nhớ (trái mục tiêu chống học mẹo, không có nguồn), thi mô phỏng/video. Tra cứu luật chỉ cho đồ án chuyên ngành.
+- 2026-10-13: **Đổi phạm vi** — đồ án chuyên ngành đổi đề tài khác; hoclaixe chỉ còn là đồ án LTTTBDD. Làm Module A giống đối thủ trước 28/10; B, C, D làm sau nếu còn thời gian.
+- 2026-10-13: Sửa lỗi 26 câu thiếu hình (PDF dùng chung một hình cho nhiều câu) — phát hiện nhờ đối chiếu chéo ngày 08/10.
 - 2026-10-03: Có khảo sát người dùng (Google Form, ≥ 30 phản hồi, Kiệt phụ trách) — `docs/srs/survey.md`.

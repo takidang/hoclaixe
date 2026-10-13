@@ -236,8 +236,10 @@ def parse_questions(path, images_dir, rel_images):
 
         # Images sit between a question's text and its options: attach each image to the nearest
         # question starting above it on this page, otherwise to the last question of an earlier page.
-        for img in sorted(page.get_images(full=True), key=lambda im: page.get_image_bbox(im).y0):
-            bbox = page.get_image_bbox(img)
+        # The PDF reuses one picture (same xref) for 2–3 consecutive questions: visit every placement,
+        # not just the first one returned by get_image_bbox().
+        placements = [(rect, img) for img in page.get_images(full=True) for rect in page.get_image_rects(img[0])]
+        for bbox, img in sorted(placements, key=lambda p: p[0].y0):
             above = [(y, n) for y, n in page_q_starts if y <= bbox.y0]
             earlier = [n for n in order if questions[n]['page'] < pno + 1]
             if above:

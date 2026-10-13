@@ -1,17 +1,21 @@
 # Roadmap (chỉnh trong /sprint-plan)
 
-| Thời gian | Sprint | Mục tiêu |
+> **Đổi phạm vi 13/10/2026**: đồ án chuyên ngành đã đổi sang đề tài khác — hoclaixe **chỉ còn là đồ án LTTTBDD**.
+> Ưu tiên duy nhất: **Module A làm giống app đối thủ, xong trước 28/10/2026**. Module B (chatbot), D (nhận diện biển),
+> C (web) chuyển thành "làm sau nếu còn thời gian" — tài liệu, agent, skill phần AI giữ lại, không xóa.
+
+## Sprint 1 — 12/10–28/10/2026: Module A (nộp LTTTBDD)
+
+| Ngày | Việc | Kết quả |
 |---|---|---|
-| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài · SRS Module A · UX Module A (Claude Design) · kiến trúc app tối giản (state, local DB) · /setup-flutter · **Kiệt: tìm nguồn chính thức + bắt đầu nhập bộ câu hỏi** |
-| 12/10–28/10 | 1 | **Nộp LTTTBDD 28/10** — Module A: chọn hạng, học theo chủ đề, thi thử + chấm điểm + điểm liệt (12–20/10) · ôn câu sai, câu hay sai, danh mục biển báo, thống kê (21–25/10) · test, build APK, hoàn thiện báo cáo LTTTBDD (26–28/10). Kiệt: nhập liệu xong trước 15/10, viết báo cáo LTTTBDD từ 19/10 |
-| 29/10–08/11 | 2 | Thiết kế phần AI: SRS đủ Module B + D, rag-design, vision-design (Gemini vision), kiến trúc backend · Kiệt: kho văn bản luật, **bộ ảnh kiểm tra biển báo** (bộ dữ liệu công khai có giấy phép + ảnh tự chụp đối chứng) |
-| 09/11–22/11 | 3 | Backend + RAG prototype · tra cứu luật · endpoint Gemini vision + màn hình camera · **15/11: quyết có làm model TFLite (Could) không** |
-| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
-| 07/12–20/12 | 5 | Ổn định, test, đánh giá cuối, release, (web nếu dư) — **không thêm tính năng** |
-| 21/12–27/12 | — | Nộp báo cáo chuyên ngành |
-| 28/12–10/01 | — | Bảo vệ |
+| 13–14/10 | Sửa dữ liệu (26 câu thiếu hình) · `/create-architecture` gọn · `/setup-flutter` · nạp 600 câu + 397 biển vào app | App chạy, có dữ liệu |
+| 15–18/10 | Chọn hạng · màn chính · học theo chủ đề (Đúng/Sai/Chưa làm) · hiển thị câu + hình | Học được |
+| 19–22/10 | Thi thử: đề ngẫu nhiên + 20 đề cố định · đồng hồ · lưới câu · lưu đáp án · chấm điểm + điểm liệt · kết quả, xem lại | Thi được |
+| 23–25/10 | Ôn câu sai · câu điểm liệt · danh mục biển báo · miễn trừ · (thống kê nếu kịp) · **đóng băng tính năng 25/10** | Đủ Must |
+| 26–28/10 | Test (giữ đáp án, chấm điểm) · build APK · báo cáo LTTTBDD | Nộp |
 
-Báo cáo LTTTBDD viết trong Sprint 1; báo cáo chuyên ngành viết song song từ Sprint 2.
+UX: bố cục theo ảnh đối thủ (`design/reference/competitors/`); giao diện đẹp làm bằng Claude Design song song.
+Lùi khi trễ (theo thứ tự cắt): thống kê, câu hay sai, tìm kiếm, chế độ tối, chấm ngay khi chọn, đánh dấu câu.
 
-> Hạn đồ án LTTTBDD: **28/10/2026** (hạn nội bộ; buổi học cuối 30/10/2026, trường chưa công bố lịch nộp).
-> Phạm vi LTTTBDD: chỉ Module A (luyện đề), không AI. Camera/nhận diện, chatbot, tra cứu luật thuộc đồ án chuyên ngành.
+## Sau 28/10 (nếu còn thời gian)
+Tra cứu luật · chatbot RAG (Module B) · nhận diện biển báo bằng Gemini vision (Module D) · Flutter Web (Module C).

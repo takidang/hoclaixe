@@ -10699,7 +10699,9 @@
    "number": 312,
    "chapter": 5,
    "content": "Biển nào xe ô tô con được phép vượt?",
-   "images": [],
+   "images": [
+    "images/q0312.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2."
@@ -10764,7 +10766,9 @@
    "number": 314,
    "chapter": 5,
    "content": "Biển nào cấm xe rẽ trái?",
-   "images": [],
+   "images": [
+    "images/q0314.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -10797,7 +10801,9 @@
    "number": 315,
    "chapter": 5,
    "content": "Khi gặp biển nào xe được rẽ trái?",
-   "images": [],
+   "images": [
+    "images/q0315.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -10967,7 +10973,9 @@
    "number": 320,
    "chapter": 5,
    "content": "Biển nào dưới đây cấm xe ô tô rẽ trái và quay đầu?",
-   "images": [],
+   "images": [
+    "images/q0320.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -11065,7 +11073,9 @@
    "number": 323,
    "chapter": 5,
    "content": "Biển nào xe quay đầu không bị cấm?",
-   "images": [],
+   "images": [
+    "images/q0323.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -11168,7 +11178,9 @@
    "number": 326,
    "chapter": 5,
    "content": "Biển nào dưới đây các phương tiện không được phép đi vào?",
-   "images": [],
+   "images": [
+    "images/q0326.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -11403,7 +11415,9 @@
    "number": 333,
    "chapter": 5,
    "content": "Gặp biển nào xe lam, xe xích lô máy được phép đi vào?",
-   "images": [],
+   "images": [
+    "images/q0333.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -11564,7 +11578,9 @@
    "number": 338,
    "chapter": 5,
    "content": "Biển số 2 có ý nghĩa như thế nào?",
-   "images": [],
+   "images": [
+    "images/q0338.jpeg"
+   ],
    "options": [
     "Cho phép xe ô tô có tải trọng trục lớn hơn 7 tấn đi qua.",
     "Cho phép xe ô tô có tải trọng trên trục xe từ 7 tấn trở xuống đi qua."
@@ -11593,7 +11609,9 @@
    "number": 339,
    "chapter": 5,
    "content": "Biển số 3 có ý nghĩa như thế nào?",
-   "images": [],
+   "images": [
+    "images/q0339.jpeg"
+   ],
    "options": [
     "Cấm các loại xe có tải trọng toàn bộ trên 10 tấn đi qua.",
     "Hạn chế khối lượng hàng hóa chở trên xe.",
@@ -11784,7 +11802,9 @@
    "number": 345,
    "chapter": 5,
    "content": "Biển này có hiệu lực đối với xe mô tô hai bánh, ba bánh chở hàng không?",
-   "images": [],
+   "images": [
+    "images/q0345.jpeg"
+   ],
    "options": [
     "Có.",
     "Không."
@@ -11886,7 +11906,9 @@
    "number": 348,
    "chapter": 5,
    "content": "Chiều dài đoạn đường 500 m từ nơi đặt biển này, người lái xe có được phép bấm còi không?",
-   "images": [],
+   "images": [
+    "images/q0348.jpeg"
+   ],
    "options": [
     "Được phép.",
     "Không được phép."
@@ -11988,7 +12010,9 @@
    "number": 351,
    "chapter": 5,
    "content": "Ba biển này có hiệu lực như thế nào?",
-   "images": [],
+   "images": [
+    "images/q0351.jpeg"
+   ],
    "options": [
     "Cấm các loại xe ở biển phụ đi vào.",
     "Cấm các loại xe cơ giới đi vào trừ loại xe ở biển phụ."
@@ -12052,7 +12076,9 @@
    "number": 353,
    "chapter": 5,
    "content": "Biển nào báo hiệu khoảng cách thực tế từ nơi đặt biển đến nơi cần cự ly tối thiểu giữa hai xe?",
-   "images": [],
+   "images": [
+    "images/q0353.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -12180,7 +12206,9 @@
    "number": 357,
    "chapter": 5,
    "content": "Xe ô tô chở hàng vượt quá phía trước và sau thùng xe, mỗi phía quá 10% chiều dài toàn bộ thân xe, tổng chiều dài xe (cả hàng) từ trước đến sau nhỏ hơn trị số ghi trên biển thì có được phép đi vào không?",
-   "images": [],
+   "images": [
+    "images/q0357.png"
+   ],
    "options": [
     "Không được phép.",
     "Được phép."
@@ -12542,7 +12570,9 @@
    "number": 368,
    "chapter": 5,
    "content": "Biển nào chỉ đường dành cho người đi bộ, các loại xe không được đi vào khi gặp biển này?",
-   "images": [],
+   "images": [
+    "images/q0368.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 1 và biển 3.",
@@ -12647,7 +12677,9 @@
    "number": 371,
    "chapter": 5,
    "content": "Biển nào báo hiệu \"Giao nhau với đường sắt có rào chắn\"?",
-   "images": [],
+   "images": [
+    "images/q0371.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2 và biển 3.",
@@ -13066,7 +13098,9 @@
    "number": 383,
    "chapter": 5,
    "content": "Biển nào báo hiệu \"Giao nhau với đường ưu tiên\"?",
-   "images": [],
+   "images": [
+    "images/q0383.jpeg"
+   ],
    "options": [
     "Biển 1 và biển 3.",
     "Biển 2.",
@@ -13304,7 +13338,9 @@
    "number": 390,
    "chapter": 5,
    "content": "Biển nào báo hiệu phải giảm tốc độ, nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp?",
-   "images": [],
+   "images": [
+    "images/q0390.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -13716,7 +13752,9 @@
    "number": 402,
    "chapter": 5,
    "content": "Biển nào dưới đây là biển \"Cầu quay - cầu cất\"?",
-   "images": [],
+   "images": [
+    "images/q0402.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -13779,7 +13817,9 @@
    "number": 404,
    "chapter": 5,
    "content": "Biển nào sau đây là biển \"Kè, vực sâu bên đường phía bên trái\"?",
-   "images": [],
+   "images": [
+    "images/q0404.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -13810,7 +13850,9 @@
    "number": 405,
    "chapter": 5,
    "content": "Biển nào sau đây là biển \"Kè, vực sâu bên đường phía bên phải\"?",
-   "images": [],
+   "images": [
+    "images/q0405.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -14179,7 +14221,9 @@
    "number": 416,
    "chapter": 5,
    "content": "Biển nào sau đây là biển \"Dốc lên nguy hiểm\"?",
-   "images": [],
+   "images": [
+    "images/q0416.png"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2."
@@ -14537,7 +14581,9 @@
    "number": 427,
    "chapter": 5,
    "content": "Biển nào báo hiệu các phương tiện phải tuân thủ tốc độ tối đa cho phép trên từng làn đường?",
-   "images": [],
+   "images": [
+    "images/q0427.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -14841,7 +14887,9 @@
    "number": 436,
    "chapter": 5,
    "content": "Hiệu lực của biển \"Tốc độ tối đa cho phép\" hết tác dụng khi gặp biển nào dưới đây?",
-   "images": [],
+   "images": [
+    "images/q0436.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -16024,7 +16072,9 @@
    "number": 471,
    "chapter": 5,
    "content": "Trên đường cao tốc, gặp biển nào thì người lái xe đi theo hướng bên phải để tránh chướng ngại vật?",
-   "images": [],
+   "images": [
+    "images/q0471.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",
@@ -16054,7 +16104,9 @@
    "number": 472,
    "chapter": 5,
    "content": "Trên đường cao tốc, gặp biển nào thì người lái xe đi được cả hai hướng (bên trái hoặc bên phải) để tránh chướng ngại vật?",
-   "images": [],
+   "images": [
+    "images/q0472.jpeg"
+   ],
    "options": [
     "Biển 1.",
     "Biển 2.",

@@ -21,7 +21,9 @@ import sys
 CHAPTER_SIZES = {1: 180, 2: 25, 3: 58, 4: 37, 5: 185, 6: 115}
 REVIEW_SAMPLE_SIZE = 50
 REVIEW_SEED = 2026
-FIGURE_HINT = re.compile(r'hình|biển|sa hình|dưới đây|mũi tên|xe nào|hướng nào', re.I)
+NEEDS_FIGURE = re.compile(r'biển nào|biển này|các biển|(trong|theo) hình|hình (dưới|bên)|theo hướng mũi tên|vạch (dưới|này)',
+                          re.I)
+FIGURE_HINT =re.compile(r'hình|biển|sa hình|dưới đây|mũi tên|xe nào|hướng nào', re.I)
 
 
 def has_caps_run(text, length=3):
@@ -65,6 +67,9 @@ def main():
         for text in [q['content']] + q['options']:
             if has_caps_run(text):
                 errors.append(f'{n}: all-caps run (chapter title leaked?): {text[-60:]}')
+        # ch.V/VI questions that refer to a picture cannot be answered without one (bug found 08/10: 26 questions)
+        if q['chapter'] in (5, 6) and not q['images'] and NEEDS_FIGURE.search(q['content']):
+            errors.append(f'{n}: refers to a picture but has no image: {q["content"][:60]}')
         if not q['content'].strip():
             errors.append(f'{n}: empty content')
         if not 2 <= len(q['options']) <= 4:

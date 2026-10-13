@@ -2,10 +2,10 @@
 
 > Cập nhật cuối mỗi phiên làm việc.
 
-**Cập nhật**: 2026-10-06 (cuối phiên)
-**Phase hiện tại**: 2 — Yêu cầu (gate discovery PASS có điều kiện 04/10: còn số liệu khảo sát)
-**Sprint**: Sprint 0 (03/10–11/10/2026) — còn 5 ngày
-**Mốc gần nhất**: nộp đề tài chuyên ngành 05–11/10 · hạn LTTTBDD 28/10
+**Cập nhật**: 2026-10-13
+**Phase hiện tại**: 3→4 — thiết kế gọn + chuẩn bị (`/create-architecture`, `/setup-flutter`), vào code ngay sau đó
+**Sprint**: Sprint 1 (12/10–28/10/2026) — Module A, nộp LTTTBDD 28/10 · đóng băng tính năng 25/10
+**Phạm vi (đổi 13/10)**: hoclaixe chỉ còn là đồ án LTTTBDD → Module A giống đối thủ; B/C/D làm sau nếu còn thời gian.
 
 ## Đã xong
 - Áp dụng bản cập nhật v2 (Module D — nhận diện biển báo): agent ml-engineer, 4 skill mới, rule ML, bản nháp yêu cầu.
@@ -27,34 +27,24 @@
 
 - Skill `/tam-nghi` (06/10): nói "tạm nghỉ" → cập nhật status + commit + push.
 - Module D chốt (06/10): Gemini vision là phương án chính, TFLite trên máy hạ xuống Could.
+- **13/10**: đổi phạm vi (chỉ LTTTBDD); sửa lỗi 26 câu thiếu hình (PDF dùng chung hình cho nhiều câu — phát hiện nhờ đối chiếu chéo 08/10, `docs/data/crosscheck-tasks.md`); validator thêm lỗi "câu nói tới hình mà không có hình"; roadmap Sprint 1 theo ngày.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
-1. **Nộp đề tài chuyên ngành** (05–11/10). Tên gợi ý: "Xây dựng ứng dụng di động hỗ trợ ôn thi lý thuyết sát hạch lái xe
-   tích hợp trợ lý AI giải thích luật (RAG) và nhận diện biển báo giao thông".
-2. **Tiếp tục `/write-srs`** — nguyên tắc người dùng đã chốt: *hành vi giống app đối thủ*.
-   - Nếu đã có ảnh trong `design/reference/competitors/` → phân tích ảnh để chốt: điều hướng khi thi (tới/lui, lưới câu,
-     đánh dấu), hết giờ tự nộp, khi nào bỏ câu khỏi "câu sai", có bộ đề cố định không, màn kết quả/xem lại.
-   - Nếu chưa có ảnh → viết theo hành vi đối thủ đã biết (đề ngẫu nhiên bấm giờ, chuyển câu tự do, ôn câu sai, câu hay sai) và ghi giả định.
-   - BR lấy từ `docs/data/sources.md` §3 (đã xác minh); điểm liệt theo hạng.
-   - Ghi `docs/srs/SRS.md` sau khi duyệt.
-3. `/ux-design` Module A (đầu vào cho Claude Design) → `/create-architecture` tối giản (chọn state management + local DB;
-   chưa cần backend) → `/setup-flutter`. Mục tiêu xong trước 11/10 để 12/10 vào code.
+1. **`/create-architecture` gọn**: Flutter + Riverpod; câu hỏi/biển báo đọc từ JSON đóng gói (chỉ đọc); tiến độ + phiên thi lưu SQLite; cấu trúc thư mục feature-first; ADR cho các lựa chọn.
+2. **`/setup-flutter`**: project chạy được trên Android, nạp `questions.json`, `exam-structures.json`, `signs.json` + hình làm assets, test mẫu.
+3. Bắt đầu code theo `production/roadmap.md` (15–18/10: chọn hạng, màn chính, học theo chủ đề).
 
 ## Phân công
 
 | Người | Việc đang giao | Hạn |
 |---|---|---|
-| Tài | Nộp đề tài; chụp ảnh màn hình app đối thủ vào `design/reference/competitors/` (đặt tên theo README trong thư mục) | 06/10 |
-| Tài | SRS + UX Module A, kiến trúc tối giản, `/setup-flutter` | 11/10 |
-| Kiệt | Clone repo, đọc `README.md` + `CONTRIBUTING.md` | 06/10 |
-| Kiệt | Soát danh mục biển báo bằng trang `data/sign-catalog/review.html` (tạo bằng `python tools/review_ui/make_sign_review.py`, 1 file gửi riêng được): 5 tab theo nhóm biển, mỗi biển có đề mục + hình trong PDF cạnh hình/tên/ý nghĩa trong app. Bấm **Khớp** hoặc **Sai** + ghi chú cho từng biển (bộ đếm "đã xem" theo nhóm), xong bấm "Xuất kết quả". Tối thiểu: lọc "Trong review.md" (129 biển) | 12/10 |
-| Kiệt | **Ưu tiên 1**: soát bộ câu hỏi bằng trang `data/question-bank/review.html` (tạo bằng `python tools/review_ui/make_question_review.py`): mỗi câu có ảnh PDF gốc cạnh dữ liệu app — chỉ so **nội dung, đáp án, hình**, bấm "Sai" nếu lệch, rồi "Xuất kết quả" gửi file JSON. Đáp án đúng đã được máy dò lại bằng cách thứ hai, khớp 600/600. Ưu tiên lọc "Trong review.md" (142 câu, ~10 phút); dư thời gian soát hết 600 câu (~45 phút) | 10/10 |
-| Kiệt | Khảo sát Google Form theo `docs/srs/survey.md`, ≥ 30 phản hồi, tổng hợp số liệu vào vision.md | 10/10 |
-| Kiệt | Thu thập yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 | Mẫu: 11/10 · Báo cáo: 28/10 |
-| Kiệt | Ưu tiên 2 (không gấp, cho RAG — đồ án chuyên ngành): tải bản **có chữ** (.doc/.docx/PDF chữ, ưu tiên vbpl.vn, chinhphu.vn) vào `data/law-corpus/raw/` và ghi `docs/data/sources.md`: Luật TTATGTĐB 36/2024/QH15; Luật 118/2025/QH15 (sửa đổi); QCVN 41:2024/BGTVT; NĐ 168/2024/NĐ-CP; **NĐ 238/2026/NĐ-CP** (sửa NĐ 168, hiệu lực 15/8/2026); NĐ 151/2024/NĐ-CP; Luật Đường bộ 35/2024/QH15 | 08/11 |
+| Tài | `/create-architecture` gọn + `/setup-flutter` | 14/10 |
+| Tài | Code Module A theo roadmap; giao diện bằng Claude Design song song | 25/10 (đóng băng) |
+| Kiệt | Soát danh mục biển báo bằng `data/sign-catalog/review.html` (7 tab; bấm Khớp/Sai + ghi chú, rồi "Xuất kết quả") — ưu tiên biển cấm, nguy hiểm, hiệu lệnh, vạch kẻ đường (có trong đề thi) | 18/10 |
+| Kiệt | Lấy yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 (theo `docs/templates/report-ltttbdd.md`) | Mẫu: 16/10 · Báo cáo: 28/10 |
+| Kiệt | Test thử app trên máy Android của mình từ khi có bản chạy được (ghi lỗi vào `production/bugs/`) | từ 19/10 |
 
 ## Blocker / cần bổ sung
-- Điều kiện còn mở của gate discovery: số liệu khảo sát điền vào `[CẦN SỐ LIỆU]` trong vision.md (Kiệt, 10/10).
-- Hỏi giảng viên: yêu cầu format báo cáo; (tùy chọn) xác nhận việc dùng bộ câu hỏi công khai trong đồ án.
 - Hạn LTTTBDD 28/10 là hạn nội bộ — theo dõi khi trường công bố lịch chính thức.
-- Module D: chưa chốt người huấn luyện model (đề xuất: Tài) và phân công chụp ảnh (đề xuất: cả hai).
+- Chưa có yêu cầu format báo cáo LTTTBDD từ giảng viên.
+- Việc tạm dừng do đổi phạm vi (làm sau nếu còn thời gian): khảo sát người dùng, kho văn bản luật cho RAG, bộ ảnh kiểm tra biển báo.
