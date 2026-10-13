@@ -1,3 +1,8 @@
+> ⚠️ **Lỗi thời (ghi chú 13/10/2026)** — đây là ghi chú khảo sát ngày 08/10, giữ lại làm tư liệu.
+> Quyết định thực tế: **không dùng dữ liệu của `tdytools-gplx`** (không giấy phép; chia chương lệch CV 2262/CSGT-P5).
+> Dữ liệu của app trích trực tiếp từ PDF chính thức — xem `docs/data/sources.md`, `tools/extract_questions/`.
+> Cấu trúc đề đã xác minh từ văn bản gốc: `data/question-bank/exam-structures.json`.
+
 # GPLX — ghi chú khảo sát nguồn dữ liệu (2026-10-08)
 
 ## Mục tiêu
