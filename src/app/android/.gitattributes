@@ -1,0 +1,4 @@
+# Shell script must keep LF; batch file keeps CRLF; jar is binary.
+gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary

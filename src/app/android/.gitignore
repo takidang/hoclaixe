@@ -1,8 +1,6 @@
-gradle-wrapper.jar
+# Gradle wrapper (gradlew, gradlew.bat, gradle/wrapper/*) is committed so a fresh clone builds.
 /.gradle
 /captures/
-/gradlew
-/gradlew.bat
 /local.properties
 GeneratedPluginRegistrant.java
 .cxx/
