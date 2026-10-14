@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'clock.dart';
 import 'content/content_repository.dart';
 import 'content/models.dart';
 import 'db/app_database.dart';
@@ -12,6 +13,9 @@ final contentProvider = FutureProvider<ContentBundle>(
 );
 
 Duration? _noRetry(int retryCount, Object error) => null;
+
+/// Current time; overridden in tests so they never depend on the real date.
+final clockProvider = Provider<Clock>((ref) => systemClock);
 
 /// Learner database; overridden in tests with an in-memory database.
 final databaseProvider = FutureProvider<AppDatabase>((ref) async {

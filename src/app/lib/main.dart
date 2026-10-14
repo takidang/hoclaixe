@@ -14,15 +14,15 @@ Future<void> main() async {
   runApp(const ProviderScope(child: HoclaixeApp()));
 }
 
-class HoclaixeApp extends StatelessWidget {
+class HoclaixeApp extends ConsumerWidget {
   const HoclaixeApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp.router(
+  Widget build(BuildContext context, WidgetRef ref) => MaterialApp.router(
     title: S.appName,
     theme: AppTheme.light(),
     darkTheme: AppTheme.dark(),
-    routerConfig: appRouter,
+    routerConfig: ref.watch(routerProvider),
     debugShowCheckedModeBanner: false,
   );
 }
