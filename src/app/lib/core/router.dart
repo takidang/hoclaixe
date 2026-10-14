@@ -8,6 +8,7 @@ import '../features/home/presentation/home_screen.dart';
 import '../features/onboarding/presentation/disclaimer_screen.dart';
 import '../features/onboarding/presentation/license_class_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
+import '../features/study/domain/study_topic.dart';
 import '../features/study/presentation/study_screen.dart';
 import '../features/study/presentation/topic_list_screen.dart';
 import 'settings/app_settings.dart';
@@ -87,11 +88,18 @@ final routerProvider = Provider<GoRouter>((ref) {
           ),
         ],
       ),
-      // Replaced by the real screens in ST-07, ST-08, ST-12.
+      // Home tiles open the study screen directly (ST-07, FR-A41, FR-A42).
+      GoRoute(
+        path: Routes.wrong,
+        builder: (context, state) => StudyScreen(topicId: StudyTopic.wrongOf(StudyTopic.allId)),
+      ),
+      GoRoute(
+        path: Routes.critical,
+        builder: (context, state) => const StudyScreen(topicId: StudyTopic.criticalId),
+      ),
+      // Replaced by the real screens in ST-08, ST-12.
       for (final (path, title) in [
         (Routes.exam, S.practiceExam),
-        (Routes.wrong, S.reviewWrong),
-        (Routes.critical, S.criticalQuestions),
         (Routes.signs, S.trafficSigns),
       ])
         GoRoute(path: path, builder: (context, state) => ComingSoonScreen(title: title)),

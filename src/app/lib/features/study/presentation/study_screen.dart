@@ -161,6 +161,8 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
       context,
       summary: RoundSummary.of(_topic, _answers),
       canRestart: !_topic.isWrongList,
+      reviewLabel: _topic.isWrongList ? S.reviewRemainingWrong : S.reviewTopicWrong,
+      alwaysOfferReview: _topic.isWrongList,
     );
     if (!mounted) return;
     switch (action) {
@@ -185,10 +187,8 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
   Widget build(BuildContext context) {
     final questions = _topic.questions;
     if (questions.isEmpty) {
-      return _Message(
-        _topic.isWrongList ? S.noWrongInTopic : S.emptyTopic,
-        title: widget.title,
-      );
+      if (_topic.id == StudyTopic.wrongOf(StudyTopic.allId)) return _NoWrongYet(title: widget.title);
+      return _Message(_topic.isWrongList ? S.noWrongInTopic : S.emptyTopic, title: widget.title);
     }
     return Scaffold(
       appBar: AppBar(
@@ -271,5 +271,38 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
       ),
     );
     if (ok == true) await _restart();
+  }
+}
+
+/// Empty wrong list of the whole class (ST-07 AC2).
+class _NoWrongYet extends StatelessWidget {
+  const _NoWrongYet({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(S.noWrongYet, style: text.titleLarge, textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              Text(S.noWrongYetHint, style: text.bodyMedium, textAlign: TextAlign.center),
+              const SizedBox(height: 24),
+              FilledButton(
+                onPressed: () => context.pushReplacement(Routes.exam),
+                child: const Text(S.practiceExam),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

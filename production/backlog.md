@@ -11,7 +11,7 @@
 | [ST-04](stories/ST-04.md) | E2 Khởi đầu | Màn chính | FR-A04 | 3 | Must | 16/10 | Tài | Done 14/10 |
 | [ST-05](stories/ST-05.md) | E3 Học | Thành phần hiển thị câu hỏi dùng chung | FR-A11, FR-A12 | 3 | Must | 16/10 | Tài | Done 14/10 |
 | [ST-06](stories/ST-06.md) | E3 Học | Học theo chủ đề | FR-A10, FR-A13 | 5 | Must | 17–18/10 | Tài | Done 14/10 |
-| [ST-07](stories/ST-07.md) | E3 Học | Ôn câu sai và câu điểm liệt | FR-A40, FR-A41, FR-A42 | 2 | Must | 18/10 | Tài | Todo |
+| [ST-07](stories/ST-07.md) | E3 Học | Ôn câu sai và câu điểm liệt | FR-A40, FR-A41, FR-A42 | 2 | Must | 18/10 | Tài | Done 14/10 |
 | [ST-08](stories/ST-08.md) | E4 Thi thử | Màn thi: làm bài và lưu đáp án ngay | FR-A20, FR-A21, FR-A22, FR-A23, FR-A24 | 5 | Must | 19–20/10 | Tài | Todo |
 | [ST-09](stories/ST-09.md) | E4 Thi thử | Đồng hồ, hết giờ, thoát bài, tiếp tục bài dở | FR-A21, FR-A25, FR-A26, BR-06 | 3 | Must | 21/10 | Tài | Todo |
 | [ST-10](stories/ST-10.md) | E4 Thi thử | Kết quả và xem lại bài | FR-A27, FR-A28 | 3 | Must | 22/10 | Tài | Todo |

@@ -102,7 +102,10 @@ abstract final class S {
   static const topicFinished = 'Hoàn thành chủ đề';
   static String roundResult(int correct, int wrong, int total) => 'Đúng $correct · Sai $wrong / $total câu';
   static const reviewTopicWrong = 'Ôn câu sai của chủ đề';
-  static const backToTopics = 'Về danh sách chủ đề';
+  static const goBack = 'Quay lại';
+  static const reviewRemainingWrong = 'Ôn tiếp câu còn sai';
+  static const noWrongYet = 'Bạn chưa có câu sai';
+  static const noWrongYetHint = 'Làm bài thi thử để biết câu nào mình còn chưa chắc.';
   static const noWrongInTopic = 'Không còn câu sai nào trong chủ đề này.';
   static const emptyTopic = 'Chủ đề này chưa có câu hỏi.';
   static const topicNotFound = 'Không tìm thấy chủ đề.';

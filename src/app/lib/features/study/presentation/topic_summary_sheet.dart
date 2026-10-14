@@ -6,10 +6,13 @@ import '../domain/study_topic.dart';
 enum SummaryAction { reviewWrong, restart, back }
 
 /// End of a topic (ST-06 AC4): correct/wrong of this round and what to do next.
+/// Wrong-list rounds always offer another round: a question leaves the list only after 2 correct answers in a row.
 Future<SummaryAction?> showTopicSummary(
   BuildContext context, {
   required RoundSummary summary,
   required bool canRestart,
+  required String reviewLabel,
+  required bool alwaysOfferReview,
 }) => showModalBottomSheet<SummaryAction>(
   context: context,
   showDragHandle: true,
@@ -34,11 +37,11 @@ Future<SummaryAction?> showTopicSummary(
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            if (summary.wrong > 0) ...[
+            if (alwaysOfferReview || summary.wrong > 0) ...[
               FilledButton(
                 onPressed: () =>
                     Navigator.pop(context, SummaryAction.reviewWrong),
-                child: const Text(S.reviewTopicWrong),
+                child: Text(reviewLabel),
               ),
               const SizedBox(height: 8),
             ],
@@ -51,7 +54,7 @@ Future<SummaryAction?> showTopicSummary(
             ],
             TextButton(
               onPressed: () => Navigator.pop(context, SummaryAction.back),
-              child: const Text(S.backToTopics),
+              child: const Text(S.goBack),
             ),
           ],
         ),
