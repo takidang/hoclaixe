@@ -113,6 +113,53 @@ class ProgressRepository {
     return {for (final r in rows) r['question_id']! as String};
   }
 
+  /// Latest chosen option per question among [questionIds], answered after [since]
+  /// (any mode; unanswered test questions are skipped). Shows past choices when a topic is reopened.
+  Future<Map<String, int>> latestAnswers(
+    List<String> questionIds, {
+    DateTime? since,
+  }) async {
+    if (questionIds.isEmpty) return {};
+    final marks = List.filled(questionIds.length, '?').join(',');
+    final rows = await _db.rawQuery(
+      'SELECT question_id, selected_index FROM answer_log '
+      'WHERE selected_index IS NOT NULL AND answered_at > ? AND question_id IN ($marks) '
+      'ORDER BY id',
+      [since?.millisecondsSinceEpoch ?? 0, ...questionIds],
+    );
+    return {
+      for (final r in rows)
+        r['question_id']! as String: r['selected_index']! as int,
+    };
+  }
+
+  /// When the learner last pressed "Làm lại" on a topic (FR-A11); null = never.
+  Future<DateTime?> roundStart(String licenseClass, String topicId) async {
+    final rows = await _db.query(
+      'app_setting',
+      where: 'key = ?',
+      whereArgs: [_roundKey(licenseClass, topicId)],
+    );
+    return rows.isEmpty
+        ? null
+        : DateTime.fromMillisecondsSinceEpoch(
+            int.parse(rows.first['value']! as String),
+          );
+  }
+
+  /// Starts a new round: past choices are no longer shown in this topic. Progress and the wrong list are kept.
+  Future<DateTime> restartRound(String licenseClass, String topicId) async {
+    final now = _clock();
+    await _db.insert('app_setting', {
+      'key': _roundKey(licenseClass, topicId),
+      'value': '${now.millisecondsSinceEpoch}',
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    return now;
+  }
+
+  static String _roundKey(String licenseClass, String topicId) =>
+      'study_round:$licenseClass:$topicId';
+
   Future<String?> topicPosition(String licenseClass, String topicId) async {
     final rows = await _db.query(
       'topic_position',

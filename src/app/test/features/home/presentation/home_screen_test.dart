@@ -96,7 +96,7 @@ void main() {
   testWidgets('bấm ô chức năng mở màn tương ứng', (tester) async {
     await setUpDb(tester);
     await start(tester);
-    await tester.tap(find.text(S.studyByTopic));
+    await tester.tap(find.text(S.practiceExam));
     await tester.pumpAndSettle();
     expect(find.text(S.comingSoon), findsOneWidget);
   });

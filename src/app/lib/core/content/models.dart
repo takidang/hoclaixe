@@ -147,6 +147,7 @@ class ContentBundle {
     required this.structures,
     required this.signs,
     required this.signGroups,
+    this.chapters = const {},
   });
 
   final String version;
@@ -156,6 +157,9 @@ class ContentBundle {
 
   /// group key -> display name, in catalog order.
   final Map<String, String> signGroups;
+
+  /// Chapter number -> official name (CV 2262 §I.1).
+  final Map<int, String> chapters;
 }
 
 /// Parses the four JSON documents written by tools/sync_assets.py. Throws [FormatException] on bad data.
@@ -182,6 +186,10 @@ ContentBundle parseContent(Map<String, dynamic> docs) {
       signGroups: Map<String, String>.from(
         signs['groups'] as Map<String, dynamic>,
       ),
+      chapters: {
+        for (final e in (bank['chapters'] as Map<String, dynamic>).entries)
+          int.parse(e.key): e.value as String,
+      },
     );
   } on TypeError catch (e) {
     throw FormatException('Dữ liệu nội dung không đúng cấu trúc: $e');

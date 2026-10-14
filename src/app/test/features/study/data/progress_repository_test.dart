@@ -81,4 +81,29 @@ void main() {
     expect(await repo.topicPosition('B', 'chapter-1'), 'Q0011');
     expect(await repo.topicPosition('A1', 'chapter-1'), 'Q0003');
   });
+
+  test('đáp án gần nhất của từng câu, bỏ qua câu thi để trống', () async {
+    await repo.recordAnswer(questionId: 'Q0001', mode: AnswerMode.study, selectedIndex: 1, isCorrect: false);
+    now = now.add(const Duration(minutes: 1));
+    await repo.recordAnswer(questionId: 'Q0001', mode: AnswerMode.wrong, selectedIndex: 0, isCorrect: true);
+    await repo.recordAnswer(questionId: 'Q0002', mode: AnswerMode.exam, selectedIndex: null, isCorrect: false);
+    expect(await repo.latestAnswers(['Q0001', 'Q0002', 'Q0003']), {'Q0001': 0});
+    expect(await repo.latestAnswers([]), isEmpty);
+  });
+
+  test('"Làm lại": chỉ lấy đáp án từ mốc làm lại, không xóa tiến độ và câu sai (FR-A11)', () async {
+    await repo.recordAnswer(questionId: 'Q0001', mode: AnswerMode.study, selectedIndex: 1, isCorrect: false);
+    expect(await repo.roundStart('A1', 'ch1'), isNull);
+
+    now = now.add(const Duration(minutes: 5));
+    final start = await repo.restartRound('A1', 'ch1');
+    expect(await repo.roundStart('A1', 'ch1'), start);
+    expect(await repo.roundStart('B', 'ch1'), isNull, reason: 'mỗi hạng một mốc');
+    expect(await repo.latestAnswers(['Q0001'], since: start), isEmpty);
+    expect(await repo.wrongList(), {'Q0001'});
+
+    now = now.add(const Duration(minutes: 1));
+    await repo.recordAnswer(questionId: 'Q0001', mode: AnswerMode.study, selectedIndex: 0, isCorrect: true);
+    expect(await repo.latestAnswers(['Q0001'], since: start), {'Q0001': 0});
+  });
 }

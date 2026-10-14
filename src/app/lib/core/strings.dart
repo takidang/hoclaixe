@@ -85,4 +85,29 @@ abstract final class S {
   static const zoomImage = 'Hình minh họa. Chạm để phóng to';
   static const questionImage = 'Hình minh họa câu hỏi';
   static const close = 'Đóng';
+
+  // Study by topic (ST-06)
+  static const topicAll = 'Tất cả câu hỏi';
+  static const topicCritical = 'Câu điểm liệt';
+  static String chapterTitle(int chapter, String name) => 'Chương ${_roman(chapter)}. $name';
+  static String wrongOfTopic(String title) => 'Câu sai — $title';
+  static String topicStats(int correct, int wrong, int notDone) =>
+      'Đúng $correct · Sai $wrong · Chưa làm $notDone';
+  static String questionOfTotal(int position, int total) => 'Câu $position / $total';
+  static const previousQuestion = 'Câu trước';
+  static const nextQuestion = 'Câu sau';
+  static const chooseQuestion = 'Chọn câu';
+  static const restartTopic = 'Làm lại';
+  static const restartTopicHint = 'Xóa đáp án đang hiện trong chủ đề này để làm lại từ đầu. Tiến độ và danh sách câu sai vẫn giữ.';
+  static const topicFinished = 'Hoàn thành chủ đề';
+  static String roundResult(int correct, int wrong, int total) => 'Đúng $correct · Sai $wrong / $total câu';
+  static const reviewTopicWrong = 'Ôn câu sai của chủ đề';
+  static const backToTopics = 'Về danh sách chủ đề';
+  static const noWrongInTopic = 'Không còn câu sai nào trong chủ đề này.';
+  static const emptyTopic = 'Chủ đề này chưa có câu hỏi.';
+  static const topicNotFound = 'Không tìm thấy chủ đề.';
+  static const saveAnswerFailed = 'Không lưu được câu trả lời. Hãy thử lại.';
+  static const studyError = 'Không đọc được dữ liệu học trên máy. Hãy thử mở lại ứng dụng.';
+
+  static String _roman(int n) => const ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][n - 1];
 }

@@ -8,6 +8,8 @@ import '../features/home/presentation/home_screen.dart';
 import '../features/onboarding/presentation/disclaimer_screen.dart';
 import '../features/onboarding/presentation/license_class_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
+import '../features/study/presentation/study_screen.dart';
+import '../features/study/presentation/topic_list_screen.dart';
 import 'settings/app_settings.dart';
 import 'strings.dart';
 
@@ -18,6 +20,7 @@ abstract final class Routes {
   static const home = '/';
   static const about = '/about';
   static const study = '/study';
+  static String studyTopic(String topicId) => '/study/$topicId';
   static const exam = '/exam';
   static const wrong = '/wrong';
   static const critical = '/critical';
@@ -74,9 +77,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.about,
         builder: (context, state) => const AboutScreen(),
       ),
-      // Replaced by the real screens in ST-06, ST-07, ST-08, ST-12.
+      GoRoute(
+        path: Routes.study,
+        builder: (context, state) => const TopicListScreen(),
+        routes: [
+          GoRoute(
+            path: ':topicId',
+            builder: (context, state) => StudyScreen(topicId: state.pathParameters['topicId']!),
+          ),
+        ],
+      ),
+      // Replaced by the real screens in ST-07, ST-08, ST-12.
       for (final (path, title) in [
-        (Routes.study, S.studyByTopic),
         (Routes.exam, S.practiceExam),
         (Routes.wrong, S.reviewWrong),
         (Routes.critical, S.criticalQuestions),
