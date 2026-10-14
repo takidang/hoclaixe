@@ -72,4 +72,17 @@ abstract final class S {
       'Bạn đang làm dở một bài thi hạng $oldClass. Đổi hạng sẽ bỏ bài thi này và không tính kết quả.';
   static const abandonExam = 'Bỏ bài thi';
   static const cancel = 'Hủy';
+
+  // Question view (ST-05)
+  static String questionNumber(int position) => 'Câu $position';
+  static String officialNumber(int number) => 'Số gốc $number';
+  static const criticalBadge = 'Điểm liệt';
+  static const notAnswered = 'Chưa trả lời';
+  static String answerLabel(int number) => 'Đáp án $number';
+  static const answerChosen = 'Đang chọn';
+  static const answerCorrect = 'Đáp án đúng';
+  static const answerWrong = 'Bạn chọn sai';
+  static const zoomImage = 'Hình minh họa. Chạm để phóng to';
+  static const questionImage = 'Hình minh họa câu hỏi';
+  static const close = 'Đóng';
 }

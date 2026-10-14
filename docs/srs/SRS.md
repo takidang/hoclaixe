@@ -298,7 +298,7 @@ UC-30 Nhận diện biển báo bằng ảnh · UC-31 Sửa kết quả nhận d
 | Q4 | Android tối thiểu, máy test hiệu năng (NFR-03, NFR-08) | Chốt trong `/create-architecture`, trước khi viết test hiệu năng |
 | Q5 | Khóa màn hình dọc hay cho xoay | **Đã chốt: khóa dọc**; test FR-A24 vẫn gồm đổi cấu hình |
 | Q6 | Dữ liệu biển báo cho FR-A30 (Must, hạn 28/10) | **Đã chốt**: trích xuất từ QCVN 41:2024 trước 12/10; dự phòng: chỉ biển trong chương V |
-| Q8 | Đánh số câu: đối thủ đánh lại 1…250 trong pool A1/A; bộ chính thức đánh 1…600 | Chốt trong `/ux-design` — đề xuất hiện thứ tự trong danh sách kèm số gốc để tra PDF |
+| Q8 | Đánh số câu: đối thủ đánh lại 1…250 trong pool A1/A; bộ chính thức đánh 1…600 | **Chốt 14/10**: số to = thứ tự trong chủ đề/đề ("Câu 5"), góc phải chữ nhỏ "Số gốc 36" để tra PDF (ST-05) |
 | Q7 | Tải Must: ~27 FR Must cho ~50 giờ | Gom thành 9 nhóm Must khi `/create-stories`; PM xác nhận trong `/sprint-plan`. Cắt trước: FR-A29, A50, A51 (Should) |
 
 ## 9. Lịch sử thay đổi
