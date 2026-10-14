@@ -1,0 +1,194 @@
+{
+ "reviewed": "2026-10-14T02:14:58.615Z",
+ "groups": {
+  "cam": {
+   "total": 64,
+   "ok": 63,
+   "bad": 0,
+   "unseen": 1
+  },
+  "nguy_hiem": {
+   "total": 83,
+   "ok": 83,
+   "bad": 0,
+   "unseen": 0
+  },
+  "hieu_lenh": {
+   "total": 63,
+   "ok": 60,
+   "bad": 3,
+   "unseen": 0
+  },
+  "chi_dan": {
+   "total": 93,
+   "ok": 89,
+   "bad": 4,
+   "unseen": 0
+  },
+  "phu": {
+   "total": 21,
+   "ok": 21,
+   "bad": 0,
+   "unseen": 0
+  },
+  "cao_toc": {
+   "total": 43,
+   "ok": 28,
+   "bad": 15,
+   "unseen": 0
+  },
+  "vach_ke": {
+   "total": 30,
+   "ok": 23,
+   "bad": 7,
+   "unseen": 0
+  }
+ },
+ "items": [
+  {
+   "code": "R.412p",
+   "status": "bad",
+   "note": "không có hình "
+  },
+  {
+   "code": "R.413p",
+   "status": "bad",
+   "note": "khô có tên biển báo "
+  },
+  {
+   "code": "R.415b",
+   "status": "bad",
+   "note": "sai tên biển báo "
+  },
+  {
+   "code": "I.433b",
+   "status": "bad",
+   "note": "ko có tên "
+  },
+  {
+   "code": "I.433c",
+   "status": "bad",
+   "note": "ko có tên"
+  },
+  {
+   "code": "I.433d",
+   "status": "bad",
+   "note": "ko có ten"
+  },
+  {
+   "code": "I.433e",
+   "status": "bad",
+   "note": "ko có tên"
+  },
+  {
+   "code": "IE.453",
+   "status": "bad",
+   "note": "ko có tên"
+  },
+  {
+   "code": "IE.456",
+   "status": "bad",
+   "note": "ko có ảnh"
+  },
+  {
+   "code": "IE.461",
+   "status": "bad",
+   "note": "ko có ảnh "
+  },
+  {
+   "code": "IE.463",
+   "status": "bad",
+   "note": "ko có ảnh "
+  },
+  {
+   "code": "IE.464b",
+   "status": "bad",
+   "note": "sau tên biển báo "
+  },
+  {
+   "code": "IE.466",
+   "status": "bad",
+   "note": "sai:  tại tất cả các nút giao trên đường cao tốc"
+  },
+  {
+   "code": "IE.467",
+   "status": "bad",
+   "note": "ko có hình"
+  },
+  {
+   "code": "IE.467a",
+   "status": "bad",
+   "note": "sai tên biển báo"
+  },
+  {
+   "code": "IE.468",
+   "status": "bad",
+   "note": "ko có hình "
+  },
+  {
+   "code": "IE.469",
+   "status": "bad",
+   "note": "sai tên biển báo"
+  },
+  {
+   "code": "IE.470",
+   "status": "bad",
+   "note": "ko có ảnh "
+  },
+  {
+   "code": "IE.471",
+   "status": "bad",
+   "note": "sai tên biển báo"
+  },
+  {
+   "code": "IE.472",
+   "status": "bad",
+   "note": "ko có hình "
+  },
+  {
+   "code": "IE.473",
+   "status": "bad",
+   "note": "sai tên biển báo"
+  },
+  {
+   "code": "IE.474",
+   "status": "bad",
+   "note": "sai tên biển báo"
+  },
+  {
+   "code": "Vạch 3.2",
+   "status": "bad",
+   "note": "ko có hình "
+  },
+  {
+   "code": "Vạch 3.3",
+   "status": "bad",
+   "note": "ko có hình "
+  },
+  {
+   "code": "Vạch 3.4",
+   "status": "bad",
+   "note": "không có hình "
+  },
+  {
+   "code": "Vạch 4.2",
+   "status": "bad",
+   "note": "ko có hình "
+  },
+  {
+   "code": "Vạch 6.1",
+   "status": "bad",
+   "note": "không có hình "
+  },
+  {
+   "code": "Vạch 9.3",
+   "status": "bad",
+   "note": "không có ảnh"
+  },
+  {
+   "code": "Vạch 9.5",
+   "status": "bad",
+   "note": "ko có ảnh"
+  }
+ ]
+}

@@ -53,6 +53,9 @@ khi chấm điểm, không phát hành thương mại; app ghi rõ nguồn và t
 | Điểm liệt từ 01/3/2027 | **Không được nhắc tới** trong TT 108 (đã tìm toàn văn bản .docx) | TT-108-2026 |
 | Bộ câu hỏi từ 01/3/2027 | TT 108 không ban hành bộ câu hỏi; giao Cục CSGT xây dựng | TT-108-2026 (toàn văn) |
 | Loại xe hạng A1, A, B | Nguyên văn trong `S.classVehicles` (`src/app/lib/core/strings.dart`) | LUAT-36-2024, Điều 57 khoản 1 điểm a, b, d |
+| Tên biển chỉ dẫn cao tốc (IE.450–IE.474) | Theo bảng "Số hiệu và tên biển chỉ dẫn" | QCVN-41-2024, mục 46.8 (tr. 43–44) |
+| Lỗi in trong QCVN: nhãn hình "h) Biển số R.413p" ở mục D.15 là R.412p | Danh mục dùng R.412p | QCVN-41-2024, Phụ lục D, mục D.15 (tr. 125) |
+| Sửa tay danh mục biển báo sau soát 14/10 | `data/sign-catalog/overrides.json` (mỗi mục ghi trang) | QCVN-41-2024 |
 | Sửa đổi Điều 57 Luật 36/2024 | Chỉ sửa **khoản 9** (thẩm quyền quy định mẫu GPLX: Bộ trưởng Bộ Công an). Khoản 1 (phân hạng) giữ nguyên. Các khoản thay/bỏ cụm từ cuối Điều 7 (khoản 21–23) không nhắc Điều 57 | LUAT-118-2025, Điều 7 khoản 11 (tr. 18), khoản 21–23 (tr. 21–22) |
 
 ## 4. Chưa có / cần bổ sung

@@ -426,6 +426,56 @@ def road_markings(doc, img_dir, issues):
     return result
 
 
+def crop_images(doc, img_dir, code, crops):
+    """Render page regions ({'page': 1-based, 'rect': [x0, y0, x1, y1]} in PDF points) to PNG files."""
+    paths = []
+    for k, crop in enumerate(crops):
+        page = doc[crop['page'] - 1]
+        name = f"{code.replace('Vạch ', 'V').replace('.', '_' if code.startswith('Vạch') else '')}_fix{k}.png"
+        page.get_pixmap(matrix=pymupdf.Matrix(2, 2), clip=pymupdf.Rect(crop['rect'])).save(os.path.join(img_dir, name))
+        paths.append(f'images/{name}')
+    return paths
+
+
+def apply_overrides(signs, doc, img_dir, path, issues):
+    """Hand corrections checked against the PDF (data/sign-catalog/overrides.json): drop codes that are not
+    signs of their own, fix names, crop missing figures, add codes the automatic pass missed."""
+    if not os.path.exists(path):
+        return
+    with open(path, encoding='utf-8') as fh:
+        fix = json.load(fh)
+    for d in fix.get('drop', []):
+        if signs.pop(d['code'], None) is None:
+            issues['override_drop_unknown'].append(d['code'])
+    for s in fix.get('set', []):
+        e = signs.get(s['code'])
+        if e is None:
+            issues['override_set_unknown'].append(s['code'])
+            continue
+        if 'name' in s:
+            e['name'] = s['name']
+        if 'images' in s:
+            e['images'] = crop_images(doc, img_dir, s['code'], s['images'])
+        if 'noImageReason' in s:
+            e['images'] = []
+            e['noImageReason'] = s['noImageReason']
+        e['source'] = dict(e['source'], correctedFromPage=s['page'])
+    for a in fix.get('add', []):
+        if a['code'] in signs:
+            issues['override_add_exists'].append(a['code'])
+            continue
+        signs[a['code']] = {
+            'code': a['code'], 'name': a['name'], 'group': HIGHWAY_GROUP[0], 'groupName': HIGHWAY_GROUP[1],
+            'section': a['section'], 'heading': a['heading'], 'summary': a['summary'], 'meaning': a['summary'],
+            'images': crop_images(doc, img_dir, a['code'], a['images']),
+            'source': dict(SOURCE, appendix=None, section=a['section'], page=a['page'], addedByHand=True),
+        }
+    # issues raised before the fixes no longer apply to corrected codes
+    fixed = {x['code'] for x in fix.get('drop', []) + fix.get('set', []) + fix.get('add', [])}
+    for key in ('code_without_image', 'code_without_name'):
+        issues[key] = [c for c in issues[key] if c not in fixed]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=None)
@@ -640,8 +690,15 @@ def main():
         if code not in signs:
             signs[code] = entry
     signs.update(road_markings(doc, img_dir, issues))
+    apply_overrides(signs, doc, img_dir, os.path.join(args.out, 'overrides.json'), issues)
+    # images of dropped codes or replaced by hand crops are not used any more
+    used = {os.path.basename(i) for e in signs.values() for i in e['images']}
+    for f in glob.glob(os.path.join(img_dir, '*.*')):
+        if os.path.basename(f) not in used:
+            os.remove(f)
+            saved = {k: v for k, v in saved.items() if v != os.path.basename(f)}
 
-    order = ['cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', HIGHWAY_GROUP[0], MARKING_GROUP[0]]
+    order =['cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', HIGHWAY_GROUP[0], MARKING_GROUP[0]]
 
     def sort_key(c):
         m = re.match(r'([A-Z]+)\.(\d+)([a-z]?)', c)

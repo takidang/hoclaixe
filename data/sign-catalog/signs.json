@@ -4320,27 +4320,8 @@
    "section": "D.15",
    "heading": "Biển số R.412 (i,j,k,l,m,n,o,p) \"Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe”",
    "meaning": "a) Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".\nb) Khi kết thúc làn đường làn đường dành cho xe ô tô con đi lại, đặt biển số R.413j \"Kết thúc làn đường dành cho xe ô tô con\".\nc) Khi kết thúc làn đường dành cho xe ô tô tải đi lại, đặt biển số R.413k \"Kết thúc làn đường dành cho xe ô tô tải\".\nd) Khi kết thúc làn đường dành cho xe máy đi lại, đặt biển số R.413l \"Kết thúc làn đường dành cho xe máy\".\ne) Khi kết thúc làn đường dành riêng cho xe buýt đi lại, đặt biển số R.413m \"Kết thúc làn đường dành cho xe buýt\".\nf) Khi kết thúc làn đường dành cho xe ô tô đi lại, đặt biển số R.413n \"Kết thúc làn đường dành cho xe ô tô\".\ng) Khi kết thúc làn đường dành cho xe máy và xe đạp đi lại, đặt biển số R.413o \"Kết thúc làn đường dành cho xe máy và xe đạp\".\nh) Khi kết thúc làn đường dành cho đạp đi lại, đặt biển số R.413p \"Kết thúc làn đường dành cho xe đạp\". (ví dụ: Biển kết thúc làn đường dành riêng cho nhóm xe khách và xe con)",
-   "images": [],
-   "source": {
-    "doc": "QCVN 41:2024/BGTVT",
-    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
-    "effectiveDate": "2025-01-01",
-    "appendix": "D",
-    "section": "D.15",
-    "page": 125
-   }
-  },
-  {
-   "code": "R.413p",
-   "name": "",
-   "summary": "Khi kết thúc làn đường dành cho đạp đi lại, đặt biển số R.413p \"Kết thúc làn đường dành cho xe đạp\". (ví dụ: Biển kết thúc làn đường dành riêng cho nhóm xe khách và xe con)",
-   "group": "hieu_lenh",
-   "groupName": "Biển hiệu lệnh",
-   "section": "D.15",
-   "heading": "Biển số R.412 (i,j,k,l,m,n,o,p) \"Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe”",
-   "meaning": "a) Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".\nb) Khi kết thúc làn đường làn đường dành cho xe ô tô con đi lại, đặt biển số R.413j \"Kết thúc làn đường dành cho xe ô tô con\".\nc) Khi kết thúc làn đường dành cho xe ô tô tải đi lại, đặt biển số R.413k \"Kết thúc làn đường dành cho xe ô tô tải\".\nd) Khi kết thúc làn đường dành cho xe máy đi lại, đặt biển số R.413l \"Kết thúc làn đường dành cho xe máy\".\ne) Khi kết thúc làn đường dành riêng cho xe buýt đi lại, đặt biển số R.413m \"Kết thúc làn đường dành cho xe buýt\".\nf) Khi kết thúc làn đường dành cho xe ô tô đi lại, đặt biển số R.413n \"Kết thúc làn đường dành cho xe ô tô\".\ng) Khi kết thúc làn đường dành cho xe máy và xe đạp đi lại, đặt biển số R.413o \"Kết thúc làn đường dành cho xe máy và xe đạp\".\nh) Khi kết thúc làn đường dành cho đạp đi lại, đặt biển số R.413p \"Kết thúc làn đường dành cho xe đạp\". (ví dụ: Biển kết thúc làn đường dành riêng cho nhóm xe khách và xe con)",
    "images": [
-    "images/R413p.jpeg"
+    "images/R412p_fix0.png"
    ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
@@ -4348,7 +4329,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
@@ -4374,7 +4356,7 @@
   },
   {
    "code": "R.415b",
-   "name": "Biển gộp làn đường theo phương tiện",
+   "name": "Kết thúc làn đường theo phương tiện",
    "summary": "Để báo hiệu cho người tham gia giao thông biết số lượng làn đường và loại xe được phép lưu thông trên từng làn đường theo quy định, đặt biển số R.415a “Biển gộp làn đường theo phương tiện” (Hình D.18a). Tùy theo tình hình thực tế về số lượng làn đường và phương án tổ chức giao thông mà sử dụng các ký hiệu phương tiện trên các làn cho phù hợp. Hình trên biển số R.415a chỉ là một trường hợp. Biển không áp dụng với các xe chuyển làn để ra vào hoặc dừng, đỗ bên đường. Căn cứ vào vạch sơn thực tế trên đường để thực hiện việc chuyển làn cho phù hợp giữa các làn được phép lưu thông. Để chỉ dẫn hểt đoạn đường lưu thông trên từng làn đường theo quy định, đặt biển số R.415b “Kết thúc làn đường theo phương tiện” (Hình D.18b). phương tiện”",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4390,7 +4372,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.16",
-    "page": 126
+    "page": 126,
+    "correctedFromPage": 126
    }
   },
   {
@@ -5298,7 +5281,7 @@
   },
   {
    "code": "I.428a",
-   "name": "Cửa hàng xăng d ầu",
+   "name": "Cửa hàng xăng dầu",
    "summary": "Để chỉ dẫn những nơi có đặt cửa hàng xăng, dầu hoặc nạp điện hoặc cửa hàng xăng, dầu và nạp điện phục vụ cho phương tiện giao thông đi trên đường, đặt biển số I.428a \"Cửa hàng xăng dầu\", biển số I.428b “Trạm nạp điện”, biển số I.428c “Cửa hàng xăng dầu và Trạm nạp điện”.",
    "group": "chi_dan",
    "groupName": "Biển chỉ dẫn",
@@ -5314,7 +5297,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.30",
-    "page": 139
+    "page": 139,
+    "correctedFromPage": 139
    }
   },
   {
@@ -5327,8 +5311,7 @@
    "heading": "Biển số I.428a \"Cửa hàng xăng d ầu\", Biển số I.428b “Trạm nạp điện”, Biển số I.428c “Cửa hàng xăng dầu và Trạm nạp điện”",
    "meaning": "Để chỉ dẫn những nơi có đặt cửa hàng xăng, dầu hoặc nạp điện hoặc cửa hàng xăng, dầu và nạp điện phục vụ cho phương tiện giao thông đi trên đường, đặt biển số I.428a \"Cửa hàng xăng dầu\", biển số I.428b “Trạm nạp điện”, biển số I.428c “Cửa hàng xăng dầu và Trạm nạp điện”.",
    "images": [
-    "images/I428b.jpeg",
-    "images/I428b_1409.jpeg"
+    "images/I428b_fix0.png"
    ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
@@ -5336,7 +5319,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.30",
-    "page": 139
+    "page": 139,
+    "correctedFromPage": 140
    }
   },
   {
@@ -5348,14 +5332,17 @@
    "section": "E.30",
    "heading": "Biển số I.428a \"Cửa hàng xăng d ầu\", Biển số I.428b “Trạm nạp điện”, Biển số I.428c “Cửa hàng xăng dầu và Trạm nạp điện”",
    "meaning": "Để chỉ dẫn những nơi có đặt cửa hàng xăng, dầu hoặc nạp điện hoặc cửa hàng xăng, dầu và nạp điện phục vụ cho phương tiện giao thông đi trên đường, đặt biển số I.428a \"Cửa hàng xăng dầu\", biển số I.428b “Trạm nạp điện”, biển số I.428c “Cửa hàng xăng dầu và Trạm nạp điện”.",
-   "images": [],
+   "images": [
+    "images/I428c_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.30",
-    "page": 139
+    "page": 139,
+    "correctedFromPage": 140
    }
   },
   {
@@ -5465,7 +5452,7 @@
   },
   {
    "code": "I.433b",
-   "name": "",
+   "name": "Nơi cắm trại",
    "summary": "Trên các tuyến đường đối ngoại và các tuyến đường có nhiều người nước ngoài đi lại, để chỉ dẫn sắp đến nơi có vị trí cắm trại, nơi tập kết nhà lưu động, đặt biển số I.433b \"Nơi cắm trại\", biển số I.433c “Nơi dành cho nhà lưu động” hoặc biển số I.433d “Nơi cắm trại và nhà lưu động”.",
    "group": "chi_dan",
    "groupName": "Biển chỉ dẫn",
@@ -5481,12 +5468,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.35b",
-    "page": 141
+    "page": 141,
+    "correctedFromPage": 141
    }
   },
   {
    "code": "I.433c",
-   "name": "",
+   "name": "Nơi dành cho nhà lưu động",
    "summary": "Trên các tuyến đường đối ngoại và các tuyến đường có nhiều người nước ngoài đi lại, để chỉ dẫn sắp đến nơi có vị trí cắm trại, nơi tập kết nhà lưu động, đặt biển số I.433b \"Nơi cắm trại\", biển số I.433c “Nơi dành cho nhà lưu động” hoặc biển số I.433d “Nơi cắm trại và nhà lưu động”.",
    "group": "chi_dan",
    "groupName": "Biển chỉ dẫn",
@@ -5502,12 +5490,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.35b",
-    "page": 141
+    "page": 141,
+    "correctedFromPage": 141
    }
   },
   {
    "code": "I.433d",
-   "name": "",
+   "name": "Nơi cắm trại và nhà lưu động",
    "summary": "Trên các tuyến đường đối ngoại và các tuyến đường có nhiều người nước ngoài đi lại, để chỉ dẫn sắp đến nơi có vị trí cắm trại, nơi tập kết nhà lưu động, đặt biển số I.433b \"Nơi cắm trại\", biển số I.433c “Nơi dành cho nhà lưu động” hoặc biển số I.433d “Nơi cắm trại và nhà lưu động”.",
    "group": "chi_dan",
    "groupName": "Biển chỉ dẫn",
@@ -5523,12 +5512,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.35b",
-    "page": 141
+    "page": 141,
+    "correctedFromPage": 141
    }
   },
   {
    "code": "I.433e",
-   "name": "",
+   "name": "Nhà trọ",
    "summary": "Trên các tuyến đường đối ngoại và các tuyến đường có nhiều người nước ngoài đi lại, để chỉ dẫn sắp đến nơi có nhà trọ, đặt biển số I.433e \"Nhà trọ\".",
    "group": "chi_dan",
    "groupName": "Biển chỉ dẫn",
@@ -5544,7 +5534,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": "E",
     "section": "E.35c",
-    "page": 142
+    "page": 142,
+    "correctedFromPage": 142
    }
   },
   {
@@ -6956,25 +6947,6 @@
    }
   },
   {
-   "code": "IE.453",
-   "name": "",
-   "group": "cao_toc",
-   "groupName": "Biển chỉ dẫn trên đường cao tốc",
-   "section": "Điều 47.4.1",
-   "heading": "Biển số IE.453a chỉ dẫn khoảng cách đến điểm kết thúc đường cao tốc (Hình",
-   "summary": "Kích thước Biển số IE.453 được quy định chi tiết trong Phụ lục P (mục P.4) của Quy chuẩn này.",
-   "meaning": "Biển số IE.453a chỉ dẫn khoảng cách đến điểm kết thúc đường cao tốc (Hình 10a) và Biển số IE.453b chỉ dẫn điểm kết thúc đường cao tốc (Hình 10b). Kích thước Biển số IE.453 được quy định chi tiết trong Phụ lục P (mục P.4) của Quy chuẩn này.",
-   "images": [],
-   "source": {
-    "doc": "QCVN 41:2024/BGTVT",
-    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
-    "effectiveDate": "2025-01-01",
-    "appendix": null,
-    "section": "Điều 47.4.1",
-    "page": 46
-   }
-  },
-  {
    "code": "IE.453a",
    "name": "Chỉ dẫn khoảng cách đến điểm kết thúc đường cao tốc",
    "group": "cao_toc",
@@ -7059,22 +7031,26 @@
    }
   },
   {
-   "code": "IE.456",
-   "name": "Chỉ dẫn khoảng cách và hướng rẽ đến trạm dừng nghỉ",
+   "code": "IE.455",
+   "name": "Khoảng cách đến các lối ra tiếp theo",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
-   "section": "Điều 47.7.1",
-   "heading": "Biển số IE.456 chỉ dẫn khoảng cách và hướng rẽ đến trạm dừng nghỉ, được",
-   "summary": "Biển số IE.456 chỉ dẫn khoảng cách và hướng rẽ đến trạm dừng nghỉ, được đặt bên lề đường cao tốc.",
-   "meaning": "Biển số IE.456 chỉ dẫn khoảng cách và hướng rẽ đến trạm dừng nghỉ, được đặt bên lề đường cao tốc. Biển chỉ dẫn đến trạm dừng nghỉ bố trí ba hoặc bốn dịch vụ cơ bản, trong đó có ba dịch vụ chính sau: xăng dầu - ăn uống - nơi cung cấp thông tin. Dịch vụ thứ tư được lựa chọn trong số dịch vụ có trong trạm dừng nghỉ, như: điện thoại; nhà nghỉ; trạm sửa chữa; cấp cứu; bãi đỗ xe tải; dịch vụ cho người khuyết tật … Các loại dịch vụ trong trạm dừng nghỉ được biểu hiện dưới dạng hình vẽ, biểu tượng đơn giản, dễ hiểu. Kích thước biểu tượng dịch vụ được quy định chi tiết trong Phụ lục P (mục P.9) của Quy chuẩn này.",
-   "images": [],
+   "section": "Điều 47.6",
+   "heading": "Khoảng cách đến các lối ra tiếp theo",
+   "summary": "Biển số IE.455 chỉ dẫn khoảng cách đến các lối ra tiếp theo (Hình 12).",
+   "meaning": "Biển số IE.455 chỉ dẫn khoảng cách đến các lối ra tiếp theo (Hình 12).",
+   "images": [
+    "images/IE455_fix0.png",
+    "images/IE455_fix1.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": null,
-    "section": "Điều 47.7.1",
-    "page": 49
+    "section": "Điều 47.6",
+    "page": 48,
+    "addedByHand": true
    }
   },
   {
@@ -7204,25 +7180,6 @@
    }
   },
   {
-   "code": "IE.459",
-   "name": "Chỉ dẫn đến khu tham quan",
-   "group": "cao_toc",
-   "groupName": "Biển chỉ dẫn trên đường cao tốc",
-   "section": "Điều 47.10.1",
-   "heading": "Biển số IE.459 chỉ dẫn đến khu tham quan, du lịch được đặt ở bên lề đường",
-   "summary": "Biển số IE.459 chỉ dẫn đến khu tham quan, du lịch được đặt ở bên lề đường (Hình 18).",
-   "meaning": "Biển số IE.459 chỉ dẫn đến khu tham quan, du lịch được đặt ở bên lề đường (Hình 18). Biển này chỉ dẫn khoảng cách và hướng đến khu du lịch, khu danh lam thắng cảnh. Kích thước chi tiết biển chỉ dẫn khu tham quan, du lịch được quy định trong Phụ lục P (mục P.11) của Quy chuẩn này.",
-   "images": [],
-   "source": {
-    "doc": "QCVN 41:2024/BGTVT",
-    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
-    "effectiveDate": "2025-01-01",
-    "appendix": null,
-    "section": "Điều 47.10.1",
-    "page": 51
-   }
-  },
-  {
    "code": "IE.459a",
    "name": "Thông báo khoảng cách đến khu tham quan",
    "group": "cao_toc",
@@ -7265,22 +7222,49 @@
    }
   },
   {
+   "code": "IE.460",
+   "name": "Cột lý trình kilômét",
+   "group": "cao_toc",
+   "groupName": "Biển chỉ dẫn trên đường cao tốc",
+   "section": "Điều 47.11",
+   "heading": "Cột lý trình kilômét",
+   "summary": "Biển số IE.460 chỉ dẫn cột lý trình kilômét (Hình 19).",
+   "meaning": "Biển số IE.460 chỉ dẫn cột lý trình kilômét (Hình 19).",
+   "images": [
+    "images/IE460_fix0.png"
+   ],
+   "source": {
+    "doc": "QCVN 41:2024/BGTVT",
+    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
+    "effectiveDate": "2025-01-01",
+    "appendix": null,
+    "section": "Điều 47.11",
+    "page": 52,
+    "addedByHand": true
+   }
+  },
+  {
    "code": "IE.461",
-   "name": "Chỉ dẫn khoảng cách và hướng đến khu dịch vụ công cộng",
+   "name": "Khu dịch vụ công cộng, giải trí",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.12",
    "heading": "Khu dịch vụ công cộng, giải trí",
    "summary": "Khu dịch vụ công cộng, giải trí Biển số IE.461 chỉ dẫn khoảng cách và hướng đến khu dịch vụ công cộng, giải trí.",
    "meaning": "Khu dịch vụ công cộng, giải trí Biển số IE.461 chỉ dẫn khoảng cách và hướng đến khu dịch vụ công cộng, giải trí. Biển này được thể hiện trên nền màu xanh lá cây, chữ màu trắng kết hợp với các biểu tượng dịch vụ tương ứng (Hình 20). Các biển này chỉ được sử dụng khi có yêu cầu (định hướng cho người điều khiển phương tiện giao thông tới các nơi có phục vụ công cộng như sân bay, ga tàu hoả, bến xe khách, bến cảng, bến tàu thuỷ, v.v… hay đến nơi có dịch vụ giải trí như sân gôn, khu câu cá, bãi tắm biển, khu rừng sinh thái. Biển này được lắp đặt bên lề đường, gần khu vực nút giao rẽ vào nơi cung cấp dịch vụ. Chi tiết biển chỉ dẫn đến khu dịch vụ công cộng, giải trí được quy định trong Phụ lục P (mục P.12) của Quy chuẩn này.",
-   "images": [],
+   "images": [
+    "images/IE461_fix0.png",
+    "images/IE461_fix1.png",
+    "images/IE461_fix2.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.12",
-    "page": 52
+    "page": 52,
+    "correctedFromPage": 52
    }
   },
   {
@@ -7301,25 +7285,6 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.13",
-    "page": 53
-   }
-  },
-  {
-   "code": "IE.463",
-   "name": "Chỉ dẫn đến Công trình kiểm soát tải trọng xe",
-   "group": "cao_toc",
-   "groupName": "Biển chỉ dẫn trên đường cao tốc",
-   "section": "Điều 47.14",
-   "heading": "Công trình kiểm soát tải trọng xe",
-   "summary": "Công trình kiểm soát tải trọng xe Biển số IE.463 chỉ dẫn đến Công trình kiểm soát tải trọng xe (Hình 22), bao gồm: biển số IE.463a chỉ dẫn khoảng cách đến Công trình kiểm soát tải trọng xe;",
-   "meaning": "Công trình kiểm soát tải trọng xe Biển số IE.463 chỉ dẫn đến Công trình kiểm soát tải trọng xe (Hình 22), bao gồm: biển số IE.463a chỉ dẫn khoảng cách đến Công trình kiểm soát tải trọng xe; Biển số IE.463b chỉ dẫn hướng rẽ vào nơi đặt Công trình kiểm soát tải trọng xe; biển số IE.463c chỉ dẫn lối vào Công trình kiểm soát tải trọng xe. Biển số IE.463c chỉ lối vào Công trình kiểm soát tải trọng xe được đặt ở nút giao giữa đường cao tốc và đường vào Công trình kiểm soát tải trọng xe. Chi tiết biển chỉ dẫn đến Công trình kiểm soát tải trọng xe được quy định trong Phụ lục P (mục P.15) của Quy chuẩn này.",
-   "images": [],
-   "source": {
-    "doc": "QCVN 41:2024/BGTVT",
-    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
-    "effectiveDate": "2025-01-01",
-    "appendix": null,
-    "section": "Điều 47.14",
     "page": 53
    }
   },
@@ -7387,27 +7352,30 @@
    }
   },
   {
-   "code": "IE.464",
-   "name": "Chỉ dẫn địa điểm và phương hướng dùng để chỉ dẫn địa danh nơi đến và mũi trên cho một làn xe chạy cụ thể",
+   "code": "IE.464a",
+   "name": "Chỉ dẫn lối ra một chiều",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.15",
    "heading": "Địa điểm và phương hướng",
-   "summary": "Địa điểm và phương hướng Biển số IE.464 chỉ dẫn địa điểm và phương hướng dùng để chỉ dẫn địa danh nơi đến và mũi trên cho một làn xe chạy cụ thể, bao gồm tên địa danh nơi đến và mũi tên chỉ xuống làn xe chạy (Hình 23).",
-   "meaning": "Địa điểm và phương hướng Biển số IE.464 chỉ dẫn địa điểm và phương hướng dùng để chỉ dẫn địa danh nơi đến và mũi trên cho một làn xe chạy cụ thể, bao gồm tên địa danh nơi đến và mũi tên chỉ xuống làn xe chạy (Hình 23). Các mũi tên sử dụng trong biển này bao gồm: 1) mũi tên phân làn có dạng mũi tên thẳng đứng hướng xuống dưới; 2) mũi tên chỉ hướng có dạng xiên lên trên để chỉ làn xe có hiệu lực đến một địa điểm nào đó. Biển chỉ dẫn địa điểm và phương hướng được bố trí trên giá long môn trước khu vực lối ra. Biển số IE.464b đặt tại dải phân ngã ba của nhánh rẽ hoặc ở vị trí gần nút giao phía lưng đường cong trên đường ra khỏi đường cao tốc. Chi tiết biển chỉ dẫn địa điểm và phương hướng được quy định trong Phụ lục P (mục P.16) của Quy chuẩn này.",
-   "images": [],
+   "summary": "Biển số IE.464a chỉ dẫn lối ra một chiều (Hình 23a).",
+   "meaning": "Biển số IE.464a chỉ dẫn lối ra một chiều (Hình 23a).",
+   "images": [
+    "images/IE464a_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.15",
-    "page": 54
+    "page": 54,
+    "addedByHand": true
    }
   },
   {
    "code": "IE.464b",
-   "name": "Tại dải phân ngã ba của nhánh rẽ",
+   "name": "Chỉ dẫn hướng ra",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.5",
@@ -7423,7 +7391,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.5",
-    "page": 47
+    "page": 47,
+    "correctedFromPage": 55
    }
   },
   {
@@ -7449,7 +7418,7 @@
   },
   {
    "code": "IE.466",
-   "name": "Chỉ dẫn sơ đồ lối ra một chiều tại tất cả các nút giao trên đường cao tốc",
+   "name": "Sơ đồ lối ra một chiều",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.17",
@@ -7465,31 +7434,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.17",
-    "page": 56
-   }
-  },
-  {
-   "code": "IE.467",
-   "name": "Thì sử dụng các biển cảnh báo W.207g và W.238",
-   "group": "cao_toc",
-   "groupName": "Biển chỉ dẫn trên đường cao tốc",
-   "section": "Điều 47.18",
-   "heading": "Nhập làn",
-   "summary": "Trong trường hợp không lắp đặt biển IE.467 thì sử dụng các biển cảnh báo W.207g và W.238.",
-   "meaning": "Nhập làn Biển số IE.467a chỉ dẫn vị trí nhập làn xe tại các vị trí nút giao thông có lưu lượng xe lớn. Để chỉ dẫn cho người điều kiển phương tiện giao thông biết trước sắp đến vị trí nhập làn xe (Biển số IE.467b). Biển được đặt bên lề đường gần vị trí nút giao. Chi tiết biển chỉ dẫn nhập làn được quy định trong Phụ lục P (mục P.19) của Quy chuẩn này. Trong trường hợp không lắp đặt biển IE.467 thì sử dụng các biển cảnh báo W.207g và W.238.",
-   "images": [],
-   "source": {
-    "doc": "QCVN 41:2024/BGTVT",
-    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
-    "effectiveDate": "2025-01-01",
-    "appendix": null,
-    "section": "Điều 47.18",
-    "page": 56
+    "page": 56,
+    "correctedFromPage": 43
    }
   },
   {
    "code": "IE.467a",
-   "name": "Chỉ dẫn vị trí nhập làn xe tại các vị trí nút giao thông có lưu lượng xe lớn",
+   "name": "Chỉ dẫn vị trí nhập làn xe",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.18",
@@ -7505,7 +7456,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.18",
-    "page": 56
+    "page": 56,
+    "correctedFromPage": 56
    }
   },
   {
@@ -7526,25 +7478,6 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.18",
-    "page": 56
-   }
-  },
-  {
-   "code": "IE.468",
-   "name": "Chướng ngại vật phía trước",
-   "group": "cao_toc",
-   "groupName": "Biển chỉ dẫn trên đường cao tốc",
-   "section": "Điều 47.19",
-   "heading": "Chướng ngại vật phía trước",
-   "summary": "Chướng ngại vật phía trước Biển số IE.468 chỉ dẫn chướng ngại vật phía trước để báo cảnh báo phía trước có sự cản trở lưu thông bình thường (nằm bên trong phần xe chạy hay ngay sát phần đường xe chạy) và chỉ dẫn hướng đi qua đó cần đặt biển.",
-   "meaning": "Chướng ngại vật phía trước Biển số IE.468 chỉ dẫn chướng ngại vật phía trước để báo cảnh báo phía trước có sự cản trở lưu thông bình thường (nằm bên trong phần xe chạy hay ngay sát phần đường xe chạy) và chỉ dẫn hướng đi qua đó cần đặt biển. Biển số IE.468a chỉ dẫn đi theo hướng bên trái; Biển số IE.468b chỉ dẫn đi được cả hai hướng; Biển số IE.468c chỉ dẫn đi theo hướng bên phải (Hình 27). Biển chỉ dẫn chướng ngại vật phía trước gồm các đường xiên màu đen được bố trí trên nền m àu vàng huỳnh quang. Chi tiết biển chỉ dẫn chướng ngại vật phía trước được quy định trong Phụ lục P (mục P.20) của Quy chuẩn này.",
-   "images": [],
-   "source": {
-    "doc": "QCVN 41:2024/BGTVT",
-    "issuedWith": "Thông tư 51/2024/TT-BGTVT",
-    "effectiveDate": "2025-01-01",
-    "appendix": null,
-    "section": "Điều 47.19",
     "page": 56
    }
   },
@@ -7613,7 +7546,7 @@
   },
   {
    "code": "IE.469",
-   "name": "Tiêu phản quảng",
+   "name": "Hướng rẽ",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.20",
@@ -7629,31 +7562,35 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.20",
-    "page": 57
+    "page": 57,
+    "correctedFromPage": 43
    }
   },
   {
    "code": "IE.470",
-   "name": "Sử dụng chữ màu trắng trên nền màu xanh lá cây",
+   "name": "Số điện thoại khẩn cấp",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.21",
    "heading": "Số điện thoại khẩn cấp",
    "summary": "Số điện thoại khẩn cấp Biển số IE.470 sử dụng chữ màu trắng trên nền màu xanh lá cây, cung cấp số điện thoại khẩn cấp cho người điều khiện phương tiện giao thông trong trường hợp khẩn cấp, xảy ra sự cố, tai nạn trên đường cao tốc (Hình 29).",
    "meaning": "Số điện thoại khẩn cấp Biển số IE.470 sử dụng chữ màu trắng trên nền màu xanh lá cây, cung cấp số điện thoại khẩn cấp cho người điều khiện phương tiện giao thông trong trường hợp khẩn cấp, xảy ra sự cố, tai nạn trên đường cao tốc (Hình 29). Biển này được lắp đặt bên lề đường. Chi tiết biển chỉ dẫn số điện thoại khẩn cấp được quy định trong Phụ lục P (mục P.22) của Quy chuẩn này.",
-   "images": [],
+   "images": [
+    "images/IE470_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.21",
-    "page": 58
+    "page": 58,
+    "correctedFromPage": 43
    }
   },
   {
    "code": "IE.471",
-   "name": "Sử dụng chữ màu đen trên nền màu vàng huỳnh quang có viền màu đen",
+   "name": "Giữ khoảng cách lái xe an toàn",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.22",
@@ -7669,31 +7606,36 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.22",
-    "page": 58
+    "page": 58,
+    "correctedFromPage": 44
    }
   },
   {
    "code": "IE.472",
-   "name": "Sử dụng chữ màu trắng trên nền màu xanh lá cây",
+   "name": "Trạm thu phí",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.23",
    "heading": "Trạm thu phí",
    "summary": "Trạm thu phí Biển số IE.472 sử dụng chữ màu trắng trên nền màu xanh lá cây, được đặt cách trạm thu phí với một khoảng cách phù hợp nhằm thông báo cho người điều khiển phương tiện biết trước chuẩn bị đến trạm thu phí (Hình 31).",
    "meaning": "Trạm thu phí Biển số IE.472 sử dụng chữ màu trắng trên nền màu xanh lá cây, được đặt cách trạm thu phí với một khoảng cách phù hợp nhằm thông báo cho người điều khiển phương tiện biết trước chuẩn bị đến trạm thu phí (Hình 31). Biển này được lắp đặt bên lề đường hoặc trên giá kiểu khung. Chi tiết biển chỉ dẫn trạm thu phí và các biển chỉ dẫn khác liên quan đến trạm thu phí được quy định trong Phụ lục P (mục P.24) của Quy chuẩn này.",
-   "images": [],
+   "images": [
+    "images/IE472_fix0.png",
+    "images/IE472_fix1.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.23",
-    "page": 59
+    "page": 59,
+    "correctedFromPage": 44
    }
   },
   {
    "code": "IE.473",
-   "name": "Cảnh báo cho người điều khiển phương tiện chú ý lái xe và giảm tốc độ tại khu vực có nguy cơ mất an toàn giao thông",
+   "name": "Giảm tốc độ",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.24",
@@ -7709,12 +7651,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.24",
-    "page": 59
+    "page": 59,
+    "correctedFromPage": 44
    }
   },
   {
    "code": "IE.474",
-   "name": "Sử dụng chữ màu trắng trên nền màu xanh lá cây",
+   "name": "Lối ra",
    "group": "cao_toc",
    "groupName": "Biển chỉ dẫn trên đường cao tốc",
    "section": "Điều 47.25",
@@ -7730,7 +7673,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": null,
     "section": "Điều 47.25",
-    "page": 60
+    "page": 60,
+    "correctedFromPage": 44
    }
   },
   {
@@ -7953,14 +7897,17 @@
    "heading": "Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
    "summary": "Và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
    "meaning": "và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
-   "images": [],
+   "images": [
+    "images/V3_2_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
-    "page": 168
+    "page": 168,
+    "correctedFromPage": 168
    }
   },
   {
@@ -7972,14 +7919,17 @@
    "heading": "Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
    "summary": "Và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.",
    "meaning": "và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.\n- Vạch 3.4: sử dụng để báo hiệu sắp đến đến vạch 1.2 hoặc vạch 2.2; hoặc sử dụng để kẻ vạch chuyển tiếp từ vạch 1.1 đến vạch 1.2; hoặc từ vạch 2.1 đến vạch 2.2. Bề rộng vạch 3.4 được lấy tương ứng theo bề rộng của vạch 1.2 hoặc vạch 2.2.",
-   "images": [],
+   "images": [
+    "images/V3_3_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
-    "page": 168
+    "page": 168,
+    "correctedFromPage": 168
    }
   },
   {
@@ -7998,8 +7948,10 @@
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
-    "page": 168
-   }
+    "page": 168,
+    "correctedFromPage": 168
+   },
+   "noImageReason": "QCVN 41:2024 không có hình minh họa cho vạch 3.4 (chỉ mô tả quy cách)."
   },
   {
    "code": "Vạch 4.1",
@@ -8031,14 +7983,17 @@
    "heading": "vạch kênh hóa dòng xe dạng chữ V",
    "summary": "Vạch kênh hóa dòng xe dạng chữ V được sử dụng để giới hạn các phần mặt đường không sử dụng cho xe chạy mà sử dụng để kênh hóa các dòng giao thông giao thông trên đường. Khi vạch 4.2 được sử dụng, các phương tiện giao thông phải đi theo tuyến đường quy định, không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp.",
    "meaning": "Ý nghĩa sử dụng: Vạch kênh hóa dòng xe dạng chữ V được sử dụng để giới hạn các phần mặt đường không sử dụng cho xe chạy mà sử dụng để kênh hóa các dòng giao thông giao thông trên đường. Khi vạch 4.2 được sử dụng, các phương tiện giao thông phải đi theo tuyến đường quy định, không được lấn vạch hoặc cắt qua vạch trừ những trường hợp khẩn cấp.\nQuy cách vạch như sau: Vạch 4.2 bao gồm các vạch liền nét, màu trắng được vẽ song song, mỗi vạch rộng 45 cm, khoảng cách hai mép vạch 100 cm, vạch nghiêng một góc 135o theo chiều ngược chiều kim đồng hồ so với hướng chuyển động của xe. Vạch xác định phạm vi kẻ vạch kênh hóa dòng xe dạng chữ V là vạch đơn liền nét, màu trắng. Vạch này có bề rộng nét vẽ b = 20 cm. Hình G.28 minh họa cách vẽ vạch kênh hóa dòng xe dạng chữ V. Đơn vị: cm c. Sử dụng vạch 4.1 và 4.2 để kênh hóa các dòng xe\n- Sử dụng vạch 4.1 và 4.2 để dẫn hướng xe ở trạm thu phí: Tùy theo trường hợp mà có thể sử dụng vạch 4.1 hoặc 4.2 kết hợp với vạch đơn, liền nét màu trắng, bề rộng vạch 20 cm để dẫn hướng xe đến cửa thu phí của cổng trạm thu phí. Chi tiết bố trí xem trên Hình G.29. Đơn vị: cm\n- Sử dụng vạch 4.1 và 4.2 để kênh hóa các dòng xe ở nút giao cùng mức: Dưới đây là một số trường hợp sử dụng vạch 4.1 và 4.2 để kênh hóa các dòng xe các dòng xe trong phạm vi các nút giao cùng mức.",
-   "images": [],
+   "images": [
+    "images/V4_2_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Nhóm vạch kênh hóa dòng xe",
-    "page": 173
+    "page": 173,
+    "correctedFromPage": 174
    }
   },
   {
@@ -8155,14 +8110,17 @@
    "heading": "Vạch cấm đỗ xe trên đường",
    "summary": "Được sử dụng để báo hiệu không được phép đỗ xe bên đường. Vạch 6.1 được sử dụng độc lập hoặc phối hợp với ký hiệu chữ “Cấm đỗ xe” trên mặt đường và biển báo “Cấm đỗ xe”; ngoài ra, căn cứ theo nhu cầu có thể đặt thêm biển báo phụ ghi rõ thời gian cấm đỗ xe và phạm vi, đối tượng cấm đỗ xe.",
    "meaning": "Ý nghĩa sử dụng: được sử dụng để báo hiệu không được phép đỗ xe bên đường. Vạch 6.1 được sử dụng độc lập hoặc phối hợp với ký hiệu chữ “Cấm đỗ xe” trên mặt đường và biển báo “Cấm đỗ xe”; ngoài ra, căn cứ theo nhu cầu có thể đặt thêm biển báo phụ ghi rõ thời gian cấm đỗ xe và phạm vi, đối tượng cấm đỗ xe.",
-   "images": [],
+   "images": [
+    "images/V6_1_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Nhóm vạch cấm dừng xe trên đường",
-    "page": 181
+    "page": 181,
+    "correctedFromPage": 182
    }
   },
   {
@@ -8289,14 +8247,17 @@
    "heading": "Vạch mũi tên chỉ hướng trên mặt đường",
    "summary": "Vạch mũi tên chỉ hướng trên mặt đường được sử dụng để chỉ hướng xe phải đi. Mũi tên chỉ hướng chủ yếu sử dụng ở các nút giao có tách nhập làn và trên đường có nhiều làn xe. Mũi tên cũng có thể được sử dụng cho các phần đường xe chạy một chiều để xác nhận hướng giao thông.",
    "meaning": "Ý nghĩa sử dụng: Vạch mũi tên chỉ hướng trên mặt đường được sử dụng để chỉ hướng xe phải đi. Mũi tên chỉ hướng chủ yếu sử dụng ở các nút giao có tách nhập làn và trên đường có nhiều làn xe. Mũi tên cũng có thể được sử dụng cho các phần đường xe chạy một chiều để xác nhận hướng giao thông.\nQuy cách vạch như sau:\n- Màu sắc của mũi tên chỉ đường là màu trắng.\n- Tùy theo tốc độ xe chạy mà chọn kích thước các mũi tên phù hợp theo nguyên tắc tốc độ xe chạy càng lớn thì kích thước mũi tên càng lớn. Kích thước mũi tên thể hiện trên Hình G.73 áp dụng cho các đường có tốc độ xe chạy thấp. Kích thước mũi tên ghi ngoài ngoặc đơn thể hiện trên Hình G.74 áp dụng cho các đường có tốc độ xe chạy cao. Kích thước mũi trên ghi trong ngoặc đơn thể hiện trên Hình G.74 áp dụng cho đường ô tô cao tốc và các đường có tốc độ thiết kế ≥ 100 km/h. 90 45 50 50 100 30 30 202020 30 30 40 40 60 60 15 15 300 300 300 300 120 20 40 40 20 180 135 135 15 15 15 20 50 50 30 30 30 30 40 40 50 50 320 320 320 45° 45° 20 40 40 20 30 30 200 200 30 30 170 60 60 40 40 40 40 15 15 15 §¬n vÞ: cm chạy thấp 180(270) (150) (150) (135) 60 100 60 100 90 200(300) 404040 (90) (90) (60) (60) (60) (90) (90) 60 60 120(180) 120(180) 600(900) 600(900) 600(900) 600(900) (135) (135) 90 90 30 30 240(360) (45) (45) 40 80 80 40 360(540) 270(405) 270(405) (60) (120) (120)(60) 30 30 30 40 (45) (45) (45) (60) (150) (150) 60 100 60 100 (90) (90) (90) (90) 60 60 600(900) 600(900) 600(900) (135) (135) 80 90 (150) (150) 60 100 60 100 45° 45° 40 80 80 40 360(540) 360(540) (90) (90) (60) (120) (120) (60) (450) 300 (90) (90) 60 60 (180) (180) 120 120 (135) (135) 80 90 30 30 30 (60) (60) 40 40 (45) (45) (45) §¬n vÞ: cm xe chạy cao",
-   "images": [],
+   "images": [
+    "images/V9_3_fix0.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Các loại vạch kẻ đường khác",
-    "page": 195
+    "page": 195,
+    "correctedFromPage": 196
    }
   },
   {
@@ -8329,14 +8290,21 @@
    "heading": "Vạch dạng chữ viết, chữ số, hoặc màu sắc trên mặt đường",
    "summary": "Sử dụng đi kèm với các loại báo hiệu khác nhằm tăng tính rõ ràng về ý nghĩa của các báo hiệu. Quy định chung: Vạch dạng chữ viết hoặc số có màu trắng; chiều cao chữ viết 3,0 máp dụng cho đường cao tốc; 2,5 máp dụng cho các loại đường khác; trong đô thị với các đường có tốc độ xe chạy thấp có thể sử dụng chiều cao chữ là 1,6 m; khoảng cách các hàng chữ hoặc số theo phương dọc đường 1,0 m – 1,5 m; bề rộng nét vẽ 12 cm -18 cm. Một số vạch chữ và số:",
    "meaning": "Ý nghĩa sử dụng: sử dụng đi kèm với các loại báo hiệu khác nhằm tăng tính rõ ràng về ý nghĩa của các báo hiệu. Quy định chung: Vạch dạng chữ viết hoặc số có màu trắng; chiều cao chữ viết 3,0 máp dụng cho đường cao tốc; 2,5 máp dụng cho các loại đường khác; trong đô thị với các đường có tốc độ xe chạy thấp có thể sử dụng chiều cao chữ là 1,6 m; khoảng cách các hàng chữ hoặc số theo phương dọc đường 1,0 m – 1,5 m; bề rộng nét vẽ 12 cm -18 cm. Một số vạch chữ và số:\n- Vạch 9.5a: Vạch chữ “STOP”\n- Vạch 9.5b: vạch chữ làn đường dành riêng cho ô tô “Ô TÔ”\n- Vạch 9.5c: vạch chữ làn đường dành riêng cho xe máy “XE MÁY”\n- Vạch 9.5d: vạch chữ làn đường dành riêng cho xe buýt “XE BUÝT”\n- Vạch 9.5.e: vạch chữ làn đường dành riêng cho xe đạp “XE ĐẠP”",
-   "images": [],
+   "images": [
+    "images/V9_5_fix0.png",
+    "images/V9_5_fix1.png",
+    "images/V9_5_fix2.png",
+    "images/V9_5_fix3.png",
+    "images/V9_5_fix4.png"
+   ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
     "effectiveDate": "2025-01-01",
     "appendix": "G",
     "section": "Các loại vạch kẻ đường khác",
-    "page": 198
+    "page": 198,
+    "correctedFromPage": 198
    }
   },
   {

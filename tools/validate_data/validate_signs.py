@@ -1,7 +1,9 @@
 """Validate data/sign-catalog/signs.json and generate a human review list.
 
-Errors (exit 1): duplicate code, empty/invalid group, missing image file, orphan image file.
-Warnings: sign without image or name, codes named in the main text of QCVN 41:2024 but absent from the catalog.
+Errors (exit 1): duplicate code, empty/invalid group, missing image file, orphan image file, empty name,
+name that is a sentence of the body text ("Sử dụng chữ màu…", "Thì sử dụng…"), name with a syllable split by PDF
+spacing ("xăng d ầu"), sign without image unless `noImageReason` explains it (rules added after review 14/10/2026).
+Warnings: codes named in the main text of QCVN 41:2024 but absent from the catalog.
 
 Usage: python tools/validate_data/validate_signs.py [--dir data/sign-catalog] [--pdf data/question-bank/raw/51-bgtvt-kem.pdf]
 """
@@ -12,6 +14,9 @@ import random
 import re
 import sys
 
+VOWELS = set('aăâeêioôơuưyáàảãạắằẳẵặấầẩẫậéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ')
+UNITS = {'m', 'cm', 'mm', 'km', 'kg', 't', 'h', 'kw'}
+SENTENCE_START = re.compile(r'^(Sử dụng|Thì|Tại|Trong trường hợp|Cảnh báo cho|Để)')
 GROUP_KEYS = {'cam', 'nguy_hiem', 'hieu_lenh', 'chi_dan', 'phu', 'cao_toc', 'vach_ke'}
 CODE = re.compile(r'(?:DP|IE|[PWRIS])\.\d{3}[a-z]?')
 REVIEW_SAMPLE_SIZE = 30
@@ -40,9 +45,14 @@ def main():
         if not s['meaning'].strip():
             warnings.append(f'{s["code"]}: empty meaning')
         if not s['name']:
-            warnings.append(f'{s["code"]}: no name')
-        if not s['images']:
-            warnings.append(f'{s["code"]}: no image')
+            errors.append(f'{s["code"]}: no name')
+        elif SENTENCE_START.match(s['name']):
+            errors.append(f'{s["code"]}: name looks like a body sentence: {s["name"][:50]}')
+        split = [t for t in s['name'].split() if t.isalpha() and t.islower() and t not in UNITS and not set(t) & VOWELS]
+        if split:
+            errors.append(f'{s["code"]}: syllable split in name ({split[0]}): {s["name"][:50]}')
+        if not s['images'] and not s.get('noImageReason'):
+            errors.append(f'{s["code"]}: no image (add a crop or noImageReason in overrides.json)')
         for img in s['images']:
             if not os.path.isfile(os.path.join(args.dir, img)):
                 errors.append(f'{s["code"]}: missing image {img}')
@@ -63,7 +73,10 @@ def main():
                 listed |= {base + x.strip() for x in group.split(',') if x.strip()}
             else:
                 listed.add(base + suffix)
-        missing_from_catalog = sorted(listed - set(codes))
+        # a variant listed in the text (IE.461a) is covered by its base entry (IE.461) and vice versa
+        have = set(codes)
+        missing_from_catalog = sorted(c for c in listed - have
+                                      if c[:-1] not in have and not any(h[:-1] == c for h in have))
         for c in missing_from_catalog:
             warnings.append(f'{c}: listed in QCVN main text but not in catalog')
 

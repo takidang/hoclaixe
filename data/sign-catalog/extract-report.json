@@ -66,35 +66,8 @@
    "R.412p",
    "W.237"
   ],
-  "code_without_image": [
-   "I.428c",
-   "IE.453",
-   "IE.456",
-   "IE.459",
-   "IE.461",
-   "IE.463",
-   "IE.464",
-   "IE.467",
-   "IE.468",
-   "IE.470",
-   "IE.472",
-   "R.412p",
-   "Vạch 3.2",
-   "Vạch 3.3",
-   "Vạch 3.4",
-   "Vạch 4.2",
-   "Vạch 6.1",
-   "Vạch 9.3",
-   "Vạch 9.5"
-  ],
-  "code_without_name": [
-   "I.433b",
-   "I.433c",
-   "I.433d",
-   "I.433e",
-   "IE.453",
-   "R.413p"
-  ],
+  "code_without_image": [],
+  "code_without_name": [],
   "section_without_codes": [
    "D.19",
    "D.20",

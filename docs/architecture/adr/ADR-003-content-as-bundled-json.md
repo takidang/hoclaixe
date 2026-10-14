@@ -3,7 +3,7 @@
 - Trạng thái: Chấp nhận
 
 ## Bối cảnh
-600 câu hỏi, cấu trúc đề và 397 biển/vạch được trích xuất tự động từ văn bản chính thức và kiểm bằng validator trong `data/`.
+600 câu hỏi, cấu trúc đề và 392 biển/vạch (397 trước khi sửa sau soát 14/10) được trích xuất tự động từ văn bản chính thức và kiểm bằng validator trong `data/`.
 App chỉ đọc, không sửa nội dung (BR-07). Tổng ~1.000 mục, < 2 MB JSON.
 
 ## Các phương án

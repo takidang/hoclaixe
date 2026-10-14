@@ -144,6 +144,8 @@ paint();
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default='data/question-bank/raw/51-bgtvt-kem.pdf')
+    ap.add_argument('--fixed-only', action='store_true',
+                    help='only codes corrected in overrides.json -> review-fixed.html (second review round)')
     args = ap.parse_args()
     cat = json.load(open(os.path.join(CATALOG, 'signs.json'), encoding='utf-8'))
     doc = pymupdf.open(args.pdf)
@@ -152,6 +154,14 @@ def main():
     for m in re.finditer(r'^\| \[.\] \| (\S+) \|[^|]*\|[^|]*\|[^|]*\| ([^|]*)\|', open(os.path.join(CATALOG, 'review.md'), encoding='utf-8').read(), re.M):
         reasons[m.group(1)] = m.group(2).strip()
 
+    if args.fixed_only:
+        fix = json.load(open(os.path.join(CATALOG, 'overrides.json'), encoding='utf-8'))
+        notes = {x['code']: x.get('note') or x.get('noImageReason') or 'đã sửa' for x in fix['set'] + fix['add']}
+        cat['signs'] = [s for s in cat['signs'] if s['code'] in notes]
+        reasons = {c: f'Đã sửa 14/10 — {n}' for c, n in notes.items()}
+        in_review = set(notes)
+        present = {s['group'] for s in cat['signs']}
+        cat['groups'] = {k: v for k, v in cat['groups'].items() if k in present}
     groups = list(cat['groups'].items())
     cards, missing = [], []
     for s in cat['signs']:
@@ -166,7 +176,7 @@ def main():
             left += '<p class="reason">Không tìm thấy nhãn hình của mã này trong PDF — mở PDF trang ' \
                     f'{s["source"]["page"]}–{s["source"]["page"] + 3} để xem.</p>'
         imgs = ''.join(f'<img src="{embed(os.path.join(CATALOG, p))}" alt="{s["code"]}">' for p in s['images']) \
-            or '<span class="reason">(app không có hình)</span>'
+            or f'<span class="reason">(app không có hình{": " + html.escape(s["noImageReason"]) if s.get("noImageReason") else ""})</span>'
         why = f'<div class="reason">Lý do soát: {html.escape(reasons[s["code"]])}</div>' if s['code'] in reasons else ''
         cards.append(f'''
 <section class="s{' flag' if s['code'] in in_review else ''}" data-code="{s['code']}" data-group="{s['group']}" data-review="{int(s['code'] in in_review)}">
@@ -179,7 +189,7 @@ def main():
 </section>''')
     tabs = ''.join(f'<button data-group="{k}" data-name="{html.escape(v)}">{html.escape(v)}</button>' for k, v in groups)
     page = PAGE.replace('__TABS__', tabs).replace('__CARDS__', ''.join(cards)).replace('__FIRST__', groups[0][0])
-    out = os.path.join(CATALOG, 'review.html')
+    out = os.path.join(CATALOG, 'review-fixed.html' if args.fixed_only else 'review.html')
     with open(out, 'w', encoding='utf-8') as fh:
         fh.write(page)
     print(f'{len(cards)} signs -> {out} ({os.path.getsize(out) / 1e6:.1f} MB); no PDF figure found for {len(missing)}: {missing[:20]}')
