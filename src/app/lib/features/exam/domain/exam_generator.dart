@@ -2,6 +2,7 @@ import 'dart:math';
 
 import '../../../core/content/models.dart';
 import 'exam_paper.dart';
+import 'question_pool.dart';
 import 'seeded_random.dart';
 
 class ExamGenerationException implements Exception {
@@ -31,11 +32,8 @@ class ExamGenerator {
       );
     }
     final licenseClass = structure.licenseClass;
-    final pool =
-        bank.where((q) => q.inPool(structure.pool ?? licenseClass)).toList()
-          ..sort(
-            (a, b) => a.number.compareTo(b.number),
-          ); // independent of input order
+    // Sorted by number, so independent of input order.
+    final pool = questionPool(bank, licenseClass, pool: structure.pool);
     final critical = pool.where((q) => q.isCriticalFor(licenseClass)).toList();
     final regular = pool.where((q) => !q.isCriticalFor(licenseClass)).toList();
 

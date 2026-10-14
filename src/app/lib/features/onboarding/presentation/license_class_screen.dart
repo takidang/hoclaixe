@@ -8,6 +8,7 @@ import '../../../core/router.dart';
 import '../../../core/settings/app_settings.dart';
 import '../../../core/strings.dart';
 import '../../exam/domain/structure_picker.dart';
+import '../../home/data/home_summary_provider.dart';
 
 /// Choose A1, A or B (FR-A03); also used to change class from the home screen (FR-A04).
 class LicenseClassScreen extends ConsumerWidget {
@@ -46,12 +47,7 @@ class LicenseClassScreen extends ConsumerWidget {
                     now,
                   )?.structure,
                   selected: cls == current,
-                  onTap: () async {
-                    await ref
-                        .read(settingsProvider.notifier)
-                        .chooseLicenseClass(cls);
-                    if (context.mounted) context.go(Routes.home);
-                  },
+                  onTap: () => _choose(context, ref, cls),
                 ),
             ],
           ],
@@ -59,6 +55,31 @@ class LicenseClassScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Saves the class; an unfinished test of another class is abandoned only after confirmation (ST-04 AC2).
+Future<void> _choose(BuildContext context, WidgetRef ref, String cls) async {
+  final sessions = await ref.read(examSessionRepositoryProvider.future);
+  final open = await sessions.openSession();
+  if (open != null && open.paper.licenseClass != cls) {
+    if (!context.mounted) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(S.abandonExamTitle),
+        content: Text(S.abandonExamBody(open.paper.licenseClass)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text(S.cancel)),
+          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text(S.abandonExam)),
+        ],
+      ),
+    );
+    if (confirmed != true) return; // keep the old class and the unfinished test
+    await sessions.abandon(open.id);
+  }
+  await ref.read(settingsProvider.notifier).chooseLicenseClass(cls);
+  ref.invalidate(homeSummaryProvider);
+  if (context.mounted) context.go(Routes.home);
 }
 
 class _ClassTile extends StatelessWidget {

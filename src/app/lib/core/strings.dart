@@ -47,8 +47,29 @@ abstract final class S {
   static String classFacts(int questions, int minutes, int pass) =>
       '$questions câu · $minutes phút · đạt từ $pass câu đúng';
 
-  // Home (temporary until ST-04)
-  static String currentClass(String c) => 'Đang ôn: Hạng $c';
+  // Home (ST-04)
   static const changeClass = 'Đổi hạng';
   static const about = 'Giới thiệu';
+  static const homeError = 'Không đọc được tiến độ học trên máy. Hãy thử mở lại ứng dụng.';
+  static const studyProgress = 'Tiến độ ôn tập';
+  static String progressCount(int correct, int total) => '$correct / $total câu';
+  static const progressHint = 'Tính các câu trả lời đúng ở lần làm gần nhất';
+  static const studyByTopic = 'Học theo chủ đề';
+  static const practiceExam = 'Thi thử';
+  static const reviewWrong = 'Ôn câu sai';
+  static const criticalQuestions = 'Câu điểm liệt';
+  static const trafficSigns = 'Biển báo';
+  static String questionCount(int n) => '$n câu';
+  static const resumeExam = 'Tiếp tục bài thi';
+  static const examTimeUp = 'Đã hết giờ — mở để xem kết quả';
+  static String timeLeft(Duration d) =>
+      'Còn ${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
+  static const comingSoon = 'Chức năng đang được làm.';
+
+  // Change class with an unfinished test (ST-04 AC2, UC-02 2b)
+  static const abandonExamTitle = 'Bỏ bài thi đang làm?';
+  static String abandonExamBody(String oldClass) =>
+      'Bạn đang làm dở một bài thi hạng $oldClass. Đổi hạng sẽ bỏ bài thi này và không tính kết quả.';
+  static const abandonExam = 'Bỏ bài thi';
+  static const cancel = 'Hủy';
 }

@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../features/exam/data/exam_session_repository.dart';
+import '../features/study/data/progress_repository.dart';
 import 'clock.dart';
 import 'content/content_repository.dart';
 import 'content/models.dart';
@@ -22,4 +24,18 @@ final databaseProvider = FutureProvider<AppDatabase>((ref) async {
   final db = await AppDatabase.open();
   ref.onDispose(db.close);
   return db;
+});
+
+final progressRepositoryProvider = FutureProvider<ProgressRepository>((
+  ref,
+) async {
+  final db = await ref.watch(databaseProvider.future);
+  return ProgressRepository(db.db, clock: ref.watch(clockProvider));
+});
+
+final examSessionRepositoryProvider = FutureProvider<ExamSessionRepository>((
+  ref,
+) async {
+  final db = await ref.watch(databaseProvider.future);
+  return ExamSessionRepository(db.db, clock: ref.watch(clockProvider));
 });
