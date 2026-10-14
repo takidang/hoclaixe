@@ -26,13 +26,54 @@ Repo chứa **cả app lẫn quy trình làm app** cho hai đồ án (LTTTBDD v�
 2. Cài **Git for Windows** (bắt buộc — hook của dự án chạy bằng bash).
 3. Clone:
    ```bash
-   git clone https://github.com/takidang/hoclaixe.git
+   git clone -c core.longpaths=true https://github.com/takidang/hoclaixe.git
    cd hoclaixe
    git config user.name "Nguyễn Đỗ Tuấn Kiệt"
    git config user.email "<email GitHub của bạn>"
    ```
-4. Nếu sẽ chạy app: cài Flutter SDK + Android Studio, chạy `flutter doctor` cho sạch.
+4. Nếu sẽ chạy app: làm theo **mục 2a** ngay dưới.
 5. Khi đã có Claude Pro: cài Claude Code, mở terminal ở thư mục repo, gõ `claude`, rồi `/status`.
+
+## 2a. Cài Flutter và chạy app (Android hoặc web)
+
+Git clone chỉ tải **code**; Flutter là công cụ phải cài riêng trên từng máy (giống phải cài Python mới chạy được file `.py`).
+
+**Bước 1 — Cài Flutter (một lần)**
+1. Cài **VS Code**, mở tab Extensions, cài **Flutter** (của Dart Code).
+2. `Ctrl+Shift+P` → gõ **Flutter: New Project** → VS Code báo chưa có SDK → **Download SDK** → chọn thư mục
+   **không dấu cách, không dấu tiếng Việt**, ví dụ `C:\src\flutter`.
+3. Khi được hỏi **Add SDK to PATH** → đồng ý. **Đóng hết VS Code/terminal rồi mở lại**, gõ `flutter --version`
+   (team dùng **Flutter 3.47.x**; bản cũ hơn → `flutter upgrade`).
+4. Muốn chạy Android: cài **Android Studio** → mở lần đầu cho nó tải Android SDK → chạy `flutter doctor --android-licenses`, bấm `y` hết.
+
+**Bước 2 — Kiểm tra máy** (ở thư mục gốc repo):
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\check-setup.ps1
+```
+Script in `[OK]` / `[!!]` / `[X]` kèm cách sửa. Hết `[X]` là chạy được.
+
+**Bước 3 — Chạy app**
+```powershell
+cd src\app
+flutter pub get
+flutter run -d chrome --web-port 8080     # web: nhanh, không cần emulator
+flutter run                               # Android: chọn emulator/điện thoại trong danh sách
+```
+- **Web**: chỉ để xem/thử nhanh; bản nộp là Android. Tiến độ lưu trong trình duyệt và **gắn với cổng** —
+  luôn dùng `--web-port 8080`, đổi cổng là thấy app như mới cài.
+- **Android emulator**: Android Studio → Device Manager → **Create Virtual Device** → Pixel 7 → bản Android API 35/36 → ▶.
+  Lần build Android đầu mất vài phút (Gradle tải thư viện).
+- **Điện thoại thật**: Cài đặt → Thông tin điện thoại → bấm 7 lần "Số hiệu bản tạo" → Tùy chọn nhà phát triển → bật **Gỡ lỗi USB** → cắm cáp → cho phép.
+
+**Lỗi hay gặp**
+| Lỗi | Cách sửa |
+|---|---|
+| `flutter : The term 'flutter' is not recognized` | Chưa cài Flutter hoặc chưa vào PATH → bước 1; nhớ mở lại terminal |
+| `Filename too long` khi clone, rồi `No pubspec.yaml file found` | `git config --global core.longpaths true` rồi clone lại; để repo ở đường dẫn ngắn (vd. `C:\code\hoclaixe`) |
+| `Could not find or load main class org.gradle.wrapper.GradleWrapperMain` | Repo cũ thiếu Gradle wrapper → `git pull`, rồi `flutter clean` |
+| Web hiện "Không mở được dữ liệu tiến độ trên máy" | Code cũ chưa hỗ trợ web → `git pull`, rồi tắt hẳn app và `flutter run` lại |
+| Đang chạy app rồi mới `git pull` → lỗi lạ | Hot reload không nạp thay đổi lớn: bấm `q` rồi `flutter run` lại |
+| **Đừng** chạy `flutter create .` | Lệnh này sinh file `test/widget_test.dart` mẫu làm hỏng test và ghi đè `pubspec.lock` |
 
 ## 3. Quy ước nhánh
 

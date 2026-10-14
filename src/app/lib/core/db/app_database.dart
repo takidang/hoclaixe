@@ -1,6 +1,8 @@
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 
+import 'platform_database.dart';
+
 /// Learner data in SQLite (ADR-002). Schema: docs/architecture/architecture.md §4.
 class AppDatabase {
   AppDatabase._(this.db);
@@ -23,7 +25,7 @@ class AppDatabase {
         version: version,
         onConfigure: (db) async {
           await db.execute('PRAGMA foreign_keys = ON');
-          await db.rawQuery('PRAGMA journal_mode = WAL');
+          if (supportsWal) await db.rawQuery('PRAGMA journal_mode = WAL');
         },
         onCreate: (db, _) => _migrate(db, 0, version),
         onUpgrade: _migrate,

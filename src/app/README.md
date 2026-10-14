@@ -11,7 +11,9 @@
 cd src/app
 flutter pub get
 flutter run            # chọn máy Android đang cắm USB hoặc emulator
+flutter run -d chrome --web-port 8080   # bản web (xem nhanh); giữ cổng 8080 để không mất tiến độ
 ```
+Máy mới: chạy `tools/check-setup.ps1` (xem `CONTRIBUTING.md` mục 2a).
 **Android Studio**: File → Open → chọn thư mục `src/app` → chờ "Pub get" → chọn thiết bị trên thanh công cụ → nút ▶.
 **Máy thật**: bật Tùy chọn nhà phát triển + Gỡ lỗi USB, cắm cáp, chấp nhận khóa RSA trên điện thoại; `flutter devices` phải thấy máy.
 
