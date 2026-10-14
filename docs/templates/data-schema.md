@@ -8,8 +8,8 @@
   "options": ["…", "…", "…"],
   "correctIndex": 1,
   "topic": "khai-niem-quy-tac",
-  "isCritical": true,
-  "licenseClasses": ["A1", "B"],
+  "criticalFor": ["B", "C1"],
+  "licenseClasses": ["A1", "A", "B", "C1"],
   "explanation": "…",
   "legalRefs": [{"doc": "<số hiệu văn bản>", "article": "Điều x", "clause": "Khoản y"}],
   "sourceVersion": "<phiên bản bộ đề>"

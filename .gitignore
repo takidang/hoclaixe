@@ -28,3 +28,12 @@ ml/**/*.h5
 ml/**/*.keras
 ml/**/saved_model/
 .ipynb_checkpoints/
+
+# Raw official source files (large; record link + SHA-256 in docs/data/sources.md)
+data/question-bank/raw/
+data/law-corpus/raw/
+
+# Generated review pages (large, rebuild with tools/review_ui/)
+data/question-bank/review.html
+data/sign-catalog/review.html
+__pycache__/

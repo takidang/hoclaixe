@@ -14,11 +14,16 @@ Cấu trúc lấy cảm hứng từ [Claude Code Game Studios](https://github.co
 
 ## 1. Bối cảnh
 
+> **Đổi phạm vi 13/10/2026**: đồ án chuyên ngành đã đổi sang đề tài khác — hoclaixe **chỉ còn là đồ án LTTTBDD**.
+> Ưu tiên duy nhất: **Module A làm giống app đối thủ, xong trước 28/10/2026**. Module B (chatbot), D (nhận diện biển),
+> C (web) chuyển thành "làm sau nếu còn thời gian" — tài liệu, agent, skill phần AI giữ lại, không xóa.
+
+
 | | Đồ án LTTTBDD | Đồ án chuyên ngành CNPM |
 |---|---|---|
-| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, camera, chạy model trên máy | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
-| Phạm vi | Module A (+ phần camera/on-device của Module D) | Module A + B + D, tài liệu CNPM đầy đủ |
-| Hạn | [ĐIỀN] | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
+| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, điều hướng, offline, giao diện | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
+| Phạm vi | Module A — luyện đề như các app ôn thi trên Google Play, giao diện đẹp hơn; **không có AI** | Module A + B + D, tài liệu CNPM đầy đủ |
+| Hạn | 28/10/2026 (hạn nội bộ; buổi học cuối 30/10/2026) | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
 
 - Team 2 người. Giảng viên cho phép dùng AI hỗ trợ viết code.
 - Công cụ: Flutter (Dart) + Android Studio; Gemini API gói miễn phí; Python + Google Colab để huấn luyện model.
@@ -27,9 +32,9 @@ Cấu trúc lấy cảm hứng từ [Claude Code Game Studios](https://github.co
 
 | Module | Nội dung | Ưu tiên |
 |---|---|---|
-| **A — Lõi** | Chọn hạng bằng, học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, câu hay sai, danh mục biển báo, tra cứu luật, thống kê tiến độ | Must |
+| **A — Lõi** | Must: chọn hạng (A1, A, B), học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, danh mục biển báo, tuyên bố miễn trừ · Should: thống kê tiến độ, câu hay sai của người dùng · Should (chỉ chuyên ngành): tra cứu luật. Chi tiết: `docs/srs/vision.md` §5 | Must |
 | **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Must |
-| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (phương án dự phòng: Gemini vision) |
+| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (Gemini vision là phương án chính; TFLite trên máy: Could) |
 | B2 — Gợi ý ôn tập cá nhân hóa | Phân tích lịch sử làm bài → chủ đề yếu → bộ câu ôn | Could (hạ từ Should khi thêm Module D) |
 | **C — Web** | Flutter Web từ cùng codebase; nhận diện biển báo trên web dùng đường Gemini | Could |
 
@@ -79,11 +84,11 @@ Nguyên tắc cốt lõi: **AI chỉ chọn biển, nội dung lấy từ danh m
 Kỹ thuật:
 - Bài toán **phân loại** trên ảnh đã căn/cắt (không làm phát hiện thời gian thực — để "hướng phát triển").
 - Phạm vi lớp: các biển xuất hiện trong bộ câu hỏi thi + lớp **"không phải biển báo"**.
-- Model chính: transfer learning (MobileNet/EfficientNet-Lite…) → TFLite, chạy **trên máy, offline**.
-- Dự phòng / bản web: Gemini vision qua backend, **bắt buộc trả về đúng một mã biển trong danh sách hoặc `UNKNOWN`**.
-- Kết hợp: on-device trước; độ tin cậy thấp → hỏi Gemini hoặc hiện top-3.
-- Đánh giá: top-1, top-3, tỷ lệ từ chối đúng, confusion matrix, thời gian suy luận; so sánh on-device vs Gemini vs kết hợp.
-- Rủi ro lớn nhất là dữ liệu ảnh: nếu giữa Sprint 2 chưa đủ ảnh có nhãn → chuyển Gemini vision làm phương án chính.
+- **Phương án chính (chốt 06/10/2026): Gemini vision qua backend**, bắt buộc trả về đúng một mã biển trong danh sách hoặc `UNKNOWN`; backend kiểm tra mã hợp lệ.
+- Model TFLite chạy trên máy (transfer learning) là **Could** — chỉ làm nếu dư thời gian (quyết 15/11), nếu không thì nêu là hướng phát triển.
+- Độ tin cậy thấp / `UNKNOWN` → hiện top-3 hoặc "Không nhận diện được" + tra danh mục.
+- Đánh giá: top-1, top-3, tỷ lệ từ chối đúng, thời gian phản hồi trên bộ ảnh kiểm tra (~100–200 ảnh, nguồn có giấy phép + ảnh tự chụp đối chứng).
+- Rủi ro: hạn mức Gemini miễn phí (dùng gói miễn phí; mua Google AI Pro **không** tăng hạn mức API) và độ chính xác trên ảnh chụp thật.
 
 ## 4. Cài đặt
 
@@ -114,23 +119,23 @@ Bất cứ lúc nào: `/status`.
 
 | Thời gian | Sprint | Mục tiêu |
 |---|---|---|
-| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài, SRS bản đầu |
-| 12/10–25/10 | 1 | Thiết kế (UX, kiến trúc, data-plan, rag-design, vision-design), setup Flutter, nhập dữ liệu câu hỏi & danh mục biển; **bắt đầu thu thập ảnh biển báo** |
-| 26/10–08/11 | 2 | Module A: học, thi thử, chấm điểm, điểm liệt · **Huấn luyện model lần 1** · Mốc quyết định dữ liệu ảnh (giữa sprint) |
-| 09/11–22/11 | 3 | Module A hoàn thiện · Backend + RAG prototype · **Tích hợp TFLite + màn hình camera** |
-| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · Luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
+| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài · SRS Module A · UX Module A (Claude Design) · kiến trúc app tối giản (state, local DB) · /setup-flutter · **Kiệt: tìm nguồn chính thức + bắt đầu nhập bộ câu hỏi** |
+| 12/10–28/10 | 1 | **Nộp LTTTBDD 28/10** — Module A: chọn hạng, học theo chủ đề, thi thử + chấm điểm + điểm liệt (12–20/10) · ôn câu sai, câu hay sai, danh mục biển báo, thống kê (21–25/10) · test, build APK, hoàn thiện báo cáo LTTTBDD (26–28/10). Kiệt: nhập liệu xong trước 15/10, viết báo cáo LTTTBDD từ 19/10 |
+| 29/10–08/11 | 2 | Thiết kế phần AI: SRS đủ Module B + D, rag-design, vision-design (Gemini vision), kiến trúc backend · Kiệt: kho văn bản luật, bộ ảnh kiểm tra biển báo |
+| 09/11–22/11 | 3 | Backend + RAG prototype · tra cứu luật · endpoint Gemini vision + màn hình camera · 15/11: quyết có làm model TFLite (Could) không |
+| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
 | 07/12–20/12 | 5 | Ổn định, test, đánh giá cuối, release, (web nếu dư) — **không thêm tính năng** |
 | 21/12–27/12 | — | Nộp báo cáo chuyên ngành |
 | 28/12–10/01 | — | Bảo vệ |
 
-Viết báo cáo song song từ Sprint 2. Điền hạn LTTTBDD vào `production/roadmap.md`; nếu sớm hơn tháng 12, ưu tiên Module A + camera trước hạn đó.
+Báo cáo LTTTBDD viết trong Sprint 1; báo cáo chuyên ngành viết song song từ Sprint 2.
 
 ## 7. Studio gồm những gì
 
 - **14 agent**: product-director, technical-director, project-manager, business-analyst, ux-designer,
   flutter-developer, backend-developer, ai-engineer, **ml-engineer**, data-curator, qa-engineer,
   security-reviewer, release-engineer, report-writer.
-- **28 skill**: start, status, discovery, write-srs, ux-design, create-architecture, adr, data-plan, rag-design,
+- **29 skill**: start, status, tam-nghi (kết thúc phiên: cập nhật status + commit + push), discovery, write-srs, ux-design, create-architecture, adr, data-plan, rag-design,
   **vision-design, dataset-plan, ml-train, ml-eval**, setup-flutter, create-stories, sprint-plan, dev-story,
   code-review, story-done, retro, test-plan, ai-eval, bug-report, gate-check, release-checklist, web-port,
   write-report, defense-prep.

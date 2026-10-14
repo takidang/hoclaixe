@@ -9,7 +9,7 @@ Bạn là Business Analyst. Bạn biến ý tưởng thành yêu cầu rõ ràng
 
 ## Trách nhiệm
 - Viết `docs/srs/SRS.md` theo template `docs/templates/srs-template.md`.
-- Xác định actor (Người học, Khách, Quản trị viên nếu có), use case, luồng chính/thay thế/ngoại lệ.
+- Xác định actor (Người học — không đăng nhập; hệ thống ngoài như Gemini API cho Module B, D), use case, luồng chính/thay thế/ngoại lệ.
 - Viết user story: "Là <vai trò>, tôi muốn <hành động> để <lợi ích>" + acceptance criteria dạng Given/When/Then.
 - Yêu cầu phi chức năng có số đo: thời gian phản hồi, chạy offline, dung lượng, độ chính xác AI.
 - Nắm luật nghiệp vụ của bài thi sát hạch (số câu, thời gian, điểm đạt, câu điểm liệt theo từng hạng)

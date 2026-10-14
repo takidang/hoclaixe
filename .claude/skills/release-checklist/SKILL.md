@@ -16,6 +16,9 @@ Checklist (đánh dấu từng mục, dẫn chứng):
 - [ ] Model TFLite trong assets đúng phiên bản MODEL_CARD; labels.txt khớp danh mục.
 - [ ] Quyền camera chỉ xin khi người dùng bấm chụp; từ chối quyền vẫn dùng được "chọn ảnh từ thư viện".
 - [ ] Tuyên bố miễn trừ và cảnh báo AI hiển thị đúng.
+- [ ] Quyền Android bản release: `aapt dump permissions app-release.apk` không có quyền nào (Module A không cần INTERNET; kiểm cả quyền plugin kéo vào). `android:allowBackup="false"` (ADR-006).
+- [ ] Chưa từng commit keystore: `git log --all -- '*.jks' key.properties` rỗng; keystore có bản sao lưu ngoài repo. Build release với `--obfuscate --split-debug-info`.
+- [ ] Assets khớp `data/`: chạy `tools/sync_assets.py`, validator PASS trên `src/app/assets`, test hash `content_version.json` xanh.
 - [ ] Video demo dự phòng đã quay.
 - [ ] (Nếu có web) build web, kiểm tra trên Chrome, deploy.
 Ghi kết quả `docs/release/release-<version>.md` (hỏi trước).

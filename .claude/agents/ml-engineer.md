@@ -26,7 +26,7 @@ Bạn là ML Engineer phụ trách Module D — chụp ảnh nhận diện biể
   backend kiểm tra mã hợp lệ trước khi trả cho app.
 
 ## Quản lý rủi ro
-- Mốc giữa Sprint 2: nếu chưa đủ ảnh có nhãn (đề xuất ngưỡng tối thiểu trong dataset-plan) → báo project-manager,
+- Mốc 15/11 (giữa Sprint 3): nếu chưa đủ ảnh có nhãn (đề xuất ngưỡng tối thiểu trong dataset-plan) → báo project-manager,
   đề xuất chuyển Gemini vision thành phương án chính, model on-device thành "thử nghiệm".
 - Không phóng đại kết quả: báo số đo thật trên tập test ảnh thật, nêu rõ hạn chế (góc chụp, ánh sáng, biển bị che, lớp ít ảnh).
 - Kiểm tra phiên bản thư viện (TensorFlow/Keras, tflite_flutter, image_picker/camera) bằng WebSearch trước khi chốt.

@@ -1,16 +1,21 @@
-# Roadmap gợi ý (chỉnh trong /sprint-plan)
+# Roadmap (chỉnh trong /sprint-plan)
 
-| Thời gian | Sprint | Mục tiêu |
+> **Đổi phạm vi 13/10/2026**: đồ án chuyên ngành đã đổi sang đề tài khác — hoclaixe **chỉ còn là đồ án LTTTBDD**.
+> Ưu tiên duy nhất: **Module A làm giống app đối thủ, xong trước 28/10/2026**. Module B (chatbot), D (nhận diện biển),
+> C (web) chuyển thành "làm sau nếu còn thời gian" — tài liệu, agent, skill phần AI giữ lại, không xóa.
+
+## Sprint 1 — 12/10–28/10/2026: Module A (nộp LTTTBDD)
+
+| Ngày | Việc | Kết quả |
 |---|---|---|
-| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài, SRS bản đầu |
-| 12/10–25/10 | 1 | Thiết kế (UX, kiến trúc, data-plan, rag-design, vision-design), setup Flutter, nhập dữ liệu câu hỏi & danh mục biển; **bắt đầu thu thập ảnh biển báo** |
-| 26/10–08/11 | 2 | Module A: học, thi thử, chấm điểm, điểm liệt · **Huấn luyện model lần 1** · Mốc quyết định dữ liệu ảnh (giữa sprint) |
-| 09/11–22/11 | 3 | Module A hoàn thiện · Backend + RAG prototype · **Tích hợp TFLite + màn hình camera** |
-| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · Luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
-| 07/12–20/12 | 5 | Ổn định, test, đánh giá cuối, release, (web nếu dư) — **không thêm tính năng** |
-| 21/12–27/12 | — | Nộp báo cáo chuyên ngành |
-| 28/12–10/01 | — | Bảo vệ |
+| 13–14/10 | Sửa dữ liệu (26 câu thiếu hình) · `/create-architecture` gọn · `/setup-flutter` · nạp 600 câu + 397 biển vào app | App chạy, có dữ liệu |
+| 15–18/10 | Chọn hạng · màn chính · học theo chủ đề (Đúng/Sai/Chưa làm) · hiển thị câu + hình | Học được |
+| 19–22/10 | Thi thử: đề ngẫu nhiên + 20 đề cố định · đồng hồ · lưới câu · lưu đáp án · chấm điểm + điểm liệt · kết quả, xem lại | Thi được |
+| 23–25/10 | Ôn câu sai · câu điểm liệt · danh mục biển báo · miễn trừ · (thống kê nếu kịp) · **đóng băng tính năng 25/10** | Đủ Must |
+| 26–28/10 | Test (giữ đáp án, chấm điểm) · build APK · báo cáo LTTTBDD | Nộp |
 
-Viết báo cáo song song từ Sprint 2.
+UX: bố cục theo ảnh đối thủ (`design/reference/competitors/`); giao diện đẹp làm bằng Claude Design song song.
+Lùi khi trễ (theo thứ tự cắt): thống kê, câu hay sai, tìm kiếm, chế độ tối, chấm ngay khi chọn, đánh dấu câu.
 
-> Điền hạn của đồ án LTTTBDD vào đây: [ĐIỀN]. Nếu sớm hơn tháng 12, ưu tiên Module A + camera xong trước hạn đó.
+## Sau 28/10 (nếu còn thời gian)
+Tra cứu luật · chatbot RAG (Module B) · nhận diện biển báo bằng Gemini vision (Module D) · Flutter Web (Module C).
