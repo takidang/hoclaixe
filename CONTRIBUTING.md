@@ -65,6 +65,17 @@ flutter run                               # Android: chọn emulator/điện tho
   Lần build Android đầu mất vài phút (Gradle tải thư viện).
 - **Điện thoại thật**: Cài đặt → Thông tin điện thoại → bấm 7 lần "Số hiệu bản tạo" → Tùy chọn nhà phát triển → bật **Gỡ lỗi USB** → cắm cáp → cho phép.
 
+**Không muốn gõ `cd src\app`**: mở cả repo bằng VS Code → **F5** chạy app (chọn cấu hình Android hoặc web cổng 8080),
+**Ctrl+Shift+B** chạy `flutter test`, các lệnh khác ở Ctrl+Shift+P → "Tasks: Run Task" (`.vscode/launch.json`, `tasks.json`).
+
+**Khi dữ liệu trong `data/` thay đổi** (ở thư mục gốc repo):
+```powershell
+python tools/validate_data/validate_questions.py
+python tools/validate_data/validate_signs.py
+python tools/sync_assets.py      # chép vào src/app/assets + content_version.json
+```
+rồi chạy `flutter test` (test mã băm bắt lỗi quên đồng bộ).
+
 **Lỗi hay gặp**
 | Lỗi | Cách sửa |
 |---|---|

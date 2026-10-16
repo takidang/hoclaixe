@@ -16,7 +16,10 @@ key.properties
 # IDE
 .idea/
 *.iml
-.vscode/
+.vscode/*
+# shared run/test configs for the Flutter app in src/app
+!.vscode/launch.json
+!.vscode/tasks.json
 
 # Claude Code local
 .claude/settings.local.json
@@ -38,3 +41,6 @@ data/question-bank/review.html
 data/sign-catalog/review.html
 data/sign-catalog/review-fixed.html
 __pycache__/
+
+# submission exports (tools/publish-app-repo.ps1)
+dist/

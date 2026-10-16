@@ -1,0 +1,32 @@
+{
+  // F5 runs the Flutter app in src/app; pick the device in the status bar (bottom right).
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "hoclaixe (thiết bị đang chọn)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "src/app",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "hoclaixe (web, cổng 8080)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "src/app",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      // progress is stored per browser origin: keep the same port
+      "args": ["--web-port", "8080"]
+    },
+    {
+      "name": "hoclaixe (web Edge, cổng 8080)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "src/app",
+      "program": "lib/main.dart",
+      "deviceId": "edge",
+      "args": ["--web-port", "8080"]
+    }
+  ]
+}

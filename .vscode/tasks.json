@@ -1,0 +1,40 @@
+{
+  // Ctrl+Shift+B = flutter test. Other tasks: Ctrl+Shift+P → "Tasks: Run Task".
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "flutter test",
+      "type": "shell",
+      "command": "flutter test",
+      "options": { "cwd": "${workspaceFolder}/src/app" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "flutter analyze",
+      "type": "shell",
+      "command": "flutter analyze",
+      "options": { "cwd": "${workspaceFolder}/src/app" },
+      "problemMatcher": []
+    },
+    {
+      "label": "flutter pub get",
+      "type": "shell",
+      "command": "flutter pub get",
+      "options": { "cwd": "${workspaceFolder}/src/app" },
+      "problemMatcher": []
+    },
+    {
+      "label": "kiểm tra máy (check-setup)",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File tools/check-setup.ps1",
+      "problemMatcher": []
+    },
+    {
+      "label": "xuất repo nộp bài (publish-app-repo)",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File tools/publish-app-repo.ps1",
+      "problemMatcher": []
+    }
+  ]
+}
