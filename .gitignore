@@ -47,3 +47,6 @@ dist/
 
 # screenshot tool output (copied to docs/design/preview when kept)
 src/app/test/screenshots/out/
+
+# lecturer requirements and other students' sample reports (personal data, large)
+docs/reports/giang-vien/

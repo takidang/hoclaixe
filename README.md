@@ -1,166 +1,104 @@
-# Claude Code App Studio — Flutter + AI
+# hoclaixe — Học lái xe
 
-Biến Claude Code thành một "công ty làm app" ảo phục vụ hai đồ án dùng chung một sản phẩm:
+Ứng dụng Flutter **ôn thi lý thuyết sát hạch giấy phép lái xe hạng A1, A, B**: chạy **offline** trên Android
+(và trình duyệt), dùng nguyên văn **bộ 600 câu hỏi của Cục Cảnh sát giao thông** (áp dụng từ 01/6/2025),
+cấu trúc đề theo **Công văn 2262/CSGT-P5**, danh mục biển báo theo **QCVN 41:2024/BGTVT**.
 
-- **Đồ án Lập trình trên thiết bị di động (LTTTBDD)**
-- **Đồ án chuyên ngành Công nghệ Phần mềm** (yêu cầu đề tài thực tế, dùng AI giải quyết vấn đề)
+Đồ án học phần **Lập trình trên thiết bị di động** (ECMP177). Ứng dụng là sản phẩm học tập độc lập, không đại diện
+cơ quan nhà nước.
 
-Sản phẩm: **app ôn thi lý thuyết sát hạch lái xe** theo từng hạng bằng, dùng bộ câu hỏi mới nhất của Bộ Công an
-và luật giao thông hiện hành, có **chatbot AI (Gemini + RAG) giải thích luật/đáp án** và **chụp ảnh nhận diện biển báo**.
+<p>
+  <img src="docs/design/preview/01-home.png" width="200" alt="Màn chính">
+  <img src="docs/design/preview/03-study-wrong.png" width="200" alt="Học theo chủ đề">
+  <img src="docs/design/preview/06-exam.png" width="200" alt="Đang thi">
+  <img src="docs/design/preview/08-result.png" width="200" alt="Kết quả">
+</p>
+<p>
+  <img src="docs/design/preview/04-exam-list.png" width="200" alt="Chọn đề">
+  <img src="docs/design/preview/09-signs.png" width="200" alt="Biển báo">
+  <img src="docs/design/preview/10-sign-detail.png" width="200" alt="Chi tiết biển">
+  <img src="docs/design/preview/11-stats.png" width="200" alt="Thống kê">
+</p>
 
-Cấu trúc lấy cảm hứng từ [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) (MIT), thu gọn và viết lại cho làm app.
+## Chức năng
 
----
-
-## 1. Bối cảnh
-
-> **Đổi phạm vi 13/10/2026**: đồ án chuyên ngành đã đổi sang đề tài khác — hoclaixe **chỉ còn là đồ án LTTTBDD**.
-> Ưu tiên duy nhất: **Module A làm giống app đối thủ, xong trước 28/10/2026**. Module B (chatbot), D (nhận diện biển),
-> C (web) chuyển thành "làm sau nếu còn thời gian" — tài liệu, agent, skill phần AI giữ lại, không xóa.
-
-
-| | Đồ án LTTTBDD | Đồ án chuyên ngành CNPM |
+| Nhóm | Chức năng | Trạng thái |
 |---|---|---|
-| Trọng tâm | Kỹ thuật lập trình di động: Flutter, widget, state, local DB, điều hướng, offline, giao diện | Bài toán thực tế + AI + quy trình CNPM (Scrum, yêu cầu, thiết kế, kiểm thử, đánh giá) |
-| Phạm vi | Module A — luyện đề như các app ôn thi trên Google Play, giao diện đẹp hơn; **không có AI** | Module A + B + D, tài liệu CNPM đầy đủ |
-| Hạn | 28/10/2026 (hạn nội bộ; buổi học cuối 30/10/2026) | Chọn đề tài 05–11/10/2026 · Thực hiện 12/10–20/12/2026 · Nộp LMS 21–27/12/2026 · Bảo vệ 28/12/2026–10/01/2027 |
+| Khởi đầu | Tuyên bố miễn trừ lần đầu, chọn hạng A1 / A / B (mô tả loại xe theo Luật 36/2024/QH15 Điều 57), đổi hạng, màn Giới thiệu + nguồn dữ liệu | Hoàn thành |
+| Học | Học theo chủ đề (tất cả câu, câu điểm liệt, 6 chương): đúng/sai hiện ngay, lưới số câu, nhớ câu đang dở, làm lại chủ đề; phóng to hình | Hoàn thành |
+| Ôn tập | Ôn câu sai (câu ra khỏi danh sách khi đúng 2 lần liên tiếp), ôn câu điểm liệt theo hạng, 50 câu hay sai nhất | Hoàn thành |
+| Thi thử | Đề ngẫu nhiên + 20 đề cố định, đồng hồ đếm ngược, đáp án lưu ngay khi chọn, hết giờ tự nộp, lưu tạm và làm tiếp, kết quả kèm lý do trượt (sai câu điểm liệt), xem lại bài | Hoàn thành |
+| Biển báo | 392 biển và vạch kẻ đường chia 7 nhóm, chi tiết biển, tìm theo mã hoặc tên (không dấu) | Hoàn thành |
+| Thống kê | Số lần thi, tỉ lệ đạt, điểm gần nhất, tiến độ theo chủ đề, lịch sử thi | Hoàn thành |
+| Giao diện | Màu lấy từ biển báo, font Be Vietnam Pro, chế độ tối, cỡ chữ 130% không vỡ bố cục | Hoàn thành |
+| Kiểm thử chấp nhận + bản APK nộp | — | Đang làm |
 
-- Team 2 người. Giảng viên cho phép dùng AI hỗ trợ viết code.
-- Công cụ: Flutter (Dart) + Android Studio; Gemini API gói miễn phí; Python + Google Colab để huấn luyện model.
+## Công nghệ
 
-## 2. Các module
-
-| Module | Nội dung | Ưu tiên |
+| Thành phần | Công nghệ / thư viện | Mục đích |
 |---|---|---|
-| **A — Lõi** | Must: chọn hạng (A1, A, B), học theo chủ đề, thi thử đúng cấu trúc đề và thời gian, câu điểm liệt, ôn câu sai, danh mục biển báo, tuyên bố miễn trừ · Should: thống kê tiến độ, câu hay sai của người dùng · Should (chỉ chuyên ngành): tra cứu luật. Chi tiết: `docs/srs/vision.md` §5 | Must |
-| **B — Chatbot AI** | Chatbot RAG giải thích luật/đáp án, **bắt buộc trích dẫn văn bản–điều–khoản**, cảnh báo AI 3 tầng, nút Báo sai | Must |
-| **D — Nhận diện biển báo** | Chụp/chọn ảnh → model nhận diện → hiển thị biển chuẩn trong danh mục + tác dụng + câu hỏi liên quan; luồng "Nhận diện sai" và "Không nhận diện được" | Must (Gemini vision là phương án chính; TFLite trên máy: Could) |
-| B2 — Gợi ý ôn tập cá nhân hóa | Phân tích lịch sử làm bài → chủ đề yếu → bộ câu ôn | Could (hạ từ Should khi thêm Module D) |
-| **C — Web** | Flutter Web từ cùng codebase; nhận diện biển báo trên web dùng đường Gemini | Could |
+| Ứng dụng | Flutter 3.47 / Dart 3.13 | Android (chính) và web |
+| Quản lý trạng thái | Riverpod 3 | Provider cho nội dung, cài đặt, tiến độ, bài thi |
+| Điều hướng | go_router | Điều hướng theo trạng thái (miễn trừ → chọn hạng → màn chính) |
+| Cơ sở dữ liệu | SQLite — `sqflite` (Android), `sqflite_common_ffi_web` (web) | Lưu tiến độ học, câu sai, bài thi, lịch sử — chỉ trên máy |
+| Nội dung | JSON đóng gói trong `assets/` + mã băm kiểm tra | 600 câu hỏi, cấu trúc đề, danh mục biển báo (chỉ đọc) |
+| Kiểm thử | flutter_test, `sqflite_common_ffi` | 129 unit + widget test (dữ liệu thật, SQLite thật trong bộ nhớ) |
+| Trích xuất dữ liệu | Python 3, PyMuPDF | Trích câu hỏi, đáp án, hình, biển báo từ PDF chính thức + trang soát bằng tay |
 
-## 3. Quyết định thiết kế đã chốt
+Không có backend, không đăng nhập, không thu thập dữ liệu người dùng; tắt sao lưu Android.
 
-### 3.1 Phân tích đối thủ (app "Ôn thi GPLX 600 Câu", Google Play)
+## Chạy app
 
-- Khoảng 5 triệu lượt tải, 4,9 sao. Theo mô tả của app: bộ 600 câu do Cục CSGT phát hành, áp dụng từ 01/06/2025;
-  chia theo hạng (A1/A 250 câu, B1 300 câu, các hạng còn lại 600 câu); 60 câu điểm liệt; học theo chuyên đề;
-  thi thử bấm giờ; ôn câu sai; top 50 câu hay sai; danh mục biển báo; mẹo ghi nhớ. **Các con số này phải được
-  data-curator xác minh lại với nguồn chính thức trước khi dùng.**
-- App có tuyên bố miễn trừ: sản phẩm độc lập, không đại diện cơ quan nhà nước, dẫn nguồn đối chiếu chính thức
-  (csgt.bocongan.gov.vn, csgt.vn).
-- **Không có tính năng AI** (theo mô tả trên store) → khác biệt của mình nằm ở Module B và D.
-- Bài học từ đánh giá người dùng: có phàn nàn đáp án đã chọn bị đổi khi nộp bài → lỗi lưu đáp án phá hỏng niềm tin,
-  phải có test case riêng.
+```powershell
+git clone -c core.longpaths=true https://github.com/takidang/hoclaixe.git
+cd hoclaixe
+powershell -ExecutionPolicy Bypass -File tools\check-setup.ps1   # kiểm tra máy thiếu gì
+cd src\app
+flutter pub get
+flutter run -d chrome --web-port 8080   # web: nhanh, không cần emulator
+flutter run                             # Android: emulator hoặc điện thoại
+```
+Hoặc mở cả repo bằng VS Code: **F5** chạy app, **Ctrl+Shift+B** chạy `flutter test`.
+Cài Flutter, emulator, lỗi hay gặp: [CONTRIBUTING.md](CONTRIBUTING.md) mục 2a.
 
-### 3.2 Tuyên bố miễn trừ toàn app
+Bản nộp (project Flutter ở thư mục gốc, giữ lịch sử commit): https://github.com/takidang/hoclaixe-app —
+cập nhật bằng `tools\publish-app-repo.ps1`.
 
-Màn hình Giới thiệu + lần mở app đầu tiên: app là sản phẩm độc lập (đồ án sinh viên), không đại diện Bộ Công an
-hay cơ quan nhà nước nào; dữ liệu tham khảo từ nguồn chính thức (ghi tên văn bản, ngày hiệu lực); link nguồn đối chiếu.
+## Cấu trúc repo
 
-### 3.3 Cảnh báo AI — 3 tầng
+```
+src/app/                  ứng dụng Flutter (lib/core, lib/features/<tính năng>, lib/shared, test/)
+data/                     dữ liệu đã trích + soát: question-bank/, sign-catalog/ (PDF gốc không commit)
+tools/                    trích xuất (extract_*), kiểm tra (validate_data), đồng bộ assets, trang soát, script cho team
+docs/                     srs/ (yêu cầu), architecture/ (kiến trúc + ADR), data/sources.md (nguồn), design/preview/ (ảnh),
+                          reports/dev-log.md (nhật ký cho báo cáo), defense/ (ôn bảo vệ)
+production/               backlog, story ST-01…ST-16, status, rủi ro
+.claude/                  cấu hình Claude Code (agent, skill, rule, hook)
+```
 
-1. **Lần đầu mở chatbot**: hộp thoại giải thích AI có thể sai, phải bấm "Tôi đã hiểu" mới dùng được.
-2. **Dưới mỗi câu trả lời**: dòng cố định "Thông tin do AI tạo, có thể sai sót. Hãy kiểm chứng với nguồn chính thức."
-   + nút **Kiểm chứng** mở trang chính thức của Bộ Công an.
-3. **Trích dẫn cụ thể**: mỗi câu trả lời liệt kê văn bản–điều–khoản lấy từ metadata truy xuất (không để model tự viết nguồn).
+## Nguồn dữ liệu
 
-Thêm nút **Báo sai** dưới mỗi câu trả lời → dữ liệu đưa vào bộ đánh giá `/ai-eval`.
-Không đủ căn cứ (dưới ngưỡng truy xuất) → trả lời "không tìm thấy căn cứ", không gọi model đoán.
-
-### 3.4 Luồng nhận diện biển báo
-
-Nguyên tắc cốt lõi: **AI chỉ chọn biển, nội dung lấy từ danh mục chuẩn** → kết quả luôn là một biển có thật,
-ý nghĩa không bao giờ bị bịa.
-
-1. **Chụp/chọn ảnh** có khung hướng dẫn đặt biển vào giữa; cho cắt ảnh khi có nhiều biển.
-2. **Nhận diện được** (độ tin cậy ≥ ngưỡng): ảnh người dùng **đặt cạnh** hình biển chuẩn; hiện mã biển, tên, nhóm
-   (cấm / nguy hiểm / hiệu lệnh / chỉ dẫn / phụ), tác dụng, các câu hỏi thi liên quan, nút hỏi chatbot về biển này.
-   Kèm dòng cảnh báo nhẹ "Kết quả nhận diện có thể sai — hãy so sánh hình".
-3. **"Nhận diện sai"**: hiện 3–5 ứng viên tiếp theo; vẫn sai → tự tìm trong danh mục theo nhóm. Lựa chọn của người
-   dùng được ghi lại (có hỏi đồng ý) để đo độ chính xác thực tế và huấn luyện lại.
-4. **Không nhận diện được** (dưới ngưỡng hoặc lớp "không phải biển báo"): báo rõ "Không nhận diện được biển báo",
-   gợi ý chụp lại (gần hơn, đủ sáng, biển chiếm phần lớn khung hình), nút Chụp lại và Tra danh mục.
-
-Kỹ thuật:
-- Bài toán **phân loại** trên ảnh đã căn/cắt (không làm phát hiện thời gian thực — để "hướng phát triển").
-- Phạm vi lớp: các biển xuất hiện trong bộ câu hỏi thi + lớp **"không phải biển báo"**.
-- **Phương án chính (chốt 06/10/2026): Gemini vision qua backend**, bắt buộc trả về đúng một mã biển trong danh sách hoặc `UNKNOWN`; backend kiểm tra mã hợp lệ.
-- Model TFLite chạy trên máy (transfer learning) là **Could** — chỉ làm nếu dư thời gian (quyết 15/11), nếu không thì nêu là hướng phát triển.
-- Độ tin cậy thấp / `UNKNOWN` → hiện top-3 hoặc "Không nhận diện được" + tra danh mục.
-- Đánh giá: top-1, top-3, tỷ lệ từ chối đúng, thời gian phản hồi trên bộ ảnh kiểm tra (~100–200 ảnh, nguồn có giấy phép + ảnh tự chụp đối chứng).
-- Rủi ro: hạn mức Gemini miễn phí (dùng gói miễn phí; mua Google AI Pro **không** tăng hạn mức API) và độ chính xác trên ảnh chụp thật.
-
-## 4. Cài đặt
-
-1. Cài [Claude Code](https://code.claude.com/docs) và đăng nhập.
-2. Windows: cài **Git for Windows** (hook chạy bằng `bash`).
-3. Cài Flutter SDK + Android Studio, chạy `flutter doctor` cho sạch.
-4. (Module D) Python 3 + tài khoản Google Colab để huấn luyện.
-5. Giải nén bộ này làm thư mục gốc repo đồ án, `git init`, mở terminal tại đó, chạy `claude`.
-6. Lần đầu: gõ `/start`.
-
-## 5. Quy trình
-
-| Phase | Lệnh |
+| Dữ liệu | Văn bản |
 |---|---|
-| 0. Khởi động | `/start` |
-| 1. Discovery | `/discovery` → `/gate-check discovery` |
-| 2. Yêu cầu | `/write-srs` (dùng `docs/srs/requirements-draft.md` làm đầu vào) → `/gate-check requirements` |
-| 3. Thiết kế | `/ux-design all`, `/data-plan`, `/rag-design`, `/vision-design`, `/dataset-plan`, `/create-architecture`, `/adr <...>` → `/gate-check design` |
-| 4. Chuẩn bị | `/setup-flutter`, `/create-stories`, `/sprint-plan new` |
-| 5. Phát triển (mỗi sprint) | `/dev-story ST-xx` → `/code-review` → `/story-done ST-xx`; `/ml-train` (Module D); cuối sprint `/sprint-plan close`, `/retro` |
-| 6. Kiểm thử | `/test-plan`, `/ai-eval`, `/ml-eval`, `/bug-report` |
-| 7. Phát hành | `/release-checklist`, `/web-port` (nếu dư thời gian) |
-| 8. Báo cáo & bảo vệ | `/write-report ltttbdd\|chuyen-nganh`, `/defense-prep ...` |
+| 600 câu hỏi, đáp án, hình | Bộ câu hỏi sát hạch lái xe cơ giới đường bộ — Cục CSGT, Bộ Công an (từ 01/6/2025) |
+| Cấu trúc đề, câu điểm liệt theo hạng | Công văn 2262/CSGT-P5 (07/5/2025) |
+| Thời gian làm bài, điểm đạt | Thông tư 12/2025/TT-BCA (đến 28/02/2027) |
+| Biển báo, vạch kẻ đường | QCVN 41:2024/BGTVT |
+| Loại xe theo hạng | Luật Trật tự, an toàn giao thông đường bộ 36/2024/QH15, Điều 57 |
 
-Bất cứ lúc nào: `/status`.
+Mọi dữ liệu trích tự động từ văn bản gốc, kiểm bằng validator và soát bằng tay; chi tiết, trang trích dẫn, mã băm file:
+[docs/data/sources.md](docs/data/sources.md).
 
-## 6. Roadmap
+## Cách làm việc
 
-| Thời gian | Sprint | Mục tiêu |
-|---|---|---|
-| 03/10–11/10 | 0 | /start, /discovery, chốt đề tài · SRS Module A · UX Module A (Claude Design) · kiến trúc app tối giản (state, local DB) · /setup-flutter · **Kiệt: tìm nguồn chính thức + bắt đầu nhập bộ câu hỏi** |
-| 12/10–28/10 | 1 | **Nộp LTTTBDD 28/10** — Module A: chọn hạng, học theo chủ đề, thi thử + chấm điểm + điểm liệt (12–20/10) · ôn câu sai, câu hay sai, danh mục biển báo, thống kê (21–25/10) · test, build APK, hoàn thiện báo cáo LTTTBDD (26–28/10). Kiệt: nhập liệu xong trước 15/10, viết báo cáo LTTTBDD từ 19/10 |
-| 29/10–08/11 | 2 | Thiết kế phần AI: SRS đủ Module B + D, rag-design, vision-design (Gemini vision), kiến trúc backend · Kiệt: kho văn bản luật, bộ ảnh kiểm tra biển báo |
-| 09/11–22/11 | 3 | Backend + RAG prototype · tra cứu luật · endpoint Gemini vision + màn hình camera · 15/11: quyết có làm model TFLite (Could) không |
-| 23/11–06/12 | 4 | Chatbot hoàn chỉnh + cảnh báo 3 tầng · luồng nhận diện sai/không nhận diện · /ai-eval, /ml-eval lần 1 |
-| 07/12–20/12 | 5 | Ổn định, test, đánh giá cuối, release, (web nếu dư) — **không thêm tính năng** |
-| 21/12–27/12 | — | Nộp báo cáo chuyên ngành |
-| 28/12–10/01 | — | Bảo vệ |
+Repo dùng **Claude Code** như một "studio" nhiều vai trò (agent) với quy trình theo phase (skill `/dev-story`,
+`/story-done`, `/tam-nghi`…): mỗi chức năng là một story có acceptance criteria, có test trước khi đóng.
+Nhóm duyệt mọi kế hoạch trước khi code; giảng viên cho phép dùng AI hỗ trợ viết code. Luật chung: [CLAUDE.md](CLAUDE.md).
 
-Báo cáo LTTTBDD viết trong Sprint 1; báo cáo chuyên ngành viết song song từ Sprint 2.
+## Hướng phát triển
 
-## 7. Studio gồm những gì
-
-- **14 agent**: product-director, technical-director, project-manager, business-analyst, ux-designer,
-  flutter-developer, backend-developer, ai-engineer, **ml-engineer**, data-curator, qa-engineer,
-  security-reviewer, release-engineer, report-writer.
-- **29 skill**: start, status, tam-nghi (kết thúc phiên: cập nhật status + commit + push), discovery, write-srs, ux-design, create-architecture, adr, data-plan, rag-design,
-  **vision-design, dataset-plan, ml-train, ml-eval**, setup-flutter, create-stories, sprint-plan, dev-story,
-  code-review, story-done, retro, test-plan, ai-eval, bug-report, gate-check, release-checklist, web-port,
-  write-report, defense-prep.
-- **Rules** theo thư mục: Flutter, test, backend/AI, dữ liệu, tài liệu, **ML**.
-- **Hooks**: tóm tắt trạng thái đầu phiên, chặn commit lộ API key/file nhạy cảm, tự format Dart.
-- **Templates**: vision, SRS, use case, screen spec, architecture, ADR, data schema, RAG design, **vision design**,
-  story, sprint, test plan, bug, dàn ý 2 báo cáo.
-
-```
-CLAUDE.md                 luật chung cho mọi phiên
-.claude/agents|skills|rules|hooks|docs
-docs/                     srs, architecture/adr, ux, ai, ml, data, test, reports, templates
-production/               roadmap, backlog, stories, sprints, bugs, status, risks, ideas
-data/                     question-bank, law-corpus, sign-catalog
-ml/                       notebooks, scripts, dataset (không commit ảnh lớn), models, eval
-src/                      app (Flutter), backend
-```
-
-## 8. Nguyên tắc bắt buộc
-
-- **Dữ liệu chính thức**: câu hỏi, luật, danh mục biển báo chỉ lấy từ nguồn chính thức, có số hiệu và ngày hiệu lực.
-  Agent bị cấm tự soạn từ trí nhớ.
-- **API key** chỉ nằm ở backend (biến môi trường). Hook chặn commit nếu phát hiện key.
-- **AI không bao giờ là nguồn sự thật**: chatbot phải trích dẫn; nhận diện biển chỉ chọn mã, nội dung lấy từ danh mục.
-- **Bạn là người quyết định**: agent hỏi trước khi ghi file, không tự commit. Hiểu code AI viết — hội đồng sẽ hỏi.
-- Gói miễn phí Gemini có giới hạn và có thể thay đổi → luôn có video demo dự phòng.
-- Kiểm tra quy định khai báo việc dùng AI hỗ trợ trong báo cáo.
-- Hai báo cáo cùng sản phẩm nhưng khác trọng tâm — không nộp hai bản giống nhau.
+Chưa làm trong học phần này, tài liệu thiết kế giữ trong `docs/` và `.claude/`:
+- Trợ lý AI giải thích luật/đáp án (Gemini + RAG, bắt buộc trích dẫn văn bản–điều–khoản).
+- Chụp ảnh nhận diện biển báo (AI chỉ chọn mã biển, nội dung lấy từ danh mục chuẩn).
+- Cấu trúc đề mới từ 01/3/2027 (Thông tư 108/2026) khi có bộ câu hỏi chính thức.
+- Hạng B1 và các hạng khác: bộ câu hỏi đã có, cần thêm cấu hình đề và bật hạng trong app.
