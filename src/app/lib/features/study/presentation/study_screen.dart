@@ -80,7 +80,7 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
 
   Future<void> _onPageChanged(int i) async {
     setState(() => _index = i);
-    if (_topic.isWrongList) return;
+    if (_topic.isSnapshot) return;
     final repo = await ref.read(progressRepositoryProvider.future);
     await repo.saveTopicPosition(
       widget.data.licenseClass,
@@ -160,8 +160,10 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
     final action = await showTopicSummary(
       context,
       summary: RoundSummary.of(_topic, _answers),
-      canRestart: !_topic.isWrongList,
-      reviewLabel: _topic.isWrongList ? S.reviewRemainingWrong : S.reviewTopicWrong,
+      canRestart: !_topic.isSnapshot,
+      reviewLabel: _topic.isWrongList
+          ? S.reviewRemainingWrong
+          : S.reviewTopicWrong,
       alwaysOfferReview: _topic.isWrongList,
     );
     if (!mounted) return;
@@ -187,14 +189,20 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
   Widget build(BuildContext context) {
     final questions = _topic.questions;
     if (questions.isEmpty) {
-      if (_topic.id == StudyTopic.wrongOf(StudyTopic.allId)) return _NoWrongYet(title: widget.title);
-      return _Message(_topic.isWrongList ? S.noWrongInTopic : S.emptyTopic, title: widget.title);
+      if (_topic.id == StudyTopic.wrongOf(StudyTopic.allId) ||
+          _topic.kind == TopicKind.frequent) {
+        return _NoWrongYet(title: widget.title);
+      }
+      return _Message(
+        _topic.isWrongList ? S.noWrongInTopic : S.emptyTopic,
+        title: widget.title,
+      );
     }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title, maxLines: 2, overflow: TextOverflow.ellipsis),
         actions: [
-          if (!_topic.isWrongList)
+          if (!_topic.isSnapshot)
             IconButton(
               tooltip: S.restartTopic,
               icon: const Icon(Icons.restart_alt),
@@ -291,9 +299,17 @@ class _NoWrongYet extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(S.noWrongYet, style: text.titleLarge, textAlign: TextAlign.center),
+              Text(
+                S.noWrongYet,
+                style: text.titleLarge,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 8),
-              Text(S.noWrongYetHint, style: text.bodyMedium, textAlign: TextAlign.center),
+              Text(
+                S.noWrongYetHint,
+                style: text.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: () => context.pushReplacement(Routes.exam),

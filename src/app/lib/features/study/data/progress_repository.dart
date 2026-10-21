@@ -104,6 +104,20 @@ class ProgressRepository {
     };
   }
 
+  /// Total wrong answers per question, all modes, never reset by correct answers (FR-A51). Only questions
+  /// answered wrongly at least once.
+  Future<Map<String, int>> wrongCounts() async {
+    final rows = await _db.query(
+      'question_state',
+      columns: ['question_id', 'wrong_count'],
+      where: 'wrong_count > 0',
+    );
+    return {
+      for (final r in rows)
+        r['question_id']! as String: r['wrong_count']! as int,
+    };
+  }
+
   Future<Set<String>> wrongList() async {
     final rows = await _db.query(
       'question_state',

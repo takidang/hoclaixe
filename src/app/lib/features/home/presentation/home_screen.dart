@@ -16,7 +16,10 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final summary = ref.watch(homeSummaryProvider);
-    ref.listen(homeSummaryProvider, (_, next) => _promptResume(context, ref, next.value));
+    ref.listen(
+      homeSummaryProvider,
+      (_, next) => _promptResume(context, ref, next.value),
+    );
     final cls = summary.value?.licenseClass;
     return Scaffold(
       appBar: AppBar(
@@ -98,6 +101,11 @@ class _HomeBody extends ConsumerWidget {
               label: S.trafficSigns,
               route: Routes.signs,
             ),
+            const _FeatureTile(
+              icon: Icons.insights_outlined,
+              label: S.statistics,
+              route: Routes.stats,
+            ),
           ],
         ),
       ],
@@ -123,11 +131,19 @@ class _ProgressCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(S.studyProgress, style: text.titleSmall?.copyWith(color: on.withValues(alpha: 0.85))),
+            Text(
+              S.studyProgress,
+              style: text.titleSmall?.copyWith(
+                color: on.withValues(alpha: 0.85),
+              ),
+            ),
             const SizedBox(height: 4),
             Text(
               S.progressCount(summary.correctCount, summary.poolSize),
-              style: text.headlineSmall?.copyWith(color: on, fontWeight: FontWeight.w700),
+              style: text.headlineSmall?.copyWith(
+                color: on,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 12),
             LinearProgressIndicator(
@@ -137,7 +153,10 @@ class _ProgressCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
             ),
             const SizedBox(height: 8),
-            Text(S.progressHint, style: text.bodySmall?.copyWith(color: on.withValues(alpha: 0.8))),
+            Text(
+              S.progressHint,
+              style: text.bodySmall?.copyWith(color: on.withValues(alpha: 0.8)),
+            ),
           ],
         ),
       ),
@@ -202,8 +221,12 @@ class _FeatureTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundColor: caution ? scheme.tertiaryContainer : scheme.primaryContainer,
-                foregroundColor: caution ? scheme.onTertiaryContainer : scheme.onPrimaryContainer,
+                backgroundColor: caution
+                    ? scheme.tertiaryContainer
+                    : scheme.primaryContainer,
+                foregroundColor: caution
+                    ? scheme.onTertiaryContainer
+                    : scheme.onPrimaryContainer,
                 child: Icon(icon, size: 22),
               ),
               const SizedBox(height: 16),
@@ -211,7 +234,13 @@ class _FeatureTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(label, style: text.titleSmall),
-                  if (detail != null) Text(detail!, style: text.bodySmall?.copyWith(color: scheme.onSurfaceVariant)),
+                  if (detail != null)
+                    Text(
+                      detail!,
+                      style: text.bodySmall?.copyWith(
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
                 ],
               ),
             ],
@@ -230,7 +259,11 @@ class _ResumePrompt {
 
 final _resumePromptProvider = Provider<_ResumePrompt>((ref) => _ResumePrompt());
 
-Future<void> _promptResume(BuildContext context, WidgetRef ref, HomeSummary? summary) async {
+Future<void> _promptResume(
+  BuildContext context,
+  WidgetRef ref,
+  HomeSummary? summary,
+) async {
   final prompt = ref.read(_resumePromptProvider);
   // decided once, on the first home data after start — not when coming back from "Lưu tạm và thoát"
   if (summary == null || prompt.shown) return;
@@ -248,11 +281,18 @@ Future<void> _promptResume(BuildContext context, WidgetRef ref, HomeSummary? sum
       title: const Text(S.resumePromptTitle),
       content: Text(S.resumePromptBody(open.paper.licenseClass, left)),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context, false), child: const Text(S.later)),
-        FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text(S.resume)),
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: const Text(S.later),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: const Text(S.resume),
+        ),
       ],
     ),
   );
-  if (resume == true && context.mounted) await context.push(Routes.examSession(open.id));
+  if (resume == true && context.mounted) {
+    await context.push(Routes.examSession(open.id));
+  }
 }
-

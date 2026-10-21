@@ -19,5 +19,5 @@
 | [ST-12](stories/ST-12.md) | E5 Biển báo | Danh mục biển báo | FR-A30 | 3 | Must | 23/10 | Tài | Done 21/10 |
 | [ST-13](stories/ST-13.md) | E6 Hoàn thiện | Design system và áp vào theme | NFR-07 | 2 | Must | song song, xong 23/10 | Tài | Done 21/10 (v0, nhóm chỉnh tiếp) |
 | [ST-14](stories/ST-14.md) | E6 Hoàn thiện | Kiểm thử chấp nhận và build bản nộp | NFR-01, NFR-02, NFR-03, NFR-06, NFR-08 | 3 | Must | 26–27/10 | Tài + Kiệt | Todo |
-| [ST-15](stories/ST-15.md) | E6 Hoàn thiện | Thống kê, lịch sử thi, câu hay sai | FR-A29, FR-A50, FR-A51 | 3 | Should | 24–25/10 nếu kịp | Tài | Todo |
+| [ST-15](stories/ST-15.md) | E6 Hoàn thiện | Thống kê, lịch sử thi, câu hay sai | FR-A29, FR-A50, FR-A51 | 3 | Should | 24–25/10 nếu kịp | Tài | Done 21/10 |
 | [ST-16](stories/ST-16.md) | E5 Biển báo | Tìm biển theo mã hoặc tên | FR-A31 | 1 | Should | nếu kịp | Tài | Done 21/10 |

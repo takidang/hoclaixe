@@ -76,15 +76,16 @@ final studyDataProvider = FutureProvider.autoDispose.family<StudyData?, String>(
       pool: cp.pool,
       licenseClass: cp.licenseClass,
       wrongIds: await repo.wrongList(),
+      wrongCounts: await repo.wrongCounts(),
     );
     if (topic == null) return null;
-    final since = topic.isWrongList
+    final since = topic.isSnapshot
         ? ref.read(clockProvider)()
         : await repo.roundStart(cp.licenseClass, topicId);
-    final answers = topic.isWrongList
+    final answers = topic.isSnapshot
         ? <String, int>{}
         : await repo.latestAnswers(topic.questionIds, since: since);
-    final saved = topic.isWrongList
+    final saved = topic.isSnapshot
         ? null
         : await repo.topicPosition(cp.licenseClass, topicId);
     final savedIndex = saved == null ? -1 : topic.questionIds.indexOf(saved);
@@ -98,7 +99,7 @@ final studyDataProvider = FutureProvider.autoDispose.family<StudyData?, String>(
 );
 
 /// Mode written to the answer log for a topic.
-AnswerMode answerModeOf(StudyTopic topic) => topic.isWrongList
+AnswerMode answerModeOf(StudyTopic topic) => topic.isSnapshot
     ? AnswerMode.wrong
     : topic.kind == TopicKind.critical
     ? AnswerMode.critical

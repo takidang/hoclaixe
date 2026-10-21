@@ -24,17 +24,24 @@ class StudyTopic {
 
   static const allId = 'all';
   static const criticalId = 'critical';
+
+  /// "Câu hay sai" (FR-A51): up to 50 questions with the most wrong answers in the class pool.
+  static const frequentId = 'frequent';
+  static const frequentLimit = 50;
   static const wrongPrefix = 'wrong-';
   static String chapterId(int chapter) => 'ch$chapter';
   static String wrongOf(String baseId) => '$wrongPrefix$baseId';
 
   bool get isWrongList => id.startsWith(wrongPrefix);
 
+  /// Built from the learner's mistakes when opened: starts empty, no saved position, no "Làm lại".
+  bool get isSnapshot => isWrongList || kind == TopicKind.frequent;
+
   /// Base topic for a wrong-list topic, otherwise itself.
   String get baseId => isWrongList ? id.substring(wrongPrefix.length) : id;
 }
 
-enum TopicKind { all, critical, chapter }
+enum TopicKind { all, critical, chapter, frequent }
 
 /// "Tất cả câu hỏi", "Câu điểm liệt", then every chapter that has questions in the class pool.
 List<StudyTopic> buildTopics({
@@ -77,7 +84,24 @@ StudyTopic? resolveTopic(
   required List<Question> pool,
   required String licenseClass,
   required Set<String> wrongIds,
+  Map<String, int> wrongCounts = const {},
 }) {
+  if (id == StudyTopic.frequentId) {
+    final ranked =
+        [
+          for (final q in pool)
+            if ((wrongCounts[q.id] ?? 0) > 0) q,
+        ]..sort((a, b) {
+          final byCount = wrongCounts[b.id]!.compareTo(wrongCounts[a.id]!);
+          return byCount != 0 ? byCount : a.number.compareTo(b.number);
+        });
+    return StudyTopic(
+      id: id,
+      kind: TopicKind.frequent,
+      chapter: null,
+      questions: ranked.take(StudyTopic.frequentLimit).toList(),
+    );
+  }
   final topics = buildTopics(pool: pool, licenseClass: licenseClass);
   if (id.startsWith(StudyTopic.wrongPrefix)) {
     final base = resolveTopic(
@@ -85,6 +109,7 @@ StudyTopic? resolveTopic(
       pool: pool,
       licenseClass: licenseClass,
       wrongIds: wrongIds,
+      wrongCounts: wrongCounts,
     );
     if (base == null || base.isWrongList) return null;
     return StudyTopic(

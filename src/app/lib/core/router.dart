@@ -14,6 +14,7 @@ import '../features/onboarding/presentation/license_class_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
 import '../features/signs/presentation/sign_catalog_screen.dart';
 import '../features/signs/presentation/sign_detail_screen.dart';
+import '../features/stats/presentation/stats_screen.dart';
 import '../features/study/domain/study_topic.dart';
 import '../features/study/presentation/study_screen.dart';
 import '../features/study/presentation/topic_list_screen.dart';
@@ -28,13 +29,15 @@ abstract final class Routes {
   static const study = '/study';
   static String studyTopic(String topicId) => '/study/$topicId';
   static const exam = '/exam';
-  static String examStart({int? fixedSet}) => fixedSet == null ? '/exam/start' : '/exam/start?set=$fixedSet';
+  static String examStart({int? fixedSet}) =>
+      fixedSet == null ? '/exam/start' : '/exam/start?set=$fixedSet';
   static String examSession(int id) => '/exam/session/$id';
   static String examResult(int id) => '/exam/result/$id';
   static String examReview(int id) => '/exam/review/$id';
   static const wrong = '/wrong';
   static const critical = '/critical';
   static const signs = '/signs';
+  static const stats = '/stats';
   static String sign(String code) => '/signs/${Uri.encodeComponent(code)}';
 }
 
@@ -68,31 +71,49 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) =>
         onboardingRedirect(ref.read(settingsProvider), state.uri.path),
     routes: [
-      GoRoute(path: Routes.splash, builder: (context, state) => const SplashScreen()),
-      GoRoute(path: Routes.disclaimer, builder: (context, state) => const DisclaimerScreen()),
-      GoRoute(path: Routes.licenseClass, builder: (context, state) => const LicenseClassScreen()),
+      GoRoute(
+        path: Routes.splash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: Routes.disclaimer,
+        builder: (context, state) => const DisclaimerScreen(),
+      ),
+      GoRoute(
+        path: Routes.licenseClass,
+        builder: (context, state) => const LicenseClassScreen(),
+      ),
       // Features are children of home, so going straight to one (e.g. "Thi đề khác") keeps home below it.
       GoRoute(
         path: Routes.home,
         builder: (context, state) => const HomeScreen(),
         routes: [
-          GoRoute(path: 'about', builder: (context, state) => const AboutScreen()),
+          GoRoute(
+            path: 'about',
+            builder: (context, state) => const AboutScreen(),
+          ),
           GoRoute(
             path: 'study',
             builder: (context, state) => const TopicListScreen(),
             routes: [
               GoRoute(
                 path: ':topicId',
-                builder: (context, state) => StudyScreen(topicId: state.pathParameters['topicId']!),
+                builder: (context, state) =>
+                    StudyScreen(topicId: state.pathParameters['topicId']!),
               ),
             ],
           ),
           // Home tiles open the study screen directly (ST-07, FR-A41, FR-A42).
           GoRoute(
             path: 'wrong',
-            builder: (context, state) => StudyScreen(topicId: StudyTopic.wrongOf(StudyTopic.allId)),
+            builder: (context, state) =>
+                StudyScreen(topicId: StudyTopic.wrongOf(StudyTopic.allId)),
           ),
-          GoRoute(path: 'critical', builder: (context, state) => const StudyScreen(topicId: StudyTopic.criticalId)),
+          GoRoute(
+            path: 'critical',
+            builder: (context, state) =>
+                const StudyScreen(topicId: StudyTopic.criticalId),
+          ),
           // Practice tests (ST-08 … ST-11)
           GoRoute(
             path: 'exam',
@@ -100,22 +121,36 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: 'start',
-                builder: (context, state) =>
-                    ExamStartScreen(fixedSet: int.tryParse(state.uri.queryParameters['set'] ?? '')),
+                builder: (context, state) => ExamStartScreen(
+                  fixedSet: int.tryParse(
+                    state.uri.queryParameters['set'] ?? '',
+                  ),
+                ),
               ),
               GoRoute(
                 path: 'session/:id',
-                builder: (context, state) => ExamScreen(sessionId: int.parse(state.pathParameters['id']!)),
+                builder: (context, state) => ExamScreen(
+                  sessionId: int.parse(state.pathParameters['id']!),
+                ),
               ),
               GoRoute(
                 path: 'result/:id',
-                builder: (context, state) => ExamResultScreen(sessionId: int.parse(state.pathParameters['id']!)),
+                builder: (context, state) => ExamResultScreen(
+                  sessionId: int.parse(state.pathParameters['id']!),
+                ),
               ),
               GoRoute(
                 path: 'review/:id',
-                builder: (context, state) => ExamReviewScreen(sessionId: int.parse(state.pathParameters['id']!)),
+                builder: (context, state) => ExamReviewScreen(
+                  sessionId: int.parse(state.pathParameters['id']!),
+                ),
               ),
             ],
+          ),
+          // Statistics and test history (ST-15)
+          GoRoute(
+            path: 'stats',
+            builder: (context, state) => const StatsScreen(),
           ),
           // Traffic sign catalog (ST-12, ST-16)
           GoRoute(
@@ -124,7 +159,8 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: ':code',
-                builder: (context, state) => SignDetailScreen(code: state.pathParameters['code']!),
+                builder: (context, state) =>
+                    SignDetailScreen(code: state.pathParameters['code']!),
               ),
             ],
           ),

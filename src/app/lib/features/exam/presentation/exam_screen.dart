@@ -9,6 +9,7 @@ import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../shared/widgets/question_view.dart';
 import '../../home/data/home_summary_provider.dart';
+import '../../stats/data/stats_providers.dart';
 import '../../study/data/study_providers.dart';
 import '../data/exam_providers.dart';
 import '../domain/exam_session.dart';
@@ -129,7 +130,8 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       ref
         ..invalidate(homeSummaryProvider)
         ..invalidate(topicListProvider)
-        ..invalidate(fixedResultsProvider);
+        ..invalidate(fixedResultsProvider)
+        ..invalidate(examHistoryProvider);
       _showResult();
     } on Exception {
       _submitting = false;
@@ -186,8 +188,12 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
     // amber under 2 minutes, red under 60 seconds (ST-09 AC1)
     final urgent = _left <= const Duration(seconds: 60);
     final warning = _left <= const Duration(minutes: 2);
-    final timerBg = urgent ? scheme.errorContainer : (warning ? scheme.tertiaryContainer : scheme.secondaryContainer);
-    final timerFg = urgent ? scheme.onErrorContainer : (warning ? scheme.onTertiaryContainer : scheme.onSecondaryContainer);
+    final timerBg = urgent
+        ? scheme.errorContainer
+        : (warning ? scheme.tertiaryContainer : scheme.secondaryContainer);
+    final timerFg = urgent
+        ? scheme.onErrorContainer
+        : (warning ? scheme.onTertiaryContainer : scheme.onSecondaryContainer);
     return PopScope(
       canPop: _allowPop,
       onPopInvokedWithResult: (didPop, _) {
@@ -212,11 +218,7 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      Icons.timer_outlined,
-                      size: 18,
-                      color: timerFg,
-                    ),
+                    Icon(Icons.timer_outlined, size: 18, color: timerFg),
                     const SizedBox(width: 4),
                     Text(
                       S.timerLabel(_left),
@@ -333,7 +335,11 @@ class _QuestionStripState extends State<_QuestionStrip> {
   void _centre() {
     if (!_scroll.hasClients) return;
     final p = _scroll.position;
-    final target = _pad + widget.current * (_cell + _gap) + _cell / 2 - p.viewportDimension / 2;
+    final target =
+        _pad +
+        widget.current * (_cell + _gap) +
+        _cell / 2 -
+        p.viewportDimension / 2;
     _scroll.animateTo(
       target.clamp(p.minScrollExtent, p.maxScrollExtent),
       duration: const Duration(milliseconds: 200),

@@ -35,12 +35,15 @@ abstract final class S {
   static const motorbikeGroup = 'Xe máy';
   static const carGroup = 'Ô tô';
   static String className(String c) => 'Hạng $c';
+
   /// Luật 36/2024/QH15, Điều 57 khoản 1 điểm a, b, d — verbatim, without "cấp cho người lái".
   static const classVehicles = {
     'A1': 'Xe mô tô hai bánh có dung tích xi-lanh đến 125 cm³ hoặc có công suất động cơ điện đến 11 kW',
-    'A': 'Xe mô tô hai bánh có dung tích xi-lanh trên 125 cm³ hoặc có công suất động cơ điện trên 11 kW '
+    'A':
+        'Xe mô tô hai bánh có dung tích xi-lanh trên 125 cm³ hoặc có công suất động cơ điện trên 11 kW '
         'và các loại xe quy định cho giấy phép lái xe hạng A1',
-    'B': 'Xe ô tô chở người đến 08 chỗ (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng '
+    'B':
+        'Xe ô tô chở người đến 08 chỗ (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng '
         'có khối lượng toàn bộ theo thiết kế đến 3.500 kg; các loại xe ô tô quy định cho giấy phép lái xe '
         'hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg',
   };
@@ -50,9 +53,11 @@ abstract final class S {
   // Home (ST-04)
   static const changeClass = 'Đổi hạng';
   static const about = 'Giới thiệu';
-  static const homeError = 'Không đọc được tiến độ học trên máy. Hãy thử mở lại ứng dụng.';
+  static const homeError =
+      'Không đọc được tiến độ học trên máy. Hãy thử mở lại ứng dụng.';
   static const studyProgress = 'Tiến độ ôn tập';
-  static String progressCount(int correct, int total) => '$correct / $total câu';
+  static String progressCount(int correct, int total) =>
+      '$correct / $total câu';
   static const progressHint = 'Tính các câu trả lời đúng ở lần làm gần nhất';
   static const studyByTopic = 'Học theo chủ đề';
   static const practiceExam = 'Thi thử';
@@ -88,35 +93,43 @@ abstract final class S {
   // Study by topic (ST-06)
   static const topicAll = 'Tất cả câu hỏi';
   static const topicCritical = 'Câu điểm liệt';
-  static String chapterTitle(int chapter, String name) => 'Chương ${_roman(chapter)}. $name';
+  static String chapterTitle(int chapter, String name) =>
+      'Chương ${_roman(chapter)}. $name';
   static String wrongOfTopic(String title) => 'Câu sai — $title';
   static String topicStats(int correct, int wrong, int notDone) =>
       'Đúng $correct · Sai $wrong · Chưa làm $notDone';
-  static String questionOfTotal(int position, int total) => 'Câu $position / $total';
+  static String questionOfTotal(int position, int total) =>
+      'Câu $position / $total';
   static const previousQuestion = 'Câu trước';
   static const nextQuestion = 'Câu sau';
   static const chooseQuestion = 'Chọn câu';
   static const restartTopic = 'Làm lại';
-  static const restartTopicHint = 'Xóa đáp án đang hiện trong chủ đề này để làm lại từ đầu. Tiến độ và danh sách câu sai vẫn giữ.';
+  static const restartTopicHint =
+      'Xóa đáp án đang hiện trong chủ đề này để làm lại từ đầu. Tiến độ và danh sách câu sai vẫn giữ.';
   static const topicFinished = 'Hoàn thành chủ đề';
-  static String roundResult(int correct, int wrong, int total) => 'Đúng $correct · Sai $wrong / $total câu';
+  static String roundResult(int correct, int wrong, int total) =>
+      'Đúng $correct · Sai $wrong / $total câu';
   static const reviewTopicWrong = 'Ôn câu sai của chủ đề';
   static const goBack = 'Quay lại';
   static const reviewRemainingWrong = 'Ôn tiếp câu còn sai';
   static const noWrongYet = 'Bạn chưa có câu sai';
-  static const noWrongYetHint = 'Làm bài thi thử để biết câu nào mình còn chưa chắc.';
+  static const noWrongYetHint =
+      'Làm bài thi thử để biết câu nào mình còn chưa chắc.';
   static const noWrongInTopic = 'Không còn câu sai nào trong chủ đề này.';
   static const emptyTopic = 'Chủ đề này chưa có câu hỏi.';
   static const topicNotFound = 'Không tìm thấy chủ đề.';
   static const saveAnswerFailed = 'Không lưu được câu trả lời. Hãy thử lại.';
-  static const studyError = 'Không đọc được dữ liệu học trên máy. Hãy thử mở lại ứng dụng.';
+  static const studyError =
+      'Không đọc được dữ liệu học trên máy. Hãy thử mở lại ứng dụng.';
 
   // Practice tests (ST-08 … ST-11)
   static const randomTest = 'Đề ngẫu nhiên';
-  static const randomTestHint = 'Mỗi lần tạo một đề khác theo đúng cấu trúc đề thi';
+  static const randomTestHint =
+      'Mỗi lần tạo một đề khác theo đúng cấu trúc đề thi';
   static const fixedTests = 'Bộ đề cố định';
   static String fixedTest(int n) => 'Đề số $n';
-  static String fixedDone(int done, int total) => '$done / $total đề đã hoàn thành';
+  static String fixedDone(int done, int total) =>
+      '$done / $total đề đã hoàn thành';
   static const notTaken = 'Chưa làm';
   static const passedShort = 'Đạt';
   static const failedShort = 'Chưa đạt';
@@ -131,26 +144,32 @@ abstract final class S {
   static const startTest = 'Bắt đầu';
   static const noStructure = 'Chưa có cấu trúc đề cho hạng này.';
   static const openTestExists = 'Đang có bài thi chưa nộp';
-  static const openTestExistsBody = 'Bạn cần tiếp tục hoặc bỏ bài thi đang làm trước khi làm đề mới.';
+  static const openTestExistsBody =
+      'Bạn cần tiếp tục hoặc bỏ bài thi đang làm trước khi làm đề mới.';
   static const continueTest = 'Tiếp tục bài thi';
   static const abandonAndNew = 'Bỏ bài cũ, làm đề mới';
   static const submit = 'Nộp bài';
   static const examError = 'Không mở được bài thi. Hãy thử lại.';
-  static String answeredOf(int answered, int total) => 'Đã làm $answered/$total';
+  static String answeredOf(int answered, int total) =>
+      'Đã làm $answered/$total';
   static String timerLabel(Duration d) =>
       '${d.inMinutes.toString().padLeft(2, '0')}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
   static const timeRemaining = 'Thời gian còn lại';
   static const endTestTitle = 'Kết thúc bài thi?';
-  static String unansweredWarning(int n) => 'Còn $n câu chưa trả lời — câu chưa trả lời tính là sai.';
+  static String unansweredWarning(int n) =>
+      'Còn $n câu chưa trả lời — câu chưa trả lời tính là sai.';
   static const submitAndGrade = 'Nộp bài và chấm điểm';
-  static const submitAndGradeHint = 'Chấm điểm toàn bộ câu trả lời và xem kết quả';
+  static const submitAndGradeHint =
+      'Chấm điểm toàn bộ câu trả lời và xem kết quả';
   static const saveAndExit = 'Lưu tạm và thoát';
-  static const saveAndExitHint = 'Giữ bài làm, thời gian vẫn chạy; quay lại tiếp từ màn chính';
+  static const saveAndExitHint =
+      'Giữ bài làm, thời gian vẫn chạy; quay lại tiếp từ màn chính';
   static const discardAndExit = 'Không lưu và thoát';
   static const discardAndExitHint = 'Bỏ bài làm này, không tính kết quả';
   static const keepGoing = 'Tiếp tục làm bài';
   static const discardConfirmTitle = 'Bỏ bài làm này?';
-  static const discardConfirmBody = 'Các câu đã trả lời sẽ không được lưu và không tính kết quả.';
+  static const discardConfirmBody =
+      'Các câu đã trả lời sẽ không được lưu và không tính kết quả.';
   static const discard = 'Bỏ bài';
   static const resumePromptTitle = 'Tiếp tục bài thi?';
   static String resumePromptBody(String cls, Duration left) =>
@@ -164,8 +183,10 @@ abstract final class S {
   static String resultCounts(int correct, int wrong, int unanswered) =>
       'Đúng $correct · Sai $wrong · Chưa trả lời $unanswered';
   static String passMark(int pass) => 'Điểm đạt: từ $pass câu đúng';
-  static String failNotEnough(int score, int pass) => 'Chưa đủ điểm: $score câu đúng, cần từ $pass câu.';
-  static const failCritical = 'Sai câu điểm liệt — bài thi không đạt dù đủ điểm.';
+  static String failNotEnough(int score, int pass) =>
+      'Chưa đủ điểm: $score câu đúng, cần từ $pass câu.';
+  static const failCritical =
+      'Sai câu điểm liệt — bài thi không đạt dù đủ điểm.';
   static const reviewTest = 'Xem lại bài';
   static const anotherTest = 'Thi đề khác';
   static const backHome = 'Về màn chính';
@@ -181,8 +202,37 @@ abstract final class S {
   static const noSignFound = 'Không tìm thấy biển nào.';
   static const noSignImage = 'Không có hình';
   static const signMeaningFull = 'Xem đầy đủ theo QCVN 41:2024';
-  static String signSource(String section, int page) => 'QCVN 41:2024/BGTVT · $section · trang $page';
+  static String signSource(String section, int page) =>
+      'QCVN 41:2024/BGTVT · $section · trang $page';
   static const signNotFound = 'Không tìm thấy biển này.';
 
-  static String _roman(int n) => const ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][n - 1];
+  // Statistics, test history, frequent mistakes (ST-15)
+  static const statistics = 'Thống kê';
+  static const frequentWrong = 'Câu hay sai';
+  static const frequentWrongHint = 'Tối đa 50 câu bạn sai nhiều lần nhất';
+  static const testsTaken = 'Lần thi';
+  static const passRate = 'Tỉ lệ đạt';
+  static const latestScore = 'Điểm gần nhất';
+  static String percent(int p) => '$p%';
+  static const noTestsYet = 'Chưa thi lần nào';
+  static const topicProgress = 'Tiến độ theo chủ đề';
+  static const testHistory = 'Lịch sử thi';
+  static String historyDate(DateTime d) =>
+      '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year} · '
+      '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+  static String historyTitle(int? fixedSetNo) =>
+      fixedSetNo == null ? randomTest : fixedTest(fixedSetNo);
+
+  static String _roman(int n) => const [
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX',
+    'X',
+  ][n - 1];
 }

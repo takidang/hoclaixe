@@ -215,6 +215,43 @@ class ExamSessionRepository {
     };
   }
 
+  /// Submitted tests of [licenseClass], newest first (FR-A29).
+  Future<List<ExamHistoryEntry>> history(String licenseClass) async {
+    final rows = await _db.query(
+      'exam_session',
+      columns: [
+        'id',
+        'fixed_set_no',
+        'question_ids',
+        'submitted_at',
+        'score',
+        'passed',
+        'failed_critical',
+      ],
+      where: 'license_class = ? AND status = ?',
+      whereArgs: [licenseClass, 'submitted'],
+      orderBy: 'submitted_at DESC, id DESC',
+    );
+    return [
+      for (final r in rows)
+        ExamHistoryEntry(
+          sessionId: r['id']! as int,
+          fixedSetNo: r['fixed_set_no'] as int?,
+          submittedAt: DateTime.fromMillisecondsSinceEpoch(
+            r['submitted_at']! as int,
+          ),
+          score: r['score']! as int,
+          total:
+              ((jsonDecode(r['question_ids']! as String)
+                          as Map<String, dynamic>)['questionIds']
+                      as List)
+                  .length,
+          passed: r['passed'] == 1,
+          failedCritical: r['failed_critical'] == 1,
+        ),
+    ];
+  }
+
   /// Drops the unfinished test ("Không lưu và thoát", changing licence class).
   Future<void> abandon(int sessionId) => _db.update(
     'exam_session',
@@ -222,4 +259,27 @@ class ExamSessionRepository {
     where: 'id = ? AND status = ?',
     whereArgs: [sessionId, _inProgress],
   );
+}
+
+/// One submitted test in the history list (FR-A29).
+class ExamHistoryEntry {
+  const ExamHistoryEntry({
+    required this.sessionId,
+    required this.fixedSetNo,
+    required this.submittedAt,
+    required this.score,
+    required this.total,
+    required this.passed,
+    required this.failedCritical,
+  });
+
+  final int sessionId;
+
+  /// null = random test.
+  final int? fixedSetNo;
+  final DateTime submittedAt;
+  final int score;
+  final int total;
+  final bool passed;
+  final bool failedCritical;
 }

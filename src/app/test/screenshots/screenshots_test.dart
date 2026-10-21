@@ -173,4 +173,10 @@ void main() {
     await loadImages(tester);
     await shot('10-sign-detail');
   }, skip: !_enabled);
+
+  testWidgets('11 thống kê', (tester) async {
+    await phone(tester);
+    await tap(tester, find.text(S.statistics));
+    await shot('11-stats');
+  }, skip: !_enabled);
 }
