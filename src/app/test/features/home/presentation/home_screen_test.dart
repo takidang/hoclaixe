@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hoclaixe/core/db/app_database.dart';
 import 'package:hoclaixe/core/settings/app_settings.dart';
@@ -105,7 +107,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text(S.trafficSigns));
     await tester.pumpAndSettle();
-    expect(find.text(S.comingSoon), findsOneWidget);
+    expect(find.widgetWithText(Tab, 'Biển báo cấm'), findsOneWidget); // sign catalog (ST-12)
   });
 
   testWidgets(

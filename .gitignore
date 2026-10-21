@@ -44,3 +44,6 @@ __pycache__/
 
 # submission exports (tools/publish-app-repo.ps1)
 dist/
+
+# screenshot tool output (copied to docs/design/preview when kept)
+src/app/test/screenshots/out/

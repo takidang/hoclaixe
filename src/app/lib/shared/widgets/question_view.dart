@@ -76,12 +76,18 @@ class QuestionView extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(S.questionNumber(position), style: text.titleMedium),
-            if (showCritical) ...[
-              const SizedBox(width: 8),
-              const _CriticalBadge(),
-            ],
-            const Spacer(),
+            // wraps instead of overflowing with large system text (NFR-07)
+            Expanded(
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Text(S.questionNumber(position), style: text.titleMedium),
+                  if (showCritical) const _CriticalBadge(),
+                ],
+              ),
+            ),
             Text(S.officialNumber(question.number), style: text.labelSmall),
           ],
         ),

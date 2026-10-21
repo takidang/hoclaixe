@@ -1,20 +1,105 @@
 import 'package:flutter/material.dart';
 
-/// Placeholder Material 3 theme — replaced by the design system made in Claude Design.
-/// Widgets must read colors and text styles from Theme.of(context), never hard-code them.
+/// Design system v0 (ST-13, 21/10/2026): colours taken from Vietnamese road signs (QCVN 41:2024) —
+/// guide-sign blue as primary, warning-sign amber as tertiary, prohibition red as error — font Be Vietnam Pro,
+/// thin outlined cards instead of shadows, 12 px radius, 8 px spacing grid.
+/// Widgets must read colours and text styles from Theme.of(context), never hard-code them: the team can
+/// restyle the whole app by editing this file only.
 abstract final class AppTheme {
-  static const _seed = Color(0xFF0B5CAD);
+  static const signBlue = Color(0xFF0B4F8C);
+  static const signAmber = Color(0xFFF2A900);
+  static const signRed = Color(0xFFC62828);
+  static const fontFamily = 'BeVietnamPro';
+  static const radius = 12.0;
 
-  static ThemeData light() => ThemeData(
-    colorSchemeSeed: _seed,
-    brightness: Brightness.light,
-    extensions: const [AnswerColors.light],
-  );
-  static ThemeData dark() => ThemeData(
-    colorSchemeSeed: _seed,
-    brightness: Brightness.dark,
-    extensions: const [AnswerColors.dark],
-  );
+  static ThemeData light() => _build(
+        ColorScheme.fromSeed(
+          seedColor: signBlue,
+          dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
+        ).copyWith(
+          primary: signBlue,
+          // light tonal container: 'fidelity' puts it too close to the seed, dark text became unreadable
+          primaryContainer: const Color(0xFFD3E4F8),
+          onPrimaryContainer: const Color(0xFF062C52),
+          tertiary: const Color(0xFF8A5A00),
+          tertiaryContainer: const Color(0xFFFFE08A),
+          onTertiaryContainer: const Color(0xFF2B1B00),
+          error: signRed,
+          surface: const Color(0xFFF6F8FB),
+          surfaceContainerLowest: Colors.white,
+        ),
+        AnswerColors.light,
+      );
+
+  static ThemeData dark() => _build(
+        ColorScheme.fromSeed(
+          seedColor: signBlue,
+          brightness: Brightness.dark,
+          dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
+        ).copyWith(
+          tertiary: signAmber,
+          tertiaryContainer: const Color(0xFF5A3F00),
+          onTertiaryContainer: const Color(0xFFFFE08A),
+          surface: const Color(0xFF0F1720),
+          surfaceContainerLowest: const Color(0xFF16202B),
+        ),
+        AnswerColors.dark,
+      );
+
+  static ThemeData _build(ColorScheme scheme, AnswerColors answers) {
+    final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
+    final base = ThemeData(colorScheme: scheme, fontFamily: fontFamily, useMaterial3: true);
+    final text = base.textTheme.copyWith(
+      titleLarge: base.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
+      titleMedium: base.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+      titleSmall: base.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+      bodyLarge: base.textTheme.bodyLarge?.copyWith(height: 1.45),
+      bodyMedium: base.textTheme.bodyMedium?.copyWith(height: 1.45),
+    );
+    return base.copyWith(
+      textTheme: text,
+      scaffoldBackgroundColor: scheme.surface,
+      extensions: [answers],
+      appBarTheme: AppBarTheme(
+        backgroundColor: scheme.surface,
+        foregroundColor: scheme.onSurface,
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
+        titleTextStyle: text.titleLarge?.copyWith(color: scheme.onSurface, fontSize: 19),
+      ),
+      cardTheme: CardThemeData(
+        elevation: 0,
+        color: scheme.surfaceContainerLowest,
+        surfaceTintColor: Colors.transparent,
+        shape: shape.copyWith(side: BorderSide(color: scheme.outlineVariant)),
+      ),
+      listTileTheme: ListTileThemeData(shape: shape),
+      dividerTheme: DividerThemeData(color: scheme.outlineVariant, space: 1),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          minimumSize: const Size(64, 48),
+          shape: shape,
+          textStyle: text.labelLarge?.copyWith(fontWeight: FontWeight.w600, fontSize: 15),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(minimumSize: const Size(64, 48), shape: shape),
+      ),
+      textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(minimumSize: const Size(48, 48))),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: scheme.primary,
+        linearTrackColor: scheme.primaryContainer.withValues(alpha: 0.5),
+        linearMinHeight: 8,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: scheme.surface,
+        surfaceTintColor: Colors.transparent,
+        showDragHandle: true,
+      ),
+      dialogTheme: DialogThemeData(backgroundColor: scheme.surface, surfaceTintColor: Colors.transparent, shape: shape),
+      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+    );
+  }
 }
 
 /// Correct / wrong answer colors (not part of ColorScheme). `AnswerColors.of(context)`.

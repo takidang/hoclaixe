@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/providers.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
+import '../../../shared/widgets/equal_height_grid.dart';
 import '../data/home_summary_provider.dart';
 import '../domain/home_summary.dart';
 
@@ -66,13 +67,8 @@ class _HomeBody extends ConsumerWidget {
         ],
         _ProgressCard(summary: summary),
         const SizedBox(height: 12),
-        GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
-          childAspectRatio: 1.4,
+        EqualHeightGrid(
+          columns: 2,
           children: [
             const _FeatureTile(
               icon: Icons.menu_book_outlined,
@@ -95,6 +91,7 @@ class _HomeBody extends ConsumerWidget {
               label: S.criticalQuestions,
               detail: S.questionCount(summary.criticalCount),
               route: Routes.critical,
+              caution: true,
             ),
             const _FeatureTile(
               icon: Icons.signpost_outlined,
@@ -116,25 +113,31 @@ class _ProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    final on = scheme.onPrimary;
     return Card(
+      color: scheme.primary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(child: Text(S.studyProgress, style: text.titleMedium)),
-                Text(
-                  S.progressCount(summary.correctCount, summary.poolSize),
-                  style: text.titleMedium,
-                ),
-              ],
+            Text(S.studyProgress, style: text.titleSmall?.copyWith(color: on.withValues(alpha: 0.85))),
+            const SizedBox(height: 4),
+            Text(
+              S.progressCount(summary.correctCount, summary.poolSize),
+              style: text.headlineSmall?.copyWith(color: on, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 12),
-            LinearProgressIndicator(value: summary.progress),
+            LinearProgressIndicator(
+              value: summary.progress,
+              color: scheme.tertiaryContainer,
+              backgroundColor: on.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(4),
+            ),
             const SizedBox(height: 8),
-            Text(S.progressHint, style: text.bodySmall),
+            Text(S.progressHint, style: text.bodySmall?.copyWith(color: on.withValues(alpha: 0.8))),
           ],
         ),
       ),
@@ -172,6 +175,7 @@ class _FeatureTile extends StatelessWidget {
     required this.label,
     required this.route,
     this.detail,
+    this.caution = false,
   });
 
   final IconData icon;
@@ -179,25 +183,35 @@ class _FeatureTile extends StatelessWidget {
   final String route;
   final String? detail;
 
+  /// Critical questions: warning-sign amber instead of the primary tone.
+  final bool caution;
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => context.push(route),
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(icon),
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: caution ? scheme.tertiaryContainer : scheme.primaryContainer,
+                foregroundColor: caution ? scheme.onTertiaryContainer : scheme.onPrimaryContainer,
+                child: Icon(icon, size: 22),
+              ),
+              const SizedBox(height: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(label, style: text.titleSmall),
-                  if (detail != null) Text(detail!, style: text.bodySmall),
+                  if (detail != null) Text(detail!, style: text.bodySmall?.copyWith(color: scheme.onSurfaceVariant)),
                 ],
               ),
             ],

@@ -8,16 +8,16 @@ import '../features/exam/presentation/exam_result_screen.dart';
 import '../features/exam/presentation/exam_review_screen.dart';
 import '../features/exam/presentation/exam_screen.dart';
 import '../features/exam/presentation/exam_start_screen.dart';
-import '../features/home/presentation/coming_soon_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/onboarding/presentation/disclaimer_screen.dart';
 import '../features/onboarding/presentation/license_class_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
+import '../features/signs/presentation/sign_catalog_screen.dart';
+import '../features/signs/presentation/sign_detail_screen.dart';
 import '../features/study/domain/study_topic.dart';
 import '../features/study/presentation/study_screen.dart';
 import '../features/study/presentation/topic_list_screen.dart';
 import 'settings/app_settings.dart';
-import 'strings.dart';
 
 abstract final class Routes {
   static const splash = '/splash';
@@ -35,6 +35,7 @@ abstract final class Routes {
   static const wrong = '/wrong';
   static const critical = '/critical';
   static const signs = '/signs';
+  static String sign(String code) => '/signs/${Uri.encodeComponent(code)}';
 }
 
 /// Onboarding gate (FR-A01, FR-A03): disclaimer first, then licence class, then the app.
@@ -116,8 +117,17 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          // Replaced by the real screen in ST-12.
-          GoRoute(path: 'signs', builder: (context, state) => const ComingSoonScreen(title: S.trafficSigns)),
+          // Traffic sign catalog (ST-12, ST-16)
+          GoRoute(
+            path: 'signs',
+            builder: (context, state) => const SignCatalogScreen(),
+            routes: [
+              GoRoute(
+                path: ':code',
+                builder: (context, state) => SignDetailScreen(code: state.pathParameters['code']!),
+              ),
+            ],
+          ),
         ],
       ),
     ],

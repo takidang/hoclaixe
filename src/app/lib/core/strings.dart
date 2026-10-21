@@ -64,7 +64,6 @@ abstract final class S {
   static const examTimeUp = 'Đã hết giờ — mở để xem kết quả';
   static String timeLeft(Duration d) =>
       'Còn ${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
-  static const comingSoon = 'Chức năng đang được làm.';
 
   // Change class with an unfinished test (ST-04 AC2, UC-02 2b)
   static const abandonExamTitle = 'Bỏ bài thi đang làm?';
@@ -173,6 +172,17 @@ abstract final class S {
   static const onlyWrong = 'Chỉ câu sai';
   static const noWrongInTest = 'Bài này không có câu sai.';
   static const notSubmitted = 'Bài thi này chưa được nộp.';
+
+  // Traffic signs (ST-12, ST-16)
+  static const searchSigns = 'Tìm theo mã hoặc tên biển';
+  static const searchHint = 'Ví dụ: P.124 hoặc quay đầu';
+  static const closeSearch = 'Đóng tìm kiếm';
+  static String searchResults(int n) => '$n biển';
+  static const noSignFound = 'Không tìm thấy biển nào.';
+  static const noSignImage = 'Không có hình';
+  static const signMeaningFull = 'Xem đầy đủ theo QCVN 41:2024';
+  static String signSource(String section, int page) => 'QCVN 41:2024/BGTVT · $section · trang $page';
+  static const signNotFound = 'Không tìm thấy biển này.';
 
   static String _roman(int n) => const ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][n - 1];
 }

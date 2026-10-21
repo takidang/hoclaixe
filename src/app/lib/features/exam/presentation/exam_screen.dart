@@ -183,7 +183,11 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
   Widget build(BuildContext context) {
     final questions = widget.view.questions;
     final scheme = Theme.of(context).colorScheme;
-    final warning = _left <= const Duration(seconds: 60);
+    // amber under 2 minutes, red under 60 seconds (ST-09 AC1)
+    final urgent = _left <= const Duration(seconds: 60);
+    final warning = _left <= const Duration(minutes: 2);
+    final timerBg = urgent ? scheme.errorContainer : (warning ? scheme.tertiaryContainer : scheme.secondaryContainer);
+    final timerFg = urgent ? scheme.onErrorContainer : (warning ? scheme.onTertiaryContainer : scheme.onSecondaryContainer);
     return PopScope(
       canPop: _allowPop,
       onPopInvokedWithResult: (didPop, _) {
@@ -202,9 +206,7 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: warning
-                      ? scheme.errorContainer
-                      : scheme.secondaryContainer,
+                  color: timerBg,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(
@@ -213,13 +215,13 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
                     Icon(
                       Icons.timer_outlined,
                       size: 18,
-                      color: warning ? scheme.onErrorContainer : null,
+                      color: timerFg,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       S.timerLabel(_left),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: warning ? scheme.onErrorContainer : null,
+                        color: timerFg,
                         fontFeatures: const [FontFeature.tabularFigures()],
                       ),
                     ),
@@ -315,7 +317,7 @@ class _QuestionStrip extends StatefulWidget {
 
 /// Keeps the current question centred in the strip.
 class _QuestionStripState extends State<_QuestionStrip> {
-  static const _cell = 36.0;
+  static const _cell = 48.0; // touch target ≥ 48dp (NFR-07)
   static const _gap = 6.0;
   static const _pad = 12.0;
   final _scroll = ScrollController();
@@ -349,7 +351,7 @@ class _QuestionStripState extends State<_QuestionStrip> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return SizedBox(
-      height: 52,
+      height: 64,
       child: ListView.separated(
         controller: _scroll,
         scrollDirection: Axis.horizontal,

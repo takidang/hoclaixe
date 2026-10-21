@@ -16,8 +16,8 @@
 | [ST-09](stories/ST-09.md) | E4 Thi thử | Đồng hồ, hết giờ, thoát bài, tiếp tục bài dở | FR-A21, FR-A25, FR-A26, BR-06 | 3 | Must | 21/10 | Tài | Done 21/10 |
 | [ST-10](stories/ST-10.md) | E4 Thi thử | Kết quả và xem lại bài | FR-A27, FR-A28 | 3 | Must | 22/10 | Tài | Done 21/10 |
 | [ST-11](stories/ST-11.md) | E4 Thi thử | Chọn đề: đề ngẫu nhiên và 20 đề cố định | FR-A20b | 2 | Should | 22/10 | Tài | Done 21/10 |
-| [ST-12](stories/ST-12.md) | E5 Biển báo | Danh mục biển báo | FR-A30 | 3 | Must | 23/10 | Tài | Todo |
-| [ST-13](stories/ST-13.md) | E6 Hoàn thiện | Design system và áp vào theme | NFR-07 | 2 | Must | song song, xong 23/10 | Tài | Todo |
+| [ST-12](stories/ST-12.md) | E5 Biển báo | Danh mục biển báo | FR-A30 | 3 | Must | 23/10 | Tài | Done 21/10 |
+| [ST-13](stories/ST-13.md) | E6 Hoàn thiện | Design system và áp vào theme | NFR-07 | 2 | Must | song song, xong 23/10 | Tài | Done 21/10 (v0, nhóm chỉnh tiếp) |
 | [ST-14](stories/ST-14.md) | E6 Hoàn thiện | Kiểm thử chấp nhận và build bản nộp | NFR-01, NFR-02, NFR-03, NFR-06, NFR-08 | 3 | Must | 26–27/10 | Tài + Kiệt | Todo |
 | [ST-15](stories/ST-15.md) | E6 Hoàn thiện | Thống kê, lịch sử thi, câu hay sai | FR-A29, FR-A50, FR-A51 | 3 | Should | 24–25/10 nếu kịp | Tài | Todo |
-| [ST-16](stories/ST-16.md) | E5 Biển báo | Tìm biển theo mã hoặc tên | FR-A31 | 1 | Should | nếu kịp | Tài | Todo |
+| [ST-16](stories/ST-16.md) | E5 Biển báo | Tìm biển theo mã hoặc tên | FR-A31 | 1 | Should | nếu kịp | Tài | Done 21/10 |

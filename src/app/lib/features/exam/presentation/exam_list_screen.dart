@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/equal_height_grid.dart';
 import '../data/exam_providers.dart';
 
 /// "Thi thử" (ST-11, FR-A20b): a random test or one of the 20 fixed sets with its latest result.
@@ -34,20 +35,20 @@ class ExamListScreen extends ConsumerWidget {
           Row(
             children: [
               Expanded(child: Text(S.fixedTests, style: text.titleMedium)),
-              Text(
-                S.fixedDone(results.length, fixedSetCount),
-                style: text.bodySmall,
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  S.fixedDone(results.length, fixedSetCount),
+                  style: text.bodySmall,
+                  textAlign: TextAlign.end,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          GridView.count(
-            crossAxisCount: 3,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 1.1,
+          EqualHeightGrid(
+            columns: 3,
+            spacing: 8,
             children: [
               for (var n = 1; n <= fixedSetCount; n++)
                 _FixedSetTile(number: n, result: results[n], total: total),
@@ -81,7 +82,7 @@ class _FixedSetTile extends StatelessWidget {
       child: InkWell(
         onTap: () => context.push(Routes.examStart(fixedSet: number)),
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
