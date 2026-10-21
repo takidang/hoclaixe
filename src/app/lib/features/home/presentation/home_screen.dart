@@ -15,6 +15,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final summary = ref.watch(homeSummaryProvider);
+    ref.listen(homeSummaryProvider, (_, next) => _promptResume(context, ref, next.value));
     final cls = summary.value?.licenseClass;
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +58,10 @@ class _HomeBody extends ConsumerWidget {
       padding: const EdgeInsets.all(16),
       children: [
         if (open != null) ...[
-          _ResumeCard(remaining: open.remaining(ref.watch(clockProvider)())),
+          _ResumeCard(
+            sessionId: open.id,
+            remaining: open.remaining(ref.watch(clockProvider)()),
+          ),
           const SizedBox(height: 12),
         ],
         _ProgressCard(summary: summary),
@@ -139,8 +143,9 @@ class _ProgressCard extends StatelessWidget {
 }
 
 class _ResumeCard extends StatelessWidget {
-  const _ResumeCard({required this.remaining});
+  const _ResumeCard({required this.sessionId, required this.remaining});
 
+  final int sessionId;
   final Duration remaining;
 
   @override
@@ -155,7 +160,7 @@ class _ResumeCard extends StatelessWidget {
           remaining == Duration.zero ? S.examTimeUp : S.timeLeft(remaining),
         ),
         trailing: const Icon(Icons.chevron_right),
-        onTap: () => context.push(Routes.exam),
+        onTap: () => context.push(Routes.examSession(sessionId)),
       ),
     );
   }
@@ -202,3 +207,38 @@ class _FeatureTile extends StatelessWidget {
     );
   }
 }
+
+/// Asked once, when the app opens with an unfinished test (ST-09 AC3). A test past its deadline is opened
+/// directly: the exam screen submits it and shows the result (FR-A25).
+class _ResumePrompt {
+  bool shown = false;
+}
+
+final _resumePromptProvider = Provider<_ResumePrompt>((ref) => _ResumePrompt());
+
+Future<void> _promptResume(BuildContext context, WidgetRef ref, HomeSummary? summary) async {
+  final prompt = ref.read(_resumePromptProvider);
+  // decided once, on the first home data after start — not when coming back from "Lưu tạm và thoát"
+  if (summary == null || prompt.shown) return;
+  prompt.shown = true;
+  final open = summary.openSession;
+  if (open == null) return;
+  final left = open.remaining(ref.read(clockProvider)());
+  if (left == Duration.zero) {
+    await context.push(Routes.examSession(open.id));
+    return;
+  }
+  final resume = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text(S.resumePromptTitle),
+      content: Text(S.resumePromptBody(open.paper.licenseClass, left)),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context, false), child: const Text(S.later)),
+        FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text(S.resume)),
+      ],
+    ),
+  );
+  if (resume == true && context.mounted) await context.push(Routes.examSession(open.id));
+}
+

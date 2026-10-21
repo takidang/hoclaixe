@@ -102,10 +102,7 @@ void main() {
 
     await tester.tap(find.widgetWithText(FilledButton, S.practiceExam));
     await tester.pumpAndSettle();
-    expect(
-      find.text(S.comingSoon),
-      findsOneWidget,
-    ); // exam screen comes in ST-08
+    expect(find.text(S.randomTest), findsOneWidget); // exam list (ST-11)
   });
 
   for (final (cls, count) in [('A1', 20), ('A', 20), ('B', 60)]) {

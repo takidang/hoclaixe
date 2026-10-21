@@ -23,18 +23,20 @@ Future<AppDatabase> openTestDatabase(WidgetTester tester) async {
   return db;
 }
 
-/// The whole app with test data: real or given content, in-memory settings and database, fixed clock.
+/// The whole app with test data: real or given content, in-memory settings and database, fixed clock
+/// ([clock] instead of [now] when a test moves time forward).
 Widget testApp({
   required ContentBundle content,
   required AppDatabase db,
   required InMemorySettingsStore store,
   required DateTime now,
+  DateTime Function()? clock,
 }) => ProviderScope(
   overrides: [
     contentProvider.overrideWith((ref) async => content),
     databaseProvider.overrideWith((ref) async => db),
     settingsStoreProvider.overrideWith((ref) async => store),
-    clockProvider.overrideWithValue(() => now),
+    clockProvider.overrideWithValue(clock ?? () => now),
   ],
   child: const HoclaixeApp(),
 );

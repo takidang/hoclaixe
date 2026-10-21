@@ -112,5 +112,67 @@ abstract final class S {
   static const saveAnswerFailed = 'Không lưu được câu trả lời. Hãy thử lại.';
   static const studyError = 'Không đọc được dữ liệu học trên máy. Hãy thử mở lại ứng dụng.';
 
+  // Practice tests (ST-08 … ST-11)
+  static const randomTest = 'Đề ngẫu nhiên';
+  static const randomTestHint = 'Mỗi lần tạo một đề khác theo đúng cấu trúc đề thi';
+  static const fixedTests = 'Bộ đề cố định';
+  static String fixedTest(int n) => 'Đề số $n';
+  static String fixedDone(int done, int total) => '$done / $total đề đã hoàn thành';
+  static const notTaken = 'Chưa làm';
+  static const passedShort = 'Đạt';
+  static const failedShort = 'Chưa đạt';
+  static String scoreOf(int score, int total) => '$score/$total';
+  static const testInfo = 'Thông tin đề';
+  static const questionsLabel = 'Số câu hỏi';
+  static const durationLabel = 'Thời gian làm bài';
+  static const passLabel = 'Điểm đạt tối thiểu';
+  static String minutes(int m) => '$m phút';
+  static String correctAnswers(int n) => '$n câu đúng';
+  static const criticalRule = '1 câu điểm liệt — sai là trượt';
+  static const startTest = 'Bắt đầu';
+  static const noStructure = 'Chưa có cấu trúc đề cho hạng này.';
+  static const openTestExists = 'Đang có bài thi chưa nộp';
+  static const openTestExistsBody = 'Bạn cần tiếp tục hoặc bỏ bài thi đang làm trước khi làm đề mới.';
+  static const continueTest = 'Tiếp tục bài thi';
+  static const abandonAndNew = 'Bỏ bài cũ, làm đề mới';
+  static const submit = 'Nộp bài';
+  static const examError = 'Không mở được bài thi. Hãy thử lại.';
+  static String answeredOf(int answered, int total) => 'Đã làm $answered/$total';
+  static String timerLabel(Duration d) =>
+      '${d.inMinutes.toString().padLeft(2, '0')}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
+  static const timeRemaining = 'Thời gian còn lại';
+  static const endTestTitle = 'Kết thúc bài thi?';
+  static String unansweredWarning(int n) => 'Còn $n câu chưa trả lời — câu chưa trả lời tính là sai.';
+  static const submitAndGrade = 'Nộp bài và chấm điểm';
+  static const submitAndGradeHint = 'Chấm điểm toàn bộ câu trả lời và xem kết quả';
+  static const saveAndExit = 'Lưu tạm và thoát';
+  static const saveAndExitHint = 'Giữ bài làm, thời gian vẫn chạy; quay lại tiếp từ màn chính';
+  static const discardAndExit = 'Không lưu và thoát';
+  static const discardAndExitHint = 'Bỏ bài làm này, không tính kết quả';
+  static const keepGoing = 'Tiếp tục làm bài';
+  static const discardConfirmTitle = 'Bỏ bài làm này?';
+  static const discardConfirmBody = 'Các câu đã trả lời sẽ không được lưu và không tính kết quả.';
+  static const discard = 'Bỏ bài';
+  static const resumePromptTitle = 'Tiếp tục bài thi?';
+  static String resumePromptBody(String cls, Duration left) =>
+      'Bạn đang làm dở một bài thi hạng $cls, còn ${timerLabel(left)}.';
+  static const later = 'Để sau';
+  static const resume = 'Làm tiếp';
+  static const resultTitle = 'Kết quả';
+  static const passed = 'ĐẠT';
+  static const failed = 'KHÔNG ĐẠT';
+  static String resultScore(int score, int total) => '$score / $total câu đúng';
+  static String resultCounts(int correct, int wrong, int unanswered) =>
+      'Đúng $correct · Sai $wrong · Chưa trả lời $unanswered';
+  static String passMark(int pass) => 'Điểm đạt: từ $pass câu đúng';
+  static String failNotEnough(int score, int pass) => 'Chưa đủ điểm: $score câu đúng, cần từ $pass câu.';
+  static const failCritical = 'Sai câu điểm liệt — bài thi không đạt dù đủ điểm.';
+  static const reviewTest = 'Xem lại bài';
+  static const anotherTest = 'Thi đề khác';
+  static const backHome = 'Về màn chính';
+  static const onlyWrong = 'Chỉ câu sai';
+  static const noWrongInTest = 'Bài này không có câu sai.';
+  static const notSubmitted = 'Bài thi này chưa được nộp.';
+
   static String _roman(int n) => const ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][n - 1];
 }

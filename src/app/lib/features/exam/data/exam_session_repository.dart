@@ -195,6 +195,26 @@ class ExamSessionRepository {
     });
   }
 
+  /// Latest submitted result of each fixed set of [licenseClass] (FR-A20b): set number → (score, passed).
+  Future<Map<int, ({int score, bool passed})>> latestFixedResults(
+    String licenseClass,
+  ) async {
+    final rows = await _db.query(
+      'exam_session',
+      columns: ['fixed_set_no', 'score', 'passed'],
+      where: 'license_class = ? AND status = ? AND fixed_set_no IS NOT NULL',
+      whereArgs: [licenseClass, 'submitted'],
+      orderBy: 'submitted_at, id',
+    );
+    return {
+      for (final r in rows)
+        r['fixed_set_no']! as int: (
+          score: r['score']! as int,
+          passed: r['passed'] == 1,
+        ),
+    };
+  }
+
   /// Drops the unfinished test ("Không lưu và thoát", changing licence class).
   Future<void> abandon(int sessionId) => _db.update(
     'exam_session',

@@ -36,6 +36,11 @@ void main() {
       testApp(content: content, db: db, store: store, now: now),
     );
     await tester.pumpAndSettle();
+    // an unfinished test triggers "Tiếp tục bài thi?" (tested in exam_flow_test); dismiss it here
+    if (find.text(S.resumePromptTitle).evaluate().isNotEmpty) {
+      await tester.tap(find.text(S.later));
+      await tester.pumpAndSettle();
+    }
   }
 
   ExamSessionRepository sessions() =>
@@ -96,7 +101,9 @@ void main() {
   testWidgets('bấm ô chức năng mở màn tương ứng', (tester) async {
     await setUpDb(tester);
     await start(tester);
-    await tester.tap(find.text(S.practiceExam));
+    await tester.ensureVisible(find.text(S.trafficSigns));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(S.trafficSigns));
     await tester.pumpAndSettle();
     expect(find.text(S.comingSoon), findsOneWidget);
   });
