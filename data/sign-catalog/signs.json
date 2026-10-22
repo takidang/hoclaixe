@@ -4165,7 +4165,7 @@
   },
   {
    "code": "R.412i",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe ô tô khách",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4181,12 +4181,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412j",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe ô tô con",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4203,12 +4204,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412k",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe ô tô tải",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4224,12 +4226,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412l",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe máy",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4245,12 +4248,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412m",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe buýt",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4266,12 +4270,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412n",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe ô tô",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4287,12 +4292,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412o",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe máy và xe đạp",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -4308,12 +4314,13 @@
     "effectiveDate": "2025-01-01",
     "appendix": "D",
     "section": "D.15",
-    "page": 125
+    "page": 125,
+    "correctedFromPage": 125
    }
   },
   {
    "code": "R.412p",
-   "name": "Kết thúc làn đường dành riêng cho từng loại xe hoặc nhóm xe",
+   "name": "Kết thúc làn đường dành cho xe đạp",
    "summary": "Khi kết thúc làn đường dành cho xe ô tô khách đi lại, đặt biển số R.413i \" Kết thúc làn đường dành cho xe ô tô khách\".",
    "group": "hieu_lenh",
    "groupName": "Biển hiệu lệnh",
@@ -7897,9 +7904,7 @@
    "heading": "Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
    "summary": "Và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
    "meaning": "và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
-   "images": [
-    "images/V3_2_fix0.png"
-   ],
+   "images": [],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
@@ -7908,7 +7913,8 @@
     "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
     "page": 168,
     "correctedFromPage": 168
-   }
+   },
+   "noImageReason": "QCVN 41:2024 không có hình minh họa riêng cho vạch này (chỉ có sơ đồ bố trí tách/nhập làn)."
   },
   {
    "code": "Vạch 3.3",
@@ -7919,9 +7925,7 @@
    "heading": "Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc",
    "summary": "Và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.",
    "meaning": "và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.\n- Vạch 3.4: sử dụng để báo hiệu sắp đến đến vạch 1.2 hoặc vạch 2.2; hoặc sử dụng để kẻ vạch chuyển tiếp từ vạch 1.1 đến vạch 1.2; hoặc từ vạch 2.1 đến vạch 2.2. Bề rộng vạch 3.4 được lấy tương ứng theo bề rộng của vạch 1.2 hoặc vạch 2.2.",
-   "images": [
-    "images/V3_3_fix0.png"
-   ],
+   "images": [],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
     "issuedWith": "Thông tư 51/2024/TT-BGTVT",
@@ -7930,7 +7934,8 @@
     "section": "Nhóm vạch giới hạn mép phần đường xe chạy",
     "page": 168,
     "correctedFromPage": 168
-   }
+   },
+   "noImageReason": "QCVN 41:2024 không có hình minh họa riêng cho vạch này (chỉ có sơ đồ bố trí tách/nhập làn)."
   },
   {
    "code": "Vạch 3.4",

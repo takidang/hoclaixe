@@ -1,10 +1,10 @@
 {
- "contentVersion": "2026-10-14-6a0cb5ca13f1",
+ "contentVersion": "2026-10-22-4623aaa49b35",
  "questionSource": "CSGT-600-2025 (CV 2262/CSGT-P5 ngày 07/05/2025)",
  "signSource": "QCVN 41:2024/BGTVT",
  "sha256": {
   "questions.json": "5c807966e6e4037208fe0f978f4f115603b7ed8a9c5fcd77372e5f1c56647345",
   "exam-structures.json": "5db34db098bdec882b03393d0fdd478a7fa167dce6bc35776b83456463acf829",
-  "signs.json": "cc4a886c46fc4b53874d0be77523c7acf2e448ba6c50acb4f1a7e3ade92122f6"
+  "signs.json": "9367a522b546828ce8c242fb44a458ce1582b60a6b4944b3c4a82d9278d0f199"
  }
 }

@@ -1,0 +1,40 @@
+{
+ "reviewed": "2026-10-22T03:35:50.336Z",
+ "_note": "Soát lần 2 trên review-fixed.html (29 mục sửa 14/10). Các dòng R.413p, IE.453, IE.456, IE.463, IE.467, IE.468 là ghi chú lần 1 còn lưu trong trình duyệt — các mã này đã bỏ khỏi danh mục từ 14/10.",
+ "groups": {
+  "hieu_lenh": {"total": 2, "ok": 1, "bad": 1, "unseen": 0},
+  "chi_dan": {"total": 7, "ok": 7, "bad": 0, "unseen": 0},
+  "cao_toc": {"total": 13, "ok": 13, "bad": 0, "unseen": 0},
+  "vach_ke": {"total": 7, "ok": 3, "bad": 3, "unseen": 1}
+ },
+ "items": [
+  {"code": "R.412p", "status": "bad", "note": "tên của biển báo là kết thúc làn đường dành cho xe "},
+  {"code": "R.413p", "status": "bad", "note": "khô có tên biển báo "},
+  {"code": "I.433b", "status": "ok", "note": "ko có tên "},
+  {"code": "I.433c", "status": "ok", "note": "ko có tên"},
+  {"code": "I.433d", "status": "ok", "note": "ko có ten"},
+  {"code": "I.433e", "status": "ok", "note": "ko có tên"},
+  {"code": "IE.453", "status": "bad", "note": "ko có tên"},
+  {"code": "IE.456", "status": "bad", "note": "ko có ảnh"},
+  {"code": "IE.461", "status": "ok", "note": "ko có ảnh "},
+  {"code": "IE.463", "status": "bad", "note": "ko có ảnh "},
+  {"code": "IE.464b", "status": "ok", "note": "sau tên biển báo "},
+  {"code": "IE.466", "status": "ok", "note": "sai:  tại tất cả các nút giao trên đường cao tốc"},
+  {"code": "IE.467", "status": "bad", "note": "ko có hình"},
+  {"code": "IE.467a", "status": "ok", "note": "sai tên biển báo"},
+  {"code": "IE.468", "status": "bad", "note": "ko có hình "},
+  {"code": "IE.469", "status": "ok", "note": "sai tên biển báo"},
+  {"code": "IE.470", "status": "ok", "note": "ko có ảnh "},
+  {"code": "IE.471", "status": "ok", "note": "sai tên biển báo"},
+  {"code": "IE.472", "status": "ok", "note": "ko có hình "},
+  {"code": "IE.473", "status": "ok", "note": "sai tên biển báo"},
+  {"code": "IE.474", "status": "ok", "note": "sai tên biển báo"},
+  {"code": "Vạch 3.2", "status": "bad", "note": "vách này là vạch tách làn kiểu trực "},
+  {"code": "Vạch 3.3", "status": "bad", "note": "trùng với 3.2"},
+  {"code": "Vạch 3.4", "status": "bad", "note": "không có hình "},
+  {"code": "Vạch 4.2", "status": "unseen", "note": "ko có hình "},
+  {"code": "Vạch 6.1", "status": "ok", "note": "không có hình "},
+  {"code": "Vạch 9.3", "status": "ok", "note": "không có ảnh"},
+  {"code": "Vạch 9.5", "status": "ok", "note": "ko có ảnh"}
+ ]
+}
