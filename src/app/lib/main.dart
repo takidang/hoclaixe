@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/db/platform_database.dart';
 import 'core/router.dart';
+import 'core/settings/app_settings.dart';
 import 'core/strings.dart';
 import 'core/theme/app_theme.dart';
 
@@ -24,6 +25,7 @@ class HoclaixeApp extends ConsumerWidget {
     title: S.appName,
     theme: AppTheme.light(),
     darkTheme: AppTheme.dark(),
+    themeMode: ref.watch(settingsProvider).value?.themeMode ?? ThemeMode.system,
     routerConfig: ref.watch(routerProvider),
     debugShowCheckedModeBanner: false,
   );

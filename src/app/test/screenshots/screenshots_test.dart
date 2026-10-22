@@ -179,4 +179,10 @@ void main() {
     await tap(tester, find.text(S.statistics));
     await shot('11-stats');
   }, skip: !_enabled);
+
+  testWidgets('12 giới thiệu (chọn giao diện)', (tester) async {
+    await phone(tester);
+    await tap(tester, find.byTooltip(S.about));
+    await shot('12-about');
+  }, skip: !_enabled);
 }

@@ -223,6 +223,12 @@ abstract final class S {
   static String historyTitle(int? fixedSetNo) =>
       fixedSetNo == null ? randomTest : fixedTest(fixedSetNo);
 
+  // Appearance (About screen)
+  static const appearance = 'Giao diện';
+  static const themeSystem = 'Theo máy';
+  static const themeLight = 'Sáng';
+  static const themeDark = 'Tối';
+
   static String _roman(int n) => const [
     'I',
     'II',

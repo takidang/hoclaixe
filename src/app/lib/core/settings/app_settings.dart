@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers.dart';
@@ -10,6 +11,7 @@ class AppSettings {
   const AppSettings({
     required this.disclaimerAccepted,
     required this.licenseClass,
+    this.themeMode = ThemeMode.system,
   });
 
   final bool disclaimerAccepted;
@@ -17,16 +19,20 @@ class AppSettings {
   /// null until the learner picks a class (FR-A03).
   final String? licenseClass;
 
-  AppSettings copyWith({bool? disclaimerAccepted, String? licenseClass}) =>
-      AppSettings(
+  /// Light, dark or follow the device (ST-13, chosen on the About screen).
+  final ThemeMode themeMode;
+
+  AppSettings copyWith({bool? disclaimerAccepted, String? licenseClass, ThemeMode? themeMode}) => AppSettings(
         disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
         licenseClass: licenseClass ?? this.licenseClass,
+        themeMode: themeMode ?? this.themeMode,
       );
 }
 
 abstract final class SettingKeys {
   static const disclaimerAccepted = 'disclaimer_accepted';
   static const licenseClass = 'license_class';
+  static const themeMode = 'theme_mode';
 }
 
 /// Where settings are stored; overridden in widget tests with an in-memory store.
@@ -48,6 +54,7 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
       disclaimerAccepted:
           await store.get(SettingKeys.disclaimerAccepted) == '1',
       licenseClass: supportedLicenseClasses.contains(cls) ? cls : null,
+      themeMode: ThemeMode.values.asNameMap()[await store.get(SettingKeys.themeMode)] ?? ThemeMode.system,
     );
   }
 
@@ -70,5 +77,12 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
     final store = await ref.read(settingsStoreProvider.future);
     await store.set(SettingKeys.licenseClass, licenseClass);
     state = AsyncData(state.requireValue.copyWith(licenseClass: licenseClass));
+  }
+
+  /// Saved as 'system' / 'light' / 'dark'; the whole app restyles immediately.
+  Future<void> setThemeMode(ThemeMode mode) async {
+    final store = await ref.read(settingsStoreProvider.future);
+    await store.set(SettingKeys.themeMode, mode.name);
+    state = AsyncData(state.requireValue.copyWith(themeMode: mode));
   }
 }
