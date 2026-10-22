@@ -24,7 +24,7 @@ final currentStructureProvider = FutureProvider<ExamStructure?>((ref) async {
 
 /// Latest result per fixed set of the selected class (exam list screen).
 final fixedResultsProvider =
-    FutureProvider<Map<int, ({int score, bool passed})>>((ref) async {
+    FutureProvider<Map<int, ({int score, int total, bool passed})>>((ref) async {
       final licenseClass = (await ref.watch(settingsProvider.future))
           .licenseClass;
       if (licenseClass == null) return const {};
@@ -51,6 +51,23 @@ class ExamView {
     questionsById: {for (final q in questions) q.id: q},
     answers: answers,
   );
+
+  /// Result as submitted: score and pass/fail from the database, per-question marks from the saved answers.
+  ExamResult submittedResult() {
+    final graded = grade(session.answers);
+    final stored = session.stored;
+    if (stored == null) return graded;
+    final unanswered = session.answers.where((a) => a == null).length;
+    return ExamResult(
+      total: graded.total,
+      correct: stored.score,
+      wrong: graded.total - stored.score - unanswered,
+      unanswered: unanswered,
+      passScore: structure.passScore,
+      criticalCorrect: !stored.failedCritical,
+      correctByPosition: graded.correctByPosition,
+    );
+  }
 }
 
 /// Loads a test by id from the database (answers as saved). Null if unknown.

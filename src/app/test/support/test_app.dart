@@ -6,6 +6,7 @@ import 'package:hoclaixe/core/db/app_database.dart';
 import 'package:hoclaixe/core/providers.dart';
 import 'package:hoclaixe/core/settings/app_settings.dart';
 import 'package:hoclaixe/core/settings/settings_store.dart';
+import 'package:hoclaixe/features/exam/data/exam_session_repository.dart';
 import 'package:hoclaixe/main.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -31,12 +32,15 @@ Widget testApp({
   required InMemorySettingsStore store,
   required DateTime now,
   DateTime Function()? clock,
+  ExamSessionRepository Function(AppDatabase db)? examSessions,
 }) => ProviderScope(
   overrides: [
     contentProvider.overrideWith((ref) async => content),
     databaseProvider.overrideWith((ref) async => db),
     settingsStoreProvider.overrideWith((ref) async => store),
     clockProvider.overrideWithValue(clock ?? () => now),
+    if (examSessions != null)
+      examSessionRepositoryProvider.overrideWith((ref) async => examSessions(db)),
   ],
   child: const HoclaixeApp(),
 );

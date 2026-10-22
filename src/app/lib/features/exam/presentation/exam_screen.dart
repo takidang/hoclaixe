@@ -54,6 +54,9 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
   late Duration _left = _session.remaining(_now());
   Timer? _ticker;
   bool _saving = false;
+
+  /// A choice made while the previous one was still being saved: (position, option), saved right after.
+  (int, int)? _pending;
   bool _submitting = false;
   bool _sheetOpen = false;
   bool _allowPop = false;
@@ -73,6 +76,11 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       ); // reopened after the deadline (FR-A25)
       return;
     }
+    _startTicker();
+  }
+
+  void _startTicker() {
+    _ticker?.cancel();
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
   }
 
@@ -99,24 +107,33 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
   }
 
   /// FR-A24: the choice is written to the database first; only then does the screen show it.
-  Future<void> _select(int option) async {
-    if (_saving || _submitting) return;
+  /// [position] comes from the page that was tapped, never from the page currently shown: the learner may
+  /// move to another question while the save is running (review 22/10, High).
+  Future<void> _select(int position, int option) async {
+    if (_submitting) return;
+    if (_saving) {
+      _pending = (position, option); // the latest choice wins; saved as soon as the current save ends
+      return;
+    }
     _saving = true;
     try {
       final repo = await ref.read(examSessionRepositoryProvider.future);
-      await repo.saveAnswer(_session.id, _index, option);
-      if (mounted) setState(() => _answers[_index] = option);
+      await repo.saveAnswer(_session.id, position, option);
+      if (mounted) setState(() => _answers[position] = option);
     } on StateError {
       // the test is no longer in progress (deadline passed / submitted elsewhere)
+      _pending = null;
       if (mounted) await _submit();
-    } on Exception {
+    } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text(S.saveAnswerFailed)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(S.saveAnswerFailed)));
       }
     } finally {
       _saving = false;
     }
+    final next = _pending;
+    _pending = null;
+    if (next != null && mounted) await _select(next.$1, next.$2);
   }
 
   /// Submits once (FR-A26); a second call or an already submitted test just opens the result.
@@ -133,12 +150,12 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
         ..invalidate(fixedResultsProvider)
         ..invalidate(examHistoryProvider);
       _showResult();
-    } on Exception {
+    } catch (_) {
+      // nothing was submitted: let the learner retry, and keep the clock running (review 22/10)
       _submitting = false;
-      if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text(S.examError)));
-      }
+      if (!mounted) return;
+      if (_session.remaining(_now()) > Duration.zero) _startTicker();
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(S.examError)));
     }
   }
 
@@ -163,8 +180,13 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       case ExitChoice.saveAndExit:
         _leave();
       case ExitChoice.discard:
-        final repo = await ref.read(examSessionRepositoryProvider.future);
-        await repo.abandon(_session.id);
+        try {
+          final repo = await ref.read(examSessionRepositoryProvider.future);
+          await repo.abandon(_session.id);
+        } catch (_) {
+          if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(S.examError)));
+          return;
+        }
         ref.invalidate(homeSummaryProvider);
         _leave();
       case ExitChoice.keepGoing || null:
@@ -254,7 +276,7 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
                     licenseClass: _session.paper.licenseClass,
                     mode: QuestionMode.exam,
                     selectedIndex: _answers[i],
-                    onSelect: _select,
+                    onSelect: (option) => _select(i, option),
                   ),
                 ),
               ),

@@ -110,6 +110,9 @@ class ExamSessionRepository {
       },
       answers: [for (final a in answers) a['selected_index'] as int?],
       flagged: [for (final a in answers) a['flagged'] == 1],
+      stored: r['score'] == null
+          ? null
+          : (score: r['score']! as int, passed: r['passed'] == 1, failedCritical: r['failed_critical'] == 1),
     );
   }
 
@@ -196,12 +199,12 @@ class ExamSessionRepository {
   }
 
   /// Latest submitted result of each fixed set of [licenseClass] (FR-A20b): set number → (score, passed).
-  Future<Map<int, ({int score, bool passed})>> latestFixedResults(
+  Future<Map<int, ({int score, int total, bool passed})>> latestFixedResults(
     String licenseClass,
   ) async {
     final rows = await _db.query(
       'exam_session',
-      columns: ['fixed_set_no', 'score', 'passed'],
+      columns: ['fixed_set_no', 'score', 'passed', 'question_ids'],
       where: 'license_class = ? AND status = ? AND fixed_set_no IS NOT NULL',
       whereArgs: [licenseClass, 'submitted'],
       orderBy: 'submitted_at, id',
@@ -210,6 +213,8 @@ class ExamSessionRepository {
       for (final r in rows)
         r['fixed_set_no']! as int: (
           score: r['score']! as int,
+          // the test actually taken, not today's blueprint
+          total: ((jsonDecode(r['question_ids']! as String) as Map<String, dynamic>)['questionIds'] as List).length,
           passed: r['passed'] == 1,
         ),
     };

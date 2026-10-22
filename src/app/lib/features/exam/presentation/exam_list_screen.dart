@@ -15,7 +15,6 @@ class ExamListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final results = ref.watch(fixedResultsProvider).value ?? const {};
-    final total = ref.watch(currentStructureProvider).value?.questionCount ?? 0;
     final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(title: const Text(S.practiceExam)),
@@ -51,7 +50,7 @@ class ExamListScreen extends ConsumerWidget {
             spacing: 8,
             children: [
               for (var n = 1; n <= fixedSetCount; n++)
-                _FixedSetTile(number: n, result: results[n], total: total),
+                _FixedSetTile(number: n, result: results[n]),
             ],
           ),
         ],
@@ -61,11 +60,10 @@ class ExamListScreen extends ConsumerWidget {
 }
 
 class _FixedSetTile extends StatelessWidget {
-  const _FixedSetTile({required this.number, required this.result, required this.total});
+  const _FixedSetTile({required this.number, required this.result});
 
   final int number;
-  final ({int score, bool passed})? result;
-  final int total;
+  final ({int score, int total, bool passed})? result;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +72,7 @@ class _FixedSetTile extends StatelessWidget {
     final r = result;
     final (String status, Color? color) = switch (r) {
       null => (S.notTaken, null),
-      (passed: true, score: _) => (S.passedShort, answer.correct),
+      (passed: true, score: _, total: _) => (S.passedShort, answer.correct),
       _ => (S.failedShort, answer.wrong),
     };
     return Card(
@@ -91,7 +89,7 @@ class _FixedSetTile extends StatelessWidget {
               Text(status, style: text.labelMedium?.copyWith(color: color)),
               if (r != null)
                 Text(
-                  S.scoreOf(r.score, total),
+                  S.scoreOf(r.score, r.total),
                   style: text.bodySmall,
                 ),
             ],

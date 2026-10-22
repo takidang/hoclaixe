@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hoclaixe/core/db/app_database.dart';
+import 'package:hoclaixe/core/router.dart';
 import 'package:hoclaixe/core/strings.dart';
 import 'package:hoclaixe/features/exam/data/exam_session_repository.dart';
 import 'package:hoclaixe/features/exam/domain/exam_generator.dart';
@@ -370,4 +374,96 @@ void main() {
       expect(again, first);
     },
   );
+
+  // ---- regressions from Kiệt's review (22/10) ----
+
+  testWidgets(
+    'chọn đáp án rồi nhảy câu trong lúc đang lưu → đáp án ghi và tô đúng câu đã chọn (review High)',
+    (tester) async {
+      await setUpApp(tester);
+      final gate = _SlowSaves(db.db, () => now);
+      await tester.pumpWidget(
+        testApp(content: content, db: db, store: onboarded('A1'), now: start, clock: () => now, examSessions: (_) => gate),
+      );
+      await tester.pumpAndSettle();
+      await startFixedTest(tester);
+      final q = currentView(tester, 1).question;
+      final view = find.byWidgetPredicate((w) => w is QuestionView && w.position == 1);
+
+      gate.hold = true;
+      await tester.tap(find.descendant(of: view, matching: find.text(q.options[1])));
+      await tester.pump();
+      await tap(tester, stripCell(6)); // moved to question 6 while question 1 is still being saved
+      gate.release();
+      await tester.pumpAndSettle();
+
+      final saved = (await stored(tester, 1))!;
+      expect(saved.answers[0], 1, reason: 'câu 1 nhận đáp án');
+      expect(saved.answers[5], isNull, reason: 'câu 6 không bị ghi nhầm');
+      expect(find.bySemanticsLabel(RegExp('^${S.questionNumber(6)}, ')), findsOneWidget, reason: 'ô 6 vẫn "chưa trả lời"');
+      await tap(tester, stripCell(1));
+      expect(currentView(tester, 1).selectedIndex, 1, reason: 'câu 1 hiện đáp án đã lưu');
+    },
+  );
+
+  testWidgets('bấm hai đáp án liên tiếp rất nhanh → đáp án sau cùng được lưu (review Low)', (tester) async {
+    await setUpApp(tester);
+    await openApp(tester);
+    await startFixedTest(tester);
+    final q = currentView(tester, 1).question;
+    final view = find.byWidgetPredicate((w) => w is QuestionView && w.position == 1);
+    await tester.tap(find.descendant(of: view, matching: find.text(q.options[0])));
+    await tester.tap(find.descendant(of: view, matching: find.text(q.options[1])));
+    await tester.pumpAndSettle();
+    expect((await stored(tester, 1))!.answers[0], 1);
+    expect(currentView(tester, 1).selectedIndex, 1);
+  });
+
+  testWidgets('Kết quả hiện điểm đã lưu lúc nộp (khớp Lịch sử); Xem lại bài của mã không tồn tại báo lỗi (review)',
+      (tester) async {
+    await setUpApp(tester);
+    await openApp(tester);
+    await startFixedTest(tester);
+    await answer(tester, 1, correct: true);
+    await tap(tester, find.text(S.submit));
+    await tap(tester, find.text(S.submitAndGrade));
+    expect(find.text(S.resultScore(1, 25)), findsOneWidget);
+
+    // the stored score is what every screen shows, even if grading today would differ
+    await tester.runAsync(() => db.db.update('exam_session', {'score': 7}, where: 'id = 1'));
+    await tap(tester, find.text(S.anotherTest));
+    await tap(tester, find.text(S.fixedTest(1)));
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.text(S.scoreOf(7, 25)), findsOneWidget, reason: 'ô đề số 1');
+
+    final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+    unawaited(router.push(Routes.examResult(1)));
+    await tester.pumpAndSettle();
+    expect(find.text(S.resultScore(7, 25)), findsOneWidget, reason: 'màn Kết quả dùng điểm đã lưu');
+
+    unawaited(router.push(Routes.examReview(999)));
+    await tester.pumpAndSettle();
+    expect(find.text(S.examError), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+}
+
+/// Repository whose saves wait until the test releases them — reproduces a slow phone (review 22/10).
+class _SlowSaves extends ExamSessionRepository {
+  _SlowSaves(super.db, DateTime Function() clock) : super(clock: clock);
+
+  bool hold = false;
+  Completer<void>? _gate;
+
+  void release() {
+    hold = false;
+    _gate?.complete();
+  }
+
+  @override
+  Future<void> saveAnswer(int sessionId, int position, int? selectedIndex) async {
+    if (hold) await (_gate = Completer<void>()).future;
+    return super.saveAnswer(sessionId, position, selectedIndex);
+  }
 }

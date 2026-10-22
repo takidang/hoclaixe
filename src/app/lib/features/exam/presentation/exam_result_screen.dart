@@ -24,7 +24,7 @@ class ExamResultScreen extends ConsumerWidget {
       body: switch (view) {
         AsyncData(value: final v?)
             when v.session.status == ExamStatus.submitted =>
-          _ResultBody(view: v, result: v.grade(v.session.answers)),
+          _ResultBody(view: v, result: v.submittedResult()),
         AsyncData(value: final _?) => const Center(child: Text(S.notSubmitted)),
         AsyncData() || AsyncError() => const Center(child: Text(S.examError)),
         _ => const Center(child: CircularProgressIndicator()),

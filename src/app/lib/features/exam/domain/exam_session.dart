@@ -12,6 +12,7 @@ class ExamSession {
     required this.status,
     required this.answers,
     required this.flagged,
+    this.stored,
   });
 
   final int id;
@@ -25,6 +26,10 @@ class ExamSession {
   /// Chosen option per position, null = unanswered.
   final List<int?> answers;
   final List<bool> flagged;
+
+  /// Score and outcome written when the test was submitted (null before). Result, history and the fixed-set
+  /// grid all show these, so a later change of the question data cannot make them disagree.
+  final ({int score, bool passed, bool failedCritical})? stored;
 
   bool isExpired(DateTime now) => !now.isBefore(deadlineAt);
 

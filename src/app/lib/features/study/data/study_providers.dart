@@ -99,7 +99,8 @@ final studyDataProvider = FutureProvider.autoDispose.family<StudyData?, String>(
 );
 
 /// Mode written to the answer log for a topic.
-AnswerMode answerModeOf(StudyTopic topic) => topic.isSnapshot
+/// "Ôn câu sai" logs `wrong`, critical questions `critical`; topics and "Câu hay sai" log `study`.
+AnswerMode answerModeOf(StudyTopic topic) => topic.isWrongList
     ? AnswerMode.wrong
     : topic.kind == TopicKind.critical
     ? AnswerMode.critical

@@ -1,0 +1,75 @@
+{
+ "reviewed": "2026-10-22T04:36:40.381Z",
+ "_note": "Soát lần 3 trên review-fixed.html. Hiệu lệnh 9/9 (R.412i–p, R.415b), chỉ dẫn 7/7, cao tốc 13/13, Vạch 4.2 đạt. Vạch 3.2/3.3/3.4 'bad' vì không có hình: QCVN 41:2024 không có hình minh họa riêng cho các vạch này → giữ 'Không có hình' + lý do (giới hạn của văn bản gốc). Dòng R.413p, IE.453/456/463/467/468 là ghi chú lần 1 còn lưu trong trình duyệt (mã đã bỏ từ 14/10).",
+ "groups": {
+  "hieu_lenh": {
+   "total": 9,
+   "ok": 9,
+   "bad": 0,
+   "unseen": 0
+  },
+  "chi_dan": {
+   "total": 7,
+   "ok": 7,
+   "bad": 0,
+   "unseen": 0
+  },
+  "cao_toc": {
+   "total": 13,
+   "ok": 13,
+   "bad": 0,
+   "unseen": 0
+  },
+  "vach_ke": {
+   "total": 7,
+   "ok": 4,
+   "bad": 3,
+   "unseen": 0
+  }
+ },
+ "items": [
+  {
+   "code": "R.412p",
+   "status": "ok"
+  },
+  {
+   "code": "Vạch 3.2",
+   "status": "bad",
+   "note": "vách này là vạch tách làn kiểu trực "
+  },
+  {
+   "code": "Vạch 3.3",
+   "status": "bad",
+   "note": "ko có hình với trùng nhau"
+  },
+  {
+   "code": "Vạch 3.4",
+   "status": "bad",
+   "note": "không có hình "
+  },
+  {
+   "code": "Vạch 4.2",
+   "status": "ok"
+  },
+  {
+   "code": "Vạch 6.1",
+   "status": "ok"
+  },
+  {
+   "code": "Vạch 9.3",
+   "status": "ok"
+  },
+  {
+   "code": "Vạch 9.5",
+   "status": "ok"
+  }
+ ],
+ "_stale_round1_items": [
+  "R.413p",
+  "IE.453",
+  "IE.456",
+  "IE.463",
+  "IE.467",
+  "IE.468"
+ ]
+}

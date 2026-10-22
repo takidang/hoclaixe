@@ -9,6 +9,7 @@ import 'package:hoclaixe/features/exam/domain/question_pool.dart';
 import 'package:hoclaixe/features/exam/domain/structure_picker.dart';
 import 'package:hoclaixe/features/stats/data/stats_providers.dart';
 import 'package:hoclaixe/features/study/data/progress_repository.dart';
+import 'package:hoclaixe/features/study/data/study_providers.dart';
 import 'package:hoclaixe/features/study/domain/study_topic.dart';
 import 'package:hoclaixe/shared/widgets/question_view.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -43,6 +44,13 @@ void main() {
       expect(t.questionIds, [pool[1].id, pool[3].id, pool[5].id]);
       expect(t.kind, TopicKind.frequent);
       expect(t.isSnapshot, isTrue);
+    });
+
+    test('làm "Câu hay sai" ghi chế độ study, "Ôn câu sai" ghi wrong (review)', () {
+      final t = frequent({pool[0].id: 1});
+      expect(answerModeOf(t), AnswerMode.study);
+      final wrong = resolveTopic(StudyTopic.wrongOf(StudyTopic.allId), pool: pool, licenseClass: 'A1', wrongIds: {pool[0].id})!;
+      expect(answerModeOf(wrong), AnswerMode.wrong);
     });
 
     test('tối đa 50 câu', () {

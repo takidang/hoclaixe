@@ -21,11 +21,15 @@ class _ExamReviewScreenState extends ConsumerState<ExamReviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final view = ref.watch(examViewProvider(widget.sessionId)).value;
+    final async = ref.watch(examViewProvider(widget.sessionId));
+    final view = async.value;
     return Scaffold(
       appBar: AppBar(title: const Text(S.reviewTest)),
+      // loading only while loading: an error or an unknown test shows a message (review 22/10)
       body: view == null
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+              child: async.isLoading ? const CircularProgressIndicator() : const Text(S.examError),
+            )
           : Builder(
               builder: (context) {
                 final answers = view.session.answers;
