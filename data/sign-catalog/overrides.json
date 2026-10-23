@@ -291,19 +291,29 @@
   {
    "code": "Vạch 3.2",
    "page": 168,
-   "note": "Soát lần 2 (Kiệt, 22/10): Hình G.14 là sơ đồ tách làn, không phải hình của vạch → bỏ hình, ghi lý do.",
-   "noImageReason": "QCVN 41:2024 không có hình minh họa riêng cho vạch này (chỉ có sơ đồ bố trí tách/nhập làn)."
+   "note": "Soát lần 2 (Kiệt, 22/10): Hình G.14 là sơ đồ tách làn, không phải hình của vạch → bỏ hình, ghi lý do. Tên/mô tả ghép lại nguyên văn: công cụ trích cắt câu ở chỗ xuống dòng (tr. 168, phát hiện 23/10).",
+   "noImageReason": "QCVN 41:2024 không có hình minh họa riêng cho vạch này (chỉ có sơ đồ bố trí tách/nhập làn).",
+   "name": "Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc và 30 cm cho các đường khác",
+   "summary": "Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ.",
+   "meaning": "Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc và 30 cm cho các đường khác. Xe không được phép chuyển làn qua vạch 3.2 trừ các trường hợp khẩn cấp theo quy định tại Luật Đường bộ và Luật Trật tự, An toàn giao thông đường bộ."
   },
   {
    "code": "Vạch 3.3",
    "page": 168,
-   "note": "Soát lần 2 (Kiệt, 22/10): Hình G.14 là sơ đồ tách làn, không phải hình của vạch → bỏ hình, ghi lý do.",
-   "noImageReason": "QCVN 41:2024 không có hình minh họa riêng cho vạch này (chỉ có sơ đồ bố trí tách/nhập làn)."
+   "note": "Soát lần 2 (Kiệt, 22/10): Hình G.14 là sơ đồ tách làn, không phải hình của vạch → bỏ hình, ghi lý do. Tên/mô tả ghép lại nguyên văn: công cụ trích cắt câu ở chỗ xuống dòng (tr. 168, phát hiện 23/10).",
+   "noImageReason": "QCVN 41:2024 không có hình minh họa riêng cho vạch này (chỉ có sơ đồ bố trí tách/nhập làn).",
+   "name": "Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc và 30 cm cho các đường khác",
+   "summary": "Khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m.",
+   "meaning": "Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc và 30 cm cho các đường khác, khoảng cách nét đứt L1 = (100 cm - 300 cm); khoảng cách nét đứt L2 = (100 cm - 300 cm); L1:L2 = 1:1. Xe được phép cắt, chuyển làn qua vạch. Ngoài ra, vạch 3.3 còn được sử dụng để kẻ đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2. Chiều dài đoạn chuyển tiếp từ vạch 2.1 sang vạch 3.2 trong khoảng từ 50 m đến 100 m."
   },
   {
    "code": "Vạch 3.4",
    "page": 168,
-   "noImageReason": "QCVN 41:2024 không có hình minh họa cho vạch 3.4 (chỉ mô tả quy cách)."
+   "noImageReason": "QCVN 41:2024 không có hình minh họa cho vạch 3.4 (chỉ mô tả quy cách).",
+   "name": "Vạch đứt nét, màu trắng, khoảng cách nét liền L1 = (3 m – 6 m), khoảng cách nét đứt L2 = 1 m – 2 m, tỷ lệ L1:L2 = 3:1",
+   "summary": "Sử dụng để báo hiệu sắp đến đến vạch 1.2 hoặc vạch 2.2; hoặc sử dụng để kẻ vạch chuyển tiếp từ vạch 1.1 đến vạch 1.2; hoặc từ vạch 2.1 đến vạch 2.2. Bề rộng vạch 3.4 được lấy tương ứng theo bề rộng của vạch 1.2 hoặc vạch 2.2.",
+   "meaning": "Vạch đứt nét, màu trắng, khoảng cách nét liền L1 = (3 m – 6 m), khoảng cách nét đứt L2 = 1 m – 2 m, tỷ lệ L1:L2 = 3:1. Chiều dài vạch 3.4 lấy trong khoảng từ 50 m đến 100 m.\nSử dụng để báo hiệu sắp đến đến vạch 1.2 hoặc vạch 2.2; hoặc sử dụng để kẻ vạch chuyển tiếp từ vạch 1.1 đến vạch 1.2; hoặc từ vạch 2.1 đến vạch 2.2. Bề rộng vạch 3.4 được lấy tương ứng theo bề rộng của vạch 1.2 hoặc vạch 2.2.",
+   "note": " Tên/mô tả ghép lại nguyên văn: công cụ trích cắt câu ở chỗ xuống dòng (tr. 168, phát hiện 23/10)."
   },
   {
    "code": "Vạch 4.2",

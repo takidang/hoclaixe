@@ -454,6 +454,9 @@ def apply_overrides(signs, doc, img_dir, path, issues):
             continue
         if 'name' in s:
             e['name'] = s['name']
+        for field in ('summary', 'meaning'):  # re-joined text when a heading wrapped mid-sentence
+            if field in s:
+                e[field] = s[field]
         if 'images' in s:
             e['images'] = crop_images(doc, img_dir, s['code'], s['images'])
         if 'noImageReason' in s:

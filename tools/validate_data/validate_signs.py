@@ -48,6 +48,8 @@ def main():
             errors.append(f'{s["code"]}: no name')
         elif SENTENCE_START.match(s['name']):
             errors.append(f'{s["code"]}: name looks like a body sentence: {s["name"][:50]}')
+        if re.search(r'\s(và|hoặc|khoảng|của|cho|với|là)$', s['name']):
+            errors.append(f'{s["code"]}: name cut at a line break: …{s["name"][-30:]}')
         split = [t for t in s['name'].split() if t.isalpha() and t.islower() and t not in UNITS and not set(t) & VOWELS]
         if split:
             errors.append(f'{s["code"]}: syllable split in name ({split[0]}): {s["name"][:50]}')
