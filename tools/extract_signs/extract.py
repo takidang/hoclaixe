@@ -12,6 +12,7 @@ import glob
 import json
 import os
 import re
+import shutil
 from collections import defaultdict
 
 import pymupdf
@@ -459,6 +460,14 @@ def apply_overrides(signs, doc, img_dir, path, issues):
                 e[field] = s[field]
         if 'images' in s:
             e['images'] = crop_images(doc, img_dir, s['code'], s['images'])
+        if 'drawn' in s:  # team-drawn illustration where QCVN has no figure; the app shows imageNote under it
+            e['images'] = []
+            for src in s['drawn']:
+                name = os.path.basename(src)
+                shutil.copyfile(os.path.join(os.path.dirname(path), src), os.path.join(img_dir, name))
+                e['images'].append(f'images/{name}')
+            e['imageNote'] = s['imageNote']
+            e.pop('noImageReason', None)
         if 'noImageReason' in s:
             e['images'] = []
             e['noImageReason'] = s['noImageReason']

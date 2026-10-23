@@ -119,6 +119,7 @@ class TrafficSign {
     required this.meaning,
     required this.images,
     this.noImageReason,
+    this.imageNote,
   });
 
   factory TrafficSign.fromJson(Map<String, dynamic> j) => TrafficSign(
@@ -130,6 +131,7 @@ class TrafficSign {
     meaning: j['meaning'] as String,
     images: List<String>.from(j['images'] as List<dynamic>),
     noImageReason: j['noImageReason'] as String?,
+    imageNote: j['imageNote'] as String?,
   );
 
   final String code;
@@ -142,6 +144,9 @@ class TrafficSign {
 
   /// Why there is no picture (e.g. QCVN has no figure for marking 3.4); null when [images] is not empty.
   final String? noImageReason;
+
+  /// Caption shown under the picture when it is not an official QCVN figure (team-drawn illustration).
+  final String? imageNote;
 }
 
 /// Everything the app reads from assets, parsed once at start-up.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hoclaixe/core/content/models.dart';
 import 'package:hoclaixe/core/strings.dart';
 
 import '../../../support/real_content.dart';
@@ -73,19 +74,68 @@ void main() {
   testWidgets(
     'biển không có hình → khung thay thế + lý do, không lỗi (ST-12 AC3)',
     (tester) async {
-      await openSigns(tester);
-      final noImage = content.signs.firstWhere((s) => s.images.isEmpty);
+      // every catalog entry has a picture now; strip one to keep the fallback covered
+      final real = content.signs.first;
+      final noImage = TrafficSign(
+        code: real.code,
+        name: real.name,
+        group: real.group,
+        groupName: real.groupName,
+        summary: real.summary,
+        meaning: real.meaning,
+        images: const [],
+        noImageReason: 'QCVN không có hình cho mục này.',
+      );
+      final db = await openTestDatabase(tester);
+      await tester.pumpWidget(
+        testApp(
+          content: ContentBundle(
+            version: content.version,
+            questions: content.questions,
+            structures: content.structures,
+            signs: [noImage, ...content.signs.skip(1)],
+            signGroups: content.signGroups,
+            chapters: content.chapters,
+          ),
+          db: db,
+          store: onboarded('B'),
+          now: DateTime(2026, 10, 21, 9),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text(S.trafficSigns));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(S.trafficSigns));
+      await tester.pumpAndSettle();
       await tester.tap(find.byTooltip(S.searchSigns));
       await tester.pumpAndSettle();
       await tester.enterText(find.byType(TextField), noImage.code);
       await tester.pumpAndSettle();
-      await tester.tap(find.widgetWithText(Card, noImage.code)); // not the search field's own text
+      await tester.tap(
+        find.widgetWithText(Card, noImage.code),
+      ); // not the search field's own text
       await tester.pumpAndSettle();
       expect(find.text(S.noSignImage), findsOneWidget);
-      if (noImage.noImageReason != null) {
-        expect(find.text(noImage.noImageReason!), findsOneWidget);
-      }
+      expect(find.text(noImage.noImageReason!), findsOneWidget);
       expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'Vạch 3.2 có hình nhóm tự vẽ → hiện hình kèm chú thích "do nhóm vẽ"',
+    (tester) async {
+      await openSigns(tester);
+      final drawn = content.signs.firstWhere((s) => s.code == 'Vạch 3.2');
+      expect(drawn.images, isNotEmpty);
+      expect(drawn.imageNote, contains('do nhóm vẽ'));
+      await tester.tap(find.byTooltip(S.searchSigns));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), drawn.code);
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(Card, drawn.code));
+      await tester.pumpAndSettle();
+      expect(find.byType(Image), findsWidgets);
+      expect(find.text(drawn.imageNote!), findsOneWidget);
     },
   );
 

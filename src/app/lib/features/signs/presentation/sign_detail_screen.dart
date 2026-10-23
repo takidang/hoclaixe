@@ -68,6 +68,16 @@ class SignDetailScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
+                  if (sign.imageNote != null) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      sign.imageNote!,
+                      style: text.bodySmall?.copyWith(
+                        fontStyle: FontStyle.italic,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ],
               ),
             ),

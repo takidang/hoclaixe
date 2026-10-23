@@ -2,7 +2,7 @@
 
 So với QCVN 41:2024 (file `51-bgtvt-kem.pdf`, trang ghi bên dưới): **mã, tên, hình, ý nghĩa**. Khớp → [x].
 
-Tổng: 68 biển. Lỗi: 0. Cảnh báo: 7.
+Tổng: 65 biển. Lỗi: 0. Cảnh báo: 7.
 
 | Khớp | Mã | Tên (app) | Mục | Trang | Lý do soát | Ghi chú |
 |---|---|---|---|---|---|---|
@@ -69,11 +69,8 @@ Tổng: 68 biển. Lỗi: 0. Cảnh báo: 7.
 | [ ] | IE.465 | Chỉ dẫn địa điểm và khoảng cách | Điều 47.16 | 55 | mẫu ngẫu nhiên (seed 2026) | |
 | [ ] | IE.468a | Chỉ dẫn đi theo hướng bên trái | Điều 47.19 | 56 | mẫu ngẫu nhiên (seed 2026) | |
 | [ ] | Vạch 1.5 | Vạch xác định ranh giới làn đường có thể thay đổi hướng xe chạy |  | 160 | mẫu ngẫu nhiên (seed 2026) | |
-| [ ] | Vạch 3.2 | Vạch liền nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc và 30 cm cho các đường khác | Nhóm vạch giới hạn mép phần đường xe chạy | 168 | không có hình | |
-| [ ] | Vạch 3.3 | Vạch đứt nét, màu trắng, bề rộng vạch là 45 cm cho đường ô tô cao tốc và 30 cm cho các đường khác | Nhóm vạch giới hạn mép phần đường xe chạy | 168 | không có hình | |
-| [ ] | Vạch 3.4 | Vạch đứt nét, màu trắng, khoảng cách nét liền L1 = (3 m – 6 m), khoảng cách nét đứt L2 = 1 m – 2 m, tỷ lệ L1:L2 = 3:1 | Nhóm vạch giới hạn mép phần đường xe chạy | 168 | không có hình | |
+| [ ] | Vạch 6.1 | Vạch cấm đỗ xe trên đường | Nhóm vạch cấm dừng xe trên đường | 181 | mẫu ngẫu nhiên (seed 2026) | |
 | [ ] | Vạch 8.2 | vạch xác định mép dưới thấp nhất của kết cấu cầu vượt qua đường hoặc công trình khác đi phía trên đường | Vạch đứng | 192 | mẫu ngẫu nhiên (seed 2026) | |
-| [ ] | Vạch 9.3 | Vạch mũi tên chỉ hướng trên mặt đường | Các loại vạch kẻ đường khác | 195 | mẫu ngẫu nhiên (seed 2026) | |
 
 ## Mã có trong phần thân QCVN nhưng chưa có trong danh mục
 
