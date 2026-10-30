@@ -39,6 +39,7 @@ dependencies:
   path: ^1.9.1
   go_router: ^18.0.2
   sqflite_common_ffi_web: ^1.2.0
+  flutter_tts: ^4.2.5
 
 dev_dependencies:
   flutter_test:
@@ -81,3 +82,8 @@ flutter:
           weight: 600
         - asset: assets/fonts/BeVietnamPro-Bold.ttf
           weight: 700
+    # numbers, timer, question labels (design v1, docs/design/DESIGN.md); OFL, see assets/fonts/OFL-JetBrainsMono.txt
+    - family: JetBrainsMono
+      fonts:
+        - asset: assets/fonts/JetBrainsMono-Medium.ttf
+          weight: 500

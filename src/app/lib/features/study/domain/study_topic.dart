@@ -2,7 +2,8 @@ import '../../../core/content/models.dart';
 
 /// A list of questions studied in order (FR-A10). Pure Dart.
 ///
-/// Ids: `all`, `critical`, `ch1`…`ch6`, and `wrong-<base id>` = the wrong-list questions of a base topic.
+/// Ids: `all`, `critical`, `ch1`…`ch6`, `frequent`, `saved`, `q-<question id>` (one question opened from search),
+/// and `wrong-<base id>` = the wrong-list questions of a base topic.
 class StudyTopic {
   const StudyTopic({
     required this.id,
@@ -28,20 +29,29 @@ class StudyTopic {
   /// "Câu hay sai" (FR-A51): up to 50 questions with the most wrong answers in the class pool.
   static const frequentId = 'frequent';
   static const frequentLimit = 50;
+
+  /// "Câu đã lưu": bookmarked questions, in the order they were saved.
+  static const savedId = 'saved';
   static const wrongPrefix = 'wrong-';
+  static const singlePrefix = 'q-';
+  static String single(String questionId) => '$singlePrefix$questionId';
   static String chapterId(int chapter) => 'ch$chapter';
   static String wrongOf(String baseId) => '$wrongPrefix$baseId';
 
   bool get isWrongList => id.startsWith(wrongPrefix);
 
   /// Built from the learner's mistakes when opened: starts empty, no saved position, no "Làm lại".
-  bool get isSnapshot => isWrongList || kind == TopicKind.frequent;
+  bool get isSnapshot =>
+      isWrongList ||
+      kind == TopicKind.frequent ||
+      kind == TopicKind.saved ||
+      kind == TopicKind.single;
 
   /// Base topic for a wrong-list topic, otherwise itself.
   String get baseId => isWrongList ? id.substring(wrongPrefix.length) : id;
 }
 
-enum TopicKind { all, critical, chapter, frequent }
+enum TopicKind { all, critical, chapter, frequent, saved, single }
 
 /// "Tất cả câu hỏi", "Câu điểm liệt", then every chapter that has questions in the class pool.
 List<StudyTopic> buildTopics({
@@ -85,7 +95,32 @@ StudyTopic? resolveTopic(
   required String licenseClass,
   required Set<String> wrongIds,
   Map<String, int> wrongCounts = const {},
+  List<String> savedIds = const [],
 }) {
+  if (id == StudyTopic.savedId) {
+    final byId = {for (final q in pool) q.id: q};
+    return StudyTopic(
+      id: id,
+      kind: TopicKind.saved,
+      chapter: null,
+      questions: [
+        for (final s in savedIds)
+          ?byId[s], // a question outside this class's pool is not shown
+      ],
+    );
+  }
+  if (id.startsWith(StudyTopic.singlePrefix)) {
+    final qid = id.substring(StudyTopic.singlePrefix.length);
+    final q = pool.where((q) => q.id == qid).firstOrNull;
+    return q == null
+        ? null
+        : StudyTopic(
+            id: id,
+            kind: TopicKind.single,
+            chapter: q.chapter,
+            questions: [q],
+          );
+  }
   if (id == StudyTopic.frequentId) {
     final ranked =
         [
@@ -110,6 +145,7 @@ StudyTopic? resolveTopic(
       licenseClass: licenseClass,
       wrongIds: wrongIds,
       wrongCounts: wrongCounts,
+      savedIds: savedIds,
     );
     if (base == null || base.isWrongList) return null;
     return StudyTopic(

@@ -90,12 +90,13 @@ void main() {
         S.reviewWrong,
         S.criticalQuestions,
         S.trafficSigns,
+        S.savedQuestions,
       ]) {
         expect(find.text(label), findsOneWidget, reason: label);
       }
-      expect(find.text(S.questionCount(1)), findsOneWidget); // wrong list
+      expect(find.text(S.wrongHint(1)), findsOneWidget); // wrong list
       final critical = a1Pool.where((q) => q.isCriticalFor('A1')).length;
-      expect(find.text(S.questionCount(critical)), findsOneWidget);
+      expect(find.text(S.criticalHint(critical)), findsOneWidget);
       expect(find.text(S.resumeExam), findsNothing);
     },
   );

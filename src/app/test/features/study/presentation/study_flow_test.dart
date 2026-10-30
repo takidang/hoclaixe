@@ -104,7 +104,7 @@ void main() {
       expect(find.text(S.topicStats(0, 1, 19)), findsOneWidget);
       await tester.pageBack();
       await tester.pumpAndSettle();
-      expect(find.text(S.questionCount(1)), findsOneWidget); // home: Ôn câu sai
+      expect(find.text(S.wrongHint(1)), findsOneWidget); // home: Ôn câu sai
     },
   );
 

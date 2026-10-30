@@ -98,7 +98,8 @@ class AnswerOption extends StatelessWidget {
       label: [S.answerLabel(number), text, ?stateLabel].join('. '),
       excludeSemantics: true,
       child: Material(
-        color: background ?? Colors.transparent,
+        // panel colour so options stand out from the canvas (design v1)
+        color: background ?? scheme.surfaceContainerLowest,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: BorderSide(
@@ -118,17 +119,26 @@ class AnswerOption extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 14,
-                    backgroundColor: badge,
-                    foregroundColor: onBadge,
+                  // a key of the test machine: square, mono digit; colour eases in when revealed
+                  AnimatedContainer(
+                    duration: AppMotion.of(context, AppMotion.quick),
+                    curve: AppMotion.quickCurve,
+                    width: 28,
+                    height: 28,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: badge,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: icon == null
                         ? Text(
                             '$number',
-                            style: Theme.of(context).textTheme.labelLarge
-                                ?.copyWith(color: onBadge),
+                            style: AppTheme.mono(
+                              Theme.of(context).textTheme.labelLarge,
+                              onBadge,
+                            ),
                           )
-                        : Icon(icon, size: 18),
+                        : Icon(icon, size: 18, color: onBadge),
                   ),
                   const SizedBox(width: 12),
                   Expanded(

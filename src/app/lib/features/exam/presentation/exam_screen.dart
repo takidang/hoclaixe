@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/providers.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/lane_line.dart';
 import '../../../shared/widgets/question_view.dart';
 import '../../home/data/home_summary_provider.dart';
 import '../../stats/data/stats_providers.dart';
@@ -223,7 +225,24 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(S.questionOfTotal(_index + 1, questions.length)),
+          title: Text(
+            S.questionOfTotal(_index + 1, questions.length),
+          ),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(12),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: LaneLine.progress(
+                value:
+                    _answers.where((a) => a != null).length / questions.length,
+                color: scheme.primary,
+                semanticsLabel: S.answeredLane(
+                  _answers.where((a) => a != null).length,
+                  questions.length,
+                ),
+              ),
+            ),
+          ),
           actions: [
             Semantics(
               label: S.timeRemaining,
@@ -244,9 +263,9 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
                     const SizedBox(width: 4),
                     Text(
                       S.timerLabel(_left),
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: timerFg,
-                        fontFeatures: const [FontFeature.tabularFigures()],
+                      style: AppTheme.mono(
+                        Theme.of(context).textTheme.titleSmall,
+                        timerFg,
                       ),
                     ),
                   ],

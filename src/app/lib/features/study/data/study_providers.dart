@@ -77,6 +77,7 @@ final studyDataProvider = FutureProvider.autoDispose.family<StudyData?, String>(
       licenseClass: cp.licenseClass,
       wrongIds: await repo.wrongList(),
       wrongCounts: await repo.wrongCounts(),
+      savedIds: await repo.savedIds(),
     );
     if (topic == null) return null;
     final since = topic.isSnapshot
@@ -97,6 +98,20 @@ final studyDataProvider = FutureProvider.autoDispose.family<StudyData?, String>(
     );
   },
 );
+
+/// Bookmarked question ids ("Câu đã lưu"). Invalidated by [toggleSaved].
+final savedIdsProvider = FutureProvider<Set<String>>((ref) async {
+  final repo = await ref.watch(progressRepositoryProvider.future);
+  return (await repo.savedIds()).toSet();
+});
+
+Future<void> toggleSaved(WidgetRef ref, String questionId) async {
+  final saved = await ref.read(savedIdsProvider.future);
+  final repo = await ref.read(progressRepositoryProvider.future);
+  await repo.setSaved(questionId, saved: !saved.contains(questionId));
+  ref.invalidate(savedIdsProvider);
+  ref.invalidate(homeSummaryProvider);
+}
 
 /// Mode written to the answer log for a topic.
 /// "Ôn câu sai" logs `wrong`, critical questions `critical`; topics and "Câu hay sai" log `study`.

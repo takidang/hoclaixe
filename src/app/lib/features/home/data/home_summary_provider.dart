@@ -32,5 +32,7 @@ final homeSummaryProvider = FutureProvider<HomeSummary?>((ref) async {
         if (p.inWrongList) p.questionId,
     },
     openSession: await sessionRepo.openSession(),
+    savedIds: (await progressRepo.savedIds()).toSet(),
+    structure: structure,
   );
 });

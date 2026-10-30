@@ -30,7 +30,8 @@ cơ quan nhà nước.
 | Thi thử | Đề ngẫu nhiên + 20 đề cố định, đồng hồ đếm ngược, đáp án lưu ngay khi chọn, hết giờ tự nộp, lưu tạm và làm tiếp, kết quả kèm lý do trượt (sai câu điểm liệt), xem lại bài | Hoàn thành |
 | Biển báo | 392 biển và vạch kẻ đường chia 7 nhóm, chi tiết biển, tìm theo mã hoặc tên (không dấu) | Hoàn thành |
 | Thống kê | Số lần thi, tỉ lệ đạt, điểm gần nhất, tiến độ theo chủ đề, lịch sử thi | Hoàn thành |
-| Giao diện | Màu lấy từ biển báo, font Be Vietnam Pro, chế độ tối, cỡ chữ 130% không vỡ bố cục | Hoàn thành |
+| Câu đã lưu, tìm câu, đọc câu hỏi | Lưu câu muốn xem lại; tìm theo số câu hoặc từ khóa (không dấu); đọc câu hỏi và đáp án bằng giọng tiếng Việt của máy (`flutter_tts`) | Hoàn thành |
+| Giao diện | Thiết kế "Vạch kẻ đường" (`docs/design/DESIGN.md`): tiến độ là vạch nét đứt được sơn liền dần; màu từ mặt đường và biển chỉ dẫn, font Be Vietnam Pro + JetBrains Mono, chế độ tối, cỡ chữ 130% không vỡ bố cục | Hoàn thành |
 | Kiểm thử chấp nhận + bản APK nộp | — | Đang làm |
 
 ## Công nghệ

@@ -174,6 +174,27 @@ class ProgressRepository {
   static String _roundKey(String licenseClass, String topicId) =>
       'study_round:$licenseClass:$topicId';
 
+  /// Bookmarked questions ("Câu đã lưu"), oldest first.
+  Future<List<String>> savedIds() async {
+    final rows = await _db.query(
+      'saved_question',
+      columns: ['question_id'],
+      orderBy: 'saved_at, question_id',
+    );
+    return [for (final r in rows) r['question_id']! as String];
+  }
+
+  Future<void> setSaved(String questionId, {required bool saved}) => saved
+      ? _db.insert('saved_question', {
+          'question_id': questionId,
+          'saved_at': _clock().millisecondsSinceEpoch,
+        }, conflictAlgorithm: ConflictAlgorithm.ignore)
+      : _db.delete(
+          'saved_question',
+          where: 'question_id = ?',
+          whereArgs: [questionId],
+        );
+
   Future<String?> topicPosition(String licenseClass, String topicId) async {
     final rows = await _db.query(
       'topic_position',

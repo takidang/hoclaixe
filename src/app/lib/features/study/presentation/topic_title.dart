@@ -7,6 +7,8 @@ String topicTitle(StudyTopic topic, Map<int, String> chapters) {
     TopicKind.all => S.topicAll,
     TopicKind.critical => S.topicCritical,
     TopicKind.frequent => S.frequentWrong,
+    TopicKind.saved => S.savedQuestions,
+    TopicKind.single => S.questionNumber(topic.questions.single.number),
     TopicKind.chapter => S.chapterTitle(
       topic.chapter!,
       chapters[topic.chapter] ?? '',

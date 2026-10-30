@@ -83,12 +83,22 @@ class QuestionView extends StatelessWidget {
                 runSpacing: 4,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Text(S.questionNumber(position), style: text.titleMedium),
+                  Text(
+                    S.questionNumber(position),
+                    style: text.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
                   if (showCritical) const _CriticalBadge(),
                 ],
               ),
             ),
-            Text(S.officialNumber(question.number), style: text.labelSmall),
+            Text(
+              S.officialNumber(question.number),
+              style: text.labelSmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 8),
@@ -160,10 +170,12 @@ class _QuestionImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         // Tall figures would push the options off screen; full size is one tap away.
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.4),
-              child: Image.asset(asset, fit: BoxFit.contain),
-            ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(context).height * 0.4,
+          ),
+          child: Image.asset(asset, fit: BoxFit.contain),
+        ),
       ),
     ),
   );

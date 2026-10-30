@@ -10,7 +10,7 @@ class AppDatabase {
   final Database db;
 
   static const fileName = 'hoclaixe.db';
-  static const version = 1;
+  static const version = 2;
 
   /// [factory] and [path] are injectable so tests can use sqflite_common_ffi with an in-memory database.
   static Future<AppDatabase> open({
@@ -95,6 +95,12 @@ class AppDatabase {
            topic_id TEXT NOT NULL,
            last_question_id TEXT NOT NULL,
            PRIMARY KEY (license_class, topic_id))''',
+    ],
+    // "Câu đã lưu" (30/10/2026): questions the learner bookmarked
+    2: [
+      '''CREATE TABLE saved_question (
+           question_id TEXT PRIMARY KEY,
+           saved_at INTEGER NOT NULL)''',
     ],
   };
 

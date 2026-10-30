@@ -58,7 +58,41 @@ abstract final class S {
   static const studyProgress = 'Tiến độ ôn tập';
   static String progressCount(int correct, int total) =>
       '$correct / $total câu';
-  static const progressHint = 'Tính các câu trả lời đúng ở lần làm gần nhất';
+  static const progressHint =
+      'Mỗi câu đúng ở lần làm gần nhất sơn liền một đoạn vạch.';
+  static const practiceSection = 'Ôn luyện';
+  static const studyByTopicHint = 'Từng chương của bộ câu hỏi';
+  static String criticalHint(int n) => '$n câu · sai một câu là trượt';
+  static String wrongHint(int n) => '$n câu đang chờ ôn';
+  static const signsHint = 'Danh mục theo QCVN 41:2024';
+  static const statsHint = 'Lần thi, tỉ lệ đạt, câu hay sai';
+  static String examCta(String cls, int questions, int minutes) =>
+      'Hạng $cls · $questions câu · $minutes phút';
+  // Saved questions, search, read aloud (30/10/2026)
+  static const savedQuestions = 'Câu đã lưu';
+  static const saveQuestion = 'Lưu câu';
+  static const unsaveQuestion = 'Bỏ lưu';
+  static const savedToast = 'Đã lưu câu này';
+  static const unsavedToast = 'Đã bỏ lưu';
+  static const noSavedYet = 'Bạn chưa lưu câu nào';
+  static const noSavedYetHint =
+      'Bấm biểu tượng dấu trang khi học để lưu câu muốn xem lại.';
+  static const saveFailed = 'Không lưu được. Hãy thử lại.';
+  static const speechFailed = 'Không đọc được câu hỏi trên máy này.';
+  static const readQuestion = 'Đọc câu hỏi';
+  static const stopReading = 'Dừng đọc';
+  static const noVietnameseVoice =
+      'Máy chưa có giọng đọc tiếng Việt. Cài giọng tiếng Việt trong Cài đặt > Chuyển văn bản thành giọng nói.';
+  static const searchQuestions = 'Tìm câu hỏi';
+  static const searchQuestionsHint =
+      'Số câu hoặc từ khóa, gõ không dấu cũng được';
+  static const searchQuestionsEmpty = 'Ví dụ: 120, nồng độ cồn, nhường đường';
+  static const noQuestionFound = 'Không tìm thấy câu nào.';
+  static String questionResults(int n) => '$n câu';
+  static String answeredLane(int answered, int total) =>
+      'Đã trả lời $answered trên $total câu';
+  static const resultLaneHint =
+      'Mỗi đoạn là một câu: liền là đúng, đỏ là sai, mờ là chưa trả lời.';
   static const studyByTopic = 'Học theo chủ đề';
   static const practiceExam = 'Thi thử';
   static const reviewWrong = 'Ôn câu sai';
@@ -66,7 +100,7 @@ abstract final class S {
   static const trafficSigns = 'Biển báo';
   static String questionCount(int n) => '$n câu';
   static const resumeExam = 'Tiếp tục bài thi';
-  static const examTimeUp = 'Đã hết giờ — mở để xem kết quả';
+  static const examTimeUp = 'Đã hết giờ. Mở để xem kết quả';
   static String timeLeft(Duration d) =>
       'Còn ${d.inMinutes}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
 
@@ -95,7 +129,7 @@ abstract final class S {
   static const topicCritical = 'Câu điểm liệt';
   static String chapterTitle(int chapter, String name) =>
       'Chương ${_roman(chapter)}. $name';
-  static String wrongOfTopic(String title) => 'Câu sai — $title';
+  static String wrongOfTopic(String title) => 'Câu sai: $title';
   static String topicStats(int correct, int wrong, int notDone) =>
       'Đúng $correct · Sai $wrong · Chưa làm $notDone';
   static String questionOfTotal(int position, int total) =>
@@ -140,7 +174,7 @@ abstract final class S {
   static const passLabel = 'Điểm đạt tối thiểu';
   static String minutes(int m) => '$m phút';
   static String correctAnswers(int n) => '$n câu đúng';
-  static const criticalRule = '1 câu điểm liệt — sai là trượt';
+  static const criticalRule = '1 câu điểm liệt, sai là trượt';
   static const startTest = 'Bắt đầu';
   static const noStructure = 'Chưa có cấu trúc đề cho hạng này.';
   static const openTestExists = 'Đang có bài thi chưa nộp';
@@ -157,7 +191,7 @@ abstract final class S {
   static const timeRemaining = 'Thời gian còn lại';
   static const endTestTitle = 'Kết thúc bài thi?';
   static String unansweredWarning(int n) =>
-      'Còn $n câu chưa trả lời — câu chưa trả lời tính là sai.';
+      'Còn $n câu chưa trả lời. Câu chưa trả lời tính là sai.';
   static const submitAndGrade = 'Nộp bài và chấm điểm';
   static const submitAndGradeHint =
       'Chấm điểm toàn bộ câu trả lời và xem kết quả';
@@ -186,7 +220,7 @@ abstract final class S {
   static String failNotEnough(int score, int pass) =>
       'Chưa đủ điểm: $score câu đúng, cần từ $pass câu.';
   static const failCritical =
-      'Sai câu điểm liệt — bài thi không đạt dù đủ điểm.';
+      'Sai câu điểm liệt nên bài thi không đạt, dù đủ điểm.';
   static const reviewTest = 'Xem lại bài';
   static const anotherTest = 'Thi đề khác';
   static const backHome = 'Về màn chính';

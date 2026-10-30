@@ -24,6 +24,9 @@ Future<void> _loadFonts() async {
     family.addFont(rootBundle.load('assets/fonts/BeVietnamPro-$w.ttf'));
   }
   await family.load();
+  final mono = FontLoader('JetBrainsMono')
+    ..addFont(rootBundle.load('assets/fonts/JetBrainsMono-Medium.ttf'));
+  await mono.load();
   final icons = FontLoader('MaterialIcons')
     ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
   await icons.load();
@@ -178,6 +181,22 @@ void main() {
     await phone(tester);
     await tap(tester, find.text(S.statistics));
     await shot('11-stats');
+  }, skip: !_enabled);
+
+  testWidgets('13 tìm câu hỏi + 14 câu tìm được', (tester) async {
+    await phone(tester);
+    await tap(tester, find.byTooltip(S.searchQuestions));
+    await tester.enterText(find.byType(TextField), 'nong do con');
+    await tester.pumpAndSettle();
+    await shot('13-search');
+  }, skip: !_enabled);
+
+  testWidgets('15 câu hỏi màn tối', (tester) async {
+    await phone(tester, dark: true);
+    await tap(tester, find.text(S.criticalQuestions));
+    await pickOption(tester, correct: true);
+    await loadImages(tester);
+    await shot('15-study-dark');
   }, skip: !_enabled);
 
   testWidgets('12 giới thiệu (chọn giao diện)', (tester) async {

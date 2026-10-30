@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/router.dart';
+import '../../../core/speech/question_reader.dart';
 import '../../../core/strings.dart';
+import '../../../shared/widgets/lane_line.dart';
 import '../../../shared/widgets/question_view.dart';
 import '../data/study_providers.dart';
 import '../domain/study_topic.dart';
@@ -69,16 +73,65 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
   );
   late final Map<String, int> _answers = {...widget.data.answers};
   late int _index = widget.data.startIndex;
+  late final QuestionReader _reader = ref.read(questionReaderProvider);
+  bool _speaking = false;
 
   StudyTopic get _topic => widget.data.topic;
 
   @override
   void dispose() {
+    if (_speaking) unawaited(_reader.stop());
     _pages.dispose();
     super.dispose();
   }
 
+  Future<void> _toggleSpeech() async {
+    if (_speaking) {
+      await _reader.stop();
+      if (mounted) setState(() => _speaking = false);
+      return;
+    }
+    setState(() => _speaking = true);
+    try {
+      await _reader.speak(
+        speechTextOf(_topic.questions[_index], _index + 1),
+        onDone: () {
+          if (mounted) setState(() => _speaking = false);
+        },
+      );
+    } on Exception catch (e) {
+      if (!mounted) return;
+      setState(() => _speaking = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e is SpeechUnavailable ? S.noVietnameseVoice : S.speechFailed,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _toggleSaved(bool saved) async {
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await toggleSaved(ref, _topic.questions[_index].id);
+    } on Exception {
+      messenger.showSnackBar(const SnackBar(content: Text(S.saveFailed)));
+      return;
+    }
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(content: Text(saved ? S.unsavedToast : S.savedToast)),
+      );
+  }
+
   Future<void> _onPageChanged(int i) async {
+    if (_speaking) {
+      unawaited(_reader.stop()); // a new question: stop reading the old one
+      _speaking = false;
+    }
     setState(() => _index = i);
     if (_topic.isSnapshot) return;
     final repo = await ref.read(progressRepositoryProvider.future);
@@ -193,15 +246,39 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
           _topic.kind == TopicKind.frequent) {
         return _NoWrongYet(title: widget.title);
       }
+      if (_topic.kind == TopicKind.saved && !_topic.isWrongList) {
+        return const _Message(
+          '${S.noSavedYet}\n\n${S.noSavedYetHint}',
+          title: S.savedQuestions,
+        );
+      }
       return _Message(
         _topic.isWrongList ? S.noWrongInTopic : S.emptyTopic,
         title: widget.title,
       );
     }
+    final saved =
+        ref.watch(savedIdsProvider).value?.contains(questions[_index].id) ??
+        false;
+    final answered = RoundSummary.of(_topic, _answers);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title, maxLines: 2, overflow: TextOverflow.ellipsis),
         actions: [
+          IconButton(
+            tooltip: _speaking ? S.stopReading : S.readQuestion,
+            isSelected: _speaking,
+            icon: const Icon(Icons.volume_up_outlined),
+            selectedIcon: const Icon(Icons.stop_circle_outlined),
+            onPressed: _toggleSpeech,
+          ),
+          IconButton(
+            tooltip: saved ? S.unsaveQuestion : S.saveQuestion,
+            isSelected: saved,
+            icon: const Icon(Icons.bookmark_border),
+            selectedIcon: const Icon(Icons.bookmark),
+            onPressed: () => _toggleSaved(saved),
+          ),
           if (!_topic.isSnapshot)
             IconButton(
               tooltip: S.restartTopic,
@@ -209,6 +286,23 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
               onPressed: _confirmRestart,
             ),
         ],
+        bottom: questions.length < 2
+            ? null
+            : PreferredSize(
+                preferredSize: const Size.fromHeight(12),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                  child: LaneLine.progress(
+                    value:
+                        (answered.correct + answered.wrong) / questions.length,
+                    color: Theme.of(context).colorScheme.primary,
+                    semanticsLabel: S.answeredLane(
+                      answered.correct + answered.wrong,
+                      questions.length,
+                    ),
+                  ),
+                ),
+              ),
       ),
       body: PageView.builder(
         controller: _pages,
@@ -245,7 +339,10 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
                 child: TextButton.icon(
                   onPressed: _openGrid,
                   icon: const Icon(Icons.grid_view),
-                  label: Text(S.questionOfTotal(_index + 1, questions.length)),
+                  label: Text(
+                    S.questionOfTotal(_index + 1, questions.length),
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
                 ),
               ),
               IconButton(

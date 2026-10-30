@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/lane_line.dart';
 import '../data/exam_providers.dart';
 import '../domain/exam_grader.dart';
 import '../domain/exam_session.dart';
@@ -43,44 +44,72 @@ class _ResultBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final answer = AnswerColors.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final color = result.passed ? answer.correct : answer.wrong;
+    final score = '${result.score}';
     return ListView(
       padding: const EdgeInsets.all(24),
       children: [
-        Icon(
-          result.passed ? Icons.verified : Icons.cancel_outlined,
-          size: 72,
-          color: color,
-        ),
-        const SizedBox(height: 8),
         Text(
           result.passed ? S.passed : S.failed,
-          style: text.headlineMedium?.copyWith(
-            color: color,
-            fontWeight: FontWeight.bold,
+          style: text.headlineMedium?.copyWith(color: color),
+        ),
+        const SizedBox(height: 4),
+        Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: score,
+                style: AppTheme.mono(text.displaySmall, scheme.onSurface),
+              ),
+              TextSpan(
+                text: S
+                    .resultScore(result.score, result.total)
+                    .substring(score.length),
+                style: text.titleSmall?.copyWith(
+                  color: scheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 16),
+        // one segment per question: the whole test at a glance (design v1 signature)
+        LaneLine.segments(
+          marks: [
+            for (final c in result.correctByPosition)
+              switch (c) {
+                true => LaneMark.done,
+                false => LaneMark.wrong,
+                null => LaneMark.empty,
+              },
+          ],
+          color: answer.correct,
+          wrongColor: answer.wrong,
+          semanticsLabel: S.resultCounts(
+            result.correct,
+            result.wrong,
+            result.unanswered,
+          ),
         ),
         const SizedBox(height: 8),
         Text(
-          S.resultScore(result.score, result.total),
-          style: text.titleLarge,
-          textAlign: TextAlign.center,
+          S.resultLaneHint,
+          style: text.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 16),
         Text(
           S.resultCounts(result.correct, result.wrong, result.unanswered),
           style: text.bodyMedium,
-          textAlign: TextAlign.center,
         ),
         Text(
           S.passMark(result.passScore),
-          style: text.bodySmall,
-          textAlign: TextAlign.center,
+          style: text.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
         ),
         const SizedBox(height: 16),
         for (final reason in result.failReasons)
           Card(
+            margin: const EdgeInsets.only(bottom: 8), // aligned with the buttons below
             color: answer.wrongContainer,
             child: ListTile(
               leading: Icon(Icons.info_outline, color: answer.wrong),

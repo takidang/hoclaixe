@@ -16,6 +16,7 @@ import '../features/signs/presentation/sign_catalog_screen.dart';
 import '../features/signs/presentation/sign_detail_screen.dart';
 import '../features/stats/presentation/stats_screen.dart';
 import '../features/study/domain/study_topic.dart';
+import '../features/study/presentation/question_search_screen.dart';
 import '../features/study/presentation/study_screen.dart';
 import '../features/study/presentation/topic_list_screen.dart';
 import 'settings/app_settings.dart';
@@ -36,6 +37,8 @@ abstract final class Routes {
   static String examReview(int id) => '/exam/review/$id';
   static const wrong = '/wrong';
   static const critical = '/critical';
+  static const saved = '/saved';
+  static const search = '/search';
   static const signs = '/signs';
   static const stats = '/stats';
   static String sign(String code) => '/signs/${Uri.encodeComponent(code)}';
@@ -113,6 +116,15 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: 'critical',
             builder: (context, state) =>
                 const StudyScreen(topicId: StudyTopic.criticalId),
+          ),
+          GoRoute(
+            path: 'saved',
+            builder: (context, state) =>
+                const StudyScreen(topicId: StudyTopic.savedId),
+          ),
+          GoRoute(
+            path: 'search',
+            builder: (context, state) => const QuestionSearchScreen(),
           ),
           // Practice tests (ST-08 … ST-11)
           GoRoute(
