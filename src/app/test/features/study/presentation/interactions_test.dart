@@ -101,6 +101,38 @@ void main() {
     expect(find.text(S.questionOfTotal(2, a1.questionCount)), findsOneWidget);
   });
 
+  testWidgets(
+    'đang thi: bật/tắt tự chuyển câu ngay trên thanh tiêu đề, có tác dụng liền',
+    (tester) async {
+      await open(tester);
+      await tapCard(tester, S.practiceExam);
+      await tapCard(tester, S.fixedTest(1));
+      await tapCard(tester, S.startTest);
+
+      await tester.tap(find.byTooltip(S.autoNextIsOff));
+      await tester.pumpAndSettle();
+      expect(find.text(S.autoNextTurnedOn), findsOneWidget);
+      expect(find.byTooltip(S.autoNextIsOn), findsOneWidget);
+      expect(await store.get(SettingKeys.autoNext), '1');
+
+      await answer(tester, 1, 0);
+      await tester.pump(AppMotion.autoNextExam);
+      await tester.pumpAndSettle();
+      expect(find.text(S.questionOfTotal(2, a1.questionCount)), findsOneWidget);
+
+      await tester.tap(find.byTooltip(S.autoNextIsOn));
+      await tester.pumpAndSettle();
+      await answer(tester, 2, 0);
+      await tester.pump(AppMotion.autoNextExam);
+      await tester.pumpAndSettle();
+      expect(
+        find.text(S.questionOfTotal(2, a1.questionCount)),
+        findsOneWidget,
+        reason: 'đã tắt: ở lại câu 2',
+      );
+    },
+  );
+
   testWidgets('Giới thiệu: bật "Tự chuyển câu" thì lưu lại', (tester) async {
     await open(tester);
     await tester.tap(find.byTooltip(S.about));

@@ -11,6 +11,7 @@ import '../../../core/settings/app_settings.dart';
 import '../../../core/speech/question_reader.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/auto_next_toggle.dart';
 import '../../../shared/widgets/lane_line.dart';
 import '../../../shared/widgets/question_view.dart';
 import '../data/study_providers.dart';
@@ -291,6 +292,7 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
       appBar: AppBar(
         title: Text(widget.title, maxLines: 2, overflow: TextOverflow.ellipsis),
         actions: [
+          const AutoNextToggle(),
           IconButton(
             tooltip: _speaking ? S.stopReading : S.readQuestion,
             isSelected: _speaking,

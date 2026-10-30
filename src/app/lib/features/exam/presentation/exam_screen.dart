@@ -10,6 +10,7 @@ import '../../../core/router.dart';
 import '../../../core/settings/app_settings.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/auto_next_toggle.dart';
 import '../../../shared/widgets/lane_line.dart';
 import '../../../shared/widgets/question_view.dart';
 import '../../home/data/home_summary_provider.dart';
@@ -265,6 +266,7 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
             ),
           ),
           actions: [
+            const AutoNextToggle(),
             Semantics(
               label: S.timeRemaining,
               child: Container(

@@ -287,6 +287,10 @@ abstract final class S {
   static const themeSystem = 'Theo máy';
   static const studySettings = 'Khi làm bài';
   static const autoNext = 'Tự chuyển câu';
+  static const autoNextIsOn = 'Tự chuyển câu: đang bật';
+  static const autoNextIsOff = 'Tự chuyển câu: đang tắt';
+  static const autoNextTurnedOn = 'Đã bật tự chuyển câu';
+  static const autoNextTurnedOff = 'Đã tắt tự chuyển câu';
   static const autoNextHint =
       'Học: trả lời đúng thì sang câu sau, sai thì ở lại để xem đáp án. Thi thử: chọn xong là sang câu sau.';
   static const themeLight = 'Sáng';

@@ -128,3 +128,5 @@ Mục tiêu: "luôn chuyển động, mượt như app Apple" nhưng không gây
 - **Rung phản hồi** khi chọn đáp án (nhẹ), khi biết đúng (nhẹ) / sai (vừa).
 - **Tự chuyển câu** (Giới thiệu › Khi làm bài, mặc định tắt): học → trả lời đúng sang câu sau sau 0,7 s, sai thì ở lại;
   thi thử → chọn xong sang câu sau sau 0,25 s. Người học tự chuyển câu trong lúc chờ thì không chuyển nữa.
+  Bật/tắt nhanh ngay khi đang làm: nút ⏩ trên thanh tiêu đề màn học và màn thi (`Tự chuyển câu: đang bật/tắt`),
+  bấm là đổi ngay, có thông báo `Đã bật tự chuyển câu` / `Đã tắt tự chuyển câu`.

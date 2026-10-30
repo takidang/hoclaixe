@@ -248,6 +248,14 @@ void main() {
     await shot('21-class-dark');
   }, skip: !_enabled);
 
+  testWidgets('22 đang thi (tối)', (tester) async {
+    await phone(tester, dark: true);
+    await tap(tester, find.text(S.practiceExam));
+    await tap(tester, find.text(S.fixedTest(1)));
+    await tap(tester, find.text(S.startTest));
+    await shot('22-exam-dark');
+  }, skip: !_enabled);
+
   testWidgets('12 giới thiệu (chọn giao diện)', (tester) async {
     await phone(tester);
     await tap(tester, find.byTooltip(S.about));
