@@ -3,7 +3,7 @@
 > Cập nhật cuối mỗi phiên làm việc.
 
 **Cập nhật**: 2026-10-30
-**Phase hiện tại**: 5 — Phát triển, cuối Sprint 1. ST-01…ST-16 Done (Module A đủ); `dev` 150 test đạt, analyze sạch. Đang làm giao diện v2 trên nhánh `feat/design-v2` (chưa xong)
+**Phase hiện tại**: 5 — Phát triển, cuối Sprint 1. ST-01…ST-16 Done (Module A đủ); giao diện v2 + thử nghiệm ảnh xe đã merge vào `dev` (30/10); 164 test đạt, analyze sạch
 **Sprint**: Sprint 1 (12/10–28/10/2026) — Module A, nộp LTTTBDD 28/10 · đóng băng tính năng 25/10
 **Phạm vi (đổi 13/10)**: hoclaixe chỉ còn là đồ án LTTTBDD → Module A giống đối thủ; B/C/D làm sau nếu còn thời gian.
 
@@ -38,10 +38,11 @@
 
 - **15–23/10 — Hoàn thành Module A** (đã push `dev`, repo nộp `takidang/hoclaixe-app` cập nhật bằng `tools/publish-app-repo.ps1`): ST-08…ST-11 thi thử (chọn đề, làm bài, đồng hồ, bài dở, kết quả, xem lại, đề cố định) · ST-12/ST-16 danh mục 392 biển + tìm không dấu · ST-13 design system v0 · ST-15 thống kê, lịch sử thi, câu hay sai · chọn Sáng/Tối/Theo máy. Sửa 8 lỗi từ review code của Kiệt (High: đáp án lưu nhầm câu khi chuyển câu lúc đang lưu). Áp 3 lượt soát danh mục biển của Kiệt; vạch 3.2/3.3/3.4 có hình nhóm tự vẽ theo QCVN (ghi chú dưới hình). README viết lại, `docs/defense/tai-man-thi.md`, phiếu kiểm thử `docs/test/phieu-kiem-thu.docx` (32 mục).
 - **30/10 — So với web mẫu của thầy (hoclaixefree.vercel.app)**, thêm 3 chức năng: **Câu đã lưu** (CSDL v2, có test nâng cấp), **Tìm câu hỏi** (số gốc / từ khóa không dấu), **Đọc câu hỏi** (`flutter_tts`, giọng tiếng Việt của máy). Giao diện v1 "Vạch kẻ đường" (`docs/design/DESIGN.md`, `LaneLine`). Review ponytail → sửa 5 mục (`5e23d62`). **Chạy thử trên máy ảo Android**: đọc tiếng Việt OK, dừng/đọc câu sau OK, tìm, lưu, nâng cấp CSDL giữ dữ liệu cũ.
-- **30/10 — Giao diện v2 (đang làm, nhánh `feat/design-v2`)** theo mẫu Tài gửi (nền tối, thẻ gradient, thanh tab nổi): đã có theme v2 (tối mặc định, `AppGradients`), `GradientCard`/`SignBadge` (hình biển thật từ danh mục thay hình 3D của mẫu), thanh 4 tab (`StatefulShellRoute`: Tổng quan · Học · Câu đã lưu · Thống kê), tab Câu đã lưu, thẻ chủ đề gradient, biểu đồ "Số câu đã làm" 30 ngày + chuỗi ngày học ở tab Thống kê. `flutter analyze` sạch; **10 test cũ chưa sửa theo điều hướng tab**.
+- **30/10 — Giao diện v2 (đã merge `dev`)** theo mẫu Tài gửi (nền tối, thẻ gradient, thanh tab nổi): đã có theme v2 (tối mặc định, `AppGradients`), `GradientCard`/`SignBadge` (hình biển thật từ danh mục thay hình 3D của mẫu), thanh 4 tab (`StatefulShellRoute`: Tổng quan · Học · Câu đã lưu · Thống kê), tab Câu đã lưu, thẻ chủ đề gradient, biểu đồ "Số câu đã làm" 30 ngày + chuỗi ngày học ở tab Thống kê. Hoàn tất: sửa test theo thanh tab, test biểu đồ/chuỗi ngày/thanh tab, chữ thẻ đọc rõ ở nền tối, nút Back về Tổng quan; sửa hình biển P.127 (Hình B.27b trang 90).
+- **30/10 — Thử nghiệm "ảnh xe" (Tài duyệt, đã merge `dev`)**: nền tối thẻ tông ngọc chữ trắng; màn mở đầu ảnh siêu xe + nút "Bắt đầu"; ảnh xe theo hạng ở màn chọn hạng và nền đầu Tổng quan; 4 ảnh Unsplash, nguồn ở `docs/design/photo-credits.md`. Chạy máy ảo OK.
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
-1. **Hoàn tất giao diện v2 trên `feat/design-v2`**: sửa 10 test vỡ (bấm tab bằng tooltip thay vì chữ trên màn chính; tab Câu đã lưu mở danh sách trước; mặc định nền tối trong `theme_mode_test`); viết test cho `daily_activity.dart` (ngày rỗng, qua tháng, chuỗi ngày) và cho thanh tab; chụp ảnh sáng/tối, soát theo skill ui-design; cập nhật `docs/design/DESIGN.md` thành v2; chạy máy ảo. Xong và Tài duyệt → merge vào `dev`, chạy `tools/publish-app-repo.ps1`.
+1. Team `git pull` + `flutter pub get`, chạy thử bản giao diện mới trên máy thật (nhất là "Đọc câu hỏi" cần giọng tiếng Việt); ghi lỗi nếu có.
 2. Repo nộp `hoclaixe-app` đang private → chuyển public khi nộp; chạy lần kiểm cuối từ bản clone mới.
 3. Kiệt viết báo cáo LTTTBDD theo yêu cầu của thầy (`docs/reports/giang-vien/`, không đưa lên git); team điền phiếu kiểm thử.
 
@@ -49,7 +50,7 @@
 
 | Người | Việc đang giao | Hạn |
 |---|---|---|
-| Tài | Hoàn tất giao diện v2 (`feat/design-v2`), merge `dev`, cập nhật repo nộp | trước khi nộp |
+| Tài | Kiểm bản cuối trên máy thật, chuyển repo nộp sang public khi nộp | trước khi nộp |
 | Cả team | `git pull` rồi chạy app theo `CONTRIBUTING.md` mục 2a (web: `flutter run -d chrome --web-port 8080`) | ngay |
 | Kiệt | Lấy yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 (theo `docs/templates/report-ltttbdd.md`) | Mẫu: 16/10 · Báo cáo: 28/10 |
 | Kiệt | Test thử app trên máy Android của mình từ khi có bản chạy được (ghi lỗi vào `production/bugs/`) | từ 19/10 |
