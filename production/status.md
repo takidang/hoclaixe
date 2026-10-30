@@ -3,7 +3,7 @@
 > Cập nhật cuối mỗi phiên làm việc.
 
 **Cập nhật**: 2026-10-30
-**Phase hiện tại**: 5 — Phát triển, cuối Sprint 1. ST-01…ST-16 Done (Module A đủ); giao diện v2 + thử nghiệm ảnh xe đã merge vào `dev` (30/10); 164 test đạt, analyze sạch
+**Phase hiện tại**: 5 — Phát triển, cuối Sprint 1. ST-01…ST-16 Done (Module A đủ); giao diện v2, ảnh xe, chuyển động, tự chuyển câu đã merge vào `dev` (30/10); 176 test đạt, analyze sạch
 **Sprint**: Sprint 1 (12/10–28/10/2026) — Module A, nộp LTTTBDD 28/10 · đóng băng tính năng 25/10
 **Phạm vi (đổi 13/10)**: hoclaixe chỉ còn là đồ án LTTTBDD → Module A giống đối thủ; B/C/D làm sau nếu còn thời gian.
 
@@ -40,6 +40,7 @@
 - **30/10 — So với web mẫu của thầy (hoclaixefree.vercel.app)**, thêm 3 chức năng: **Câu đã lưu** (CSDL v2, có test nâng cấp), **Tìm câu hỏi** (số gốc / từ khóa không dấu), **Đọc câu hỏi** (`flutter_tts`, giọng tiếng Việt của máy). Giao diện v1 "Vạch kẻ đường" (`docs/design/DESIGN.md`, `LaneLine`). Review ponytail → sửa 5 mục (`5e23d62`). **Chạy thử trên máy ảo Android**: đọc tiếng Việt OK, dừng/đọc câu sau OK, tìm, lưu, nâng cấp CSDL giữ dữ liệu cũ.
 - **30/10 — Giao diện v2 (đã merge `dev`)** theo mẫu Tài gửi (nền tối, thẻ gradient, thanh tab nổi): đã có theme v2 (tối mặc định, `AppGradients`), `GradientCard`/`SignBadge` (hình biển thật từ danh mục thay hình 3D của mẫu), thanh 4 tab (`StatefulShellRoute`: Tổng quan · Học · Câu đã lưu · Thống kê), tab Câu đã lưu, thẻ chủ đề gradient, biểu đồ "Số câu đã làm" 30 ngày + chuỗi ngày học ở tab Thống kê. Hoàn tất: sửa test theo thanh tab, test biểu đồ/chuỗi ngày/thanh tab, chữ thẻ đọc rõ ở nền tối, nút Back về Tổng quan; sửa hình biển P.127 (Hình B.27b trang 90).
 - **30/10 — Thử nghiệm "ảnh xe" (Tài duyệt, đã merge `dev`)**: nền tối thẻ tông ngọc chữ trắng; màn mở đầu ảnh siêu xe + nút "Bắt đầu"; ảnh xe theo hạng ở màn chọn hạng và nền đầu Tổng quan; 4 ảnh Unsplash, nguồn ở `docs/design/photo-credits.md`. Chạy máy ảo OK.
+- **30/10 — Chuyển động + tiện ích (đã merge `dev`)**: ảnh A1 Honda Air Blade (Wikimedia, CC BY-SA 4.0, chỉnh màu); ảnh "thở", thị sai, thẻ lún khi nhấn, chuyển màn iOS, chuyển tab mờ dần; nút viên thuốc đen/trắng; nhấn giữ thẻ chủ đề → thao tác nhanh; vuốt bỏ lưu + Hoàn tác; rung phản hồi; "Tự chuyển câu" (Giới thiệu + nút ⏩ khi đang làm).
 
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
 1. Team `git pull` + `flutter pub get`, chạy thử bản giao diện mới trên máy thật (nhất là "Đọc câu hỏi" cần giọng tiếng Việt); ghi lỗi nếu có.
