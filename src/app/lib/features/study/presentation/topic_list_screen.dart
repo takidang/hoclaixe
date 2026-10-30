@@ -8,6 +8,7 @@ import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/widgets/gradient_card.dart';
 import '../../../shared/widgets/lane_line.dart';
+import '../../../shared/widgets/motion.dart';
 import '../data/study_providers.dart';
 import '../domain/study_topic.dart';
 import 'topic_title.dart';
@@ -34,11 +35,15 @@ class TopicListScreen extends ConsumerWidget {
           separatorBuilder: (_, _) => const SizedBox(height: 12),
           itemBuilder: (context, i) {
             final (topic, stats) = value[i];
-            return _TopicCard(
-              tone: CardTone.cycle[i % CardTone.cycle.length],
-              title: topicTitle(topic, chapters),
-              stats: stats,
-              onTap: () => context.push(Routes.studyTopic(topic.id)),
+            // only the first screenful staggers in; later cards are built while scrolling and appear at once
+            return Entrance(
+              index: i < 6 ? i : 0,
+              child: _TopicCard(
+                tone: CardTone.cycle[i % CardTone.cycle.length],
+                title: topicTitle(topic, chapters),
+                stats: stats,
+                onTap: () => context.push(Routes.studyTopic(topic.id)),
+              ),
             );
           },
         ),

@@ -11,6 +11,7 @@ import '../../../shared/widgets/class_photo.dart';
 import '../../../shared/widgets/equal_height_grid.dart';
 import '../../../shared/widgets/gradient_card.dart';
 import '../../../shared/widgets/lane_line.dart';
+import '../../../shared/widgets/motion.dart';
 import '../data/home_summary_provider.dart';
 import '../domain/home_summary.dart';
 
@@ -27,11 +28,25 @@ abstract final class _Signs {
 
 /// Tab "Tổng quan" (FR-A04, ST-04; design v2): progress card with the lane line, "Thi thử", critical
 /// questions, wrong answers and the sign catalog as gradient cards.
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  /// Shared by the list and the photo behind it (parallax).
+  final _scroll = ScrollController();
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final summary = ref.watch(homeSummaryProvider);
     ref.listen(
       homeSummaryProvider,
@@ -49,7 +64,7 @@ class HomeScreen extends ConsumerWidget {
         Positioned.fill(
           child: ColoredBox(color: Theme.of(context).colorScheme.surface),
         ),
-        _ClassBackdrop(photo: ClassPhotos.of(cls)),
+        _ClassBackdrop(photo: ClassPhotos.of(cls), scroll: _scroll),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -89,7 +104,10 @@ class HomeScreen extends ConsumerWidget {
             ],
           ),
           body: switch (summary) {
-            AsyncData(value: final s?) => _HomeBody(summary: s),
+            AsyncData(value: final s?) => _HomeBody(
+              summary: s,
+              scroll: _scroll,
+            ),
             AsyncError() => const Center(
               child: Padding(
                 padding: EdgeInsets.all(24),
@@ -107,9 +125,12 @@ class HomeScreen extends ConsumerWidget {
 /// The photo of the selected class behind the header: darkened at the top for the title, fading into the
 /// page below; cross-fades when the class changes.
 class _ClassBackdrop extends StatelessWidget {
-  const _ClassBackdrop({required this.photo});
+  const _ClassBackdrop({required this.photo, required this.scroll});
 
   final String? photo;
+
+  /// The list in front: the photo moves up at 40 % of its speed and fades out (parallax).
+  final ScrollController scroll;
 
   @override
   Widget build(BuildContext context) {
@@ -120,32 +141,42 @@ class _ClassBackdrop extends StatelessWidget {
       right: 0,
       height: 320 + MediaQuery.paddingOf(context).top,
       child: ExcludeSemantics(
-        child: AnimatedSwitcher(
-          duration: AppMotion.of(context, AppMotion.paint),
-          child: photo == null
-              ? const SizedBox.expand()
-              : ShaderMask(
-                  key: ValueKey(photo),
-                  blendMode: BlendMode.dstIn,
-                  shaderCallback: (rect) => const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.black, Colors.black, Colors.transparent],
-                    stops: [0, 0.45, 1],
-                  ).createShader(rect),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Image.asset(photo, fit: BoxFit.cover),
-                      // darken the top so the white title reads on any photo
-                      const DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: AppTheme.headerScrim,
+        child: AnimatedBuilder(
+          animation: scroll,
+          builder: (context, child) {
+            final y = scroll.hasClients ? scroll.offset.clamp(0.0, 400.0) : 0.0;
+            return Transform.translate(
+              offset: Offset(0, -0.4 * y),
+              child: Opacity(opacity: 1 - y / 400, child: child),
+            );
+          },
+          child: AnimatedSwitcher(
+            duration: AppMotion.of(context, AppMotion.paint),
+            child: photo == null
+                ? const SizedBox.expand()
+                : ShaderMask(
+                    key: ValueKey(photo),
+                    blendMode: BlendMode.dstIn,
+                    shaderCallback: (rect) => const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.black, Colors.black, Colors.transparent],
+                      stops: [0, 0.45, 1],
+                    ).createShader(rect),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        KenBurns(child: Image.asset(photo, fit: BoxFit.cover)),
+                        // darken the top so the white title reads on any photo
+                        const DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: AppTheme.headerScrim,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );
@@ -153,9 +184,10 @@ class _ClassBackdrop extends StatelessWidget {
 }
 
 class _HomeBody extends ConsumerWidget {
-  const _HomeBody({required this.summary});
+  const _HomeBody({required this.summary, required this.scroll});
 
   final HomeSummary summary;
+  final ScrollController scroll;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -198,6 +230,7 @@ class _HomeBody extends ConsumerWidget {
       ),
     ];
     return ListView(
+      controller: scroll,
       padding: EdgeInsets.fromLTRB(
         16,
         96, // leaves the class photo visible under the title; the cards slide over it when scrolling
@@ -207,36 +240,9 @@ class _HomeBody extends ConsumerWidget {
       children: [
         for (var i = 0; i < blocks.length; i++) ...[
           if (i > 0) const SizedBox(height: 12),
-          _Entrance(index: i, child: blocks[i]),
+          Entrance(index: i, child: blocks[i]),
         ],
       ],
-    );
-  }
-}
-
-/// Blocks fade and rise in one after another ([AppMotion.stagger]); instant with reduced motion.
-class _Entrance extends StatelessWidget {
-  const _Entrance({required this.index, required this.child});
-
-  final int index;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    const base = 360;
-    final delay = index * AppMotion.stagger.inMilliseconds;
-    return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0, end: 1),
-      duration: AppMotion.of(context, Duration(milliseconds: base + delay)),
-      curve: Interval(delay / (base + delay), 1, curve: AppMotion.quickCurve),
-      builder: (context, t, child) => Opacity(
-        opacity: t,
-        child: Transform.translate(
-          offset: Offset(0, 12 * (1 - t)),
-          child: child,
-        ),
-      ),
-      child: child,
     );
   }
 }
@@ -265,28 +271,31 @@ class _ProgressCard extends StatelessWidget {
                   children: [
                     Text(S.studyProgress, style: text.titleLarge),
                     const SizedBox(height: 4),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: count,
-                            style: AppTheme.mono(
-                              text.headlineLarge,
-                              CardPalette.of(context).ink,
+                    CountUp(
+                      value: summary.correctCount,
+                      builder: (context, shown) => Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '$shown',
+                              style: AppTheme.mono(
+                                text.headlineLarge,
+                                CardPalette.of(context).ink,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: S
-                                .progressCount(
-                                  summary.correctCount,
-                                  summary.poolSize,
-                                )
-                                .substring(count.length),
-                            style: text.titleSmall?.copyWith(
-                              color: CardPalette.of(context).inkSoft,
+                            TextSpan(
+                              text: S
+                                  .progressCount(
+                                    summary.correctCount,
+                                    summary.poolSize,
+                                  )
+                                  .substring(count.length),
+                              style: text.titleSmall?.copyWith(
+                                color: CardPalette.of(context).inkSoft,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],

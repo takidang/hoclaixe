@@ -35,7 +35,8 @@ abstract final class S {
   static const startSubtitle = 'Bộ 600 câu hỏi chính thức · Hạng A1, A và B';
   static const startButton = 'Bắt đầu';
   static const photoCredits =
-      'Ảnh xe: Unsplash (Adrian Newell, mariyan rajesh, Kirill Petropavlov, Warren)';
+      'Ảnh xe: Unsplash (Adrian Newell, mariyan rajesh, Kirill Petropavlov); '
+      'Honda Air Blade: Dmitry Makeev, Wikimedia Commons, CC BY-SA 4.0 (đã chỉnh màu)';
   // Licence class (FR-A03)
   static const chooseClassTitle = 'Chọn hạng bằng';
   static const motorbikeGroup = 'Xe máy';

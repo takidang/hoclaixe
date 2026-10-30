@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../shared/widgets/class_photo.dart';
+import '../../../shared/widgets/motion.dart';
 
 /// First screen when the app opens (experiment "ảnh xe"): a sports car fading into the page, the app's promise
 /// and one button, "Bắt đầu", into the overview.
@@ -37,10 +38,13 @@ class StartScreen extends StatelessWidget {
                     colors: [Colors.black, Colors.black, Colors.transparent],
                     stops: [0, 0.55, 1],
                   ).createShader(rect),
-                  child: Image.asset(
-                    ClassPhotos.start,
-                    fit: BoxFit.cover,
-                    alignment: const Alignment(0.2, 0),
+                  child: KenBurns(
+                    drift: const Offset(0.02, -0.015),
+                    child: Image.asset(
+                      ClassPhotos.start,
+                      fit: BoxFit.cover,
+                      alignment: const Alignment(0.2, 0),
+                    ),
                   ),
                 ),
               ),
@@ -52,32 +56,43 @@ class StartScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Spacer(),
-                    Text(
-                      S.startTitle,
-                      style: text.displaySmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: scheme.onSurface,
-                        height: 1.15,
+                    Entrance(
+                      index: 1,
+                      child: Text(
+                        S.startTitle,
+                        style: text.displaySmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: scheme.onSurface,
+                          height: 1.15,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Text(
-                      S.startSubtitle,
-                      style: text.bodyLarge?.copyWith(
-                        color: scheme.onSurfaceVariant,
+                    Entrance(
+                      index: 2,
+                      child: Text(
+                        S.startSubtitle,
+                        style: text.bodyLarge?.copyWith(
+                          color: scheme.onSurfaceVariant,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 32),
-                    SizedBox(
-                      width: double.infinity,
-                      child: FilledButton(
-                        style: FilledButton.styleFrom(
-                          minimumSize: const Size.fromHeight(56),
-                          shape: const StadiumBorder(),
-                          textStyle: text.titleMedium,
+                    Entrance(
+                      index: 3,
+                      child: PressScale(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: FilledButton(
+                            style: FilledButton.styleFrom(
+                              minimumSize: const Size.fromHeight(56),
+                              shape: const StadiumBorder(),
+                              textStyle: text.titleMedium,
+                            ),
+                            onPressed: () => context.go(Routes.home),
+                            child: const Text(S.startButton),
+                          ),
                         ),
-                        onPressed: () => context.go(Routes.home),
-                        child: const Text(S.startButton),
                       ),
                     ),
                   ],

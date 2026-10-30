@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 
 /// Design v2 (30/10/2026, docs/design/DESIGN.md): dark by default, pastel gradient cards with real road signs
@@ -202,6 +203,13 @@ abstract final class AppTheme {
       snackBarTheme: const SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
       ),
+      // iOS-style slide on every platform: the new screen glides in from the right, the old one drifts behind
+      pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          for (final p in TargetPlatform.values)
+            p: const CupertinoPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 }
@@ -318,6 +326,10 @@ abstract final class AppMotion {
 
   /// Delay between blocks appearing one after another on the home screen.
   static const stagger = Duration(milliseconds: 80);
+
+  /// A pressed card springing back (slight overshoot, like iOS).
+  static const spring = Duration(milliseconds: 320);
+  static const springCurve = Curves.easeOutBack;
 
   static Duration of(BuildContext context, Duration d) =>
       (MediaQuery.maybeDisableAnimationsOf(context) ?? false)

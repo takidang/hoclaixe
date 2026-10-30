@@ -108,3 +108,14 @@ Giữ bố cục v1 (vạch dưới thanh tiêu đề, phím số mono, kết qu
   và làm nền đầu tab Tổng quan (đổi hạng thì ảnh chuyển mượt). Thanh trạng thái dùng biểu tượng sáng trên ảnh.
 - Ảnh: Unsplash License, nguồn và tác giả ở `docs/design/photo-credits.md`, ghi tên trong màn Giới thiệu.
   Ảnh có xe của hãng (Lamborghini, Ducati) chỉ để trang trí, không ngụ ý liên quan tới hãng.
+
+## Thử nghiệm chuyển động (nhánh `feat/motion`, 30/10/2026, chưa chốt)
+
+Mục tiêu: "luôn chuyển động, mượt như app Apple" nhưng không gây rối. Tất cả tắt khi máy bật giảm chuyển động.
+- `KenBurns`: ảnh xe (màn mở đầu, nền đầu Tổng quan) phóng to và trôi rất chậm, đi rồi về, chu kỳ ~28 s.
+- Thị sai: ảnh nền đầu Tổng quan trôi lên chậm hơn danh sách (40 %) và mờ dần khi cuộn.
+- `PressScale`: thẻ gradient và nút `Bắt đầu` thu nhỏ còn 97 % khi nhấn, bật lại có độ nảy nhẹ (`easeOutBack`, 320 ms); bỏ hiệu ứng gợn sóng Material.
+- Chuyển màn kiểu iOS (`CupertinoPageTransitionsBuilder`) trên mọi nền tảng.
+- `Entrance`: khối hiện lần lượt (Tổng quan, thẻ chủ đề ở tab Học, chữ và nút màn mở đầu).
+- `CountUp`: số câu đã đúng đếm từ 0 lên khi mở màn.
+- Ảnh hạng A1 đổi sang Honda Air Blade (Wikimedia Commons, CC BY-SA 4.0, đã chỉnh màu cho cùng tông).

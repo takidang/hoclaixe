@@ -10,6 +10,7 @@ import 'package:hoclaixe/core/settings/settings_store.dart';
 import 'package:hoclaixe/core/speech/question_reader.dart';
 import 'package:hoclaixe/features/exam/data/exam_session_repository.dart';
 import 'package:hoclaixe/main.dart';
+import 'package:hoclaixe/shared/widgets/motion.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 /// A fresh in-memory learner database. The no-isolate factory lets queries finish inside
@@ -44,6 +45,7 @@ Widget testApp({
     settingsStoreProvider.overrideWith((ref) async => store),
     clockProvider.overrideWithValue(clock ?? () => now),
     startScreenProvider.overrideWithValue(startScreen),
+    ambientMotionProvider.overrideWithValue(false), // a repeating animation never lets pumpAndSettle finish
     questionReaderProvider.overrideWithValue(reader ?? FakeQuestionReader()),
     if (examSessions != null)
       examSessionRepositoryProvider.overrideWith(

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers.dart';
 import '../../core/theme/app_theme.dart';
+import 'motion.dart';
 
 /// A gradient card (design v2): colours from [CardPalette] for the current light / dark mode.
 /// Text and icons inside default to [CardPalette.ink].
@@ -24,7 +25,7 @@ class GradientCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final radius = BorderRadius.circular(AppTheme.cardRadius);
     final palette = CardPalette.of(context);
-    return Material(
+    final card = Material(
       type: MaterialType.transparency,
       child: Ink(
         decoration: BoxDecoration(
@@ -34,6 +35,9 @@ class GradientCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: radius,
+          // feedback is the press scale below, not a Material ripple (design: iOS-like)
+          splashFactory: NoSplash.splashFactory,
+          highlightColor: Colors.transparent,
           child: Padding(
             padding: padding,
             child: DefaultTextStyle.merge(
@@ -47,6 +51,7 @@ class GradientCard extends StatelessWidget {
         ),
       ),
     );
+    return onTap == null ? card : PressScale(child: card);
   }
 }
 
