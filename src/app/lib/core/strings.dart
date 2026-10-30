@@ -30,6 +30,12 @@ abstract final class S {
   static const progressLocalOnly =
       'Tiến độ học chỉ lưu trên máy này; gỡ ứng dụng sẽ mất tiến độ.';
 
+  // Start screen (experiment "ảnh xe")
+  static const startTitle = 'Ôn thi lý thuyết\nlái xe';
+  static const startSubtitle = 'Bộ 600 câu hỏi chính thức · Hạng A1, A và B';
+  static const startButton = 'Bắt đầu';
+  static const photoCredits =
+      'Ảnh xe: Unsplash (Adrian Newell, mariyan rajesh, Kirill Petropavlov, Warren)';
   // Licence class (FR-A03)
   static const chooseClassTitle = 'Chọn hạng bằng';
   static const motorbikeGroup = 'Xe máy';

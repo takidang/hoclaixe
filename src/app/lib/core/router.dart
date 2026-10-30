@@ -12,6 +12,7 @@ import '../features/home/presentation/home_screen.dart';
 import '../features/onboarding/presentation/disclaimer_screen.dart';
 import '../features/onboarding/presentation/license_class_screen.dart';
 import '../features/onboarding/presentation/splash_screen.dart';
+import '../features/onboarding/presentation/start_screen.dart';
 import '../features/signs/presentation/sign_catalog_screen.dart';
 import '../features/signs/presentation/sign_detail_screen.dart';
 import '../features/stats/presentation/stats_screen.dart';
@@ -25,6 +26,7 @@ import 'settings/app_settings.dart';
 
 abstract final class Routes {
   static const splash = '/splash';
+  static const start = '/start';
   static const disclaimer = '/disclaimer';
   static const licenseClass = '/license';
   static const home = '/';
@@ -48,7 +50,11 @@ abstract final class Routes {
 
 /// Onboarding gate (FR-A01, FR-A03): disclaimer first, then licence class, then the app.
 /// Pure function so it is unit-tested without widgets.
-String? onboardingRedirect(AsyncValue<AppSettings> settings, String location) {
+String? onboardingRedirect(
+  AsyncValue<AppSettings> settings,
+  String location, {
+  bool startScreen = false,
+}) {
   final s = settings.value;
   final String target;
   if (s == null) {
@@ -58,12 +64,17 @@ String? onboardingRedirect(AsyncValue<AppSettings> settings, String location) {
   } else if (s.licenseClass == null) {
     target = Routes.licenseClass;
   } else {
-    final onboarding =
-        location == Routes.splash || location == Routes.disclaimer;
-    return onboarding ? Routes.home : null;
+    // opening the app lands on the start screen ("Bắt đầu") when it is on; finishing onboarding goes home
+    if (location == Routes.splash) {
+      return startScreen ? Routes.start : Routes.home;
+    }
+    return location == Routes.disclaimer ? Routes.home : null;
   }
   return location == target ? null : target;
 }
+
+/// Whether opening the app shows the start screen first; widget tests turn it off to start on the overview.
+final startScreenProvider = Provider<bool>((ref) => true);
 
 /// All routes (ADR-005). Re-evaluates the redirect whenever settings change.
 final routerProvider = Provider<GoRouter>((ref) {
@@ -88,8 +99,11 @@ final routerProvider = Provider<GoRouter>((ref) {
     navigatorKey: root,
     initialLocation: Routes.splash,
     refreshListenable: refresh,
-    redirect: (context, state) =>
-        onboardingRedirect(ref.read(settingsProvider), state.uri.path),
+    redirect: (context, state) => onboardingRedirect(
+      ref.read(settingsProvider),
+      state.uri.path,
+      startScreen: ref.read(startScreenProvider),
+    ),
     routes: [
       GoRoute(
         path: Routes.splash,
@@ -98,6 +112,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.disclaimer,
         builder: (context, state) => const DisclaimerScreen(),
+      ),
+      GoRoute(
+        path: Routes.start,
+        builder: (context, state) => const StartScreen(),
       ),
       GoRoute(
         path: Routes.licenseClass,

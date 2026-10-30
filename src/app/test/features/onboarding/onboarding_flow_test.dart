@@ -32,8 +32,7 @@ void main() {
       expect(find.text(S.chooseClassTitle), findsOneWidget);
       expect(await store.get(SettingKeys.disclaimerAccepted), '1');
 
-      await tester.tap(find.text(S.className('A1')));
-      await tester.pumpAndSettle();
+      await chooseClass(tester, S.className('A1'));
       expect(homeTitle(S.className('A1')), findsOneWidget);
       expect(await store.get(SettingKeys.licenseClass), 'A1');
     },
@@ -42,6 +41,10 @@ void main() {
   testWidgets(
     'màn chọn hạng: nhóm Xe máy / Ô tô, loại xe theo luật, số câu – thời gian – điểm đạt (AC2)',
     (tester) async {
+      // a tall screen: the three photo cards fit without scrolling
+      tester.view.physicalSize = const Size(800, 2400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
       await start(
         tester,
         InMemorySettingsStore({SettingKeys.disclaimerAccepted: '1'}),

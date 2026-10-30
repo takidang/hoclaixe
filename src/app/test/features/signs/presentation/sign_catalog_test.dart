@@ -20,10 +20,7 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    await tester.ensureVisible(find.text(S.trafficSigns));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text(S.trafficSigns));
-    await tester.pumpAndSettle();
+    await tapCard(tester, S.trafficSigns);
   }
 
   testWidgets(
@@ -103,10 +100,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      await tester.ensureVisible(find.text(S.trafficSigns));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text(S.trafficSigns));
-      await tester.pumpAndSettle();
+      await tapCard(tester, S.trafficSigns);
       await tester.tap(find.byTooltip(S.searchSigns));
       await tester.pumpAndSettle();
       await tester.enterText(find.byType(TextField), noImage.code);

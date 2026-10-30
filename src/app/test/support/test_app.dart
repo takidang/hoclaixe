@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hoclaixe/core/content/models.dart';
 import 'package:hoclaixe/core/db/app_database.dart';
 import 'package:hoclaixe/core/providers.dart';
+import 'package:hoclaixe/core/router.dart';
 import 'package:hoclaixe/core/settings/app_settings.dart';
 import 'package:hoclaixe/core/settings/settings_store.dart';
 import 'package:hoclaixe/core/speech/question_reader.dart';
@@ -35,12 +36,14 @@ Widget testApp({
   DateTime Function()? clock,
   ExamSessionRepository Function(AppDatabase db)? examSessions,
   QuestionReader? reader,
+  bool startScreen = false,
 }) => ProviderScope(
   overrides: [
     contentProvider.overrideWith((ref) async => content),
     databaseProvider.overrideWith((ref) async => db),
     settingsStoreProvider.overrideWith((ref) async => store),
     clockProvider.overrideWithValue(clock ?? () => now),
+    startScreenProvider.overrideWithValue(startScreen),
     questionReaderProvider.overrideWithValue(reader ?? FakeQuestionReader()),
     if (examSessions != null)
       examSessionRepositoryProvider.overrideWith(
@@ -59,6 +62,34 @@ InMemorySettingsStore onboarded(String licenseClass) => InMemorySettingsStore({
 /// Taps a tab of the floating tab bar by its label (S.tabOverview, S.studyByTopic, S.savedQuestions, S.statistics).
 Future<void> openTab(WidgetTester tester, String tab) async {
   await tester.tap(find.byTooltip(tab));
+  await tester.pumpAndSettle();
+}
+
+/// Scrolls the current list until [label] is on screen (cards below the fold are not built yet) and taps it.
+Future<void> tapCard(WidgetTester tester, String label) async {
+  await tester.scrollUntilVisible(
+    find.text(label),
+    200,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.ensureVisible(find.text(label));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text(label));
+  await tester.pumpAndSettle();
+}
+
+/// Scrolls the class list to [className] (a photo card each) and taps it.
+Future<void> chooseClass(WidgetTester tester, String className) async {
+  await tester.scrollUntilVisible(
+    find.text(className),
+    200,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.ensureVisible(
+    find.text(className),
+  ); // built is not yet on screen
+  await tester.pumpAndSettle();
+  await tester.tap(find.text(className));
   await tester.pumpAndSettle();
 }
 

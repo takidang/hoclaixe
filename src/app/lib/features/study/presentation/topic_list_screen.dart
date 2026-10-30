@@ -35,7 +35,7 @@ class TopicListScreen extends ConsumerWidget {
           itemBuilder: (context, i) {
             final (topic, stats) = value[i];
             return _TopicCard(
-              gradient: AppGradients.cycle[i % AppGradients.cycle.length],
+              tone: CardTone.cycle[i % CardTone.cycle.length],
               title: topicTitle(topic, chapters),
               stats: stats,
               onTap: () => context.push(Routes.studyTopic(topic.id)),
@@ -56,13 +56,13 @@ class TopicListScreen extends ConsumerWidget {
 
 class _TopicCard extends StatelessWidget {
   const _TopicCard({
-    required this.gradient,
+    required this.tone,
     required this.title,
     required this.stats,
     required this.onTap,
   });
 
-  final Gradient gradient;
+  final CardTone tone;
   final String title;
   final TopicStats stats;
   final VoidCallback onTap;
@@ -71,7 +71,7 @@ class _TopicCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = AppTheme.cardText(context);
     return GradientCard(
-      gradient: gradient,
+      tone: tone,
       onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,12 +85,14 @@ class _TopicCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             S.topicStats(stats.correct, stats.wrong, stats.notDone),
-            style: text.bodyMedium?.copyWith(color: AppTheme.inkSoft),
+            style: text.bodyMedium?.copyWith(
+              color: CardPalette.of(context).inkSoft,
+            ),
           ),
           const SizedBox(height: 14),
           LaneLine.progress(
             value: stats.progress,
-            color: AppTheme.ink,
+            color: CardPalette.of(context).ink,
             semanticsLabel: S.topicStats(
               stats.correct,
               stats.wrong,

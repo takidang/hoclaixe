@@ -4,17 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers.dart';
 import '../../core/theme/app_theme.dart';
 
-/// A pastel gradient card (design v2). Text and icons inside default to [AppTheme.ink].
+/// A gradient card (design v2): colours from [CardPalette] for the current light / dark mode.
+/// Text and icons inside default to [CardPalette.ink].
 class GradientCard extends StatelessWidget {
   const GradientCard({
     super.key,
-    required this.gradient,
+    required this.tone,
     required this.child,
     this.onTap,
     this.padding = const EdgeInsets.all(20),
   });
 
-  final Gradient gradient;
+  final CardTone tone;
   final Widget child;
   final VoidCallback? onTap;
   final EdgeInsets padding;
@@ -22,19 +23,23 @@ class GradientCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = BorderRadius.circular(AppTheme.cardRadius);
+    final palette = CardPalette.of(context);
     return Material(
       type: MaterialType.transparency,
       child: Ink(
-        decoration: BoxDecoration(gradient: gradient, borderRadius: radius),
+        decoration: BoxDecoration(
+          gradient: palette[tone],
+          borderRadius: radius,
+        ),
         child: InkWell(
           onTap: onTap,
           borderRadius: radius,
           child: Padding(
             padding: padding,
             child: DefaultTextStyle.merge(
-              style: const TextStyle(color: AppTheme.ink),
+              style: TextStyle(color: palette.ink),
               child: IconTheme.merge(
-                data: const IconThemeData(color: AppTheme.ink),
+                data: IconThemeData(color: palette.ink),
                 child: child,
               ),
             ),
@@ -77,7 +82,7 @@ class SignBadge extends ConsumerWidget {
   }
 }
 
-/// Translucent white pill on a gradient card, e.g. "250 câu".
+/// Translucent pill on a gradient card, e.g. "250 câu".
 class CountChip extends StatelessWidget {
   const CountChip({super.key, required this.label, this.icon});
 
@@ -85,27 +90,30 @@ class CountChip extends StatelessWidget {
   final IconData? icon;
 
   @override
-  Widget build(BuildContext context) => DecoratedBox(
-    decoration: BoxDecoration(
-      color: AppTheme.chipFill,
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[
-            Icon(icon, size: 16, color: AppTheme.ink),
-            const SizedBox(width: 6),
-          ],
-          Text(
-            label,
-            style: Theme.of(context).textTheme.labelMedium
-                ?.copyWith(color: AppTheme.ink),
-          ),
-        ],
+  Widget build(BuildContext context) {
+    final palette = CardPalette.of(context);
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: palette.chipFill,
+        borderRadius: BorderRadius.circular(20),
       ),
-    ),
-  );
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 16, color: palette.ink),
+              const SizedBox(width: 6),
+            ],
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelMedium
+                  ?.copyWith(color: palette.ink),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

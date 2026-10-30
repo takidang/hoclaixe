@@ -70,6 +70,7 @@ flutter:
     - assets/data/
     - assets/images/questions/
     - assets/images/signs/
+    - assets/images/photos/
 
   # Be Vietnam Pro (SIL OFL 1.1, assets/fonts/OFL.txt) — designed for Vietnamese diacritics; bundled for offline use
   fonts:

@@ -47,7 +47,11 @@ void main() {
     if (_enabled) await _loadFonts();
   });
 
-  Future<void> phone(WidgetTester tester, {bool dark = false}) async {
+  Future<void> phone(
+    WidgetTester tester, {
+    bool dark = false,
+    bool startScreen = false,
+  }) async {
     tester.view.physicalSize = const Size(1080, 2340);
     tester.view.devicePixelRatio = 3;
     tester.platformDispatcher.platformBrightnessTestValue = dark
@@ -90,6 +94,7 @@ void main() {
         }),
         now: start,
         clock: () => now,
+        startScreen: startScreen,
       ),
     );
     await tester.pumpAndSettle();
@@ -222,6 +227,25 @@ void main() {
     await shot('17-saved-tab');
     await openTab(tester, S.statistics);
     await shot('18-stats-dark');
+  }, skip: !_enabled);
+
+  testWidgets('19 màn mở đầu tối + 20 sáng', (tester) async {
+    await phone(tester, dark: true, startScreen: true);
+    await loadImages(tester);
+    await shot('19-start-dark');
+  }, skip: !_enabled);
+
+  testWidgets('20 màn mở đầu sáng', (tester) async {
+    await phone(tester, startScreen: true);
+    await loadImages(tester);
+    await shot('20-start-light');
+  }, skip: !_enabled);
+
+  testWidgets('21 chọn hạng (ảnh xe) tối', (tester) async {
+    await phone(tester, dark: true);
+    await tap(tester, find.text(S.changeClass));
+    await loadImages(tester);
+    await shot('21-class-dark');
   }, skip: !_enabled);
 
   testWidgets('12 giới thiệu (chọn giao diện)', (tester) async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -6,6 +7,7 @@ import '../../../core/providers.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/class_photo.dart';
 import '../../../shared/widgets/equal_height_grid.dart';
 import '../../../shared/widgets/gradient_card.dart';
 import '../../../shared/widgets/lane_line.dart';
@@ -36,52 +38,116 @@ class HomeScreen extends ConsumerWidget {
       (_, next) => _promptResume(context, ref, next.value),
     );
     final cls = summary.value?.licenseClass;
-    final scheme = Theme.of(context).colorScheme;
+    // the header sits on the photo of the selected class (experiment "ảnh xe"): light text, translucent buttons
     final round = IconButton.styleFrom(
-      backgroundColor: scheme.surfaceContainerLowest,
+      backgroundColor: AppTheme.onPhotoFill,
+      foregroundColor: AppTheme.onPhoto,
     );
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 72,
-        titleTextStyle: Theme.of(context).textTheme.headlineMedium
-            ?.copyWith(color: scheme.onSurface),
-        title: Text(cls == null ? S.appName : S.className(cls)),
-        actions: [
-          TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: scheme.surfaceContainerLowest,
-              shape: const StadiumBorder(),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-            ),
-            onPressed: () => context.push(Routes.licenseClass),
-            child: const Text(S.changeClass),
-          ),
-          const SizedBox(width: 6),
-          IconButton(
-            style: round,
-            tooltip: S.searchQuestions,
-            icon: const Icon(Icons.search),
-            onPressed: () => context.push(Routes.search),
-          ),
-          IconButton(
-            style: round,
-            tooltip: S.about,
-            icon: const Icon(Icons.info_outline),
-            onPressed: () => context.push(Routes.about),
-          ),
-          const SizedBox(width: 8),
-        ],
-      ),
-      body: switch (summary) {
-        AsyncData(value: final s?) => _HomeBody(summary: s),
-        AsyncError() => const Center(
-          child: Padding(
-            padding: EdgeInsets.all(24),
-            child: Text(S.homeError, textAlign: TextAlign.center),
-          ),
+    // the photo lies behind the whole (transparent) page, so the list still starts below the app bar
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: ColoredBox(color: Theme.of(context).colorScheme.surface),
         ),
-        _ => const Center(child: CircularProgressIndicator()),
-      },
+        _ClassBackdrop(photo: ClassPhotos.of(cls)),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            toolbarHeight: 72,
+            backgroundColor: Colors.transparent,
+            systemOverlayStyle:
+                SystemUiOverlayStyle.light, // icons over the photo
+            foregroundColor: AppTheme.onPhoto,
+            titleTextStyle: Theme.of(context).textTheme.headlineMedium
+                ?.copyWith(color: AppTheme.onPhoto),
+            title: Text(cls == null ? S.appName : S.className(cls)),
+            actions: [
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: AppTheme.onPhotoFill,
+                  foregroundColor: AppTheme.onPhoto,
+                  shape: const StadiumBorder(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                ),
+                onPressed: () => context.push(Routes.licenseClass),
+                child: const Text(S.changeClass),
+              ),
+              const SizedBox(width: 6),
+              IconButton(
+                style: round,
+                tooltip: S.searchQuestions,
+                icon: const Icon(Icons.search),
+                onPressed: () => context.push(Routes.search),
+              ),
+              IconButton(
+                style: round,
+                tooltip: S.about,
+                icon: const Icon(Icons.info_outline),
+                onPressed: () => context.push(Routes.about),
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+          body: switch (summary) {
+            AsyncData(value: final s?) => _HomeBody(summary: s),
+            AsyncError() => const Center(
+              child: Padding(
+                padding: EdgeInsets.all(24),
+                child: Text(S.homeError, textAlign: TextAlign.center),
+              ),
+            ),
+            _ => const Center(child: CircularProgressIndicator()),
+          },
+        ),
+      ],
+    );
+  }
+}
+
+/// The photo of the selected class behind the header: darkened at the top for the title, fading into the
+/// page below; cross-fades when the class changes.
+class _ClassBackdrop extends StatelessWidget {
+  const _ClassBackdrop({required this.photo});
+
+  final String? photo;
+
+  @override
+  Widget build(BuildContext context) {
+    final photo = this.photo;
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      height: 320 + MediaQuery.paddingOf(context).top,
+      child: ExcludeSemantics(
+        child: AnimatedSwitcher(
+          duration: AppMotion.of(context, AppMotion.paint),
+          child: photo == null
+              ? const SizedBox.expand()
+              : ShaderMask(
+                  key: ValueKey(photo),
+                  blendMode: BlendMode.dstIn,
+                  shaderCallback: (rect) => const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.black, Colors.transparent],
+                    stops: [0, 0.45, 1],
+                  ).createShader(rect),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(photo, fit: BoxFit.cover),
+                      // darken the top so the white title reads on any photo
+                      const DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: AppTheme.headerScrim,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+        ),
+      ),
     );
   }
 }
@@ -107,14 +173,14 @@ class _HomeBody extends ConsumerWidget {
         spacing: 12,
         children: [
           _FeatureCard(
-            gradient: AppGradients.amber,
+            tone: CardTone.amber,
             sign: _Signs.danger,
             label: S.criticalQuestions,
             detail: S.criticalHint(summary.criticalCount),
             route: Routes.critical,
           ),
           _FeatureCard(
-            gradient: AppGradients.bloom,
+            tone: CardTone.bloom,
             sign: _Signs.detour,
             label: S.reviewWrong,
             detail: S.wrongHint(summary.wrongCount),
@@ -124,7 +190,7 @@ class _HomeBody extends ConsumerWidget {
       ),
       const _FeatureCard(
         wide: true,
-        gradient: AppGradients.leaf,
+        tone: CardTone.leaf,
         sign: _Signs.noEntry,
         label: S.trafficSigns,
         detail: S.signsHint,
@@ -134,7 +200,7 @@ class _HomeBody extends ConsumerWidget {
     return ListView(
       padding: EdgeInsets.fromLTRB(
         16,
-        4,
+        96, // leaves the class photo visible under the title; the cards slide over it when scrolling
         16,
         MediaQuery.paddingOf(context).bottom + 16,
       ),
@@ -186,7 +252,7 @@ class _ProgressCard extends StatelessWidget {
     final text = AppTheme.cardText(context);
     final count = '${summary.correctCount}';
     return GradientCard(
-      gradient: AppGradients.sunset,
+      tone: CardTone.sunset,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -206,7 +272,7 @@ class _ProgressCard extends StatelessWidget {
                             text: count,
                             style: AppTheme.mono(
                               text.headlineLarge,
-                              AppTheme.ink,
+                              CardPalette.of(context).ink,
                             ),
                           ),
                           TextSpan(
@@ -217,7 +283,7 @@ class _ProgressCard extends StatelessWidget {
                                 )
                                 .substring(count.length),
                             style: text.titleSmall?.copyWith(
-                              color: AppTheme.inkSoft,
+                              color: CardPalette.of(context).inkSoft,
                             ),
                           ),
                         ],
@@ -232,7 +298,7 @@ class _ProgressCard extends StatelessWidget {
           const SizedBox(height: 16),
           LaneLine.progress(
             value: summary.progress,
-            color: AppTheme.ink,
+            color: CardPalette.of(context).ink,
             thickness: 5,
             semanticsLabel: S.progressCount(
               summary.correctCount,
@@ -242,7 +308,9 @@ class _ProgressCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             S.progressHint,
-            style: text.bodySmall?.copyWith(color: AppTheme.inkSoft),
+            style: text.bodySmall?.copyWith(
+              color: CardPalette.of(context).inkSoft,
+            ),
           ),
         ],
       ),
@@ -261,7 +329,7 @@ class _ExamCard extends StatelessWidget {
     final text = AppTheme.cardText(context);
     final s = summary.structure;
     return GradientCard(
-      gradient: AppGradients.sky,
+      tone: CardTone.sky,
       onTap: () => context.push(Routes.exam),
       child: Row(
         children: [
@@ -278,7 +346,9 @@ class _ExamCard extends StatelessWidget {
                       s.questionCount,
                       s.durationMinutes,
                     ),
-                    style: text.bodyMedium?.copyWith(color: AppTheme.inkSoft),
+                    style: text.bodyMedium?.copyWith(
+                      color: CardPalette.of(context).inkSoft,
+                    ),
                   ),
                 ],
               ],
@@ -295,7 +365,7 @@ class _ExamCard extends StatelessWidget {
 /// beside it when true (full width).
 class _FeatureCard extends StatelessWidget {
   const _FeatureCard({
-    required this.gradient,
+    required this.tone,
     required this.sign,
     required this.label,
     required this.detail,
@@ -303,7 +373,7 @@ class _FeatureCard extends StatelessWidget {
     this.wide = false,
   });
 
-  final Gradient gradient;
+  final CardTone tone;
   final String sign;
   final String label;
   final String detail;
@@ -318,11 +388,16 @@ class _FeatureCard extends StatelessWidget {
       children: [
         Text(label, style: wide ? text.titleLarge : text.titleMedium),
         const SizedBox(height: 2),
-        Text(detail, style: text.bodySmall?.copyWith(color: AppTheme.inkSoft)),
+        Text(
+          detail,
+          style: text.bodySmall?.copyWith(
+            color: CardPalette.of(context).inkSoft,
+          ),
+        ),
       ],
     );
     return GradientCard(
-      gradient: gradient,
+      tone: tone,
       padding: EdgeInsets.all(wide ? 20 : 16),
       onTap: () => context.push(route),
       child: wide

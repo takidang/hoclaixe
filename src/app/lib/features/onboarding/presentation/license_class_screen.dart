@@ -7,6 +7,8 @@ import '../../../core/providers.dart';
 import '../../../core/router.dart';
 import '../../../core/settings/app_settings.dart';
 import '../../../core/strings.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/class_photo.dart';
 import '../../exam/domain/structure_picker.dart';
 import '../../home/data/home_summary_provider.dart';
 
@@ -69,8 +71,14 @@ Future<void> _choose(BuildContext context, WidgetRef ref, String cls) async {
         title: const Text(S.abandonExamTitle),
         content: Text(S.abandonExamBody(open.paper.licenseClass)),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text(S.cancel)),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text(S.abandonExam)),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text(S.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text(S.abandonExam),
+          ),
         ],
       ),
     );
@@ -99,26 +107,88 @@ class _ClassTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = structure;
     final vehicles = S.classVehicles[licenseClass];
+    final photo = ClassPhotos.of(licenseClass);
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    // a photo of the class's vehicle with the class on it, the vehicles allowed (Luật 36/2024) below
     return Card(
-      child: ListTile(
-        selected: selected,
-        title: Text(S.className(licenseClass)),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      margin: const EdgeInsets.only(bottom: 12),
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppTheme.cardRadius),
+        side: selected
+            ? BorderSide(color: scheme.primary, width: 2)
+            : BorderSide.none,
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (vehicles != null) Text(vehicles),
-            if (s != null) ...[
-              const SizedBox(height: 4),
-              Text(
-                S.classFacts(s.questionCount, s.durationMinutes, s.passScore),
-                style: Theme.of(context).textTheme.labelLarge,
+            AspectRatio(
+              aspectRatio: 16 / 8,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  if (photo != null)
+                    ExcludeSemantics(
+                      child: Image.asset(photo, fit: BoxFit.cover),
+                    ),
+                  const DecoratedBox(
+                    decoration: BoxDecoration(gradient: AppTheme.photoScrim),
+                  ),
+                  Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 12,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.className(licenseClass),
+                          style: text.headlineSmall?.copyWith(
+                            color: AppTheme.onPhoto,
+                          ),
+                        ),
+                        if (s != null)
+                          Text(
+                            S.classFacts(
+                              s.questionCount,
+                              s.durationMinutes,
+                              s.passScore,
+                            ),
+                            style: text.bodyMedium?.copyWith(
+                              color: AppTheme.onPhoto,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  if (selected)
+                    Positioned(
+                      top: 12,
+                      right: 12,
+                      child: Icon(
+                        Icons.check_circle,
+                        color: scheme.primary,
+                        size: 32,
+                      ),
+                    ),
+                ],
               ),
-            ],
+            ),
+            if (vehicles != null)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+                child: Text(
+                  vehicles,
+                  style: text.bodyMedium?.copyWith(
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
           ],
         ),
-        isThreeLine: true,
-        trailing: Icon(selected ? Icons.check_circle : Icons.chevron_right),
-        onTap: onTap,
       ),
     );
   }

@@ -90,6 +90,11 @@ void main() {
         S.criticalQuestions,
         S.trafficSigns,
       ]) {
+        await tester.scrollUntilVisible(
+          find.text(label),
+          200,
+          scrollable: find.byType(Scrollable).first,
+        );
         expect(find.text(label), findsOneWidget, reason: label);
       }
       for (final tab in [
@@ -110,11 +115,11 @@ void main() {
   testWidgets('bấm ô chức năng mở màn tương ứng', (tester) async {
     await setUpDb(tester);
     await start(tester);
-    await tester.ensureVisible(find.text(S.trafficSigns));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text(S.trafficSigns));
-    await tester.pumpAndSettle();
-    expect(find.widgetWithText(Tab, 'Biển báo cấm'), findsOneWidget); // sign catalog (ST-12)
+    await tapCard(tester, S.trafficSigns);
+    expect(
+      find.widgetWithText(Tab, 'Biển báo cấm'),
+      findsOneWidget,
+    ); // sign catalog (ST-12)
   });
 
   testWidgets(
@@ -138,8 +143,7 @@ void main() {
       await start(tester);
       await tester.tap(find.text(S.changeClass));
       await tester.pumpAndSettle();
-      await tester.tap(find.text(S.className('B')));
-      await tester.pumpAndSettle();
+      await chooseClass(tester, S.className('B'));
       expect(find.text(S.abandonExamTitle), findsNothing);
       expect(homeTitle(S.className('B')), findsOneWidget);
       expect(await store.get(SettingKeys.licenseClass), 'B');
@@ -154,8 +158,7 @@ void main() {
     await start(tester);
     await tester.tap(find.text(S.changeClass));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(S.className('B')));
-    await tester.pumpAndSettle();
+    await chooseClass(tester, S.className('B'));
     expect(find.text(S.abandonExamTitle), findsOneWidget);
 
     await tester.tap(find.text(S.cancel));
@@ -172,8 +175,7 @@ void main() {
     await start(tester);
     await tester.tap(find.text(S.changeClass));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(S.className('B')));
-    await tester.pumpAndSettle();
+    await chooseClass(tester, S.className('B'));
     await tester.tap(find.text(S.abandonExam));
     await tester.pumpAndSettle();
 
@@ -188,8 +190,7 @@ void main() {
     await start(tester);
     await tester.tap(find.text(S.changeClass));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(S.className('A1')));
-    await tester.pumpAndSettle();
+    await chooseClass(tester, S.className('A1'));
     expect(find.text(S.abandonExamTitle), findsNothing);
     expect(find.text(S.resumeExam), findsOneWidget);
   });

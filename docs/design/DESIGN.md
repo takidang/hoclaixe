@@ -95,3 +95,16 @@ Thẻ chủ đề ở tab Học lần lượt dùng sky → bloom → leaf → s
 
 ### Màn học, màn thi, kết quả, tìm kiếm
 Giữ bố cục v1 (vạch dưới thanh tiêu đề, phím số mono, kết quả thi mỗi câu một đoạn), nhận màu v2 qua theme.
+
+## Thử nghiệm "ảnh xe" (nhánh `feat/experiment-cars`, 30/10/2026, chưa chốt)
+
+Ý tưởng sơ khai của Tài, làm thử trước khi quyết:
+- **Nền tối kiểu mới**: thẻ gradient tông ngọc đậm, chữ trắng (`CardPalette.dark`); nền sáng giữ pastel (`CardPalette.light`).
+  Màu thẻ chọn bằng `CardTone` (sunset, sky, bloom, leaf, amber). Tương phản chữ đo ≥ 5:1 ở cả hai đầu gradient.
+  Nền màn tối sâu hơn: `#111214`, panel `#1C1E22`.
+- **Màn mở đầu** (`/start`, mỗi lần mở app): ảnh siêu xe mờ dần vào nền, `Ôn thi lý thuyết lái xe`,
+  `Bộ 600 câu hỏi chính thức · Hạng A1, A và B`, nút `Bắt đầu` → Tổng quan.
+- **Ảnh xe theo hạng**: A1 = xe máy, A = mô tô thể thao, B = ô tô. Hiện ở màn chọn hạng (mỗi hạng một thẻ ảnh)
+  và làm nền đầu tab Tổng quan (đổi hạng thì ảnh chuyển mượt). Thanh trạng thái dùng biểu tượng sáng trên ảnh.
+- Ảnh: Unsplash License, nguồn và tác giả ở `docs/design/photo-credits.md`, ghi tên trong màn Giới thiệu.
+  Ảnh có xe của hãng (Lamborghini, Ducati) chỉ để trang trí, không ngụ ý liên quan tới hãng.

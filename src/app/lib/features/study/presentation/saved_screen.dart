@@ -41,7 +41,7 @@ class SavedScreen extends ConsumerWidget {
               padding: EdgeInsets.fromLTRB(16, 8, 16, bottom),
               children: [
                 GradientCard(
-                  gradient: AppGradients.bloom,
+                  tone: CardTone.bloom,
                   onTap: () =>
                       context.push(Routes.studyTopic(StudyTopic.savedId)),
                   child: Row(

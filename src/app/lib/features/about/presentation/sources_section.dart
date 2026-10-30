@@ -21,6 +21,8 @@ class SourcesSection extends StatelessWidget {
           ),
         const SizedBox(height: 4),
         SelectableText(S.officialSite, style: text.bodyMedium),
+        const SizedBox(height: 12),
+        Text(S.photoCredits, style: text.bodySmall),
       ],
     );
   }
