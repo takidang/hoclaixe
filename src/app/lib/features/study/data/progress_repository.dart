@@ -191,6 +191,19 @@ class ProgressRepository {
     ];
   }
 
+  /// When [questionId] was saved; null if it is not.
+  Future<DateTime?> savedAt(String questionId) async {
+    final rows = await _db.query(
+      'saved_question',
+      columns: ['saved_at'],
+      where: 'question_id = ?',
+      whereArgs: [questionId],
+    );
+    return rows.isEmpty
+        ? null
+        : DateTime.fromMillisecondsSinceEpoch(rows.first['saved_at']! as int);
+  }
+
   /// Bookmarked questions ("Câu đã lưu"), oldest first.
   Future<List<String>> savedIds() async {
     final rows = await _db.query(
@@ -201,10 +214,15 @@ class ProgressRepository {
     return [for (final r in rows) r['question_id']! as String];
   }
 
-  Future<void> setSaved(String questionId, {required bool saved}) => saved
+  /// [at]: when it was first saved, to put it back in its place on undo; now by default.
+  Future<void> setSaved(
+    String questionId, {
+    required bool saved,
+    DateTime? at,
+  }) => saved
       ? _db.insert('saved_question', {
           'question_id': questionId,
-          'saved_at': _clock().millisecondsSinceEpoch,
+          'saved_at': (at ?? _clock()).millisecondsSinceEpoch,
         }, conflictAlgorithm: ConflictAlgorithm.ignore)
       : _db.delete(
           'saved_question',

@@ -170,9 +170,17 @@ void main() {
     tester,
   ) async {
     await open(tester);
-    await tester.runAsync(
-      () => ProgressRepository(db.db).setSaved(critical[0].id, saved: true),
-    );
+    await tester.runAsync(() async {
+      // saved earlier than the app's "now", the first one first, so it heads the list
+      await ProgressRepository(
+        db.db,
+        clock: () => now.subtract(const Duration(minutes: 2)),
+      ).setSaved(critical[0].id, saved: true);
+      await ProgressRepository(
+        db.db,
+        clock: () => now.subtract(const Duration(minutes: 1)),
+      ).setSaved(critical[1].id, saved: true);
+    });
     await openTab(tester, S.savedQuestions);
     expect(find.text(critical[0].content), findsOneWidget);
 
@@ -180,17 +188,17 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(critical[0].content), findsNothing);
     expect(find.text(S.unsaved), findsOneWidget);
-    expect(
-      await tester.runAsync(() => ProgressRepository(db.db).savedIds()),
-      isEmpty,
-    );
+    expect(await tester.runAsync(() => ProgressRepository(db.db).savedIds()), [
+      critical[1].id,
+    ]);
 
     await tester.tap(find.text(S.undo));
     await tester.pumpAndSettle();
     expect(find.text(critical[0].content), findsOneWidget);
     expect(await tester.runAsync(() => ProgressRepository(db.db).savedIds()), [
       critical[0].id,
-    ]);
+      critical[1].id,
+    ], reason: 'hoàn tác: về đúng chỗ cũ (đầu danh sách), không xuống cuối');
   });
 
   test(

@@ -8,7 +8,7 @@ import 'motion.dart';
 
 /// A gradient card (design v2): colours from [CardPalette] for the current light / dark mode.
 /// Text and icons inside default to [CardPalette.ink].
-class GradientCard extends StatelessWidget {
+class GradientCard extends StatefulWidget {
   const GradientCard({
     super.key,
     required this.tone,
@@ -27,7 +27,16 @@ class GradientCard extends StatelessWidget {
   final EdgeInsets padding;
 
   @override
+  State<GradientCard> createState() => _GradientCardState();
+}
+
+class _GradientCardState extends State<GradientCard> {
+  /// From the InkWell highlight: on for a tap or hold, never for a touch that starts a scroll.
+  bool _pressed = false;
+
+  @override
   Widget build(BuildContext context) {
+    final GradientCard(:tone, :child, :onTap, :onLongPress, :padding) = widget;
     final radius = BorderRadius.circular(AppTheme.cardRadius);
     final palette = CardPalette.of(context);
     final card = Material(
@@ -39,11 +48,12 @@ class GradientCard extends StatelessWidget {
         ),
         child: InkWell(
           onTap: onTap,
+          onHighlightChanged: (on) => setState(() => _pressed = on),
           onLongPress: onLongPress == null
               ? null
               : () {
                   HapticFeedback.mediumImpact();
-                  onLongPress!();
+                  onLongPress();
                 },
           borderRadius: radius,
           // feedback is the press scale below, not a Material ripple (design: iOS-like)
@@ -62,7 +72,7 @@ class GradientCard extends StatelessWidget {
         ),
       ),
     );
-    return onTap == null ? card : PressScale(child: card);
+    return onTap == null ? card : PressScale(pressed: _pressed, child: card);
   }
 }
 

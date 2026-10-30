@@ -48,18 +48,21 @@ class _KenBurnsState extends ConsumerState<KenBurns>
     super.dispose();
   }
 
+  // its own layer: each frame repaints only the photo, not the whole screen around it
   @override
-  Widget build(BuildContext context) => ClipRect(
-    child: AnimatedBuilder(
-      animation: _c,
-      builder: (context, child) {
-        final t = Curves.easeInOutSine.transform(_c.value);
-        return FractionalTranslation(
-          translation: widget.drift * t,
-          child: Transform.scale(scale: 1.04 + 0.08 * t, child: child),
-        );
-      },
-      child: widget.child,
+  Widget build(BuildContext context) => RepaintBoundary(
+    child: ClipRect(
+      child: AnimatedBuilder(
+        animation: _c,
+        builder: (context, child) {
+          final t = Curves.easeInOutSine.transform(_c.value);
+          return FractionalTranslation(
+            translation: widget.drift * t,
+            child: Transform.scale(scale: 1.04 + 0.08 * t, child: child),
+          );
+        },
+        child: widget.child,
+      ),
     ),
   );
 }
@@ -93,9 +96,13 @@ class Entrance extends StatelessWidget {
 
 /// Shrinks a little while pressed and springs back on release, like a button on iOS.
 class PressScale extends StatefulWidget {
-  const PressScale({super.key, required this.child});
+  const PressScale({super.key, required this.child, this.pressed});
 
   final Widget child;
+
+  /// Given by the owner when it knows better than raw pointers, e.g. an InkWell's highlight, which is only
+  /// set for a tap and not when the touch turns into a scroll. Null: follow the pointer (a lone button).
+  final bool? pressed;
 
   @override
   State<PressScale> createState() => _PressScaleState();
@@ -109,20 +116,25 @@ class _PressScaleState extends State<PressScale> {
   }
 
   @override
-  Widget build(BuildContext context) => Listener(
-    onPointerDown: (_) => _set(true),
-    onPointerUp: (_) => _set(false),
-    onPointerCancel: (_) => _set(false),
-    child: AnimatedScale(
-      scale: _down ? 0.97 : 1,
+  Widget build(BuildContext context) {
+    final down = widget.pressed ?? _down;
+    final scaled = AnimatedScale(
+      scale: down ? 0.97 : 1,
       duration: AppMotion.of(
         context,
-        _down ? const Duration(milliseconds: 110) : AppMotion.spring,
+        down ? const Duration(milliseconds: 110) : AppMotion.spring,
       ),
-      curve: _down ? Curves.easeOut : AppMotion.springCurve,
+      curve: down ? Curves.easeOut : AppMotion.springCurve,
       child: widget.child,
-    ),
-  );
+    );
+    if (widget.pressed != null) return scaled;
+    return Listener(
+      onPointerDown: (_) => _set(true),
+      onPointerUp: (_) => _set(false),
+      onPointerCancel: (_) => _set(false),
+      child: scaled,
+    );
+  }
 }
 
 /// A number that counts up to [value] when it first appears and glides when it changes.

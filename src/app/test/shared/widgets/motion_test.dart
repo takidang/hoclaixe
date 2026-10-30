@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hoclaixe/core/theme/app_theme.dart';
+import 'package:hoclaixe/shared/widgets/gradient_card.dart';
 import 'package:hoclaixe/shared/widgets/motion.dart';
 
 void main() {
@@ -89,4 +91,63 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('79'), findsOneWidget);
   });
+
+  testWidgets(
+    'ảnh "thở" có lớp vẽ riêng (không bắt cả màn hình vẽ lại mỗi khung hình)',
+    (tester) async {
+      await tester.pumpWidget(
+        host(const KenBurns(child: ColoredBox(color: Colors.red))),
+      );
+      expect(
+        find.descendant(
+          of: find.byType(KenBurns),
+          matching: find.byType(RepaintBoundary),
+        ),
+        findsWidgets,
+      );
+    },
+  );
+
+  testWidgets(
+    'thẻ trong danh sách: kéo để cuộn thì không lún; chạm giữ thì lún',
+    (tester) async {
+      await tester.pumpWidget(
+        host(
+          ListView(
+            children: [
+              SizedBox(
+                height: 120,
+                child: GradientCard(
+                  tone: CardTone.sky,
+                  onTap: () {},
+                  child: const Text('thẻ'),
+                ),
+              ),
+              const SizedBox(height: 2000),
+            ],
+          ),
+        ),
+      );
+      double scale() =>
+          tester.widget<AnimatedScale>(find.byType(AnimatedScale)).scale;
+
+      final drag = await tester.startGesture(
+        tester.getCenter(find.text('thẻ')),
+      );
+      await drag.moveBy(const Offset(0, -60)); // a scroll starts at once
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(scale(), 1, reason: 'đang cuộn');
+      await drag.up();
+      await tester.pumpAndSettle();
+
+      final hold = await tester.startGesture(
+        tester.getCenter(find.text('thẻ')),
+      );
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(scale(), 0.97, reason: 'đang giữ');
+      await hold.up();
+      await tester.pumpAndSettle();
+      expect(scale(), 1);
+    },
+  );
 }

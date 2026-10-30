@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/content/models.dart';
+import '../../../core/providers.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
@@ -31,7 +32,22 @@ class _SavedScreenState extends ConsumerState<SavedScreen> {
     unawaited(HapticFeedback.mediumImpact());
     final messenger = ScaffoldMessenger.of(context);
     final bottom = MediaQuery.paddingOf(context).bottom;
-    await toggleSaved(ref, id);
+    final DateTime? savedAt;
+    try {
+      final repo = await ref.read(progressRepositoryProvider.future);
+      savedAt = await repo.savedAt(id);
+      await toggleSaved(ref, id);
+    } on Exception {
+      // not removed: show it again and say so, rather than letting it vanish
+      if (mounted) setState(() => _hidden.remove(id));
+      messenger.showSnackBar(
+        SnackBar(
+          content: const Text(S.saveFailed),
+          margin: EdgeInsets.fromLTRB(16, 0, 16, bottom + 8),
+        ),
+      );
+      return;
+    }
     messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -46,7 +62,7 @@ class _SavedScreenState extends ConsumerState<SavedScreen> {
           action: SnackBarAction(
             label: S.undo,
             onPressed: () async {
-              await toggleSaved(ref, id);
+              await toggleSaved(ref, id, at: savedAt);
               if (mounted) setState(() => _hidden.remove(id));
             },
           ),

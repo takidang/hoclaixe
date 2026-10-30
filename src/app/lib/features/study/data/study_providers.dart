@@ -116,10 +116,15 @@ final savedIdsProvider = FutureProvider<Set<String>>((ref) async {
 });
 
 /// Saves or unsaves [questionId] from the stored state, not the screen's; returns whether it is now saved.
-Future<bool> toggleSaved(WidgetRef ref, String questionId) async {
+/// [at]: the original save time when this re-saves after an undo, so the question keeps its place.
+Future<bool> toggleSaved(
+  WidgetRef ref,
+  String questionId, {
+  DateTime? at,
+}) async {
   final saved = !(await ref.read(savedIdsProvider.future)).contains(questionId);
   final repo = await ref.read(progressRepositoryProvider.future);
-  await repo.setSaved(questionId, saved: saved);
+  await repo.setSaved(questionId, saved: saved, at: at);
   ref.invalidate(savedIdsProvider);
   ref.invalidate(homeSummaryProvider);
   return saved;
