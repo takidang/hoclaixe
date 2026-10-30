@@ -25,7 +25,7 @@ class HoclaixeApp extends ConsumerWidget {
     title: S.appName,
     theme: AppTheme.light(),
     darkTheme: AppTheme.dark(),
-    themeMode: ref.watch(settingsProvider).value?.themeMode ?? ThemeMode.system,
+    themeMode: ref.watch(settingsProvider).value?.themeMode ?? ThemeMode.dark,
     routerConfig: ref.watch(routerProvider),
     debugShowCheckedModeBanner: false,
   );

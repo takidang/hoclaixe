@@ -60,7 +60,8 @@ abstract final class S {
       '$correct / $total câu';
   static const progressHint =
       'Mỗi câu đúng ở lần làm gần nhất sơn liền một đoạn vạch.';
-  static const practiceSection = 'Ôn luyện';
+  // Tabs (design v2)
+  static const tabOverview = 'Tổng quan';
   static const studyByTopicHint = 'Từng chương của bộ câu hỏi';
   static String criticalHint(int n) => '$n câu · sai một câu là trượt';
   static String wrongHint(int n) => '$n câu đang chờ ôn';
@@ -75,6 +76,7 @@ abstract final class S {
   static const savedToast = 'Đã lưu câu này';
   static const unsavedToast = 'Đã bỏ lưu';
   static const noSavedYet = 'Bạn chưa lưu câu nào';
+  static const reviewSaved = 'Ôn các câu đã lưu';
   static const noSavedYetHint =
       'Bấm biểu tượng dấu trang khi học để lưu câu muốn xem lại.';
   static const saveFailed = 'Không lưu được. Hãy thử lại.';
@@ -89,6 +91,17 @@ abstract final class S {
   static const searchQuestionsEmpty = 'Ví dụ: 120, nồng độ cồn, nhường đường';
   static const noQuestionFound = 'Không tìm thấy câu nào.';
   static String questionResults(int n) => '$n câu';
+  // Activity chart (Statistics tab)
+  static const activityTitle = 'Số câu đã làm';
+  static const last30Days = '30 ngày qua';
+  static const legendStudy = 'Học';
+  static const legendExam = 'Thi thử';
+  static const totalAnswers = 'Tổng câu';
+  static const streak = 'Chuỗi ngày học';
+  static String days(int n) => '$n ngày';
+  static const noActivity = 'Chưa làm câu nào trong 30 ngày qua.';
+  static String activitySummary(int study, int exam) =>
+      '30 ngày qua: $study câu khi học, $exam câu khi thi thử';
   static String answeredLane(int answered, int total) =>
       'Đã trả lời $answered trên $total câu';
   static const resultLaneHint =

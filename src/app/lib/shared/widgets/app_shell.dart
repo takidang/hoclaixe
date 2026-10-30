@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../core/strings.dart';
+import '../../core/theme/app_theme.dart';
+
+/// The four tabs (design v2): Tổng quan · Học · Câu đã lưu · Thống kê, in a floating pill at the bottom.
+/// Other screens (a topic, a test, signs…) open over it, full screen.
+class AppShell extends StatelessWidget {
+  const AppShell({super.key, required this.shell});
+
+  final StatefulNavigationShell shell;
+
+  static const _tabs = [
+    (Icons.grid_view_rounded, S.tabOverview),
+    (Icons.menu_book_outlined, S.studyByTopic),
+    (Icons.bookmark_border, S.savedQuestions),
+    (Icons.insights_outlined, S.statistics),
+  ];
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: shell,
+    extendBody: true, // tab screens scroll under the pill; they pad by MediaQuery's bottom inset
+    bottomNavigationBar: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 12, top: 4),
+        child: Center(
+          heightFactor: 1,
+          child: _Pill(
+            current: shell.currentIndex,
+            onTap: (i) =>
+                shell.goBranch(i, initialLocation: i == shell.currentIndex),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+class _Pill extends StatelessWidget {
+  const _Pill({required this.current, required this.onTap});
+
+  final int current;
+  final ValueChanged<int> onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      color: scheme.inverseSurface,
+      elevation: 6,
+      shadowColor: Colors.black54,
+      shape: const StadiumBorder(),
+      child: Padding(
+        padding: const EdgeInsets.all(6),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var i = 0; i < AppShell._tabs.length; i++)
+              _Tab(
+                icon: AppShell._tabs[i].$1,
+                label: AppShell._tabs[i].$2,
+                selected: i == current,
+                onTap: () => onTap(i),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Tab extends StatelessWidget {
+  const _Tab({
+    required this.icon,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      excludeSemantics: true,
+      child: Tooltip(
+        message: label,
+        child: InkWell(
+          onTap: onTap,
+          customBorder: const StadiumBorder(),
+          child: AnimatedContainer(
+            duration: AppMotion.of(context, AppMotion.quick),
+            curve: AppMotion.quickCurve,
+            width: 64,
+            height: 52,
+            decoration: ShapeDecoration(
+              shape: const StadiumBorder(),
+              color: selected ? scheme.onInverseSurface : Colors.transparent,
+            ),
+            child: Icon(
+              icon,
+              color: selected ? scheme.inverseSurface : scheme.onInverseSurface,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

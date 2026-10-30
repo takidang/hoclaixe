@@ -174,6 +174,23 @@ class ProgressRepository {
   static String _roundKey(String licenseClass, String topicId) =>
       'study_round:$licenseClass:$topicId';
 
+  /// Every answer since [since]: when, and whether it was in a practice test (activity chart).
+  Future<List<({DateTime at, bool exam})>> answerTimes(DateTime since) async {
+    final rows = await _db.query(
+      'answer_log',
+      columns: ['mode', 'answered_at'],
+      where: 'answered_at >= ?',
+      whereArgs: [since.millisecondsSinceEpoch],
+    );
+    return [
+      for (final r in rows)
+        (
+          at: DateTime.fromMillisecondsSinceEpoch(r['answered_at']! as int),
+          exam: r['mode'] == AnswerMode.exam.name,
+        ),
+    ];
+  }
+
   /// Bookmarked questions ("Câu đã lưu"), oldest first.
   Future<List<String>> savedIds() async {
     final rows = await _db.query(

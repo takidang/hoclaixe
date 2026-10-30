@@ -6,6 +6,7 @@ import '../../../core/settings/app_settings.dart';
 import '../../exam/domain/question_pool.dart';
 import '../../exam/domain/structure_picker.dart';
 import '../../home/data/home_summary_provider.dart';
+import '../../stats/data/stats_providers.dart';
 import '../domain/question_search.dart';
 import '../domain/study_topic.dart';
 import 'progress_repository.dart';
@@ -136,4 +137,5 @@ AnswerMode answerModeOf(StudyTopic topic) => topic.isWrongList
 void invalidateProgressViews(WidgetRef ref) {
   ref.invalidate(homeSummaryProvider);
   ref.invalidate(topicListProvider);
+  ref.invalidate(activityProvider);
 }

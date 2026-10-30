@@ -150,7 +150,8 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
         ..invalidate(homeSummaryProvider)
         ..invalidate(topicListProvider)
         ..invalidate(fixedResultsProvider)
-        ..invalidate(examHistoryProvider);
+        ..invalidate(examHistoryProvider)
+        ..invalidate(activityProvider);
       _showResult();
     } catch (_) {
       // nothing was submitted: let the learner retry, and keep the clock running (review 22/10)

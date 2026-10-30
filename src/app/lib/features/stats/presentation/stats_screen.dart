@@ -12,8 +12,9 @@ import '../../study/data/study_providers.dart';
 import '../../study/domain/study_topic.dart';
 import '../../study/presentation/topic_title.dart';
 import '../data/stats_providers.dart';
+import 'activity_card.dart';
 
-/// "Thống kê" (ST-15): test numbers, progress per topic, test history (tap → review), frequent mistakes.
+/// Tab "Thống kê" (ST-15): answers per day (chart), test numbers, progress per topic, test history (tap → review), frequent mistakes.
 class StatsScreen extends ConsumerWidget {
   const StatsScreen({super.key});
 
@@ -23,12 +24,22 @@ class StatsScreen extends ConsumerWidget {
     final topics = ref.watch(topicListProvider).value ?? const [];
     final chapters = ref.watch(contentProvider).value?.chapters ?? const {};
     final stats = testStats(history);
+    final activity = ref.watch(activityProvider).value;
     final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(title: const Text(S.statistics)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.fromLTRB(
+          16,
+          8,
+          16,
+          MediaQuery.paddingOf(context).bottom + 16,
+        ),
         children: [
+          if (activity != null) ...[
+            ActivityCard(days: activity),
+            const SizedBox(height: 12),
+          ],
           EqualHeightGrid(
             columns: 3,
             spacing: 8,

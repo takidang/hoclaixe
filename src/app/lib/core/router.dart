@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,8 +17,10 @@ import '../features/signs/presentation/sign_detail_screen.dart';
 import '../features/stats/presentation/stats_screen.dart';
 import '../features/study/domain/study_topic.dart';
 import '../features/study/presentation/question_search_screen.dart';
+import '../features/study/presentation/saved_screen.dart';
 import '../features/study/presentation/study_screen.dart';
 import '../features/study/presentation/topic_list_screen.dart';
+import '../shared/widgets/app_shell.dart';
 import 'settings/app_settings.dart';
 
 abstract final class Routes {
@@ -68,7 +70,22 @@ final routerProvider = Provider<GoRouter>((ref) {
   final refresh = ValueNotifier(0);
   ref.listen(settingsProvider, (_, _) => refresh.value++);
   ref.onDispose(refresh.dispose);
+  final root = GlobalKey<NavigatorState>();
+
+  /// A screen that opens over the tab bar, full screen (design v2).
+  GoRoute page(
+    String path,
+    Widget Function(GoRouterState s) build, {
+    List<RouteBase> routes = const [],
+  }) => GoRoute(
+    path: path,
+    parentNavigatorKey: root,
+    builder: (context, state) => build(state),
+    routes: routes,
+  );
+
   return GoRouter(
+    navigatorKey: root,
     initialLocation: Routes.splash,
     refreshListenable: refresh,
     redirect: (context, state) =>
@@ -86,93 +103,107 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.licenseClass,
         builder: (context, state) => const LicenseClassScreen(),
       ),
-      // Features are children of home, so going straight to one (e.g. "Thi đề khác") keeps home below it.
-      GoRoute(
-        path: Routes.home,
-        builder: (context, state) => const HomeScreen(),
-        routes: [
-          GoRoute(
-            path: 'about',
-            builder: (context, state) => const AboutScreen(),
-          ),
-          GoRoute(
-            path: 'study',
-            builder: (context, state) => const TopicListScreen(),
+      // Tabs: Tổng quan · Học · Câu đã lưu · Thống kê, each keeping its own state.
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, shell) => AppShell(shell: shell),
+        branches: [
+          StatefulShellBranch(
             routes: [
+              // Features are children of home, so going straight to one (e.g. "Thi đề khác") keeps home below it.
               GoRoute(
-                path: ':topicId',
-                builder: (context, state) =>
-                    StudyScreen(topicId: state.pathParameters['topicId']!),
+                path: Routes.home,
+                builder: (context, state) => const HomeScreen(),
+                routes: [
+                  page('about', (_) => const AboutScreen()),
+                  page('search', (_) => const QuestionSearchScreen()),
+                  // Home cards open the study screen directly (ST-07, FR-A41, FR-A42).
+                  page(
+                    'wrong',
+                    (_) => StudyScreen(
+                      topicId: StudyTopic.wrongOf(StudyTopic.allId),
+                    ),
+                  ),
+                  page(
+                    'critical',
+                    (_) => const StudyScreen(topicId: StudyTopic.criticalId),
+                  ),
+                  // Practice tests (ST-08 … ST-11)
+                  page(
+                    'exam',
+                    (_) => const ExamListScreen(),
+                    routes: [
+                      page(
+                        'start',
+                        (s) => ExamStartScreen(
+                          fixedSet: int.tryParse(
+                            s.uri.queryParameters['set'] ?? '',
+                          ),
+                        ),
+                      ),
+                      page(
+                        'session/:id',
+                        (s) => ExamScreen(
+                          sessionId: int.parse(s.pathParameters['id']!),
+                        ),
+                      ),
+                      page(
+                        'result/:id',
+                        (s) => ExamResultScreen(
+                          sessionId: int.parse(s.pathParameters['id']!),
+                        ),
+                      ),
+                      page(
+                        'review/:id',
+                        (s) => ExamReviewScreen(
+                          sessionId: int.parse(s.pathParameters['id']!),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Traffic sign catalog (ST-12, ST-16)
+                  page(
+                    'signs',
+                    (_) => const SignCatalogScreen(),
+                    routes: [
+                      page(
+                        ':code',
+                        (s) =>
+                            SignDetailScreen(code: s.pathParameters['code']!),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
-          // Home tiles open the study screen directly (ST-07, FR-A41, FR-A42).
-          GoRoute(
-            path: 'wrong',
-            builder: (context, state) =>
-                StudyScreen(topicId: StudyTopic.wrongOf(StudyTopic.allId)),
-          ),
-          GoRoute(
-            path: 'critical',
-            builder: (context, state) =>
-                const StudyScreen(topicId: StudyTopic.criticalId),
-          ),
-          GoRoute(
-            path: 'saved',
-            builder: (context, state) =>
-                const StudyScreen(topicId: StudyTopic.savedId),
-          ),
-          GoRoute(
-            path: 'search',
-            builder: (context, state) => const QuestionSearchScreen(),
-          ),
-          // Practice tests (ST-08 … ST-11)
-          GoRoute(
-            path: 'exam',
-            builder: (context, state) => const ExamListScreen(),
+          StatefulShellBranch(
             routes: [
               GoRoute(
-                path: 'start',
-                builder: (context, state) => ExamStartScreen(
-                  fixedSet: int.tryParse(
-                    state.uri.queryParameters['set'] ?? '',
+                path: Routes.study,
+                builder: (context, state) => const TopicListScreen(),
+                routes: [
+                  page(
+                    ':topicId',
+                    (s) => StudyScreen(topicId: s.pathParameters['topicId']!),
                   ),
-                ),
+                ],
               ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
               GoRoute(
-                path: 'session/:id',
-                builder: (context, state) => ExamScreen(
-                  sessionId: int.parse(state.pathParameters['id']!),
-                ),
-              ),
-              GoRoute(
-                path: 'result/:id',
-                builder: (context, state) => ExamResultScreen(
-                  sessionId: int.parse(state.pathParameters['id']!),
-                ),
-              ),
-              GoRoute(
-                path: 'review/:id',
-                builder: (context, state) => ExamReviewScreen(
-                  sessionId: int.parse(state.pathParameters['id']!),
-                ),
+                path: Routes.saved,
+                builder: (context, state) => const SavedScreen(),
               ),
             ],
           ),
           // Statistics and test history (ST-15)
-          GoRoute(
-            path: 'stats',
-            builder: (context, state) => const StatsScreen(),
-          ),
-          // Traffic sign catalog (ST-12, ST-16)
-          GoRoute(
-            path: 'signs',
-            builder: (context, state) => const SignCatalogScreen(),
+          StatefulShellBranch(
             routes: [
               GoRoute(
-                path: ':code',
-                builder: (context, state) =>
-                    SignDetailScreen(code: state.pathParameters['code']!),
+                path: Routes.stats,
+                builder: (context, state) => const StatsScreen(),
               ),
             ],
           ),

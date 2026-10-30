@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Design v1 "Vạch kẻ đường" (30/10/2026, docs/design/DESIGN.md): every question learned well is one more
-/// painted segment of a lane line. Colours from the road and from Vietnamese guide signs (QCVN 41:2024);
-/// Be Vietnam Pro for text, JetBrains Mono for numbers, timer and question labels.
-/// Widgets read colours and text styles from Theme.of(context) and [RoadColors], never hard-code them:
+/// Design v2 (30/10/2026, docs/design/DESIGN.md): dark by default, pastel gradient cards with real road signs
+/// from the catalog, a floating tab bar; the lane line of v1 stays as the progress mark (every question learned
+/// well is one more painted segment). Be Vietnam Pro for text, JetBrains Mono for standalone numbers.
+/// Widgets read colours and text styles from Theme.of(context) and [AppGradients], never hard-code them:
 /// the team can restyle the whole app by editing this file only.
 abstract final class AppTheme {
   static const signBlue = Color(0xFF0B4F8C);
@@ -11,9 +11,18 @@ abstract final class AppTheme {
   static const signRed = Color(0xFFC62828);
   static const fontFamily = 'BeVietnamPro';
   static const monoFamily = 'JetBrainsMono';
-  static const radius = 12.0;
+  static const radius = 14.0;
 
-  /// [style] in the mono face, optionally recoloured. For numbers and short labels only.
+  /// Large cards (gradient cards, panels).
+  static const cardRadius = 26.0;
+
+  /// Text and lines on the pastel gradient cards, in light and dark mode alike.
+  static const ink = Color(0xFF15171A);
+
+  /// Secondary text on the gradient cards ([ink] at 75 %).
+  static const inkSoft = Color(0xBF15171A);
+
+  /// [style] in the mono face, optionally recoloured. For standalone numbers only (not Vietnamese words).
   static TextStyle? mono(TextStyle? style, [Color? color]) => style?.copyWith(
     fontFamily: monoFamily,
     fontWeight: FontWeight.w500,
@@ -30,20 +39,22 @@ abstract final class AppTheme {
       // light tonal container: 'fidelity' puts it too close to the seed, dark text became unreadable
       primaryContainer: const Color(0xFFD3E4F8),
       onPrimaryContainer: const Color(0xFF062C52),
+      secondary: const Color(
+        0xFFB83A86,
+      ), // pink of the chart, dark enough for a light panel
       tertiary: const Color(0xFF8A5A00),
       tertiaryContainer: const Color(0xFFFFE08A),
       onTertiaryContainer: const Color(0xFF2B1B00),
       error: signRed,
-      surface: const Color(
-        0xFFF2F4F6,
-      ), // canvas: asphalt-tinted, never pure white
-      onSurface: const Color(0xFF141B22),
-      onSurfaceVariant: const Color(0xFF535E69),
-      surfaceContainerLowest: const Color(0xFFFBFCFD), // panel
-      outlineVariant: const Color(0xFFD9DEE3),
+      surface: const Color(0xFFF2F3F5), // never pure white
+      onSurface: ink,
+      onSurfaceVariant: const Color(0xFF565C64),
+      surfaceContainerLowest: const Color(0xFFFCFCFD), // panels
+      outlineVariant: const Color(0xFFDADDE1),
+      inverseSurface: const Color(0xFF1B1D1F), // tab bar
+      onInverseSurface: const Color(0xFFF4F5F6),
     ),
     AnswerColors.light,
-    RoadColors.light,
   );
 
   static ThemeData dark() => _build(
@@ -52,28 +63,30 @@ abstract final class AppTheme {
       brightness: Brightness.dark,
       dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
     ).copyWith(
-      primary: const Color(0xFF8CBCEB),
-      onPrimary: const Color(0xFF062C52),
-      primaryContainer: const Color(0xFF1E3A57),
-      onPrimaryContainer: const Color(0xFFD3E4F8),
+      primary: const Color(0xFF7CC4FA),
+      onPrimary: const Color(0xFF0B1E2B),
+      primaryContainer: const Color(0xFF1D3A52),
+      onPrimaryContainer: const Color(0xFFCFE8FD),
+      secondary: const Color(0xFFF786D0),
+      onSecondary: const Color(0xFF3A0F2C),
       tertiary: signAmber,
       tertiaryContainer: const Color(0xFF5A3F00),
       onTertiaryContainer: const Color(0xFFFFE08A),
-      surface: const Color(0xFF0F1419),
-      onSurface: const Color(0xFFE7ECF0),
-      onSurfaceVariant: const Color(0xFFA4AFBA),
-      surfaceContainerLowest: const Color(0xFF171E25),
-      outlineVariant: const Color(0xFF2C3640),
+      surface: const Color(0xFF1B1D1F),
+      onSurface: const Color(0xFFF4F5F6),
+      onSurfaceVariant: const Color(0xFFA5ABB3),
+      surfaceContainerLowest: const Color(0xFF26292D),
+      outlineVariant: const Color(0xFF34383D),
+      inverseSurface: const Color(
+        0xFFF4F5F6,
+      ), // tab bar: light pill on the dark screen
+      onInverseSurface: const Color(0xFF1B1D1F),
     ),
     AnswerColors.dark,
-    RoadColors.dark,
   );
 
-  static ThemeData _build(
-    ColorScheme scheme,
-    AnswerColors answers,
-    RoadColors road,
-  ) {
+  static ThemeData _build(ColorScheme scheme, AnswerColors answers) {
+    final dark = scheme.brightness == Brightness.dark;
     final shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(radius),
     );
@@ -84,6 +97,7 @@ abstract final class AppTheme {
     );
     final t = base.textTheme;
     final text = t.copyWith(
+      headlineLarge: t.headlineLarge?.copyWith(fontWeight: FontWeight.w700),
       headlineMedium: t.headlineMedium?.copyWith(fontWeight: FontWeight.w700),
       headlineSmall: t.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
       titleLarge: t.titleLarge?.copyWith(fontWeight: FontWeight.w700),
@@ -95,7 +109,7 @@ abstract final class AppTheme {
     return base.copyWith(
       textTheme: text,
       scaffoldBackgroundColor: scheme.surface,
-      extensions: [answers, road],
+      extensions: [answers],
       appBarTheme: AppBarTheme(
         backgroundColor: scheme.surface,
         foregroundColor: scheme.onSurface,
@@ -103,14 +117,20 @@ abstract final class AppTheme {
         scrolledUnderElevation: 0,
         titleTextStyle: text.titleLarge?.copyWith(
           color: scheme.onSurface,
-          fontSize: 19,
+          fontSize: 20,
         ),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
         color: scheme.surfaceContainerLowest,
         surfaceTintColor: Colors.transparent,
-        shape: shape.copyWith(side: BorderSide(color: scheme.outlineVariant)),
+        // dark panels need no outline (design reference); light ones do, to stand off the canvas
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(cardRadius - 6),
+          side: dark
+              ? BorderSide.none
+              : BorderSide(color: scheme.outlineVariant),
+        ),
       ),
       listTileTheme: ListTileThemeData(shape: shape),
       dividerTheme: DividerThemeData(color: scheme.outlineVariant, space: 1),
@@ -155,7 +175,41 @@ abstract final class AppTheme {
   }
 }
 
-/// Motion tokens (design v1). Wrap durations in [of] so "remove animations" shows the end state at once.
+/// Pastel card gradients (same in light and dark mode; text on them is [AppTheme.ink]).
+abstract final class AppGradients {
+  static const _begin = Alignment.topLeft;
+  static const _end = Alignment.bottomRight;
+  static const sunset = LinearGradient(
+    begin: _begin,
+    end: _end,
+    colors: [Color(0xFFFFD27A), Color(0xFFF7708F)],
+  );
+  static const sky = LinearGradient(
+    begin: _begin,
+    end: _end,
+    colors: [Color(0xFF9AD8FF), Color(0xFF8B8CF6)],
+  );
+  static const bloom = LinearGradient(
+    begin: _begin,
+    end: _end,
+    colors: [Color(0xFFFBC2E6), Color(0xFFE07BEF)],
+  );
+  static const leaf = LinearGradient(
+    begin: _begin,
+    end: _end,
+    colors: [Color(0xFFCFF5A0), Color(0xFF4FD1C5)],
+  );
+  static const amber = LinearGradient(
+    begin: _begin,
+    end: _end,
+    colors: [Color(0xFFFFE38A), Color(0xFFFF9A5C)],
+  );
+
+  /// Cycled through lists of cards (topics).
+  static const cycle = [sky, bloom, leaf, sunset, amber];
+}
+
+/// Motion tokens. Wrap durations in [of] so "remove animations" shows the end state at once.
 abstract final class AppMotion {
   static const quick = Duration(milliseconds: 200);
   static const quickCurve = Curves.easeOutCubic;
@@ -171,66 +225,6 @@ abstract final class AppMotion {
       (MediaQuery.maybeDisableAnimationsOf(context) ?? false)
       ? Duration.zero
       : d;
-}
-
-/// Road surface colours for the signature lane line (not part of ColorScheme). `RoadColors.of(context)`.
-@immutable
-class RoadColors extends ThemeExtension<RoadColors> {
-  const RoadColors({
-    required this.asphalt,
-    required this.onAsphaltVariant,
-    required this.marking,
-  });
-
-  static const light = RoadColors(
-    asphalt: Color(0xFF2A3139),
-    onAsphaltVariant: Color(0xFFB9C2CB),
-    marking: Color(0xFFF1F3F5),
-  );
-
-  static const dark = RoadColors(
-    asphalt: Color(0xFF232B33),
-    onAsphaltVariant: Color(0xFFAEB8C2),
-    marking: Color(0xFFE9EDF0),
-  );
-
-  final Color asphalt;
-
-  /// Secondary text on [asphalt].
-  final Color onAsphaltVariant;
-
-  /// White road paint, also the main text colour on [asphalt].
-  final Color marking;
-
-  static RoadColors of(BuildContext context) {
-    final theme = Theme.of(context);
-    return theme.extension<RoadColors>() ??
-        (theme.brightness == Brightness.dark ? dark : light);
-  }
-
-  @override
-  RoadColors copyWith({
-    Color? asphalt,
-    Color? onAsphaltVariant,
-    Color? marking,
-  }) => RoadColors(
-    asphalt: asphalt ?? this.asphalt,
-    onAsphaltVariant: onAsphaltVariant ?? this.onAsphaltVariant,
-    marking: marking ?? this.marking,
-  );
-
-  @override
-  RoadColors lerp(RoadColors? other, double t) => other == null
-      ? this
-      : RoadColors(
-          asphalt: Color.lerp(asphalt, other.asphalt, t)!,
-          onAsphaltVariant: Color.lerp(
-            onAsphaltVariant,
-            other.onAsphaltVariant,
-            t,
-          )!,
-          marking: Color.lerp(marking, other.marking, t)!,
-        );
 }
 
 /// Correct / wrong answer colors (not part of ColorScheme). `AnswerColors.of(context)`.

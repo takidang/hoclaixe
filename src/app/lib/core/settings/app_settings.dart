@@ -11,7 +11,7 @@ class AppSettings {
   const AppSettings({
     required this.disclaimerAccepted,
     required this.licenseClass,
-    this.themeMode = ThemeMode.system,
+    this.themeMode = ThemeMode.dark,
   });
 
   final bool disclaimerAccepted;
@@ -19,7 +19,7 @@ class AppSettings {
   /// null until the learner picks a class (FR-A03).
   final String? licenseClass;
 
-  /// Light, dark or follow the device (ST-13, chosen on the About screen).
+  /// Light, dark or follow the device (ST-13, chosen on the About screen). Dark until chosen (design v2).
   final ThemeMode themeMode;
 
   AppSettings copyWith({bool? disclaimerAccepted, String? licenseClass, ThemeMode? themeMode}) => AppSettings(
@@ -54,7 +54,7 @@ class SettingsNotifier extends AsyncNotifier<AppSettings> {
       disclaimerAccepted:
           await store.get(SettingKeys.disclaimerAccepted) == '1',
       licenseClass: supportedLicenseClasses.contains(cls) ? cls : null,
-      themeMode: ThemeMode.values.asNameMap()[await store.get(SettingKeys.themeMode)] ?? ThemeMode.system,
+      themeMode: ThemeMode.values.asNameMap()[await store.get(SettingKeys.themeMode)] ?? ThemeMode.dark,
     );
   }
 

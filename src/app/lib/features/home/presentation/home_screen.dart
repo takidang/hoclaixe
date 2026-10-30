@@ -6,11 +6,25 @@ import '../../../core/providers.dart';
 import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/equal_height_grid.dart';
+import '../../../shared/widgets/gradient_card.dart';
 import '../../../shared/widgets/lane_line.dart';
 import '../data/home_summary_provider.dart';
 import '../domain/home_summary.dart';
 
-/// Home (FR-A04, ST-04; design v1): road card with the lane line, one "Thi thử" button, practice list.
+/// Signs from the catalog that illustrate the home cards (decorative; chosen for their meaning).
+abstract final class _Signs {
+  static const lanes =
+      'R.411'; // Hướng đi trên mỗi làn đường phải theo: the learner's lane
+  static const speed = 'P.127'; // Tốc độ tối đa cho phép: a timed test
+  static const danger = 'W.233'; // Nguy hiểm khác: critical questions
+  static const detour =
+      'R.302a'; // Hướng phải đi vòng chướng ngại vật: going back over mistakes
+  static const noEntry = 'P.102'; // Cấm đi ngược chiều: the best-known sign
+}
+
+/// Tab "Tổng quan" (FR-A04, ST-04; design v2): progress card with the lane line, "Thi thử", critical
+/// questions, wrong answers and the sign catalog as gradient cards.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
@@ -22,24 +36,40 @@ class HomeScreen extends ConsumerWidget {
       (_, next) => _promptResume(context, ref, next.value),
     );
     final cls = summary.value?.licenseClass;
+    final scheme = Theme.of(context).colorScheme;
+    final round = IconButton.styleFrom(
+      backgroundColor: scheme.surfaceContainerLowest,
+    );
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 72,
+        titleTextStyle: Theme.of(context).textTheme.headlineMedium
+            ?.copyWith(color: scheme.onSurface),
         title: Text(cls == null ? S.appName : S.className(cls)),
         actions: [
           TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: scheme.surfaceContainerLowest,
+              shape: const StadiumBorder(),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+            ),
             onPressed: () => context.push(Routes.licenseClass),
             child: const Text(S.changeClass),
           ),
+          const SizedBox(width: 6),
           IconButton(
+            style: round,
             tooltip: S.searchQuestions,
             icon: const Icon(Icons.search),
             onPressed: () => context.push(Routes.search),
           ),
           IconButton(
+            style: round,
             tooltip: S.about,
             icon: const Icon(Icons.info_outline),
             onPressed: () => context.push(Routes.about),
           ),
+          const SizedBox(width: 8),
         ],
       ),
       body: switch (summary) {
@@ -70,15 +100,46 @@ class _HomeBody extends ConsumerWidget {
           sessionId: open.id,
           remaining: open.remaining(ref.watch(clockProvider)()),
         ),
-      _RoadCard(summary: summary),
-      _ExamButton(summary: summary),
-      _PracticeList(summary: summary),
+      _ProgressCard(summary: summary),
+      _ExamCard(summary: summary),
+      EqualHeightGrid(
+        columns: 2,
+        spacing: 12,
+        children: [
+          _SmallCard(
+            gradient: AppGradients.amber,
+            sign: _Signs.danger,
+            label: S.criticalQuestions,
+            detail: S.criticalHint(summary.criticalCount),
+            route: Routes.critical,
+          ),
+          _SmallCard(
+            gradient: AppGradients.bloom,
+            sign: _Signs.detour,
+            label: S.reviewWrong,
+            detail: S.wrongHint(summary.wrongCount),
+            route: Routes.wrong,
+          ),
+        ],
+      ),
+      const _WideCard(
+        gradient: AppGradients.leaf,
+        sign: _Signs.noEntry,
+        label: S.trafficSigns,
+        detail: S.signsHint,
+        route: Routes.signs,
+      ),
     ];
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      padding: EdgeInsets.fromLTRB(
+        16,
+        4,
+        16,
+        MediaQuery.paddingOf(context).bottom + 16,
+      ),
       children: [
         for (var i = 0; i < blocks.length; i++) ...[
-          if (i > 0) const SizedBox(height: 16),
+          if (i > 0) const SizedBox(height: 12),
           _Entrance(index: i, child: blocks[i]),
         ],
       ],
@@ -113,257 +174,199 @@ class _Entrance extends StatelessWidget {
   }
 }
 
-/// Signature: the learner's progress as a lane marking on asphalt, dashed until each question is right.
-class _RoadCard extends StatelessWidget {
-  const _RoadCard({required this.summary});
+/// The learner's progress: a lane marking, dashed until each question is answered right (kept from v1).
+class _ProgressCard extends StatelessWidget {
+  const _ProgressCard({required this.summary});
 
   final HomeSummary summary;
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    final road = RoadColors.of(context);
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: road.asphalt,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 18, 20, 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              S.studyProgress,
-              style: text.labelLarge?.copyWith(color: road.onAsphaltVariant),
-            ),
-            const SizedBox(height: 6),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: '${summary.correctCount}',
-                    style: AppTheme.mono(text.headlineLarge, road.marking),
-                  ),
-                  TextSpan(
-                    text: S
-                        .progressCount(summary.correctCount, summary.poolSize)
-                        .substring('${summary.correctCount}'.length),
-                    style: text.titleSmall?.copyWith(
-                      color: road.onAsphaltVariant,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            LaneLine.progress(
-              value: summary.progress,
-              color: road.marking,
-              thickness: 5,
-              semanticsLabel: S.progressCount(
-                summary.correctCount,
-                summary.poolSize,
-              ),
-            ),
-            const SizedBox(height: 14),
-            Text(
-              S.progressHint,
-              style: text.bodySmall?.copyWith(color: road.onAsphaltVariant),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// The one main action of the screen.
-class _ExamButton extends StatelessWidget {
-  const _ExamButton({required this.summary});
-
-  final HomeSummary summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
-    final on = Theme.of(context).colorScheme.onPrimary;
-    final s = summary.structure;
-    return FilledButton(
-      onPressed: () => context.push(Routes.exam),
-      style: FilledButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-        alignment: Alignment.centerLeft,
-      ),
-      child: Row(
+    final count = '${summary.correctCount}';
+    return GradientCard(
+      gradient: AppGradients.sunset,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.practiceExam,
-                  style: text.titleMedium?.copyWith(color: on),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(S.studyProgress, style: text.titleLarge),
+                    const SizedBox(height: 4),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: count,
+                            style: AppTheme.mono(
+                              text.headlineLarge,
+                              AppTheme.ink,
+                            ),
+                          ),
+                          TextSpan(
+                            text: S
+                                .progressCount(
+                                  summary.correctCount,
+                                  summary.poolSize,
+                                )
+                                .substring(count.length),
+                            style: text.titleSmall?.copyWith(
+                              color: AppTheme.inkSoft,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                if (s != null)
-                  Text(
-                    S.examCta(
-                      summary.licenseClass,
-                      s.questionCount,
-                      s.durationMinutes,
-                    ),
-                    style: text.bodySmall?.copyWith(
-                      color: on.withValues(alpha: 0.85),
-                    ),
-                  ),
-              ],
+              ),
+              const SignBadge(code: _Signs.lanes),
+            ],
+          ),
+          const SizedBox(height: 16),
+          LaneLine.progress(
+            value: summary.progress,
+            color: AppTheme.ink,
+            thickness: 5,
+            semanticsLabel: S.progressCount(
+              summary.correctCount,
+              summary.poolSize,
             ),
           ),
-          const SizedBox(width: 12),
-          Icon(Icons.arrow_forward, color: on),
+          const SizedBox(height: 12),
+          Text(
+            S.progressHint,
+            style: text.bodySmall?.copyWith(color: AppTheme.inkSoft),
+          ),
         ],
       ),
     );
   }
 }
 
-class _PracticeList extends StatelessWidget {
-  const _PracticeList({required this.summary});
+/// The main action of the tab.
+class _ExamCard extends StatelessWidget {
+  const _ExamCard({required this.summary});
 
   final HomeSummary summary;
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    final scheme = Theme.of(context).colorScheme;
-    final rows = [
-      const _PracticeRow(
-        icon: Icons.menu_book_outlined,
-        label: S.studyByTopic,
-        detail: S.studyByTopicHint,
-        route: Routes.study,
-      ),
-      _PracticeRow(
-        icon: Icons.warning_amber_rounded,
-        label: S.criticalQuestions,
-        detail: S.criticalHint(summary.criticalCount),
-        route: Routes.critical,
-        caution: true,
-      ),
-      _PracticeRow(
-        icon: Icons.replay,
-        label: S.reviewWrong,
-        detail: S.wrongHint(summary.wrongCount),
-        route: Routes.wrong,
-      ),
-      _PracticeRow(
-        icon: Icons.bookmark_border,
-        label: S.savedQuestions,
-        detail: S.questionCount(summary.savedCount),
-        route: Routes.saved,
-      ),
-      const _PracticeRow(
-        icon: Icons.signpost_outlined,
-        label: S.trafficSigns,
-        detail: S.signsHint,
-        route: Routes.signs,
-      ),
-      const _PracticeRow(
-        icon: Icons.insights_outlined,
-        label: S.statistics,
-        detail: S.statsHint,
-        route: Routes.stats,
-      ),
-    ];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 4, bottom: 8),
-          child: Text(
-            S.practiceSection,
-            style: text.titleSmall?.copyWith(color: scheme.onSurfaceVariant),
-          ),
-        ),
-        Card(
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            children: [
-              for (var i = 0; i < rows.length; i++) ...[
-                if (i > 0) const Divider(indent: 72),
-                rows[i],
+    final s = summary.structure;
+    return GradientCard(
+      gradient: AppGradients.sky,
+      onTap: () => context.push(Routes.exam),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(S.practiceExam, style: text.headlineSmall),
+                if (s != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    S.examCta(
+                      summary.licenseClass,
+                      s.questionCount,
+                      s.durationMinutes,
+                    ),
+                    style: text.bodyMedium?.copyWith(color: AppTheme.inkSoft),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
-        ),
-      ],
+          const SignBadge(code: _Signs.speed),
+        ],
+      ),
     );
   }
 }
 
-class _PracticeRow extends StatelessWidget {
-  const _PracticeRow({
-    required this.icon,
+class _SmallCard extends StatelessWidget {
+  const _SmallCard({
+    required this.gradient,
+    required this.sign,
     required this.label,
     required this.detail,
     required this.route,
-    this.caution = false,
   });
 
-  final IconData icon;
+  final Gradient gradient;
+  final String sign;
   final String label;
   final String detail;
   final String route;
 
-  /// Critical questions: warning-sign yellow instead of the primary tone.
-  final bool caution;
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return GradientCard(
+      gradient: gradient,
+      padding: const EdgeInsets.all(16),
+      onTap: () => context.push(route),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SignBadge(code: sign, size: 52),
+          const SizedBox(height: 20),
+          Text(label, style: text.titleMedium),
+          const SizedBox(height: 2),
+          Text(
+            detail,
+            style: text.bodySmall?.copyWith(color: AppTheme.inkSoft),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WideCard extends StatelessWidget {
+  const _WideCard({
+    required this.gradient,
+    required this.sign,
+    required this.label,
+    required this.detail,
+    required this.route,
+  });
+
+  final Gradient gradient;
+  final String sign;
+  final String label;
+  final String detail;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    final scheme = Theme.of(context).colorScheme;
-    return InkWell(
+    return GradientCard(
+      gradient: gradient,
       onTap: () => context.push(route),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: caution
-                    ? scheme.tertiaryContainer
-                    : scheme.primaryContainer,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: SizedBox.square(
-                dimension: 40,
-                child: Icon(
-                  icon,
-                  size: 22,
-                  color: caution
-                      ? scheme.onTertiaryContainer
-                      : scheme.onPrimaryContainer,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label, style: text.titleLarge),
+                const SizedBox(height: 2),
+                Text(
+                  detail,
+                  style: text.bodySmall?.copyWith(color: AppTheme.inkSoft),
                 ),
-              ),
+              ],
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(label, style: text.titleSmall),
-                  Text(
-                    detail,
-                    style: text.bodySmall?.copyWith(
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(Icons.chevron_right, color: scheme.onSurfaceVariant),
-          ],
-        ),
+          ),
+          SignBadge(code: sign, size: 56),
+        ],
       ),
     );
   }
