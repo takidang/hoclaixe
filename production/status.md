@@ -2,8 +2,8 @@
 
 > Cập nhật cuối mỗi phiên làm việc.
 
-**Cập nhật**: 2026-10-14
-**Phase hiện tại**: 5 — Phát triển (Sprint 1). ST-01…ST-07 Done (23/47 point Must); 104 test, analyze sạch
+**Cập nhật**: 2026-10-30
+**Phase hiện tại**: 5 — Phát triển, cuối Sprint 1. ST-01…ST-16 Done (Module A đủ); `dev` 150 test đạt, analyze sạch. Đang làm giao diện v2 trên nhánh `feat/design-v2` (chưa xong)
 **Sprint**: Sprint 1 (12/10–28/10/2026) — Module A, nộp LTTTBDD 28/10 · đóng băng tính năng 25/10
 **Phạm vi (đổi 13/10)**: hoclaixe chỉ còn là đồ án LTTTBDD → Module A giống đối thủ; B/C/D làm sau nếu còn thời gian.
 
@@ -36,26 +36,26 @@
 - **14/10 — Team chạy được app**: đưa Gradle wrapper lên git (lỗi `GradleWrapperMain`); đổi tên 21 ảnh đối thủ (lỗi `Filename too long`); **chạy được bản web** (`sqflite_common_ffi_web`, ADR-002 cập nhật); `tools/check-setup.ps1` + `CONTRIBUTING.md` mục 2a. Đã kiểm từ bản clone mới: build APK và build web đều OK; debug web trên cổng 8080 chạy được.
 - **14/10 — Sửa danh mục biển báo** theo soát của Kiệt (`data/sign-catalog/review-results/2026-10-14-kiet.json`, 29 lỗi): file sửa tay `data/sign-catalog/overrides.json` (mỗi mục ghi trang PDF), tên biển cao tốc theo bảng mục 46.8 QCVN, bỏ 8 mã thừa, thêm IE.455/IE.460/IE.464a, sửa thêm I.428a/b/c; còn **392 mục**; `validate_signs.py` thêm 4 luật chặn lỗi, PASS. Trang soát lần 2: `make_sign_review.py --fixed-only` → `review-fixed.html`.
 
+- **15–23/10 — Hoàn thành Module A** (đã push `dev`, repo nộp `takidang/hoclaixe-app` cập nhật bằng `tools/publish-app-repo.ps1`): ST-08…ST-11 thi thử (chọn đề, làm bài, đồng hồ, bài dở, kết quả, xem lại, đề cố định) · ST-12/ST-16 danh mục 392 biển + tìm không dấu · ST-13 design system v0 · ST-15 thống kê, lịch sử thi, câu hay sai · chọn Sáng/Tối/Theo máy. Sửa 8 lỗi từ review code của Kiệt (High: đáp án lưu nhầm câu khi chuyển câu lúc đang lưu). Áp 3 lượt soát danh mục biển của Kiệt; vạch 3.2/3.3/3.4 có hình nhóm tự vẽ theo QCVN (ghi chú dưới hình). README viết lại, `docs/defense/tai-man-thi.md`, phiếu kiểm thử `docs/test/phieu-kiem-thu.docx` (32 mục).
+- **30/10 — So với web mẫu của thầy (hoclaixefree.vercel.app)**, thêm 3 chức năng: **Câu đã lưu** (CSDL v2, có test nâng cấp), **Tìm câu hỏi** (số gốc / từ khóa không dấu), **Đọc câu hỏi** (`flutter_tts`, giọng tiếng Việt của máy). Giao diện v1 "Vạch kẻ đường" (`docs/design/DESIGN.md`, `LaneLine`). Review ponytail → sửa 5 mục (`5e23d62`). **Chạy thử trên máy ảo Android**: đọc tiếng Việt OK, dừng/đọc câu sau OK, tìm, lưu, nâng cấp CSDL giữ dữ liệu cũ.
+- **30/10 — Giao diện v2 (đang làm, nhánh `feat/design-v2`)** theo mẫu Tài gửi (nền tối, thẻ gradient, thanh tab nổi): đã có theme v2 (tối mặc định, `AppGradients`), `GradientCard`/`SignBadge` (hình biển thật từ danh mục thay hình 3D của mẫu), thanh 4 tab (`StatefulShellRoute`: Tổng quan · Học · Câu đã lưu · Thống kê), tab Câu đã lưu, thẻ chủ đề gradient, biểu đồ "Số câu đã làm" 30 ngày + chuỗi ngày học ở tab Thống kê. `flutter analyze` sạch; **10 test cũ chưa sửa theo điều hướng tab**.
+
 ## Việc tiếp theo (phiên sau bắt đầu từ đây)
-1. **Lỗi bản web trên máy bạn trong team** (chưa rõ nguyên nhân — máy Tài chạy đúng ở debug cổng 8080): chờ ảnh `git log --oneline -1`, `git status`, `tools\check-setup.ps1`, Console (F12). Đề xuất chờ duyệt: hiện chi tiết lỗi gốc ở bản debug trên màn chờ/màn chính.
-2. **`/dev-story ST-08`** — màn thi (làm bài, lưu đáp án ngay); rồi ST-09 (đồng hồ, bài dở), ST-10 (kết quả, xem lại — dùng `QuestionMode.review`), ST-11 (đề cố định).
-3. ST-12 danh mục biển báo (sau khi Kiệt soát lần 2); 7 cảnh báo mã đuôi "c" (IE.450c…) trong `validate_signs.py` cần mở PDF xem.
-4. Song song: thiết kế giao diện bằng Claude Design cho ST-13.
+1. **Hoàn tất giao diện v2 trên `feat/design-v2`**: sửa 10 test vỡ (bấm tab bằng tooltip thay vì chữ trên màn chính; tab Câu đã lưu mở danh sách trước; mặc định nền tối trong `theme_mode_test`); viết test cho `daily_activity.dart` (ngày rỗng, qua tháng, chuỗi ngày) và cho thanh tab; chụp ảnh sáng/tối, soát theo skill ui-design; cập nhật `docs/design/DESIGN.md` thành v2; chạy máy ảo. Xong và Tài duyệt → merge vào `dev`, chạy `tools/publish-app-repo.ps1`.
+2. Repo nộp `hoclaixe-app` đang private → chuyển public khi nộp; chạy lần kiểm cuối từ bản clone mới.
+3. Kiệt viết báo cáo LTTTBDD theo yêu cầu của thầy (`docs/reports/giang-vien/`, không đưa lên git); team điền phiếu kiểm thử.
 
 ## Phân công
 
 | Người | Việc đang giao | Hạn |
 |---|---|---|
-| Tài | ST-08 → ST-12 (thi thử, kết quả, đề cố định, danh mục biển báo) theo `production/backlog.md` | 23/10 |
-| Tài | Code Module A theo roadmap; giao diện bằng Claude Design song song | 25/10 (đóng băng) |
-| Kiệt | Soát lần 2 danh mục biển báo: `data/sign-catalog/review-fixed.html` (29 mục đã sửa) + 1 mục chưa xem ở tab "Biển báo cấm" của `review.html`; xuất JSON gửi Tài | 18/10 |
+| Tài | Hoàn tất giao diện v2 (`feat/design-v2`), merge `dev`, cập nhật repo nộp | trước khi nộp |
 | Cả team | `git pull` rồi chạy app theo `CONTRIBUTING.md` mục 2a (web: `flutter run -d chrome --web-port 8080`) | ngay |
 | Kiệt | Lấy yêu cầu format báo cáo, mẫu bìa của giảng viên LTTTBDD → `docs/reports/`; viết báo cáo LTTTBDD từ 19/10 (theo `docs/templates/report-ltttbdd.md`) | Mẫu: 16/10 · Báo cáo: 28/10 |
 | Kiệt | Test thử app trên máy Android của mình từ khi có bản chạy được (ghi lỗi vào `production/bugs/`) | từ 19/10 |
 
 ## Blocker / cần bổ sung
-- Hạn LTTTBDD 28/10 là hạn nội bộ — theo dõi khi trường công bố lịch chính thức.
-- Chưa có yêu cầu format báo cáo LTTTBDD từ giảng viên.
-- Một bạn trong team chạy bản web vẫn báo lỗi (chưa có ảnh lỗi để chẩn đoán).
-- Repo có 4 collaborator (thêm `tiendat1710-hihi`, `MikaChan05`) trong khi team 2 người — Tài xác nhận.
+- Đã quá hạn nội bộ 28/10 (hôm nay 30/10, buổi học cuối) — chưa có lịch nộp chính thức.
+- Team thực tế 5 người (Tài nói "khoan hãy tính"): chưa cập nhật thông tin team trong `project-context.md`.
+- "Đọc câu hỏi" chưa thử trên Chrome (bản web) và trên điện thoại thật chưa cài giọng tiếng Việt.
 - Việc tạm dừng do đổi phạm vi (làm sau nếu còn thời gian): khảo sát người dùng, kho văn bản luật cho RAG, bộ ảnh kiểm tra biển báo.
