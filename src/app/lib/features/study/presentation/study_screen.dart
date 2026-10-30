@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/router.dart';
+import '../../../core/settings/app_settings.dart';
 import '../../../core/speech/question_reader.dart';
 import '../../../core/strings.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../shared/widgets/lane_line.dart';
 import '../../../shared/widgets/question_view.dart';
 import '../data/study_providers.dart';
@@ -146,6 +149,7 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
   Future<void> _onSelect(int option) async {
     final q = _topic.questions[_index];
     if (_answers.containsKey(q.id)) return; // locked (FR-A11)
+    unawaited(HapticFeedback.selectionClick());
     setState(() => _answers[q.id] = option);
     try {
       final repo = await ref.read(progressRepositoryProvider.future);
@@ -163,8 +167,29 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
       return;
     }
     if (!mounted) return;
+    final correct = option == q.correctIndex;
+    unawaited(
+      correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact(),
+    );
     invalidateProgressViews(ref);
-    if (RoundSummary.of(_topic, _answers).finished) await _showSummary();
+    if (RoundSummary.of(_topic, _answers).finished) {
+      await _showSummary();
+    } else if (correct &&
+        (ref.read(settingsProvider).value?.autoNext ?? false)) {
+      await _autoNext(from: _topic.questions.indexOf(q));
+    }
+  }
+
+  /// "Tự chuyển câu": after a right answer, show it a moment, then slide on — unless the learner already moved.
+  Future<void> _autoNext({required int from}) async {
+    await Future<void>.delayed(AppMotion.autoNextStudy);
+    if (!mounted || _index != from || from >= _topic.questions.length - 1) {
+      return;
+    }
+    await _pages.nextPage(
+      duration: AppMotion.of(context, AppMotion.page),
+      curve: AppMotion.quickCurve,
+    );
   }
 
   void _goTo(int i) => _pages.jumpToPage(i);

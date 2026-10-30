@@ -31,9 +31,21 @@ class TopicListScreen extends ConsumerWidget {
             16,
             MediaQuery.paddingOf(context).bottom + 16,
           ),
-          itemCount: value.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 12),
-          itemBuilder: (context, i) {
+          itemCount: value.length + 1,
+          separatorBuilder: (_, i) => SizedBox(height: i == 0 ? 4 : 12),
+          itemBuilder: (context, row) {
+            if (row == 0) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                  S.holdForActions,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              );
+            }
+            final i = row - 1;
             final (topic, stats) = value[i];
             // only the first screenful staggers in; later cards are built while scrolling and appear at once
             return Entrance(
@@ -43,6 +55,13 @@ class TopicListScreen extends ConsumerWidget {
                 title: topicTitle(topic, chapters),
                 stats: stats,
                 onTap: () => context.push(Routes.studyTopic(topic.id)),
+                onLongPress: () => _showTopicActions(
+                  context,
+                  ref,
+                  topic: topic,
+                  title: topicTitle(topic, chapters),
+                  stats: stats,
+                ),
               ),
             );
           },
@@ -59,18 +78,79 @@ class TopicListScreen extends ConsumerWidget {
   }
 }
 
+/// Press and hold a topic: continue, review its wrong answers, or start it over.
+Future<void> _showTopicActions(
+  BuildContext context,
+  WidgetRef ref, {
+  required StudyTopic topic,
+  required String title,
+  required TopicStats stats,
+}) async {
+  final action = await showModalBottomSheet<String>(
+    context: context,
+    useRootNavigator: true, // above the tab bar
+    builder: (context) => SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+            child: Text(title, style: Theme.of(context).textTheme.titleMedium),
+          ),
+          ListTile(
+            leading: const Icon(Icons.play_arrow_rounded),
+            title: const Text(S.continueStudy),
+            onTap: () => Navigator.pop(context, 'continue'),
+          ),
+          if (stats.wrong > 0)
+            ListTile(
+              leading: const Icon(Icons.replay),
+              title: const Text(S.reviewTopicWrong),
+              onTap: () => Navigator.pop(context, 'wrong'),
+            ),
+          ListTile(
+            leading: const Icon(Icons.restart_alt),
+            title: const Text(S.restartFromStart),
+            subtitle: const Text(S.restartTopicHint),
+            onTap: () => Navigator.pop(context, 'restart'),
+          ),
+          const SizedBox(height: 8),
+        ],
+      ),
+    ),
+  );
+  if (!context.mounted || action == null) return;
+  if (action == 'restart') {
+    final cls = (await ref.read(classPoolProvider.future))?.licenseClass;
+    if (cls == null) return;
+    final repo = await ref.read(progressRepositoryProvider.future);
+    await repo.restartRound(cls, topic.id);
+    await repo.saveTopicPosition(cls, topic.id, topic.questions.first.id);
+    ref.invalidate(topicListProvider);
+  }
+  if (!context.mounted) return;
+  await context.push(
+    Routes.studyTopic(
+      action == 'wrong' ? StudyTopic.wrongOf(topic.id) : topic.id,
+    ),
+  );
+}
+
 class _TopicCard extends StatelessWidget {
   const _TopicCard({
     required this.tone,
     required this.title,
     required this.stats,
     required this.onTap,
+    required this.onLongPress,
   });
 
   final CardTone tone;
   final String title;
   final TopicStats stats;
   final VoidCallback onTap;
+  final VoidCallback onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +158,7 @@ class _TopicCard extends StatelessWidget {
     return GradientCard(
       tone: tone,
       onTap: onTap,
+      onLongPress: onLongPress,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

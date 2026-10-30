@@ -166,10 +166,13 @@ abstract final class AppTheme {
       ),
       listTileTheme: ListTileThemeData(shape: shape),
       dividerTheme: DividerThemeData(color: scheme.outlineVariant, space: 1),
+      // main buttons are pills in the tab bar's colours (design reference: black on light, white on dark)
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          minimumSize: const Size(64, 48),
-          shape: shape,
+          backgroundColor: scheme.inverseSurface,
+          foregroundColor: scheme.onInverseSurface,
+          minimumSize: const Size(64, 52),
+          shape: const StadiumBorder(),
           textStyle: text.labelLarge?.copyWith(
             fontWeight: FontWeight.w600,
             fontSize: 15,
@@ -178,8 +181,10 @@ abstract final class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          minimumSize: const Size(64, 48),
-          shape: shape,
+          foregroundColor: scheme.onSurface,
+          minimumSize: const Size(64, 52),
+          shape: const StadiumBorder(),
+          side: BorderSide(color: scheme.outlineVariant, width: 1.5),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -326,6 +331,13 @@ abstract final class AppMotion {
 
   /// Delay between blocks appearing one after another on the home screen.
   static const stagger = Duration(milliseconds: 80);
+
+  /// "Tự chuyển câu": pause before the next question (study: time to see the green answer).
+  static const autoNextStudy = Duration(milliseconds: 700);
+  static const autoNextExam = Duration(milliseconds: 250);
+
+  /// A page sliding to the next question.
+  static const page = Duration(milliseconds: 320);
 
   /// A pressed card springing back (slight overshoot, like iOS).
   static const spring = Duration(milliseconds: 320);

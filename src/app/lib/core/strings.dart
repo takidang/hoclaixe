@@ -158,6 +158,11 @@ abstract final class S {
   static const nextQuestion = 'Câu sau';
   static const chooseQuestion = 'Chọn câu';
   static const restartTopic = 'Làm lại';
+  static const continueStudy = 'Học tiếp';
+  static const restartFromStart = 'Làm lại từ đầu';
+  static const holdForActions = 'Nhấn giữ một chủ đề để xem thao tác nhanh';
+  static const unsaved = 'Đã bỏ lưu câu này';
+  static const undo = 'Hoàn tác';
   static const restartTopicHint =
       'Xóa đáp án đang hiện trong chủ đề này để làm lại từ đầu. Tiến độ và danh sách câu sai vẫn giữ.';
   static const topicFinished = 'Hoàn thành chủ đề';
@@ -280,6 +285,10 @@ abstract final class S {
   // Appearance (About screen)
   static const appearance = 'Giao diện';
   static const themeSystem = 'Theo máy';
+  static const studySettings = 'Khi làm bài';
+  static const autoNext = 'Tự chuyển câu';
+  static const autoNextHint =
+      'Học: trả lời đúng thì sang câu sau, sai thì ở lại để xem đáp án. Thi thử: chọn xong là sang câu sau.';
   static const themeLight = 'Sáng';
   static const themeDark = 'Tối';
 

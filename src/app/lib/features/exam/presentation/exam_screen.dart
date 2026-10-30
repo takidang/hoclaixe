@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/router.dart';
+import '../../../core/settings/app_settings.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../shared/widgets/lane_line.dart';
@@ -118,10 +120,13 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       return;
     }
     _saving = true;
+    var saved = false;
+    unawaited(HapticFeedback.selectionClick());
     try {
       final repo = await ref.read(examSessionRepositoryProvider.future);
       await repo.saveAnswer(_session.id, position, option);
       if (mounted) setState(() => _answers[position] = option);
+      saved = true;
     } on StateError {
       // the test is no longer in progress (deadline passed / submitted elsewhere)
       _pending = null;
@@ -135,7 +140,22 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
     }
     final next = _pending;
     _pending = null;
-    if (next != null && mounted) await _select(next.$1, next.$2);
+    if (next != null && mounted) {
+      await _select(next.$1, next.$2);
+    } else if (saved && mounted && (ref.read(settingsProvider).value?.autoNext ?? false)) {
+      await _autoNext(from: position);
+    }
+  }
+
+  /// "Tự chuyển câu": slide to the next question shortly after a choice is saved, unless the learner moved.
+  Future<void> _autoNext({required int from}) async {
+    await Future<void>.delayed(AppMotion.autoNextExam);
+    if (!mounted || _submitting || _index != from) return;
+    if (from >= widget.view.questions.length - 1) return;
+    await _pages.nextPage(
+      duration: AppMotion.of(context, AppMotion.page),
+      curve: AppMotion.quickCurve,
+    );
   }
 
   /// Submits once (FR-A26); a second call or an already submitted test just opens the result.

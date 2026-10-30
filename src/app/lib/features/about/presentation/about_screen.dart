@@ -13,8 +13,9 @@ class AboutScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final version = ref.watch(contentProvider).value?.version;
-    final themeMode =
-        ref.watch(settingsProvider).value?.themeMode ?? ThemeMode.system;
+    final settings = ref.watch(settingsProvider).value;
+    final themeMode = settings?.themeMode ?? ThemeMode.dark;
+    final autoNext = settings?.autoNext ?? false;
     final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(title: const Text(S.about)),
@@ -36,6 +37,16 @@ class AboutScreen extends ConsumerWidget {
             showSelectedIcon: false, // text only: icons pushed "Theo máy" onto two lines on a 360 dp phone
             onSelectionChanged: (s) =>
                 ref.read(settingsProvider.notifier).setThemeMode(s.single),
+          ),
+          const SizedBox(height: 24),
+          Text(S.studySettings, style: text.titleMedium),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text(S.autoNext),
+            subtitle: const Text(S.autoNextHint),
+            value: autoNext,
+            onChanged: (on) =>
+                ref.read(settingsProvider.notifier).setAutoNext(on),
           ),
           const SizedBox(height: 24),
           Text(S.disclaimerBody, style: text.bodyLarge),

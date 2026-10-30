@@ -119,3 +119,12 @@ Mục tiêu: "luôn chuyển động, mượt như app Apple" nhưng không gây
 - `Entrance`: khối hiện lần lượt (Tổng quan, thẻ chủ đề ở tab Học, chữ và nút màn mở đầu).
 - `CountUp`: số câu đã đúng đếm từ 0 lên khi mở màn.
 - Ảnh hạng A1 đổi sang Honda Air Blade (Wikimedia Commons, CC BY-SA 4.0, đã chỉnh màu cho cùng tông).
+- (bổ sung 30/10) **Nút chính** dạng viên thuốc theo màu thanh tab: đen chữ trắng ở nền sáng, trắng chữ đen ở nền tối
+  (`inverseSurface`); nút viền cũng bo tròn.
+- **Chuyển tab**: tab mới hiện mờ dần từ 98,5 % kích thước (fade through), giữ trạng thái từng tab; rung nhẹ khi chạm tab.
+- **Nhấn giữ** thẻ chủ đề (tab Học): rung, mở bảng `Học tiếp` · `Ôn câu sai của chủ đề` · `Làm lại từ đầu`.
+  Gợi ý ở đầu tab: `Nhấn giữ một chủ đề để xem thao tác nhanh`.
+- **Vuốt trái** một câu ở tab Câu đã lưu: nền đỏ `Bỏ lưu`, thông báo `Đã bỏ lưu câu này` · `Hoàn tác`.
+- **Rung phản hồi** khi chọn đáp án (nhẹ), khi biết đúng (nhẹ) / sai (vừa).
+- **Tự chuyển câu** (Giới thiệu › Khi làm bài, mặc định tắt): học → trả lời đúng sang câu sau sau 0,7 s, sai thì ở lại;
+  thi thử → chọn xong sang câu sau sau 0,25 s. Người học tự chuyển câu trong lúc chờ thì không chuyển nữa.

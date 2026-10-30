@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers.dart';
@@ -13,12 +14,16 @@ class GradientCard extends StatelessWidget {
     required this.tone,
     required this.child,
     this.onTap,
+    this.onLongPress,
     this.padding = const EdgeInsets.all(20),
   });
 
   final CardTone tone;
   final Widget child;
   final VoidCallback? onTap;
+
+  /// Quick actions (press and hold); a haptic tick marks the hold.
+  final VoidCallback? onLongPress;
   final EdgeInsets padding;
 
   @override
@@ -34,6 +39,12 @@ class GradientCard extends StatelessWidget {
         ),
         child: InkWell(
           onTap: onTap,
+          onLongPress: onLongPress == null
+              ? null
+              : () {
+                  HapticFeedback.mediumImpact();
+                  onLongPress!();
+                },
           borderRadius: radius,
           // feedback is the press scale below, not a Material ripple (design: iOS-like)
           splashFactory: NoSplash.splashFactory,
