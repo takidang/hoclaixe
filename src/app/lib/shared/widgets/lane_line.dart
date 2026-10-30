@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme.dart';
@@ -78,9 +80,13 @@ class _ProgressPainter extends CustomPainter {
     final r = Radius.circular(h / 2);
     final painted = size.width * value;
     final dashPaint = Paint()..color = color.withValues(alpha: 0.45);
-    // dashes stay on a fixed grid so the solid part covers them as it grows
-    for (var x = 0.0; x < size.width; x += _dash * 2) {
-      final end = (x + _dash).clamp(0, size.width).toDouble();
+    // dashes stay on a fixed grid so the solid part covers them as it grows; the dash is stretched
+    // slightly so whole dashes fill the width, with no clipped stub at the right end
+    final n = math.max(1, ((size.width + _dash) / (_dash * 2)).round());
+    final dash = size.width / (n * 2 - 1);
+    for (var i = 0; i < n; i++) {
+      final x = i * dash * 2;
+      final end = x + dash;
       if (end <= painted) continue;
       final start = x < painted ? painted : x;
       canvas.drawRRect(RRect.fromLTRBR(start, 0, end, h, r), dashPaint);

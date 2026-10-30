@@ -33,11 +33,21 @@ class TtsQuestionReader implements QuestionReader {
   FlutterTts? _tts;
   VoidCallback? _onDone;
 
+  /// Utterances started and not yet ended. Each one ends with exactly one complete / cancel / error event,
+  /// and the event of a stopped utterance may arrive after the next one has started (Android sends
+  /// onCancel, the web sends onError "interrupted"), so only the last one reaching 0 calls [_onDone].
+  int _running = 0;
+
   Future<FlutterTts> _engine() async {
     final existing = _tts;
     if (existing != null) return existing;
     final tts = FlutterTts();
     void done() {
+      if (_running > 0) {
+        _running--;
+      }
+      // still above 0: this was the late end of a stopped utterance, not of the current one
+      if (_running > 0) return;
       final cb = _onDone;
       _onDone = null;
       cb?.call();
@@ -62,6 +72,7 @@ class TtsQuestionReader implements QuestionReader {
       0.5,
     ); // engine scale 0–1: 0.5 is a normal pace on Android
     _onDone = onDone;
+    _running++;
     await tts.speak(text);
   }
 
@@ -69,6 +80,7 @@ class TtsQuestionReader implements QuestionReader {
   Future<void> stop() async {
     final tts = _tts;
     if (tts == null) return; // never started: do not wake the plugin
+    _onDone = null; // the caller updates its own state when it stops
     await tts.stop();
   }
 }

@@ -180,21 +180,18 @@ class RoadColors extends ThemeExtension<RoadColors> {
     required this.asphalt,
     required this.onAsphaltVariant,
     required this.marking,
-    required this.markingYellow,
   });
 
   static const light = RoadColors(
     asphalt: Color(0xFF2A3139),
     onAsphaltVariant: Color(0xFFB9C2CB),
     marking: Color(0xFFF1F3F5),
-    markingYellow: Color(0xFFF2C230),
   );
 
   static const dark = RoadColors(
     asphalt: Color(0xFF232B33),
     onAsphaltVariant: Color(0xFFAEB8C2),
     marking: Color(0xFFE9EDF0),
-    markingYellow: Color(0xFFF2C230),
   );
 
   final Color asphalt;
@@ -204,9 +201,6 @@ class RoadColors extends ThemeExtension<RoadColors> {
 
   /// White road paint, also the main text colour on [asphalt].
   final Color marking;
-
-  /// Critical questions, like warning-sign yellow.
-  final Color markingYellow;
 
   static RoadColors of(BuildContext context) {
     final theme = Theme.of(context);
@@ -219,12 +213,10 @@ class RoadColors extends ThemeExtension<RoadColors> {
     Color? asphalt,
     Color? onAsphaltVariant,
     Color? marking,
-    Color? markingYellow,
   }) => RoadColors(
     asphalt: asphalt ?? this.asphalt,
     onAsphaltVariant: onAsphaltVariant ?? this.onAsphaltVariant,
     marking: marking ?? this.marking,
-    markingYellow: markingYellow ?? this.markingYellow,
   );
 
   @override
@@ -238,7 +230,6 @@ class RoadColors extends ThemeExtension<RoadColors> {
             t,
           )!,
           marking: Color.lerp(marking, other.marking, t)!,
-          markingYellow: Color.lerp(markingYellow, other.markingYellow, t)!,
         );
 }
 

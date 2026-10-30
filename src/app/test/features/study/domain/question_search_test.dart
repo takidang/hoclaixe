@@ -15,16 +15,17 @@ void main() {
     DateTime(2026, 10, 30),
   )!.structure;
   final pool = questionPool(content.questions, 'B', pool: b.pool);
+  final index = QuestionSearchIndex(pool);
 
-  group('searchQuestions', () {
+  group('QuestionSearchIndex', () {
     test('gõ số → câu có số gốc đó đứng đầu', () {
       final target = pool[119];
-      final found = searchQuestions(pool, '${target.number}');
+      final found = index.search('${target.number}');
       expect(found.first, same(target));
     });
 
     test('gõ không dấu "nong do con" → chỉ ra các câu có "nồng độ cồn", theo thứ tự gốc', () {
-      final found = searchQuestions(pool, 'nong do con');
+      final found = index.search('nong do con');
       expect(found, isNotEmpty);
       for (final q in found) {
         expect(
@@ -37,15 +38,15 @@ void main() {
       final numbers = [for (final q in found) q.number];
       expect(numbers, [...numbers]..sort());
       expect(
-        searchQuestions(pool, 'NỒNG ĐỘ CỒN'),
+        index.search('NỒNG ĐỘ CỒN'),
         found,
         reason: 'có dấu, chữ hoa cũng như nhau',
       );
     });
 
     test('chuỗi rỗng hoặc không khớp → không có kết quả', () {
-      expect(searchQuestions(pool, '   '), isEmpty);
-      expect(searchQuestions(pool, 'zzzzqqq'), isEmpty);
+      expect(index.search('   '), isEmpty);
+      expect(index.search('zzzzqqq'), isEmpty);
     });
   });
 

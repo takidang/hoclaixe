@@ -6,6 +6,7 @@ import '../../../core/settings/app_settings.dart';
 import '../../exam/domain/question_pool.dart';
 import '../../exam/domain/structure_picker.dart';
 import '../../home/data/home_summary_provider.dart';
+import '../domain/question_search.dart';
 import '../domain/study_topic.dart';
 import 'progress_repository.dart';
 
@@ -99,18 +100,28 @@ final studyDataProvider = FutureProvider.autoDispose.family<StudyData?, String>(
   },
 );
 
+/// Search index of the selected class's pool, built once per class (search screen).
+final questionSearchIndexProvider = FutureProvider<QuestionSearchIndex?>((
+  ref,
+) async {
+  final cp = await ref.watch(classPoolProvider.future);
+  return cp == null ? null : QuestionSearchIndex(cp.pool);
+});
+
 /// Bookmarked question ids ("Câu đã lưu"). Invalidated by [toggleSaved].
 final savedIdsProvider = FutureProvider<Set<String>>((ref) async {
   final repo = await ref.watch(progressRepositoryProvider.future);
   return (await repo.savedIds()).toSet();
 });
 
-Future<void> toggleSaved(WidgetRef ref, String questionId) async {
-  final saved = await ref.read(savedIdsProvider.future);
+/// Saves or unsaves [questionId] from the stored state, not the screen's; returns whether it is now saved.
+Future<bool> toggleSaved(WidgetRef ref, String questionId) async {
+  final saved = !(await ref.read(savedIdsProvider.future)).contains(questionId);
   final repo = await ref.read(progressRepositoryProvider.future);
-  await repo.setSaved(questionId, saved: !saved.contains(questionId));
+  await repo.setSaved(questionId, saved: saved);
   ref.invalidate(savedIdsProvider);
   ref.invalidate(homeSummaryProvider);
+  return saved;
 }
 
 /// Mode written to the answer log for a topic.

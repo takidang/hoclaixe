@@ -8,7 +8,8 @@ String topicTitle(StudyTopic topic, Map<int, String> chapters) {
     TopicKind.critical => S.topicCritical,
     TopicKind.frequent => S.frequentWrong,
     TopicKind.saved => S.savedQuestions,
-    TopicKind.single => S.questionNumber(topic.questions.single.number),
+    // the body shows "Câu 1 · Số gốc n": name it by the official number only
+    TopicKind.single => S.officialNumber(topic.questions.single.number),
     TopicKind.chapter => S.chapterTitle(
       topic.chapter!,
       chapters[topic.chapter] ?? '',

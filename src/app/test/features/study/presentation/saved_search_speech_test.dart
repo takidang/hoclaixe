@@ -99,6 +99,11 @@ void main() {
       final view = tester.widget<QuestionView>(find.byType(QuestionView));
       expect(view.question, target);
       expect(view.mode, QuestionMode.study);
+      expect(
+        find.widgetWithText(AppBar, S.officialNumber(target.number)),
+        findsOneWidget,
+        reason: 'tiêu đề theo số gốc, không lẫn với "Câu 1" trong thân',
+      );
 
       await tester.pageBack();
       await tester.pumpAndSettle();

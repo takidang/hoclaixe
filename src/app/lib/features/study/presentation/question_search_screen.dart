@@ -7,7 +7,6 @@ import '../../../core/router.dart';
 import '../../../core/strings.dart';
 import '../../../core/theme/app_theme.dart';
 import '../data/study_providers.dart';
-import '../domain/question_search.dart';
 import '../domain/study_topic.dart';
 
 /// "Tìm câu hỏi": by official number or by words, without diacritics, in the selected class's pool.
@@ -24,10 +23,9 @@ class _QuestionSearchScreenState extends ConsumerState<QuestionSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cp = ref.watch(classPoolProvider).value;
-    final results = cp == null
-        ? const <Question>[]
-        : searchQuestions(cp.pool, _query);
+    final results =
+        ref.watch(questionSearchIndexProvider).value?.search(_query) ??
+        const <Question>[];
     final text = Theme.of(context).textTheme;
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
@@ -57,7 +55,9 @@ class _QuestionSearchScreenState extends ConsumerState<QuestionSearchScreen> {
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                     child: Text(
                       S.questionResults(results.length),
-                      style: text.labelMedium?.copyWith(color: scheme.onSurfaceVariant),
+                      style: text.labelMedium?.copyWith(
+                        color: scheme.onSurfaceVariant,
+                      ),
                     ),
                   );
                 }

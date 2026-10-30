@@ -112,10 +112,11 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
     }
   }
 
-  Future<void> _toggleSaved(bool saved) async {
+  Future<void> _toggleSaved() async {
     final messenger = ScaffoldMessenger.of(context);
+    final bool saved;
     try {
-      await toggleSaved(ref, _topic.questions[_index].id);
+      saved = await toggleSaved(ref, _topic.questions[_index].id);
     } on Exception {
       messenger.showSnackBar(const SnackBar(content: Text(S.saveFailed)));
       return;
@@ -123,7 +124,7 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
     messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(
-        SnackBar(content: Text(saved ? S.unsavedToast : S.savedToast)),
+        SnackBar(content: Text(saved ? S.savedToast : S.unsavedToast)),
       );
   }
 
@@ -277,7 +278,7 @@ class _StudyBodyState extends ConsumerState<_StudyBody> {
             isSelected: saved,
             icon: const Icon(Icons.bookmark_border),
             selectedIcon: const Icon(Icons.bookmark),
-            onPressed: () => _toggleSaved(saved),
+            onPressed: _toggleSaved,
           ),
           if (!_topic.isSnapshot)
             IconButton(

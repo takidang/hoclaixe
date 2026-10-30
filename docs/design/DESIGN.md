@@ -21,7 +21,6 @@ Màu, chữ, chuyển động đều lấy từ mặt đường và biển chỉ
 | text-secondary | `#535E69` | `#A4AFBA` | Chữ phụ |
 | asphalt | `#2A3139` | `#232B33` | Mặt đường của thẻ tiến độ (signature) |
 | marking | `#F1F3F5` | `#E9EDF0` | Vạch sơn trắng trên mặt đường |
-| marking-yellow | `#F2C230` | `#F2C230` | Câu điểm liệt (vàng như biển cảnh báo) |
 
 Đúng/sai giữ `AnswerColors` (xanh lá / đỏ), không dùng cho trang trí.
 
@@ -59,7 +58,7 @@ Trên màn chính nó nằm trên mặt đường tối (asphalt). Đây là ch�
 - **Nút chính** (CTA duy nhất của màn): `Thi thử` · dòng phụ `Hạng A1 · 25 câu · 19 phút` (điểm đạt xem ở màn thông tin đề).
 - Nhãn mục `Ôn luyện`, danh sách 6 dòng (cùng kiểu: icon vuông bo góc + tên + dòng phụ):
   - `Học theo chủ đề` · `Từng chương của bộ câu hỏi`
-  - `Câu điểm liệt` · `20 câu · sai một câu là trượt` (icon vàng)
+  - `Câu điểm liệt` · `20 câu · sai một câu là trượt` (icon vàng: `tertiaryContainer`, màu biển cảnh báo)
   - `Ôn câu sai` · `12 câu đang chờ ôn`
   - `Câu đã lưu` · `3 câu`
   - `Biển báo` · `Danh mục theo QCVN 41:2024`
