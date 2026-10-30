@@ -68,6 +68,23 @@ void main() {
   );
 
   testWidgets(
+    'nút Back của Android ở tab khác → về Tổng quan, không thoát app',
+    (tester) async {
+      final db = await openTestDatabase(tester);
+      await tester.pumpWidget(
+        testApp(content: content, db: db, store: onboarded('A1'), now: now),
+      );
+      await tester.pumpAndSettle();
+      await openTab(tester, S.statistics);
+
+      final handled = await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      expect(handled, isTrue, reason: 'Back được app xử lý, không đóng app');
+      expect(homeTitle(S.className('A1')), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     'tab Thống kê: biểu đồ đếm câu học và câu thi thử 30 ngày qua, chuỗi ngày học',
     (tester) async {
       final db = await openTestDatabase(tester);

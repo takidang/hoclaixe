@@ -423,6 +423,22 @@
      ]
     }
    ]
+  },
+  {
+   "code": "P.127",
+   "page": 90,
+   "note": "Hình B.27b trang 90 (biển tròn số 50). Phần trên trang 90 là toán đồ Hình B.27a (tầm nhìn, độ dốc), trước đây bị gán nhầm thành 7 hình của P.127. Phát hiện 30/10/2026 khi làm giao diện v2.",
+   "images": [
+    {
+     "page": 90,
+     "rect": [
+      259,
+      675,
+      344,
+      761
+     ]
+    }
+   ]
   }
  ],
  "add": [

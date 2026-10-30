@@ -1034,14 +1034,7 @@
    "heading": "Biển số P.127 \"Tốc độ tối đa cho phép\"",
    "meaning": "a) Để báo tốc độ tối đa cho phép các xe cơ giới chạy, đặt biển số P.127 \"Tốc độ tối đa cho phép\";\nb) Biển có hiệu lực cấm các loại xe cơ giới chạy với tốc độ tối đa vượt quá trị số ghi trên biển trừ các xe được ưu tiên theo quy định. Người điều khiển phương tiện căn cứ vào điều kiện cụ thể khác như khí hậu thời tiết tình trạng mặt đường, tình hình giao thông, phương tiện, điều kiện sức khỏe để điều khiển phương tiện với tốc độ phù hợp, an toàn và không quá giá trị ghi trên biển;\nc) Số ghi trên biển tốc độ tối đa cho phép tính bằng km/h và tùy theo tiêu chuẩn kỹ thuật hoặc điều kiện khai thác thực tế của đường mà quy định cho phù hợp. Khi không có các nghiên cứu cụ thể, có thể tham khảo toán đồ trên Hình B.27a để xác định giá trị tốc độ tối đa cho phép cho từng hướng đường;\nd) Không sử dụng biển số P.127 một cách tràn lan khi không có nghiên cứu cụ thể;\ne) Trong trường hợp chuyển tiếp từ giá trị tốc độ lớn xuống giá trị tốc độ nhỏ mà sự chênh lệch giữa hai giá trị tốc độ này lớn thì nên đặt biển tốc độ tối đa trung gian. Đoạn chuyển tiếp trung gian được quy định là không nhỏ hơn 250 m cho việc chuyển tiếp từ tốc độ 120 km/h xuống 100 km/h; 200 m cho cho việc chuyển tiếp từ tốc độ 100 km/h xuống 80 km/h; 150 m cho việc chuyển tiếp từ tốc độ 80 km/h xuống 60 km/h; 180 m cho việc chuyển tiếp từ tốc độ 90 km/h xuống 60 km/h hoặc từ tốc độ 80 km/h xuống 50 km/h; độ dốc dọc đường (sử dụng để tham khảo)\ng) Trường hợp đường qua cầu tạm, cầu yếu, qua cầu phao, đường vào phà, trạm kiểm tra giao thông, qua hầm, qua trạm thu phí, Công trình kiểm soát tải trọng xe, thì tuỳ theo yêu cầu kỹ thuật để quy định tốc độ tối đa cho phép.\nh) Trường hợp đường qua công trường đang thi công sử dụng biển cảnh báo công trường, trường hợp cần thiết thì sử dụng biển hạn chế tốc độ tối đa cho phép tạm thời. Hết phạm vi công trường cần có biển báo hết cấm. Khi công trường hoàn thành hoặc ngừng thi công, phải tháo bỏ biển báo cấm tạm thời ngay sau khi khôi phục lại giao thông bình thường;\ni) Khi sử dụng biển số P.127 tại các đoạn nhập làn và tách làn của các vị trí ra và vào đường ô tô, để chỉ rõ hiệu lực của biển chỉ có tác dụng cho các xe nhập làn và tách làn tại vị trí này, sử dụng kèm biển số S.509, trên biển ghi chữ “Lối vào” hoặc “Lối ra” tương ứng.",
    "images": [
-    "images/P127.png",
-    "images/P127_907.png",
-    "images/P127_911.png",
-    "images/P127_915.png",
-    "images/P127_919.png",
-    "images/P127_923.png",
-    "images/P127.jpeg",
-    "images/P127_927.jpeg"
+    "images/P127_fix0.png"
    ],
    "source": {
     "doc": "QCVN 41:2024/BGTVT",
@@ -1049,7 +1042,8 @@
     "effectiveDate": "2025-01-01",
     "appendix": "B",
     "section": "B.27",
-    "page": 89
+    "page": 89,
+    "correctedFromPage": 90
    }
   },
   {

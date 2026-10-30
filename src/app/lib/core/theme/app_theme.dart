@@ -19,6 +19,10 @@ abstract final class AppTheme {
   /// Text and lines on the pastel gradient cards, in light and dark mode alike.
   static const ink = Color(0xFF15171A);
 
+  /// Translucent white of the count chips and of the disc under a sign on the gradient cards.
+  static const chipFill = Color(0xB3FFFFFF);
+  static const badgeFill = Color(0xEBFFFFFF);
+
   /// Secondary text on the gradient cards ([ink] at 85 %: ≥ 4.5:1 even on the darkest end of [AppGradients.sky]).
   static const inkSoft = Color(0xD915171A);
 

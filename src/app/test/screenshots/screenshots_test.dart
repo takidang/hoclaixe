@@ -183,9 +183,9 @@ void main() {
     await loadImages(tester);
     await shot('09-signs');
     await tap(tester, find.byTooltip(S.searchSigns));
-    await tester.enterText(find.byType(TextField), 'P.124a');
+    await tester.enterText(find.byType(TextField), 'P.127');
     await tester.pumpAndSettle();
-    await tap(tester, find.widgetWithText(Card, 'P.124a'));
+    await tap(tester, find.widgetWithText(Card, 'P.127'));
     await loadImages(tester);
     await shot('10-sign-detail');
   }, skip: !_enabled);

@@ -67,8 +67,8 @@ class SignBadge extends ConsumerWidget {
         width: size,
         height: size,
         padding: EdgeInsets.all(size * 0.14),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.92),
+        decoration: const BoxDecoration(
+          color: AppTheme.badgeFill,
           shape: BoxShape.circle,
         ),
         child: Image.asset(asset, fit: BoxFit.contain),
@@ -87,7 +87,7 @@ class CountChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
-      color: Colors.white.withValues(alpha: 0.7),
+      color: AppTheme.chipFill,
       borderRadius: BorderRadius.circular(20),
     ),
     child: Padding(

@@ -5,6 +5,8 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hoclaixe/core/content/models.dart';
 
+import 'support/real_content.dart';
+
 /// Guards ADR-003: the bundled assets are exactly what tools/sync_assets.py wrote from the validated data/.
 void main() {
   Map<String, dynamic> readJson(String name) =>
@@ -50,5 +52,10 @@ void main() {
     final b = c.structures.firstWhere((s) => s.id == 'B-2025');
     expect([b.questionCount, b.durationMinutes, b.passScore], [30, 20, 27]);
     expect(c.signs, isNotEmpty);
+  });
+
+  test('P.127 chỉ có hình biển (Hình B.27b trang 90), không có mảnh toán đồ Hình B.27a', () {
+    final p127 = loadRealContent().signs.singleWhere((s) => s.code == 'P.127');
+    expect(p127.images, hasLength(1));
   });
 }

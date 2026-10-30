@@ -19,7 +19,16 @@ class AppShell extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => PopScope(
+    // Android back on another tab returns to "Tổng quan" before leaving the app
+    canPop: shell.currentIndex == 0,
+    onPopInvokedWithResult: (didPop, _) {
+      if (!didPop) shell.goBranch(0);
+    },
+    child: _scaffold(),
+  );
+
+  Widget _scaffold() => Scaffold(
     body: shell,
     extendBody: true, // tab screens scroll under the pill; they pad by MediaQuery's bottom inset
     bottomNavigationBar: SafeArea(

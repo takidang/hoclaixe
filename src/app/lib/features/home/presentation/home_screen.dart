@@ -16,7 +16,7 @@ import '../domain/home_summary.dart';
 abstract final class _Signs {
   static const lanes =
       'R.411'; // Hướng đi trên mỗi làn đường phải theo: the learner's lane
-  static const speed = 'R.306'; // Tốc độ tối thiểu cho phép: a timed test (P.127's pictures are charts)
+  static const speed = 'R.306'; // Tốc độ tối thiểu cho phép: a timed test
   static const danger = 'W.233'; // Nguy hiểm khác: critical questions
   static const detour =
       'R.302a'; // Hướng phải đi vòng chướng ngại vật: going back over mistakes
@@ -106,14 +106,14 @@ class _HomeBody extends ConsumerWidget {
         columns: 2,
         spacing: 12,
         children: [
-          _SmallCard(
+          _FeatureCard(
             gradient: AppGradients.amber,
             sign: _Signs.danger,
             label: S.criticalQuestions,
             detail: S.criticalHint(summary.criticalCount),
             route: Routes.critical,
           ),
-          _SmallCard(
+          _FeatureCard(
             gradient: AppGradients.bloom,
             sign: _Signs.detour,
             label: S.reviewWrong,
@@ -122,7 +122,8 @@ class _HomeBody extends ConsumerWidget {
           ),
         ],
       ),
-      const _WideCard(
+      const _FeatureCard(
+        wide: true,
         gradient: AppGradients.leaf,
         sign: _Signs.noEntry,
         label: S.trafficSigns,
@@ -290,13 +291,16 @@ class _ExamCard extends StatelessWidget {
   }
 }
 
-class _SmallCard extends StatelessWidget {
-  const _SmallCard({
+/// A gradient card that opens a feature: sign above the text when [wide] is false (half width),
+/// beside it when true (full width).
+class _FeatureCard extends StatelessWidget {
+  const _FeatureCard({
     required this.gradient,
     required this.sign,
     required this.label,
     required this.detail,
     required this.route,
+    this.wide = false,
   });
 
   final Gradient gradient;
@@ -304,70 +308,38 @@ class _SmallCard extends StatelessWidget {
   final String label;
   final String detail;
   final String route;
+  final bool wide;
 
   @override
   Widget build(BuildContext context) {
     final text = AppTheme.cardText(context);
-    return GradientCard(
-      gradient: gradient,
-      padding: const EdgeInsets.all(16),
-      onTap: () => context.push(route),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SignBadge(code: sign, size: 52),
-          const SizedBox(height: 20),
-          Text(label, style: text.titleMedium),
-          const SizedBox(height: 2),
-          Text(
-            detail,
-            style: text.bodySmall?.copyWith(color: AppTheme.inkSoft),
-          ),
-        ],
-      ),
+    final words = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: wide ? text.titleLarge : text.titleMedium),
+        const SizedBox(height: 2),
+        Text(detail, style: text.bodySmall?.copyWith(color: AppTheme.inkSoft)),
+      ],
     );
-  }
-}
-
-class _WideCard extends StatelessWidget {
-  const _WideCard({
-    required this.gradient,
-    required this.sign,
-    required this.label,
-    required this.detail,
-    required this.route,
-  });
-
-  final Gradient gradient;
-  final String sign;
-  final String label;
-  final String detail;
-  final String route;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = AppTheme.cardText(context);
     return GradientCard(
       gradient: gradient,
+      padding: EdgeInsets.all(wide ? 20 : 16),
       onTap: () => context.push(route),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
+      child: wide
+          ? Row(
+              children: [
+                Expanded(child: words),
+                SignBadge(code: sign, size: 56),
+              ],
+            )
+          : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: text.titleLarge),
-                const SizedBox(height: 2),
-                Text(
-                  detail,
-                  style: text.bodySmall?.copyWith(color: AppTheme.inkSoft),
-                ),
+                SignBadge(code: sign, size: 52),
+                const SizedBox(height: 20),
+                words,
               ],
             ),
-          ),
-          SignBadge(code: sign, size: 56),
-        ],
-      ),
     );
   }
 }
