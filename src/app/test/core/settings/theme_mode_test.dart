@@ -27,27 +27,27 @@ void main() {
       Theme.of(tester.element(find.byType(Scaffold).first)).brightness;
 
   testWidgets(
-    'Giới thiệu → chọn "Tối": app tối ngay, lựa chọn được lưu; "Sáng" thì sáng lại',
+    'mặc định tối (thiết kế v2); Giới thiệu → chọn "Sáng": app sáng ngay, lựa chọn được lưu; "Tối" thì tối lại',
     (tester) async {
       final store = onboarded('A1');
       await open(tester, store);
       expect(
         brightness(tester),
-        Brightness.light,
-        reason: 'mặc định theo máy (máy test: sáng)',
+        Brightness.dark,
+        reason: 'chưa chọn: nền tối dù máy test đang sáng',
       );
 
       await tester.tap(find.byTooltip(S.about));
       await tester.pumpAndSettle();
-      await tester.tap(find.text(S.themeDark));
-      await tester.pumpAndSettle();
-      expect(brightness(tester), Brightness.dark);
-      expect(await store.get(SettingKeys.themeMode), 'dark');
-
       await tester.tap(find.text(S.themeLight));
       await tester.pumpAndSettle();
       expect(brightness(tester), Brightness.light);
       expect(await store.get(SettingKeys.themeMode), 'light');
+
+      await tester.tap(find.text(S.themeDark));
+      await tester.pumpAndSettle();
+      expect(brightness(tester), Brightness.dark);
+      expect(await store.get(SettingKeys.themeMode), 'dark');
     },
   );
 
@@ -69,10 +69,17 @@ void main() {
     expect(brightness(tester), Brightness.light);
   });
 
-  testWidgets('"Theo máy": máy tối thì app tối', (tester) async {
-    tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
-    addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
-    await open(tester, onboarded('A1'));
-    expect(brightness(tester), Brightness.dark);
+  testWidgets('"Theo máy": máy sáng thì app sáng (không theo mặc định tối)', (
+    tester,
+  ) async {
+    await open(
+      tester,
+      InMemorySettingsStore({
+        SettingKeys.disclaimerAccepted: '1',
+        SettingKeys.licenseClass: 'A1',
+        SettingKeys.themeMode: 'system',
+      }),
+    );
+    expect(brightness(tester), Brightness.light, reason: 'máy test: sáng');
   });
 }

@@ -53,6 +53,7 @@ class ActivityCard extends StatelessWidget {
               )
             else ...[
               Semantics(
+                container: true, // its own node: read as one sentence, not merged into the card
                 label: S.activitySummary(study, exam),
                 excludeSemantics: true,
                 child: SizedBox(

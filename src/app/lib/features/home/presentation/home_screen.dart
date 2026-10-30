@@ -16,7 +16,7 @@ import '../domain/home_summary.dart';
 abstract final class _Signs {
   static const lanes =
       'R.411'; // Hướng đi trên mỗi làn đường phải theo: the learner's lane
-  static const speed = 'P.127'; // Tốc độ tối đa cho phép: a timed test
+  static const speed = 'R.306'; // Tốc độ tối thiểu cho phép: a timed test (P.127's pictures are charts)
   static const danger = 'W.233'; // Nguy hiểm khác: critical questions
   static const detour =
       'R.302a'; // Hướng phải đi vòng chướng ngại vật: going back over mistakes
@@ -182,7 +182,7 @@ class _ProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
+    final text = AppTheme.cardText(context);
     final count = '${summary.correctCount}';
     return GradientCard(
       gradient: AppGradients.sunset,
@@ -257,7 +257,7 @@ class _ExamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
+    final text = AppTheme.cardText(context);
     final s = summary.structure;
     return GradientCard(
       gradient: AppGradients.sky,
@@ -307,7 +307,7 @@ class _SmallCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
+    final text = AppTheme.cardText(context);
     return GradientCard(
       gradient: gradient,
       padding: const EdgeInsets.all(16),
@@ -346,7 +346,7 @@ class _WideCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
+    final text = AppTheme.cardText(context);
     return GradientCard(
       gradient: gradient,
       onTap: () => context.push(route),

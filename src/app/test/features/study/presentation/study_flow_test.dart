@@ -41,7 +41,7 @@ void main() {
   }
 
   Future<void> openCriticalTopic(WidgetTester tester) async {
-    await tapText(tester, S.studyByTopic);
+    await openTab(tester, S.studyByTopic);
     await tapText(tester, S.topicCritical);
   }
 
@@ -75,7 +75,7 @@ void main() {
     'danh sách chủ đề: Tất cả, Điểm liệt, các chương, mỗi mục có Đúng/Sai/Chưa làm (AC1)',
     (tester) async {
       await openApp(tester);
-      await tapText(tester, S.studyByTopic);
+      await openTab(tester, S.studyByTopic);
       expect(find.text(S.topicAll), findsOneWidget);
       expect(find.text(S.topicCritical), findsOneWidget);
       final firstChapter = topics[2].chapter!;
@@ -102,8 +102,7 @@ void main() {
       await tester.pageBack();
       await tester.pumpAndSettle();
       expect(find.text(S.topicStats(0, 1, 19)), findsOneWidget);
-      await tester.pageBack();
-      await tester.pumpAndSettle();
+      await openTab(tester, S.tabOverview);
       expect(find.text(S.wrongHint(1)), findsOneWidget); // home: Ôn câu sai
     },
   );

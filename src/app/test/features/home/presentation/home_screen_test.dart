@@ -85,14 +85,20 @@ void main() {
       expect(homeTitle(S.className('A1')), findsOneWidget);
       expect(find.text(S.progressCount(3, a1Pool.length)), findsOneWidget);
       for (final label in [
-        S.studyByTopic,
         S.practiceExam,
         S.reviewWrong,
         S.criticalQuestions,
         S.trafficSigns,
-        S.savedQuestions,
       ]) {
         expect(find.text(label), findsOneWidget, reason: label);
+      }
+      for (final tab in [
+        S.tabOverview,
+        S.studyByTopic,
+        S.savedQuestions,
+        S.statistics,
+      ]) {
+        expect(find.byTooltip(tab), findsOneWidget, reason: 'tab $tab');
       }
       expect(find.text(S.wrongHint(1)), findsOneWidget); // wrong list
       final critical = a1Pool.where((q) => q.isCriticalFor('A1')).length;

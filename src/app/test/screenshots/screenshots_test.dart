@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hoclaixe/core/db/app_database.dart';
+import 'package:hoclaixe/core/settings/app_settings.dart';
+import 'package:hoclaixe/core/settings/settings_store.dart';
 import 'package:hoclaixe/core/strings.dart';
 import 'package:hoclaixe/features/exam/domain/question_pool.dart';
 import 'package:hoclaixe/features/exam/domain/structure_picker.dart';
@@ -57,26 +59,35 @@ void main() {
     now = start;
     // some progress so the home screen is not empty
     await tester.runAsync(() async {
-      final repo = ProgressRepository(
-        db.db,
-        clock: () => start.subtract(const Duration(days: 1)),
-      );
       for (var i = 100; i < 187; i++) {
         final q = pool[i]; // leaves the first questions of each topic unanswered for the study shot
         final wrong = i % 12 == 5;
+        // spread over the last days, some in tests, so the activity chart has something to show
+        final repo = ProgressRepository(
+          db.db,
+          clock: () => start.subtract(Duration(days: 1 + (i * 7) % 23)),
+        );
         await repo.recordAnswer(
           questionId: q.id,
-          mode: AnswerMode.study,
+          mode: i % 5 == 0 ? AnswerMode.exam : AnswerMode.study,
           selectedIndex: wrong ? (q.correctIndex == 0 ? 1 : 0) : q.correctIndex,
           isCorrect: !wrong,
         );
+      }
+      final saved = ProgressRepository(db.db, clock: () => start);
+      for (final i in [3, 40, 120]) {
+        await saved.setSaved(pool[i].id, saved: true);
       }
     });
     await tester.pumpWidget(
       testApp(
         content: content,
         db: db,
-        store: onboarded('A1'),
+        store: InMemorySettingsStore({
+          SettingKeys.disclaimerAccepted: '1',
+          SettingKeys.licenseClass: 'A1',
+          SettingKeys.themeMode: dark ? 'dark' : 'light',
+        }),
         now: start,
         clock: () => now,
       ),
@@ -117,11 +128,13 @@ void main() {
 
   testWidgets('01 màn chính + 02 chế độ tối', (tester) async {
     await phone(tester);
+    await loadImages(tester);
     await shot('01-home');
   }, skip: !_enabled);
 
   testWidgets('02 màn chính tối', (tester) async {
     await phone(tester, dark: true);
+    await loadImages(tester);
     await shot('02-home-dark');
   }, skip: !_enabled);
 
@@ -179,7 +192,7 @@ void main() {
 
   testWidgets('11 thống kê', (tester) async {
     await phone(tester);
-    await tap(tester, find.text(S.statistics));
+    await openTab(tester, S.statistics);
     await shot('11-stats');
   }, skip: !_enabled);
 
@@ -197,6 +210,18 @@ void main() {
     await pickOption(tester, correct: true);
     await loadImages(tester);
     await shot('15-study-dark');
+  }, skip: !_enabled);
+
+  testWidgets('16 tab Học + 17 tab Câu đã lưu + 18 tab Thống kê (tối)', (
+    tester,
+  ) async {
+    await phone(tester, dark: true);
+    await openTab(tester, S.studyByTopic);
+    await shot('16-study-tab');
+    await openTab(tester, S.savedQuestions);
+    await shot('17-saved-tab');
+    await openTab(tester, S.statistics);
+    await shot('18-stats-dark');
   }, skip: !_enabled);
 
   testWidgets('12 giới thiệu (chọn giao diện)', (tester) async {

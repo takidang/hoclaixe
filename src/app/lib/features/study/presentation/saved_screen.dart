@@ -55,7 +55,10 @@ class SavedScreen extends ConsumerWidget {
                               label: S.questionCount(saved.length),
                             ),
                             const SizedBox(height: 12),
-                            Text(S.reviewSaved, style: text.titleLarge),
+                            Text(
+                              S.reviewSaved,
+                              style: AppTheme.cardText(context).titleLarge,
+                            ),
                           ],
                         ),
                       ),

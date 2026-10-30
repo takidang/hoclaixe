@@ -69,7 +69,7 @@ class _TopicCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
+    final text = AppTheme.cardText(context);
     return GradientCard(
       gradient: gradient,
       onTap: onTap,

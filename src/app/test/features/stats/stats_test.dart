@@ -170,14 +170,16 @@ void main() {
         testApp(content: content, db: db, store: onboarded('A1'), now: now),
       );
       await tester.pumpAndSettle();
-      await tester.ensureVisible(find.text(S.statistics));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text(S.statistics));
-      await tester.pumpAndSettle();
+      await openTab(tester, S.statistics);
 
       expect(find.text(S.testsTaken), findsOneWidget);
       expect(find.text(S.percent(0)), findsWidgets);
       expect(find.text(S.scoreOf(1, 25)), findsWidgets);
+      await tester.scrollUntilVisible(
+        find.text(S.topicCritical),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(
         find.text(S.topicCritical),
         findsOneWidget,

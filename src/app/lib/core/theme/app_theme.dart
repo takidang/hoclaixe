@@ -19,8 +19,13 @@ abstract final class AppTheme {
   /// Text and lines on the pastel gradient cards, in light and dark mode alike.
   static const ink = Color(0xFF15171A);
 
-  /// Secondary text on the gradient cards ([ink] at 75 %).
-  static const inkSoft = Color(0xBF15171A);
+  /// Secondary text on the gradient cards ([ink] at 85 %: ≥ 4.5:1 even on the darkest end of [AppGradients.sky]).
+  static const inkSoft = Color(0xD915171A);
+
+  /// Text styles for content on a gradient card: the theme's styles carry the light text colour of dark mode,
+  /// which would override [ink] on the pastel cards.
+  static TextTheme cardText(BuildContext context) =>
+      Theme.of(context).textTheme.apply(bodyColor: ink, displayColor: ink);
 
   /// [style] in the mono face, optionally recoloured. For standalone numbers only (not Vietnamese words).
   static TextStyle? mono(TextStyle? style, [Color? color]) => style?.copyWith(

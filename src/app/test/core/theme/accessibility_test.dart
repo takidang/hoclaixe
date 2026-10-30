@@ -49,7 +49,7 @@ void main() {
   ) async {
     await phone(tester, onboarded('B'));
     await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
-    await tap(tester, find.text(S.studyByTopic));
+    await openTab(tester, S.studyByTopic);
     await tap(tester, find.text(S.topicCritical));
     final view = find.byType(QuestionView);
     final q = tester.widget<QuestionView>(view).question;
@@ -59,8 +59,12 @@ void main() {
     );
     await tester.pageBack();
     await tester.pumpAndSettle();
-    await tester.pageBack();
-    await tester.pumpAndSettle();
+    await openTab(tester, S.tabOverview);
+    await tester.scrollUntilVisible(
+      find.text(S.trafficSigns),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tap(tester, find.text(S.trafficSigns));
     await tap(tester, find.text(content.signs.first.code));
     expect(

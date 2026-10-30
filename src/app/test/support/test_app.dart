@@ -56,6 +56,12 @@ InMemorySettingsStore onboarded(String licenseClass) => InMemorySettingsStore({
   SettingKeys.licenseClass: licenseClass,
 });
 
+/// Taps a tab of the floating tab bar by its label (S.tabOverview, S.studyByTopic, S.savedQuestions, S.statistics).
+Future<void> openTab(WidgetTester tester, String tab) async {
+  await tester.tap(find.byTooltip(tab));
+  await tester.pumpAndSettle();
+}
+
 /// The home screen's title shows the selected class.
 Finder homeTitle(String className) =>
     find.descendant(of: find.byType(AppBar), matching: find.text(className));

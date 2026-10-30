@@ -58,6 +58,7 @@ class LaneLine extends StatelessWidget {
             ),
           );
     return Semantics(
+      container: true,
       label: semanticsLabel,
       excludeSemantics: true,
       child: SizedBox(height: thickness, width: double.infinity, child: line),

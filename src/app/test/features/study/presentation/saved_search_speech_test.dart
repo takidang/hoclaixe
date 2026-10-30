@@ -54,10 +54,12 @@ void main() {
   }
 
   testWidgets(
-    'lưu câu khi học → màn chính đếm 1 câu, "Câu đã lưu" mở đúng câu đó; bỏ lưu thì danh sách trống',
+    'lưu câu khi học → tab "Câu đã lưu" có câu đó, "Ôn các câu đã lưu" mở đúng câu; bỏ lưu thì tab trống',
     (tester) async {
       await openApp(tester);
-      expect(find.text(S.questionCount(0)), findsOneWidget);
+      await openTab(tester, S.savedQuestions);
+      expect(find.textContaining(S.noSavedYet), findsOneWidget);
+      await openTab(tester, S.tabOverview);
       await tapText(tester, S.criticalQuestions);
       await tapTooltip(tester, S.saveQuestion);
       expect(find.text(S.savedToast), findsOneWidget);
@@ -69,9 +71,11 @@ void main() {
 
       await tester.pageBack();
       await tester.pumpAndSettle();
+      await openTab(tester, S.savedQuestions);
       expect(find.text(S.questionCount(1)), findsOneWidget);
+      expect(find.text(critical[0].content), findsOneWidget);
 
-      await tapText(tester, S.savedQuestions);
+      await tapText(tester, S.reviewSaved);
       final view = tester.widget<QuestionView>(find.byType(QuestionView));
       expect(view.question, critical[0]);
 
@@ -79,8 +83,11 @@ void main() {
       expect(find.text(S.unsavedToast), findsOneWidget);
       await tester.pageBack();
       await tester.pumpAndSettle();
-      await tapText(tester, S.savedQuestions);
-      expect(find.textContaining(S.noSavedYet), findsOneWidget);
+      expect(
+        find.textContaining(S.noSavedYet),
+        findsOneWidget,
+        reason: 'tab cập nhật ngay',
+      );
     },
   );
 
