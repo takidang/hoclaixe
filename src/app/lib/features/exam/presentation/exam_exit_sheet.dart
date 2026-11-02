@@ -8,6 +8,7 @@ enum ExitChoice { submit, saveAndExit, discard, keepGoing }
 Future<ExitChoice?> showExamExitSheet(
   BuildContext context, {
   required int unanswered,
+  List<int> flagged = const [],
 }) async {
   final choice = await showModalBottomSheet<ExitChoice>(
     context: context,
@@ -34,6 +35,15 @@ Future<ExitChoice?> showExamExitSheet(
                   Text(
                     S.unansweredWarning(unanswered),
                     style: text.bodyMedium?.copyWith(color: scheme.error),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+                // flagged questions (1-based), to look at once more before submitting
+                if (flagged.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    S.flaggedReminder(flagged),
+                    style: text.bodyMedium?.copyWith(color: scheme.tertiary),
                     textAlign: TextAlign.center,
                   ),
                 ],

@@ -54,6 +54,9 @@ class _ExamBody extends ConsumerStatefulWidget {
 class _ExamBodyState extends ConsumerState<_ExamBody> {
   late final ExamSession _session = widget.view.session;
   late final List<int?> _answers = [..._session.answers];
+
+  /// "Đánh dấu câu phân vân" per position, as saved (FR-A22).
+  late final List<bool> _flagged = [..._session.flagged];
   final _pages = PageController();
   int _index = 0;
   late Duration _left = _session.remaining(_now());
@@ -159,6 +162,26 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
     );
   }
 
+  /// Flags or unflags the question on screen ("Đánh dấu câu phân vân", FR-A22): saved first, then shown,
+  /// like an answer. A test that is no longer in progress (time up) is submitted instead.
+  Future<void> _toggleFlag() async {
+    if (_submitting) return;
+    final position = _index;
+    final on = !_flagged[position];
+    unawaited(HapticFeedback.selectionClick());
+    try {
+      final repo = await ref.read(examSessionRepositoryProvider.future);
+      await repo.setFlag(_session.id, position, flagged: on);
+      if (mounted) setState(() => _flagged[position] = on);
+    } on StateError {
+      if (mounted) await _submit();
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(S.saveFailed)));
+      }
+    }
+  }
+
   /// Submits once (FR-A26); a second call or an already submitted test just opens the result.
   Future<void> _submit() async {
     if (_submitting) return;
@@ -195,6 +218,10 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
     final choice = await showExamExitSheet(
       context,
       unanswered: _answers.where((a) => a == null).length,
+      flagged: [
+        for (var i = 0; i < _flagged.length; i++)
+          if (_flagged[i]) i + 1,
+      ],
     );
     _sheetOpen = false;
     if (!mounted || _submitting) return;
@@ -247,8 +274,11 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       },
       child: Scaffold(
         appBar: AppBar(
+          // three actions (flag, auto-next, timer): a tighter, one-step smaller title keeps "Câu 1 / 25" whole
+          titleSpacing: 0,
           title: Text(
             S.questionOfTotal(_index + 1, questions.length),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(12),
@@ -266,6 +296,13 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
             ),
           ),
           actions: [
+            IconButton(
+              tooltip: _flagged[_index] ? S.unflagQuestion : S.flagQuestion,
+              isSelected: _flagged[_index],
+              icon: const Icon(Icons.outlined_flag),
+              selectedIcon: Icon(Icons.flag, color: scheme.tertiary),
+              onPressed: _toggleFlag,
+            ),
             const AutoNextToggle(),
             Semantics(
               label: S.timeRemaining,
@@ -301,6 +338,7 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
           children: [
             _QuestionStrip(
               answers: _answers,
+              flagged: _flagged,
               current: _index,
               onTap: (i) => _pages.jumpToPage(i),
             ),
@@ -369,11 +407,15 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
 class _QuestionStrip extends StatefulWidget {
   const _QuestionStrip({
     required this.answers,
+    required this.flagged,
     required this.current,
     required this.onTap,
   });
 
   final List<int?> answers;
+
+  /// Questions marked "phân vân": a small flag in the corner of their cell.
+  final List<bool> flagged;
   final int current;
   final ValueChanged<int> onTap;
 
@@ -430,11 +472,13 @@ class _QuestionStripState extends State<_QuestionStrip> {
         separatorBuilder: (_, _) => const SizedBox(width: _gap),
         itemBuilder: (context, i) {
           final answered = widget.answers[i] != null;
+          final flagged = widget.flagged[i];
           return Semantics(
             button: true,
             selected: i == widget.current,
             label:
-                '${S.questionNumber(i + 1)}${answered ? '' : ', ${S.notAnswered}'}',
+                '${S.questionNumber(i + 1)}${answered ? '' : ', ${S.notAnswered}'}'
+                '${flagged ? ', ${S.flagged}' : ''}',
             excludeSemantics: true,
             child: Material(
               color: answered
@@ -453,15 +497,25 @@ class _QuestionStripState extends State<_QuestionStrip> {
                 onTap: () => widget.onTap(i),
                 child: SizedBox(
                   width: _cell,
-                  child: Center(
-                    child: Text(
-                      '${i + 1}',
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: answered
-                            ? scheme.onPrimaryContainer
-                            : scheme.onSurface,
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Text(
+                          '${i + 1}',
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: answered
+                                ? scheme.onPrimaryContainer
+                                : scheme.onSurface,
+                          ),
+                        ),
                       ),
-                    ),
+                      if (flagged)
+                        Positioned(
+                          top: 2,
+                          right: 2,
+                          child: Icon(Icons.flag, size: 14, color: scheme.tertiary),
+                        ),
+                    ],
                   ),
                 ),
               ),

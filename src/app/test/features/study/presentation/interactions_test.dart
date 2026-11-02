@@ -5,6 +5,7 @@ import 'package:hoclaixe/core/settings/app_settings.dart';
 import 'package:hoclaixe/core/settings/settings_store.dart';
 import 'package:hoclaixe/core/strings.dart';
 import 'package:hoclaixe/core/theme/app_theme.dart';
+import 'package:hoclaixe/features/exam/data/exam_session_repository.dart';
 import 'package:hoclaixe/features/exam/domain/question_pool.dart';
 import 'package:hoclaixe/features/exam/domain/structure_picker.dart';
 import 'package:hoclaixe/features/study/data/progress_repository.dart';
@@ -130,6 +131,50 @@ void main() {
         findsOneWidget,
         reason: 'đã tắt: ở lại câu 2',
       );
+    },
+  );
+
+  testWidgets(
+    'đang thi: đánh dấu câu phân vân → lưu CSDL, cờ trên dải số câu, bảng thoát nhắc lại; bỏ đánh dấu được',
+    (tester) async {
+      await open(tester);
+      await tapCard(tester, S.practiceExam);
+      await tapCard(tester, S.fixedTest(1));
+      await tapCard(tester, S.startTest);
+      Future<List<bool>> savedFlags() async => (await tester.runAsync(
+        () => ExamSessionRepository(db.db).openSession(),
+      ))!.flagged;
+
+      await tester.tap(find.byTooltip(S.flagQuestion));
+      await tester.pumpAndSettle();
+      expect(find.byTooltip(S.unflagQuestion), findsOneWidget);
+      expect((await savedFlags())[0], isTrue, reason: 'lưu vào CSDL');
+      expect(
+        find.byIcon(Icons.flag),
+        findsNWidgets(2),
+        reason: 'nút trên thanh tiêu đề + dấu trên ô số 1',
+      );
+
+      await tester.tap(find.byTooltip(S.nextQuestion));
+      await tester.pumpAndSettle();
+      expect(
+        find.byTooltip(S.flagQuestion),
+        findsOneWidget,
+        reason: 'câu 2 chưa đánh dấu',
+      );
+
+      await tester.tap(find.text(S.submit));
+      await tester.pumpAndSettle();
+      expect(find.text(S.flaggedReminder([1])), findsOneWidget);
+      await tester.tap(find.text(S.keepGoing));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byTooltip(S.previousQuestion));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip(S.unflagQuestion));
+      await tester.pumpAndSettle();
+      expect((await savedFlags())[0], isFalse);
+      expect(find.byIcon(Icons.flag), findsNothing);
     },
   );
 

@@ -253,6 +253,7 @@ void main() {
     await tap(tester, find.text(S.practiceExam));
     await tap(tester, find.text(S.fixedTest(1)));
     await tap(tester, find.text(S.startTest));
+    await tap(tester, find.byTooltip(S.flagQuestion)); // question 1 marked "phân vân"
     await shot('22-exam-dark');
   }, skip: !_enabled);
 

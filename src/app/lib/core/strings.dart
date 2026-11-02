@@ -208,6 +208,12 @@ abstract final class S {
   static const continueTest = 'Tiếp tục bài thi';
   static const abandonAndNew = 'Bỏ bài cũ, làm đề mới';
   static const submit = 'Nộp bài';
+  // Flag a question while taking a test (FR-A22, Could)
+  static const flagQuestion = 'Đánh dấu câu phân vân';
+  static const unflagQuestion = 'Bỏ đánh dấu';
+  static const flagged = 'đã đánh dấu';
+  static String flaggedReminder(List<int> positions) =>
+      'Câu đánh dấu phân vân: ${positions.join(', ')}. Nên xem lại trước khi nộp.';
   static const examError = 'Không mở được bài thi. Hãy thử lại.';
   static String answeredOf(int answered, int total) =>
       'Đã làm $answered/$total';
