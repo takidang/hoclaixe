@@ -57,6 +57,7 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
 
   /// "Đánh dấu câu phân vân" per position, as saved (FR-A22).
   late final List<bool> _flagged = [..._session.flagged];
+  bool _flagSaving = false;
   final _pages = PageController();
   int _index = 0;
   late Duration _left = _session.remaining(_now());
@@ -165,7 +166,8 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
   /// Flags or unflags the question on screen ("Đánh dấu câu phân vân", FR-A22): saved first, then shown,
   /// like an answer. A test that is no longer in progress (time up) is submitted instead.
   Future<void> _toggleFlag() async {
-    if (_submitting) return;
+    if (_submitting || _flagSaving) return;
+    _flagSaving = true;
     final position = _index;
     final on = !_flagged[position];
     unawaited(HapticFeedback.selectionClick());
@@ -179,6 +181,8 @@ class _ExamBodyState extends ConsumerState<_ExamBody> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(S.saveFailed)));
       }
+    } finally {
+      _flagSaving = false;
     }
   }
 
