@@ -50,3 +50,6 @@ src/app/test/screenshots/out/
 
 # lecturer requirements and other students' sample reports (personal data, large)
 docs/reports/giang-vien/
+
+# Course slides and quiz from the lecturer, personal revision notes: never in git
+giaotrinh/
